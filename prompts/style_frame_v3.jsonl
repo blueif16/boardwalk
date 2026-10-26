@@ -1,0 +1,2 @@
+{"out": "gen/style_frame/v3a", "prompt_file": "prompts/style_frame_v3a.txt", "ref": ["gen/style_frame/v1_1.png", "gen/style_frame/v1_0.png"], "size": "1536x1024", "n": 2}
+{"out": "gen/style_frame/v3b", "prompt_file": "prompts/style_frame_v3b.txt", "ref": ["gen/style_frame/v1_1.png", "gen/style_frame/v1_0.png"], "size": "1536x1024", "n": 2}

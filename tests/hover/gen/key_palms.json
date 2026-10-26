@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Paint each palm tree as one solid, completely flat silhouette in pure magenta #FF00FF. Cover each palm's whole shape exactly, edge to edge, including its outline, every frond and the trunk down to the ground, but not the bushes at its foot. No shading, no outline, no texture, no gradient inside the magenta: one single flat colour.\nDo not change anything else: keep the same framing, camera, colours, line style and every other object exactly in place, pixel for pixel. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "key_palms"
+ },
+ "format": "png",
+ "generation_s": 34.3,
+ "attempts": 1,
+ "idempotency_key": "1b747092-7170-4c64-a645-d3bb3d8588cf",
+ "request_id": "55bcdf8a-c3c1-480b-92ea-1b70c4769c57",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 1584,
+  "completion_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2614,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 125
+  },
+  "output_tokens": 1584,
+  "output_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2614,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 125
+  },
+  "total_tokens": 4198
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/bdc25776-8d9d-44ea-ae4e-e3e29d9bcc5a"
+ ],
+ "files": [
+  "tests/hover/gen/key_palms_0.png"
+ ]
+}

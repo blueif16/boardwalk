@@ -1,0 +1,15 @@
+Images 1 and 2 are style references only. Draw a NEW illustration in a style that combines them.
+
+Subject: a small slice of the Santa Cruz Beach Boardwalk, the seaside amusement park in California, seen from high above the ocean looking inland. Parallel projection like an isometric game map: no vanishing points, vertical edges stay vertical, camera about 50 degrees down. The shoreline and the boardwalk run almost horizontally across the picture, tilted only slightly (about 15 degrees), with the ocean along the bottom edge, so the park reads as a long strip you could scroll sideways.
+- Bottom third: the Pacific surf rolling onto a wide sandy beach. Flat blue water with short white dash ripples, curling white foam lines where the waves run up the sand, a band of darker wet sand behind the foam. Beach towels, umbrellas, a sandcastle, a surfer.
+- Middle: the boardwalk promenade along the beach. A white-painted wooden roller coaster with a lattice of timber bents and a red coaster train on its track; a small open-air ride with chairs swinging on chains around a central tower; a striped snack stand; strings of light bulbs; lamp posts; benches.
+- Top: the street behind, a few low pastel buildings and palm trees.
+- Many tiny cute animal characters like those in image 1 (bears, bunnies, cats, dogs), each doing something: eating cotton candy, queueing, riding, waving, building a sandcastle, flying a kite.
+
+Style:
+- From image 1: the warm pastel palette (salmon, peach, butter yellow, cornflower blue, mint, lavender grey), soft rounded toy-like chunky proportions, cute characters, every patch telling a small story.
+- From image 2, weighted strongly: the readable map-like layout with breathing room between objects, a bold, heavy, uniform outline around every object and character silhouette (clearly heavier than image 1), perfectly flat colour fills with exactly one darker cel-shade tone and no gradients or painterly texture, short crisp shadows, tiny tick-mark textures on sand, water drawn flat with short white dashes.
+- Outline colour: very dark warm plum-brown, not pure black. Interior detail lines thinner and tinted darker versions of the fill.
+- Daytime, soft even light.
+
+Do not draw any text, letters, numbers, logos, signatures or watermarks; leave signboards blank. Do not copy any building, object or character from the references.

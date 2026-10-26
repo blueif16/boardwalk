@@ -1,0 +1,31 @@
+{
+ "rivBytes": 60377,
+ "wheel": {
+  "shapes": 260,
+  "paints": 385
+ },
+ "lights": {
+  "shapes": 147,
+  "paints": 147
+ },
+ "geometry": {
+  "hub": [
+   730,
+   465.1652
+  ],
+  "root": [
+   142,
+   129.1652
+  ],
+  "rive": {
+   "outerRotation": 0.7499,
+   "scaleX": 1,
+   "scaleY": 0.8007,
+   "innerRotation": -0.6408
+  },
+  "depth": [
+   -0.4473,
+   0.5998
+  ]
+ }
+}

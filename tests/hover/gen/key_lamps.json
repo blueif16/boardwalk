@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Paint each lamp post (the blue street lamps with round yellow globe lights) as one solid, completely flat silhouette in pure magenta #FF00FF. Cover each lamp's whole shape exactly, edge to edge, including its outline, base, pole, arms and globes. No shading, no outline, no texture, no gradient inside the magenta: one single flat colour.\nDo not change anything else: keep the same framing, camera, colours, line style and every other object exactly in place, pixel for pixel. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "key_lamps"
+ },
+ "format": "png",
+ "generation_s": 83.0,
+ "attempts": 1,
+ "idempotency_key": "93e6c9ca-a4b2-442f-8fcc-564402be495a",
+ "request_id": "363f0215-e9b2-46cc-9f39-314a2afc8f8c",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 1584,
+  "completion_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2615,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 126
+  },
+  "output_tokens": 1584,
+  "output_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2615,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 126
+  },
+  "total_tokens": 4199
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/bbbacc8d-0958-4f62-afa4-4fa84e33203b"
+ ],
+ "files": [
+  "tests/hover/gen/key_lamps_0.png"
+ ]
+}

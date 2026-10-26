@@ -1,0 +1,4 @@
+name: wheel
+main: Wheel
+exclude:
+  - build

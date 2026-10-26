@@ -1,0 +1,12 @@
+{
+ "sources": 1105,
+ "bulbs": 916,
+ "long_strings": 0,
+ "lit_px_share": 0.1854,
+ "recon_max_err": 0.0,
+ "gain_mean": [
+  0.411,
+  0.456,
+  0.612
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything.\n\nThe new time: a clear evening about an hour after sunset. A deep blue dusk light covers everything. Keep it a storybook painting: the pastel colours stay readable, only cooler and darker, never grey, muddy or black. Moonlight from above makes the sand a soft pale lavender-blue, lighter than the boardwalk; the street and parking lots are dark slate blue.\n\nEvery light is on, warm yellow and amber, each with a small soft glow:\n- Every lamp post: its round globes glow warm yellow with a soft halo, and a small pool of warm light lies on the planks at its foot.\n- The Giant Dipper: a line of small warm bulbs runs along both edges of the red track the whole way round, and along the top of the white lattice; the lattice is softly lit from below.\n- Every stall and booth: its inside glows warm, the counter and shelves are lit, a string of small round bulbs hangs along the front edge of its awning, and its blank signboard glows softly.\n- The log flume mill house: every window glows amber, a lantern hangs by its door, and small lights run along the edges of the water chutes.\n- The white building at the top left: its windows are lit.\n- The round empty ride platforms: a ring of small bulbs along the top of each low fence.\n- The white rail along the boardwalk wall: a string of small warm bulbs along it, and a lamp at the top of each staircase.\n- The two flags are lit from below by a small spotlight. The parked cars stay dark, with lights off.\n\nKeep the empty platforms empty. Do not add any people, animals, rides, cars, moon, stars or sky. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "night_v1"
+ },
+ "format": "png",
+ "generation_s": 36.6,
+ "attempts": 1,
+ "idempotency_key": "8735128c-0511-4af0-8438-c7ff93b00fe3",
+ "request_id": "81f1cefe-aff4-4eb7-b951-e82d795978cc",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2930,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 441
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2930,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 441
+  },
+  "total_tokens": 6098
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/4fc5c621-4431-4a0f-a1c8-e909e7ffc655",
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/abb684f2-c556-4466-a25f-f7f5e4c6a24a"
+ ],
+ "files": [
+  "tests/night/gen/night_v1_0.png",
+  "tests/night/gen/night_v1_1.png"
+ ]
+}

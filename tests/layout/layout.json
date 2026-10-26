@@ -1,0 +1,7720 @@
+{
+ "about": "Layout of the whole Santa Cruz Beach Boardwalk: every ride and attraction in the 2025 official map legend plus the key buildings, placed on the official map (pdf px) and on OpenStreetMap (lat/lon, ground metres), with the fitted mapping between them, its distortion, and the proposed slices for the painted stage. Built by tests/layout/build_layout.py from tests/layout/layout_data.py.",
+ "sources": {
+  "map": "reference/map/boardwalk-map-2025-pdf.jpg (1565 x 883); png_1400 = same point on boardwalk-map-2025.png (1400 x 790)",
+  "osm": "reference/map/osm_area.json (Overpass, bbox 36.9612,-122.0228,36.9670,-122.0112), (c) OpenStreetMap contributors, ODbL",
+  "kinds": "official legend + coasterpedia.net/wiki/Santa_Cruz_Beach_Boardwalk + Amusement Today Aug 2017 (Shockwave, Typhoon)"
+ },
+ "frames": {
+  "pdf": "official map pixels, origin top-left, y down",
+  "ground": "metres on a tangent plane at lat 36.9645, lon -122.017: E = (lon - -122.017) * 88945.6, N = (lat - 36.9645) * 110540.0",
+  "strip": "the promenade (OSM w566029386) runs 18.1 deg north of east; strip_dir = [0.9508, 0.3099]",
+  "stage": "base/stage.png px = (pdf - slice.rect[0:2]) * 2.56 before registration"
+ },
+ "legend_count": {
+  "kiddie": 9,
+  "family": 19,
+  "thrill": 11,
+  "rides": 39,
+  "attractions": 5,
+  "note": "the 2025 legend numbers rides 1-39 (39 rides, not 38); the 2026 map adds 40 Vertigo 360 (Zamperla frisbee)"
+ },
+ "items": [
+  {
+   "id": "bouncin_buggies",
+   "num": "1",
+   "name": "Bouncin' Buggies",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "Zamperla Jump Around (2016)",
+   "motion": "mixed",
+   "motion_note": "cars circle a hub and hop up and down",
+   "map": {
+    "base": [
+     368,
+     642
+    ],
+    "conf": "medium",
+    "marker": [
+     365.5,
+     642.8
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     329.2,
+     574.4
+    ]
+   },
+   "region": "west",
+   "osm": null,
+   "osm_note": "not in OSM (n1380995321 'Rugged Buggies' is a retired ride at the east end)",
+   "ground_estimated": {
+    "ground": [
+     -158.3,
+     -74.6
+    ],
+    "lat": 36.963825,
+    "lon": -122.0187793,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "speedway",
+   "num": "5",
+   "name": "Speedway",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "Zamperla Junior Whip (2002)",
+   "motion": "path",
+   "motion_note": "cars on an oval track",
+   "map": {
+    "base": [
+     490,
+     600
+    ],
+    "conf": "low",
+    "marker": [
+     502.5,
+     566.4
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     438.3,
+     536.8
+    ]
+   },
+   "region": "west",
+   "osm": null,
+   "osm_note": "not in OSM",
+   "ground_estimated": {
+    "ground": [
+     -111.9,
+     -47.7
+    ],
+    "lat": 36.9640684,
+    "lon": -122.0182579,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "jet_copters",
+   "num": "11",
+   "name": "Jet Copters",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "Zamperla Junior Jets (1990)",
+   "motion": "spin",
+   "motion_note": "arms turn around a centre column and rise",
+   "map": {
+    "base": [
+     582,
+     563
+    ],
+    "conf": "medium",
+    "marker": [
+     569.8,
+     547.3
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     520.6,
+     503.7
+    ]
+   },
+   "region": "west",
+   "osm": null,
+   "osm_note": "not in OSM",
+   "ground_estimated": {
+    "ground": [
+     -76.2,
+     -27.6
+    ],
+    "lat": 36.9642506,
+    "lon": -122.017857,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "bulgy_the_whale",
+   "num": "23",
+   "name": "Bulgy the Whale",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "Eyerly roundabout (1960)",
+   "motion": "spin",
+   "map": {
+    "base": [
+     1365,
+     725
+    ],
+    "conf": "medium",
+    "marker": [
+     1358.0,
+     721.2
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1221.1,
+     648.6
+    ]
+   },
+   "region": "east",
+   "osm": null,
+   "osm_note": "not in OSM",
+   "ground_estimated": {
+    "ground": [
+     293.1,
+     31.7
+    ],
+    "lat": 36.9647871,
+    "lon": -122.013705,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "beach_swing",
+   "num": "24",
+   "name": "Beach Swing",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "Zamperla Happy Swing (2013)",
+   "motion": "swing",
+   "map": {
+    "base": [
+     1377,
+     790
+    ],
+    "conf": "medium",
+    "marker": [
+     1386.2,
+     772.4
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1231.8,
+     706.8
+    ]
+   },
+   "region": "east",
+   "osm": null,
+   "osm_note": "not in OSM",
+   "ground_estimated": {
+    "ground": [
+     306.0,
+     12.1
+    ],
+    "lat": 36.9646091,
+    "lon": -122.0135598,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "speed_boats",
+   "num": "27",
+   "name": "Speed Boats",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "Venture boat roundabout (1982)",
+   "motion": "spin",
+   "motion_note": "boats circle in a round pool",
+   "map": {
+    "base": [
+     1467,
+     706
+    ],
+    "conf": "medium",
+    "marker": [
+     1450.5,
+     694.6
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1312.3,
+     631.6
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995356",
+    "url": "https://www.openstreetmap.org/node/1380995356",
+    "name": "Speed Boats",
+    "lat": 36.9649493,
+    "lon": -122.0132991,
+    "ground": [
+     329.2,
+     49.7
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1434.8,
+     704.4
+    ],
+    "affine_residual_px": [
+     32.2,
+     1.6
+    ],
+    "tps_px": [
+     1458.4,
+     698.8
+    ]
+   }
+  },
+  {
+   "id": "sea_dragons",
+   "num": "28",
+   "name": "Sea Dragons",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "Sartori junior jets (1976)",
+   "motion": "spin",
+   "map": {
+    "base": [
+     1478,
+     686
+    ],
+    "conf": "medium",
+    "marker": [
+     1463.1,
+     674.1
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1322.2,
+     613.7
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995323",
+    "url": "https://www.openstreetmap.org/node/1380995323",
+    "name": "Sea Dragons",
+    "lat": 36.9648593,
+    "lon": -122.0133081,
+    "ground": [
+     328.4,
+     39.7
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1427.2,
+     729.8
+    ],
+    "affine_residual_px": [
+     50.8,
+     -43.8
+    ],
+    "tps_px": [
+     1451.9,
+     722.7
+    ]
+   }
+  },
+  {
+   "id": "convoy",
+   "num": "29",
+   "name": "Convoy",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "Zamperla truck track ride (2000)",
+   "motion": "path",
+   "motion_note": "trucks on a long oval track along the river",
+   "map": {
+    "base": [
+     1492,
+     608
+    ],
+    "conf": "low",
+    "marker": [
+     1499.6,
+     614.8
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1334.7,
+     544.0
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995289",
+    "url": "https://www.openstreetmap.org/node/1380995289",
+    "name": "Convoy",
+    "lat": 36.9653721,
+    "lon": -122.0132881,
+    "ground": [
+     330.2,
+     96.4
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1464.8,
+     583.7
+    ],
+    "affine_residual_px": [
+     27.2,
+     24.3
+    ],
+    "tps_px": [
+     1468.9,
+     586.8
+    ]
+   }
+  },
+  {
+   "id": "boardwalk_racers",
+   "num": "39",
+   "name": "Boardwalk Racers",
+   "group": "kiddie",
+   "kind": "kiddie ride",
+   "model": "kiddie car roundabout under a canopy",
+   "motion": "spin",
+   "map": {
+    "base": [
+     1406,
+     790
+    ],
+    "conf": "medium",
+    "marker": [
+     1421.9,
+     779.1
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1257.8,
+     706.8
+    ]
+   },
+   "region": "east",
+   "osm": null,
+   "osm_note": "not in OSM",
+   "ground_estimated": {
+    "ground": [
+     317.6,
+     14.6
+    ],
+    "lat": 36.964632,
+    "lon": -122.0134295,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "pirate_ship",
+   "num": "3",
+   "name": "Pirate Ship",
+   "group": "family",
+   "kind": "swinging ship",
+   "model": "HUSS Pirate (1984)",
+   "motion": "swing",
+   "map": {
+    "base": [
+     395,
+     645
+    ],
+    "conf": "medium",
+    "marker": [
+     387.3,
+     611.3
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      370,
+      612
+     ],
+     [
+      420,
+      612
+     ],
+     [
+      420,
+      648
+     ],
+     [
+      370,
+      648
+     ]
+    ],
+    "png_1400": [
+     353.4,
+     577.1
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "n1380995310",
+    "url": "https://www.openstreetmap.org/node/1380995310",
+    "name": "Pirate Ship",
+    "lat": 36.963875,
+    "lon": -122.0186124,
+    "ground": [
+     -143.4,
+     -69.1
+    ],
+    "tags": {
+     "attraction": "pirate_ship"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     424.0,
+     622.5
+    ],
+    "affine_residual_px": [
+     -29.0,
+     22.5
+    ],
+    "tps_px": [
+     404.4,
+     637.1
+    ]
+   }
+  },
+  {
+   "id": "speed_bumps",
+   "num": "6",
+   "name": "Speed Bumps",
+   "group": "family",
+   "kind": "bumper cars (indoor)",
+   "model": "dodgems (1996)",
+   "motion": "static",
+   "motion_note": "indoors under the Undertow roof; nothing visible moves",
+   "map": {
+    "base": [
+     570,
+     560
+    ],
+    "conf": "low",
+    "marker": [
+     578.3,
+     582.7
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     509.9,
+     501.0
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "n1379076487",
+    "url": "https://www.openstreetmap.org/node/1379076487",
+    "name": "Speed Bumps",
+    "lat": 36.9643277,
+    "lon": -122.0179988,
+    "ground": [
+     -88.8,
+     -19.0
+    ],
+    "tags": {
+     "attraction": "amusement_ride",
+     "level": "0"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     562.6,
+     537.3
+    ],
+    "affine_residual_px": [
+     7.4,
+     22.7
+    ],
+    "tps_px": [
+     571.2,
+     536.3
+    ]
+   }
+  },
+  {
+   "id": "sky_glider",
+   "num": "7",
+   "name": "Sky Glider (one way)",
+   "group": "family",
+   "kind": "chairlift",
+   "model": "Hopkins ropeway (1967)",
+   "motion": "path",
+   "motion_note": "chairs along a cable from the west station (main entrance) to the east station (in front of the Dipper), one way",
+   "map": {
+    "base": [
+     535,
+     585
+    ],
+    "conf": "low",
+    "marker": [
+     [
+      529.6,
+      583.4
+     ],
+     [
+      1009.7,
+      699.5
+     ]
+    ],
+    "path": [
+     [
+      535,
+      585
+     ],
+     [
+      640,
+      603
+     ],
+     [
+      796,
+      636
+     ],
+     [
+      893,
+      662
+     ],
+     [
+      1017,
+      703
+     ]
+    ],
+    "png_1400": [
+     478.6,
+     523.4
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "w123977926",
+    "url": "https://www.openstreetmap.org/way/123977926",
+    "name": "Sky Glider",
+    "lat": 36.9642517,
+    "lon": -122.0166971,
+    "ground": [
+     26.9,
+     -27.4
+    ],
+    "footprint": [
+     [
+      36.9641058,
+      -122.0181652
+     ],
+     [
+      36.9641803,
+      -122.017482
+     ],
+     [
+      36.9644143,
+      -122.0153369
+     ],
+     [
+      36.9644235,
+      -122.0152424
+     ],
+     [
+      36.9644236,
+      -122.0152317
+     ],
+     [
+      36.9644201,
+      -122.0152215
+     ],
+     [
+      36.964414,
+      -122.015218
+     ],
+     [
+      36.9644062,
+      -122.0152184
+     ],
+     [
+      36.9643996,
+      -122.0152253
+     ],
+     [
+      36.9643962,
+      -122.0152363
+     ],
+     [
+      36.9643862,
+      -122.0153327
+     ],
+     [
+      36.9640777,
+      -122.0181645
+     ],
+     [
+      36.9640836,
+      -122.0181804
+     ],
+     [
+      36.9640976,
+      -122.0181826
+     ],
+     [
+      36.9641058,
+      -122.0181652
+     ]
+    ],
+    "size_m": [
+     263.7,
+     38.2
+    ],
+    "tags": {
+     "aerialway": "chair_lift",
+     "layer": "1"
+    },
+    "related": [
+     {
+      "ref": "w566026152",
+      "url": "https://www.openstreetmap.org/way/566026152",
+      "name": "Sky Glider",
+      "lat": 36.9640881,
+      "lon": -122.0181764,
+      "ground": [
+       -104.6,
+       -45.5
+      ],
+      "footprint": [
+       [
+        36.9640531,
+        -122.0182462
+       ],
+       [
+        36.9640581,
+        -122.0182521
+       ],
+       [
+        36.9640663,
+        -122.018272
+       ],
+       [
+        36.9640862,
+        -122.0182599
+       ],
+       [
+        36.9641081,
+        -122.0182643
+       ],
+       [
+        36.9641261,
+        -122.0180971
+       ],
+       [
+        36.9640663,
+        -122.0180879
+       ],
+       [
+        36.9640531,
+        -122.0182462
+       ]
+      ],
+      "size_m": [
+       16.4,
+       8.1
+      ],
+      "tags": {
+       "building": "yes"
+      }
+     }
+    ]
+   },
+   "fit": {
+    "affine_px": [
+     787.6,
+     654.9
+    ],
+    "affine_residual_px": [
+     -252.6,
+     -69.9
+    ],
+    "tps_px": [
+     750.2,
+     634.5
+    ]
+   }
+  },
+  {
+   "id": "wave_rider",
+   "num": "8",
+   "name": "Wave Rider",
+   "group": "family",
+   "kind": "giant slide",
+   "model": "Battech giant slide (2021)",
+   "motion": "slide",
+   "motion_note": "riders slide down rainbow lanes",
+   "map": {
+    "base": [
+     565,
+     530
+    ],
+    "conf": "low",
+    "marker": [
+     544.6,
+     528.4
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      527,
+      515
+     ],
+     [
+      600,
+      515
+     ],
+     [
+      615,
+      542
+     ],
+     [
+      530,
+      540
+     ]
+    ],
+    "png_1400": [
+     505.4,
+     474.2
+    ]
+   },
+   "region": "west",
+   "osm": null,
+   "osm_note": "not in OSM",
+   "ground_estimated": {
+    "ground": [
+     -92.8,
+     -19.2
+    ],
+    "lat": 36.9643261,
+    "lon": -122.0180429,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "lighthouse_lift_off",
+   "num": "12",
+   "name": "Lighthouse Lift-Off",
+   "group": "family",
+   "kind": "kiddie drop tower",
+   "model": "Sunkid Heege tower (2020)",
+   "motion": "slide",
+   "motion_note": "seats go up and down the lighthouse",
+   "map": {
+    "base": [
+     626,
+     540
+    ],
+    "conf": "medium",
+    "marker": [
+     623.3,
+     511.5
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     560.0,
+     483.1
+    ]
+   },
+   "region": "centre",
+   "osm": {
+    "ref": "w118718404",
+    "url": "https://www.openstreetmap.org/way/118718404",
+    "name": "Lighthouse Lift-O ff",
+    "lat": 36.9643165,
+    "lon": -122.0176504,
+    "ground": [
+     -57.8,
+     -20.3
+    ],
+    "footprint": [
+     [
+      36.9643349,
+      -122.0176751
+     ],
+     [
+      36.9643271,
+      -122.0176815
+     ],
+     [
+      36.964318,
+      -122.0176841
+     ],
+     [
+      36.9643087,
+      -122.0176827
+     ],
+     [
+      36.9643003,
+      -122.0176774
+     ],
+     [
+      36.9642939,
+      -122.0176688
+     ],
+     [
+      36.9642903,
+      -122.0176581
+     ],
+     [
+      36.9642897,
+      -122.0176464
+     ],
+     [
+      36.964292,
+      -122.0176362
+     ],
+     [
+      36.9642967,
+      -122.0176274
+     ],
+     [
+      36.9643034,
+      -122.0176209
+     ],
+     [
+      36.9643113,
+      -122.0176172
+     ],
+     [
+      36.9643198,
+      -122.0176169
+     ],
+     [
+      36.9643279,
+      -122.0176198
+     ],
+     [
+      36.9643349,
+      -122.0176257
+     ],
+     [
+      36.9643401,
+      -122.017634
+     ],
+     [
+      36.964343,
+      -122.017644
+     ],
+     [
+      36.9643433,
+      -122.0176546
+     ],
+     [
+      36.9643406,
+      -122.0176658
+     ],
+     [
+      36.9643349,
+      -122.0176751
+     ]
+    ],
+    "size_m": [
+     6.0,
+     5.9
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     623.5,
+     566.3
+    ],
+    "affine_residual_px": [
+     2.5,
+     -26.3
+    ],
+    "tps_px": [
+     624.7,
+     554.6
+    ]
+   }
+  },
+  {
+   "id": "looff_carousel",
+   "num": "13",
+   "name": "Looff Carousel",
+   "group": "family",
+   "kind": "carousel",
+   "model": "Charles Looff (1911)",
+   "motion": "spin",
+   "motion_note": "inside the carousel building; the map shows its round roof",
+   "map": {
+    "base": [
+     668,
+     541
+    ],
+    "conf": "medium",
+    "marker": [
+     661.7,
+     574.5
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      645,
+      550
+     ],
+     [
+      645,
+      520
+     ],
+     [
+      668,
+      500
+     ],
+     [
+      690,
+      520
+     ],
+     [
+      690,
+      550
+     ]
+    ],
+    "png_1400": [
+     597.6,
+     484.0
+    ]
+   },
+   "region": "centre",
+   "osm": {
+    "ref": "w34300914",
+    "url": "https://www.openstreetmap.org/way/34300914",
+    "name": "Looff Carousel",
+    "lat": 36.9643805,
+    "lon": -122.0174422,
+    "ground": [
+     -39.3,
+     -13.2
+    ],
+    "footprint": [
+     [
+      36.9644766,
+      -122.0174666
+     ],
+     [
+      36.9644634,
+      -122.0175077
+     ],
+     [
+      36.9644399,
+      -122.0175398
+     ],
+     [
+      36.9644112,
+      -122.0175587
+     ],
+     [
+      36.9643794,
+      -122.0175648
+     ],
+     [
+      36.9643426,
+      -122.0175552
+     ],
+     [
+      36.9643244,
+      -122.0175426
+     ],
+     [
+      36.9643092,
+      -122.0175261
+     ],
+     [
+      36.964289,
+      -122.0174854
+     ],
+     [
+      36.9642842,
+      -122.0174634
+     ],
+     [
+      36.9642827,
+      -122.0174385
+     ],
+     [
+      36.9642875,
+      -122.0174044
+     ],
+     [
+      36.964304,
+      -122.0173659
+     ],
+     [
+      36.9643158,
+      -122.0173504
+     ],
+     [
+      36.9643404,
+      -122.0173305
+     ],
+     [
+      36.964366,
+      -122.017321
+     ],
+     [
+      36.9643999,
+      -122.0173221
+     ],
+     [
+      36.9644327,
+      -122.0173384
+     ],
+     [
+      36.9644542,
+      -122.0173613
+     ],
+     [
+      36.9644666,
+      -122.0173836
+     ],
+     [
+      36.9644776,
+      -122.0174257
+     ],
+     [
+      36.9644766,
+      -122.0174666
+     ]
+    ],
+    "size_m": [
+     21.7,
+     21.5
+    ],
+    "tags": {
+     "attraction": "carousel"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     664.5,
+     563.2
+    ],
+    "affine_residual_px": [
+     3.5,
+     -22.2
+    ],
+    "tps_px": [
+     663.8,
+     548.7
+    ]
+   }
+  },
+  {
+   "id": "haunted_castle",
+   "num": "14",
+   "name": "Haunted Castle",
+   "group": "family",
+   "kind": "dark ride (building)",
+   "model": "I.E. Park (2010)",
+   "motion": "static",
+   "map": {
+    "base": [
+     765,
+     586
+    ],
+    "conf": "medium",
+    "marker": [
+     764.1,
+     603.3
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      738,
+      555
+     ],
+     [
+      790,
+      555
+     ],
+     [
+      792,
+      597
+     ],
+     [
+      738,
+      597
+     ]
+    ],
+    "png_1400": [
+     684.3,
+     524.3
+    ]
+   },
+   "region": "centre",
+   "osm": {
+    "ref": "w34300874",
+    "url": "https://www.openstreetmap.org/way/34300874",
+    "name": "Haunted Castle",
+    "lat": 36.9644203,
+    "lon": -122.0166214,
+    "ground": [
+     33.7,
+     -8.8
+    ],
+    "footprint": [
+     [
+      36.9644903,
+      -122.0168273
+     ],
+     [
+      36.9643072,
+      -122.0167957
+     ],
+     [
+      36.9643317,
+      -122.0165724
+     ],
+     [
+      36.964349,
+      -122.0164158
+     ],
+     [
+      36.9643571,
+      -122.0164197
+     ],
+     [
+      36.9645371,
+      -122.0164482
+     ],
+     [
+      36.9645287,
+      -122.0165241
+     ],
+     [
+      36.9645238,
+      -122.0165232
+     ],
+     [
+      36.9644903,
+      -122.0168273
+     ]
+    ],
+    "size_m": [
+     36.6,
+     25.4
+    ],
+    "tags": {
+     "attraction": "dark_ride",
+     "building": "yes"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     812.2,
+     612.1
+    ],
+    "affine_residual_px": [
+     -47.2,
+     -26.1
+    ],
+    "tps_px": [
+     778.8,
+     594.0
+    ]
+   }
+  },
+  {
+   "id": "dream_wheel",
+   "num": "17",
+   "name": "Dream Wheel",
+   "group": "family",
+   "kind": "Ferris wheel",
+   "model": "Chance Rides, 65 ft, 15 gondolas (2024)",
+   "motion": "spin",
+   "motion_note": "wheel turns in a vertical plane; gondolas hang level",
+   "map": {
+    "base": [
+     1076,
+     714
+    ],
+    "conf": "high",
+    "marker": [
+     1056.0,
+     658.3
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1050,
+      595
+     ],
+     [
+      1112,
+      595
+     ],
+     [
+      1112,
+      705
+     ],
+     [
+      1100,
+      735
+     ],
+     [
+      1052,
+      702
+     ]
+    ],
+    "png_1400": [
+     962.6,
+     638.8
+    ]
+   },
+   "region": "centre",
+   "osm": null,
+   "osm_note": "not in OSM (n1380995297 'Ferris Wheel' is an older wheel at the east end)",
+   "ground_estimated": {
+    "ground": [
+     176.6,
+     -1.1
+    ],
+    "lat": 36.9644903,
+    "lon": -122.0150149,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "sea_swings",
+   "num": "18",
+   "name": "Sea Swings",
+   "group": "family",
+   "kind": "swing ride",
+   "model": "Bertazzon wave swinger (2008)",
+   "motion": "mixed",
+   "motion_note": "canopy spins, chairs swing out on chains",
+   "map": {
+    "base": [
+     1135,
+     737
+    ],
+    "conf": "high",
+    "marker": [
+     1123.4,
+     729.2
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1115,
+      674
+     ],
+     [
+      1155,
+      674
+     ],
+     [
+      1155,
+      742
+     ],
+     [
+      1115,
+      742
+     ]
+    ],
+    "png_1400": [
+     1015.3,
+     659.4
+    ]
+   },
+   "region": "centre",
+   "osm": {
+    "ref": "w678059420",
+    "url": "https://www.openstreetmap.org/way/678059420",
+    "name": "Sea Swings",
+    "lat": 36.9644963,
+    "lon": -122.0147737,
+    "ground": [
+     198.0,
+     -0.4
+    ],
+    "footprint": [
+     [
+      36.9644634,
+      -122.014732
+     ],
+     [
+      36.9644753,
+      -122.0147219
+     ],
+     [
+      36.9644894,
+      -122.0147163
+     ],
+     [
+      36.9645043,
+      -122.0147165
+     ],
+     [
+      36.9645183,
+      -122.0147225
+     ],
+     [
+      36.96453,
+      -122.0147338
+     ],
+     [
+      36.9645384,
+      -122.0147491
+     ],
+     [
+      36.9645426,
+      -122.0147685
+     ],
+     [
+      36.9645413,
+      -122.0147886
+     ],
+     [
+      36.9645345,
+      -122.014807
+     ],
+     [
+      36.9645231,
+      -122.0148213
+     ],
+     [
+      36.9645085,
+      -122.0148299
+     ],
+     [
+      36.9644925,
+      -122.0148317
+     ],
+     [
+      36.9644769,
+      -122.0148266
+     ],
+     [
+      36.9644646,
+      -122.0148163
+     ],
+     [
+      36.9644555,
+      -122.0148016
+     ],
+     [
+      36.9644506,
+      -122.0147841
+     ],
+     [
+      36.9644504,
+      -122.0147656
+     ],
+     [
+      36.9644548,
+      -122.0147479
+     ],
+     [
+      36.9644634,
+      -122.014732
+     ]
+    ],
+    "size_m": [
+     10.3,
+     10.2
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1143.9,
+     726.2
+    ],
+    "affine_residual_px": [
+     -8.9,
+     10.8
+    ],
+    "tps_px": [
+     1134.2,
+     731.4
+    ]
+   }
+  },
+  {
+   "id": "loggers_revenge",
+   "num": "19",
+   "name": "Logger's Revenge",
+   "group": "family",
+   "kind": "log flume",
+   "model": "Arrow Development (1977)",
+   "motion": "path",
+   "motion_note": "logs along the flume channel and down the drops; water",
+   "map": {
+    "base": [
+     1283,
+     650
+    ],
+    "conf": "low",
+    "marker": [
+     1260.3,
+     678.5
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1255,
+      690
+     ],
+     [
+      1258,
+      575
+     ],
+     [
+      1300,
+      560
+     ],
+     [
+      1335,
+      490
+     ],
+     [
+      1370,
+      478
+     ],
+     [
+      1440,
+      492
+     ],
+     [
+      1505,
+      498
+     ],
+     [
+      1515,
+      525
+     ],
+     [
+      1505,
+      640
+     ],
+     [
+      1475,
+      650
+     ],
+     [
+      1440,
+      600
+     ],
+     [
+      1420,
+      560
+     ],
+     [
+      1380,
+      560
+     ],
+     [
+      1345,
+      600
+     ],
+     [
+      1320,
+      690
+     ]
+    ],
+    "png_1400": [
+     1147.7,
+     581.5
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "w123977933",
+    "url": "https://www.openstreetmap.org/way/123977933",
+    "name": null,
+    "lat": 36.9650347,
+    "lon": -122.0141977,
+    "ground": [
+     249.3,
+     59.1
+    ],
+    "footprint": [
+     [
+      36.9651528,
+      -122.0141057
+     ],
+     [
+      36.9651643,
+      -122.014151
+     ],
+     [
+      36.9651761,
+      -122.0141978
+     ],
+     [
+      36.9649898,
+      -122.0142716
+     ],
+     [
+      36.9649852,
+      -122.0142535
+     ],
+     [
+      36.9648923,
+      -122.0142904
+     ],
+     [
+      36.9648853,
+      -122.0142628
+     ],
+     [
+      36.9648774,
+      -122.0142314
+     ],
+     [
+      36.9649554,
+      -122.0142005
+     ],
+     [
+      36.9649475,
+      -122.0141696
+     ],
+     [
+      36.9650729,
+      -122.0141199
+     ],
+     [
+      36.965077,
+      -122.0141358
+     ],
+     [
+      36.9651528,
+      -122.0141057
+     ]
+    ],
+    "size_m": [
+     16.4,
+     33.0
+    ],
+    "tags": {
+     "building": "yes"
+    },
+    "related": [
+     {
+      "ref": "w566002634",
+      "url": "https://www.openstreetmap.org/way/566002634",
+      "name": "Logger's Revenge",
+      "lat": 36.9653318,
+      "lon": -122.0135104,
+      "ground": [
+       310.4,
+       91.9
+      ],
+      "line": [
+       [
+        36.9654802,
+        -122.0135694
+       ],
+       [
+        36.9655407,
+        -122.0134377
+       ],
+       [
+        36.9655439,
+        -122.0134205
+       ],
+       [
+        36.9655424,
+        -122.013404
+       ],
+       [
+        36.9655373,
+        -122.0133836
+       ],
+       [
+        36.9655285,
+        -122.0133669
+       ],
+       [
+        36.9655146,
+        -122.0133545
+       ],
+       [
+        36.9654966,
+        -122.0133476
+       ],
+       [
+        36.9654798,
+        -122.0133481
+       ],
+       [
+        36.9654636,
+        -122.0133545
+       ],
+       [
+        36.9654495,
+        -122.0133575
+       ],
+       [
+        36.9654354,
+        -122.0133559
+       ],
+       [
+        36.965423,
+        -122.0133533
+       ],
+       [
+        36.9654118,
+        -122.0133463
+       ],
+       [
+        36.9652853,
+        -122.0132467
+       ],
+       [
+        36.9652633,
+        -122.0132329
+       ],
+       [
+        36.9652503,
+        -122.0132285
+       ],
+       [
+        36.9652378,
+        -122.0132266
+       ],
+       [
+        36.9651457,
+        -122.013234
+       ],
+       [
+        36.9651349,
+        -122.0132395
+       ],
+       [
+        36.9651247,
+        -122.013249
+       ],
+       [
+        36.9651173,
+        -122.0132616
+       ],
+       [
+        36.9651125,
+        -122.0132743
+       ],
+       [
+        36.9650944,
+        -122.0133366
+       ],
+       [
+        36.9650933,
+        -122.0133581
+       ],
+       [
+        36.9650991,
+        -122.0133788
+       ],
+       [
+        36.965114,
+        -122.0134037
+       ],
+       [
+        36.9651351,
+        -122.0134166
+       ],
+       [
+        36.9651574,
+        -122.0134178
+       ],
+       [
+        36.9651779,
+        -122.0134111
+       ],
+       [
+        36.9652432,
+        -122.0133839
+       ],
+       [
+        36.9652609,
+        -122.013378
+       ],
+       [
+        36.9652836,
+        -122.0133769
+       ],
+       [
+        36.9653469,
+        -122.0133908
+       ],
+       [
+        36.9653584,
+        -122.0133974
+       ],
+       [
+        36.9653693,
+        -122.013408
+       ],
+       [
+        36.9653765,
+        -122.0134218
+       ],
+       [
+        36.9653813,
+        -122.0134395
+       ],
+       [
+        36.9653993,
+        -122.0135361
+       ],
+       [
+        36.9653998,
+        -122.013555
+       ],
+       [
+        36.9653959,
+        -122.0135732
+       ],
+       [
+        36.9653849,
+        -122.0135957
+       ],
+       [
+        36.9653143,
+        -122.0136824
+       ],
+       [
+        36.965301,
+        -122.0137055
+       ],
+       [
+        36.9652954,
+        -122.0137349
+       ],
+       [
+        36.9652969,
+        -122.013756
+       ],
+       [
+        36.9653047,
+        -122.0137771
+       ],
+       [
+        36.9653149,
+        -122.0137975
+       ],
+       [
+        36.9653308,
+        -122.0138124
+       ],
+       [
+        36.9654274,
+        -122.0138554
+       ],
+       [
+        36.9654491,
+        -122.0138733
+       ],
+       [
+        36.96546,
+        -122.0138999
+       ],
+       [
+        36.9654631,
+        -122.013928
+       ],
+       [
+        36.965457,
+        -122.0139553
+       ],
+       [
+        36.9654429,
+        -122.0139777
+       ],
+       [
+        36.9654241,
+        -122.013989
+       ],
+       [
+        36.9652928,
+        -122.0140185
+       ],
+       [
+        36.965078,
+        -122.0140665
+       ]
+      ],
+      "size_m": [
+       74.7,
+       51.5
+      ],
+      "tags": {
+       "attraction": "log_flume",
+       "layer": "2"
+      }
+     },
+     {
+      "ref": "w566002635",
+      "url": "https://www.openstreetmap.org/way/566002635",
+      "name": "Logger's Revenge",
+      "lat": 36.9649904,
+      "lon": -122.0141645,
+      "ground": [
+       252.2,
+       54.2
+      ],
+      "line": [
+       [
+        36.965078,
+        -122.0140665
+       ],
+       [
+        36.9649001,
+        -122.0141102
+       ],
+       [
+        36.9648565,
+        -122.0141201
+       ],
+       [
+        36.9648316,
+        -122.0141413
+       ],
+       [
+        36.9648119,
+        -122.014178
+       ],
+       [
+        36.9648104,
+        -122.0142255
+       ],
+       [
+        36.9648268,
+        -122.0142545
+       ],
+       [
+        36.9648501,
+        -122.0142678
+       ],
+       [
+        36.9648853,
+        -122.0142628
+       ],
+       [
+        36.9649485,
+        -122.014239
+       ],
+       [
+        36.9649928,
+        -122.0142378
+       ],
+       [
+        36.9651422,
+        -122.0141765
+       ],
+       [
+        36.9651643,
+        -122.014151
+       ],
+       [
+        36.9652078,
+        -122.0141305
+       ],
+       [
+        36.9652477,
+        -122.0140815
+       ],
+       [
+        36.9652926,
+        -122.0139896
+       ]
+      ],
+      "size_m": [
+       24.7,
+       53.3
+      ],
+      "tags": {
+       "attraction": "log_flume"
+      }
+     },
+     {
+      "ref": "w566002632",
+      "url": "https://www.openstreetmap.org/way/566002632",
+      "name": "Logger's Revenge",
+      "lat": 36.9650582,
+      "lon": -122.0141874,
+      "ground": [
+       250.2,
+       61.7
+      ],
+      "line": [
+       [
+        36.9649485,
+        -122.014239
+       ],
+       [
+        36.9649833,
+        -122.0142117
+       ],
+       [
+        36.9651369,
+        -122.0141479
+       ],
+       [
+        36.9651643,
+        -122.014151
+       ]
+      ],
+      "size_m": [
+       8.1,
+       23.9
+      ],
+      "tags": {
+       "attraction": "log_flume"
+      }
+     },
+     {
+      "ref": "w123977924",
+      "url": "https://www.openstreetmap.org/way/123977924",
+      "name": "Logger's Revenge",
+      "lat": 36.9653864,
+      "lon": -122.0137795,
+      "ground": [
+       286.4,
+       98.0
+      ],
+      "line": [
+       [
+        36.9652926,
+        -122.0139896
+       ],
+       [
+        36.9654802,
+        -122.0135694
+       ]
+      ],
+      "size_m": [
+       37.4,
+       20.7
+      ],
+      "tags": {
+       "attraction": "log_flume",
+       "layer": "1"
+      }
+     }
+    ]
+   },
+   "osm_note": "base = station / mill house (w123977933); the channel is w566002634 + w566002635 + w566002632 + w123977924",
+   "fit": {
+    "affine_px": [
+     1281.6,
+     613.8
+    ],
+    "affine_residual_px": [
+     1.4,
+     36.2
+    ],
+    "tps_px": [
+     1290.2,
+     615.9
+    ]
+   }
+  },
+  {
+   "id": "riptide",
+   "num": "21",
+   "name": "Riptide",
+   "group": "family",
+   "kind": "spinning ride",
+   "model": "Sellner Tilt-A-Whirl (1955)",
+   "motion": "mixed",
+   "motion_note": "platform turns over hills, cars spin freely",
+   "map": {
+    "base": [
+     1278,
+     757
+    ],
+    "conf": "medium",
+    "marker": [
+     1267.4,
+     760.4
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1259,
+      738
+     ],
+     [
+      1292,
+      738
+     ],
+     [
+      1292,
+      771
+     ],
+     [
+      1259,
+      771
+     ]
+    ],
+    "png_1400": [
+     1143.3,
+     677.3
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995316",
+    "url": "https://www.openstreetmap.org/node/1380995316",
+    "name": "Riptide",
+    "lat": 36.9645712,
+    "lon": -122.0142349,
+    "ground": [
+     245.9,
+     7.9
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1244.1,
+     744.2
+    ],
+    "affine_residual_px": [
+     33.9,
+     12.8
+    ],
+    "tps_px": [
+     1256.7,
+     750.0
+    ]
+   }
+  },
+  {
+   "id": "tsunami",
+   "num": "25",
+   "name": "Tsunami",
+   "group": "family",
+   "kind": "spinning ride (pavilion)",
+   "model": "Bertazzon Musik Express (1999)",
+   "motion": "spin",
+   "motion_note": "cars circle over an undulating track under a roof",
+   "map": {
+    "base": [
+     1433,
+     755
+    ],
+    "conf": "medium",
+    "marker": [
+     1412.5,
+     740.0
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1408,
+      722
+     ],
+     [
+      1450,
+      728
+     ],
+     [
+      1458,
+      762
+     ],
+     [
+      1440,
+      780
+     ],
+     [
+      1410,
+      770
+     ]
+    ],
+    "png_1400": [
+     1281.9,
+     675.5
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "w34301087",
+    "url": "https://www.openstreetmap.org/way/34301087",
+    "name": "Tsunami",
+    "lat": 36.9647604,
+    "lon": -122.0133577,
+    "ground": [
+     324.0,
+     28.8
+    ],
+    "footprint": [
+     [
+      36.9648447,
+      -122.0134427
+     ],
+     [
+      36.9646865,
+      -122.0134566
+     ],
+     [
+      36.9646762,
+      -122.0132727
+     ],
+     [
+      36.9648344,
+      -122.0132589
+     ],
+     [
+      36.9648447,
+      -122.0134427
+     ]
+    ],
+    "size_m": [
+     17.6,
+     18.6
+    ],
+    "tags": {
+     "attraction": "amusement_ride",
+     "building": "yes"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1411.9,
+     754.5
+    ],
+    "affine_residual_px": [
+     21.1,
+     0.5
+    ],
+    "tps_px": [
+     1434.4,
+     749.1
+    ]
+   }
+  },
+  {
+   "id": "twirlin_teacups",
+   "num": "26",
+   "name": "Twirlin' Teacups",
+   "group": "family",
+   "kind": "spinning ride",
+   "model": "Zamperla junior teacups (2019)",
+   "motion": "spin",
+   "map": {
+    "base": [
+     1453,
+     724
+    ],
+    "conf": "medium",
+    "marker": [
+     1440.1,
+     715.0
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1299.8,
+     647.7
+    ]
+   },
+   "region": "east",
+   "osm": null,
+   "osm_note": "not in OSM",
+   "ground_estimated": {
+    "ground": [
+     327.6,
+     39.6
+    ],
+    "lat": 36.9648586,
+    "lon": -122.0133165,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "tornado",
+   "num": "30",
+   "name": "Tornado",
+   "group": "family",
+   "kind": "spinning ride",
+   "model": "Wisdom Tornado (2000)",
+   "motion": "spin",
+   "map": {
+    "base": [
+     1418,
+     630
+    ],
+    "conf": "low",
+    "marker": [
+     1410.5,
+     608.3
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1268.5,
+     563.6
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995357",
+    "url": "https://www.openstreetmap.org/node/1380995357",
+    "name": "Tornado",
+    "lat": 36.9651655,
+    "lon": -122.0135254,
+    "ground": [
+     309.1,
+     73.6
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1409.2,
+     625.6
+    ],
+    "affine_residual_px": [
+     8.8,
+     4.4
+    ],
+    "tps_px": [
+     1420.8,
+     627.9
+    ]
+   }
+  },
+  {
+   "id": "sea_serpent",
+   "num": "33",
+   "name": "Sea Serpent",
+   "group": "family",
+   "kind": "kiddie roller coaster",
+   "model": "E&F Miler (2000)",
+   "motion": "path",
+   "map": {
+    "base": [
+     1365,
+     588
+    ],
+    "conf": "medium",
+    "marker": [
+     1398.9,
+     585.2
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1340,
+      566
+     ],
+     [
+      1388,
+      566
+     ],
+     [
+      1388,
+      606
+     ],
+     [
+      1340,
+      606
+     ]
+    ],
+    "png_1400": [
+     1221.1,
+     526.1
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "w566003249",
+    "url": "https://www.openstreetmap.org/way/566003249",
+    "name": "Sea Serpent",
+    "lat": 36.9652268,
+    "lon": -122.0138004,
+    "ground": [
+     284.6,
+     80.3
+    ],
+    "line": [
+     [
+      36.965286,
+      -122.0137333
+     ],
+     [
+      36.9652167,
+      -122.0138073
+     ],
+     [
+      36.9652052,
+      -122.0138228
+     ],
+     [
+      36.9651991,
+      -122.0138382
+     ]
+    ],
+    "size_m": [
+     9.3,
+     9.6
+    ],
+    "tags": {
+     "layer": "1",
+     "roller_coaster": "track"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1364.5,
+     587.9
+    ],
+    "affine_residual_px": [
+     0.5,
+     0.1
+    ],
+    "tps_px": [
+     1369.2,
+     591.9
+    ]
+   }
+  },
+  {
+   "id": "cave_train",
+   "num": "34",
+   "name": "Cave Train",
+   "group": "family",
+   "kind": "dark ride (train through a rock)",
+   "model": "Arrow Development (1961)",
+   "motion": "path",
+   "motion_note": "train runs in and out of the rock mountain",
+   "map": {
+    "base": [
+     1405,
+     648
+    ],
+    "conf": "low",
+    "marker": [
+     1398.7,
+     656.4
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1378,
+      612
+     ],
+     [
+      1448,
+      612
+     ],
+     [
+      1448,
+      683
+     ],
+     [
+      1378,
+      683
+     ]
+    ],
+    "png_1400": [
+     1256.9,
+     579.8
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995279",
+    "url": "https://www.openstreetmap.org/node/1380995279",
+    "name": "Cave Train",
+    "lat": 36.9650992,
+    "lon": -122.0135175,
+    "ground": [
+     309.8,
+     66.2
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1406.1,
+     645.4
+    ],
+    "affine_residual_px": [
+     -1.1,
+     2.6
+    ],
+    "tps_px": [
+     1419.8,
+     646.4
+    ]
+   }
+  },
+  {
+   "id": "ghost_blasters",
+   "num": "35",
+   "name": "Ghost Blasters",
+   "group": "family",
+   "kind": "dark ride (building)",
+   "model": "Barbisan (2001)",
+   "motion": "static",
+   "map": {
+    "base": [
+     1336,
+     648
+    ],
+    "conf": "low",
+    "marker": [
+     1337.2,
+     669.2
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1195.1,
+     579.8
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995306",
+    "url": "https://www.openstreetmap.org/node/1380995306",
+    "name": "Ghost Blasters",
+    "lat": 36.9649482,
+    "lon": -122.0139547,
+    "ground": [
+     270.9,
+     49.5
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1318.8,
+     656.7
+    ],
+    "affine_residual_px": [
+     17.2,
+     -8.7
+    ],
+    "tps_px": [
+     1331.1,
+     658.3
+    ]
+   }
+  },
+  {
+   "id": "space_race",
+   "num": "37",
+   "name": "Space Race",
+   "group": "family",
+   "kind": "bumper cars",
+   "model": "(OSM: attraction=bumper_car)",
+   "motion": "path",
+   "map": {
+    "base": [
+     1390,
+     722
+    ],
+    "conf": "low",
+    "marker": [
+     1391.4,
+     704.4
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1243.5,
+     646.0
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995355",
+    "url": "https://www.openstreetmap.org/node/1380995355",
+    "name": "Space Race",
+    "lat": 36.9648017,
+    "lon": -122.0136531,
+    "ground": [
+     297.7,
+     33.3
+    ],
+    "tags": {
+     "attraction": "bumper_car"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1362.3,
+     721.0
+    ],
+    "affine_residual_px": [
+     27.7,
+     1.0
+    ],
+    "tps_px": [
+     1377.8,
+     721.0
+    ]
+   }
+  },
+  {
+   "id": "freefall",
+   "num": "38",
+   "name": "Freefall",
+   "group": "family",
+   "kind": "kiddie drop tower",
+   "model": "small drop tower",
+   "motion": "slide",
+   "map": {
+    "base": [
+     1384,
+     684
+    ],
+    "conf": "medium",
+    "marker": [
+     1394.3,
+     685.7
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1238.1,
+     612.0
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995302",
+    "url": "https://www.openstreetmap.org/node/1380995302",
+    "name": "Free Fall",
+    "lat": 36.9649743,
+    "lon": -122.013582,
+    "ground": [
+     304.0,
+     52.4
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1386.3,
+     676.5
+    ],
+    "affine_residual_px": [
+     -2.3,
+     7.5
+    ],
+    "tps_px": [
+     1401.3,
+     676.4
+    ]
+   }
+  },
+  {
+   "id": "typhoon",
+   "num": "2",
+   "name": "Typhoon",
+   "group": "thrill",
+   "kind": "looping arms",
+   "model": "ARM Dual-Arm Screamer, 60 ft (2017)",
+   "motion": "spin",
+   "motion_note": "two arms turn in vertical planes; gondolas flip",
+   "map": {
+    "base": [
+     440,
+     552
+    ],
+    "conf": "low",
+    "marker": [
+     424.0,
+     548.4
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      412,
+      484
+     ],
+     [
+      462,
+      484
+     ],
+     [
+      462,
+      558
+     ],
+     [
+      412,
+      558
+     ]
+    ],
+    "png_1400": [
+     393.6,
+     493.9
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "w881450637",
+    "url": "https://www.openstreetmap.org/way/881450637",
+    "name": "Typhoon",
+    "lat": 36.9641161,
+    "lon": -122.0186236,
+    "ground": [
+     -144.4,
+     -42.4
+    ],
+    "footprint": [
+     [
+      36.9641881,
+      -122.0186821
+     ],
+     [
+      36.9641981,
+      -122.0185919
+     ],
+     [
+      36.9640442,
+      -122.018565
+     ],
+     [
+      36.9640342,
+      -122.0186552
+     ],
+     [
+      36.9641881,
+      -122.0186821
+     ]
+    ],
+    "size_m": [
+     10.4,
+     18.1
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     438.0,
+     552.2
+    ],
+    "affine_residual_px": [
+     2.0,
+     -0.2
+    ],
+    "tps_px": [
+     437.0,
+     561.7
+    ]
+   }
+  },
+  {
+   "id": "double_shot",
+   "num": "4",
+   "name": "Double Shot",
+   "group": "thrill",
+   "kind": "drop tower",
+   "model": "S&S Double Shot (2005)",
+   "motion": "slide",
+   "motion_note": "seat ring shoots up and drops along the tower",
+   "map": {
+    "base": [
+     443,
+     657
+    ],
+    "conf": "medium",
+    "marker": [
+     446.1,
+     572.8
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      424,
+      452
+     ],
+     [
+      442,
+      452
+     ],
+     [
+      452,
+      657
+     ],
+     [
+      434,
+      657
+     ]
+    ],
+    "png_1400": [
+     396.3,
+     587.8
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "w566026887",
+    "url": "https://www.openstreetmap.org/way/566026887",
+    "name": "Double Shot",
+    "lat": 36.96391,
+    "lon": -122.0184079,
+    "ground": [
+     -125.2,
+     -65.2
+    ],
+    "footprint": [
+     [
+      36.9639199,
+      -122.018469
+     ],
+     [
+      36.9638613,
+      -122.0184202
+     ],
+     [
+      36.9639,
+      -122.0183466
+     ],
+     [
+      36.9639529,
+      -122.0183914
+     ],
+     [
+      36.9639591,
+      -122.0183954
+     ],
+     [
+      36.9639199,
+      -122.018469
+     ]
+    ],
+    "size_m": [
+     10.9,
+     10.8
+    ],
+    "tags": {
+     "attraction": "drop_tower"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     462.5,
+     627.4
+    ],
+    "affine_residual_px": [
+     -19.5,
+     29.6
+    ],
+    "tps_px": [
+     443.6,
+     641.3
+    ]
+   }
+  },
+  {
+   "id": "shockwave",
+   "num": "9",
+   "name": "Shockwave",
+   "group": "thrill",
+   "kind": "half-pipe disc ride",
+   "model": "Zamperla Mega Disk'O, 65 ft (2017)",
+   "motion": "mixed",
+   "motion_note": "disc rocks along a U-shaped track and spins",
+   "map": {
+    "base": [
+     497,
+     525
+    ],
+    "conf": "low",
+    "marker": [
+     509.8,
+     497.3
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      478,
+      440
+     ],
+     [
+      528,
+      440
+     ],
+     [
+      515,
+      548
+     ],
+     [
+      480,
+      548
+     ]
+    ],
+    "png_1400": [
+     444.6,
+     469.7
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "w881450638",
+    "url": "https://www.openstreetmap.org/way/881450638",
+    "name": "Shockwave",
+    "lat": 36.964255,
+    "lon": -122.018414,
+    "ground": [
+     -125.8,
+     -27.1
+    ],
+    "footprint": [
+     [
+      36.9643848,
+      -122.0183833
+     ],
+     [
+      36.9643752,
+      -122.0184827
+     ],
+     [
+      36.9641252,
+      -122.0184448
+     ],
+     [
+      36.9641348,
+      -122.0183453
+     ],
+     [
+      36.9643848,
+      -122.0183833
+     ]
+    ],
+    "size_m": [
+     12.2,
+     28.7
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     484.2,
+     527.8
+    ],
+    "affine_residual_px": [
+     12.8,
+     -2.8
+    ],
+    "tps_px": [
+     491.9,
+     534.3
+    ]
+   }
+  },
+  {
+   "id": "undertow",
+   "num": "10",
+   "name": "Undertow",
+   "group": "thrill",
+   "kind": "spinning coaster (on a roof)",
+   "model": "Maurer spinning coaster (2013)",
+   "motion": "path",
+   "motion_note": "cars run the track and spin; the track sits on the Speed Bumps roof",
+   "map": {
+    "base": [
+     565,
+     540
+    ],
+    "conf": "low",
+    "marker": [
+     534.5,
+     503.2
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      505,
+      430
+     ],
+     [
+      610,
+      430
+     ],
+     [
+      612,
+      525
+     ],
+     [
+      640,
+      560
+     ],
+     [
+      600,
+      592
+     ],
+     [
+      505,
+      585
+     ]
+    ],
+    "png_1400": [
+     505.4,
+     483.1
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "w34301004",
+    "url": "https://www.openstreetmap.org/way/34301004",
+    "name": "Undertow",
+    "lat": 36.9643302,
+    "lon": -122.0180522,
+    "ground": [
+     -93.6,
+     -18.8
+    ],
+    "footprint": [
+     [
+      36.9643913,
+      -122.0183546
+     ],
+     [
+      36.9644505,
+      -122.0177832
+     ],
+     [
+      36.9642651,
+      -122.0177531
+     ],
+     [
+      36.9642131,
+      -122.0183256
+     ],
+     [
+      36.9643913,
+      -122.0183546
+     ]
+    ],
+    "size_m": [
+     53.5,
+     26.2
+    ],
+    "tags": {
+     "attraction": "roller_coaster",
+     "level": "1"
+    },
+    "related": [
+     {
+      "ref": "w566025504",
+      "url": "https://www.openstreetmap.org/way/566025504",
+      "name": null,
+      "lat": 36.9642841,
+      "lon": -122.0180467,
+      "ground": [
+       -93.1,
+       -23.9
+      ],
+      "footprint": [
+       [
+        36.9643913,
+        -122.0183546
+       ],
+       [
+        36.9642131,
+        -122.0183256
+       ],
+       [
+        36.9641177,
+        -122.0183102
+       ],
+       [
+        36.9641236,
+        -122.0182534
+       ],
+       [
+        36.9641611,
+        -122.0178914
+       ],
+       [
+        36.9641769,
+        -122.0177388
+       ],
+       [
+        36.9642651,
+        -122.0177531
+       ],
+       [
+        36.9644505,
+        -122.0177832
+       ],
+       [
+        36.9643913,
+        -122.0183546
+       ]
+      ],
+      "size_m": [
+       54.8,
+       36.8
+      ],
+      "tags": {
+       "building": "roof",
+       "layer": "1"
+      }
+     }
+    ]
+   },
+   "fit": {
+    "affine_px": [
+     553.2,
+     532.8
+    ],
+    "affine_residual_px": [
+     11.8,
+     7.2
+    ],
+    "tps_px": [
+     562.6,
+     533.2
+    ]
+   }
+  },
+  {
+   "id": "giant_dipper",
+   "num": "15",
+   "name": "Giant Dipper",
+   "group": "thrill",
+   "kind": "wooden roller coaster",
+   "model": "Arthur Looff (1924)",
+   "motion": "path",
+   "motion_note": "train along the track",
+   "map": {
+    "base": [
+     1075,
+     590
+    ],
+    "conf": "low",
+    "marker": [
+     863.1,
+     629.0
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      830,
+      538
+     ],
+     [
+      870,
+      532
+     ],
+     [
+      905,
+      548
+     ],
+     [
+      960,
+      560
+     ],
+     [
+      1000,
+      555
+     ],
+     [
+      1060,
+      525
+     ],
+     [
+      1105,
+      503
+     ],
+     [
+      1140,
+      510
+     ],
+     [
+      1180,
+      545
+     ],
+     [
+      1215,
+      560
+     ],
+     [
+      1250,
+      520
+     ],
+     [
+      1290,
+      490
+     ],
+     [
+      1318,
+      500
+     ],
+     [
+      1326,
+      600
+     ],
+     [
+      1300,
+      625
+     ],
+     [
+      1200,
+      650
+     ],
+     [
+      1080,
+      642
+     ],
+     [
+      970,
+      615
+     ],
+     [
+      850,
+      612
+     ],
+     [
+      830,
+      580
+     ]
+    ],
+    "png_1400": [
+     961.7,
+     527.9
+    ]
+   },
+   "region": "centre",
+   "osm": {
+    "ref": "w34300977",
+    "url": "https://www.openstreetmap.org/way/34300977",
+    "name": "Giant Dipper",
+    "lat": 36.9647079,
+    "lon": -122.0153212,
+    "ground": [
+     149.3,
+     23.0
+    ],
+    "footprint": [
+     [
+      36.9646161,
+      -122.0162839
+     ],
+     [
+      36.9645835,
+      -122.0163462
+     ],
+     [
+      36.9645702,
+      -122.016353
+     ],
+     [
+      36.9645457,
+      -122.0163484
+     ],
+     [
+      36.9645467,
+      -122.0163337
+     ],
+     [
+      36.964528,
+      -122.0163304
+     ],
+     [
+      36.9643845,
+      -122.0163074
+     ],
+     [
+      36.9643898,
+      -122.0162634
+     ],
+     [
+      36.9643745,
+      -122.0162605
+     ],
+     [
+      36.9643807,
+      -122.0162089
+     ],
+     [
+      36.9643969,
+      -122.0162119
+     ],
+     [
+      36.9644091,
+      -122.0161102
+     ],
+     [
+      36.9643898,
+      -122.0161066
+     ],
+     [
+      36.9643957,
+      -122.0160568
+     ],
+     [
+      36.9644183,
+      -122.016061
+     ],
+     [
+      36.9644364,
+      -122.0159094
+     ],
+     [
+      36.9645874,
+      -122.0159376
+     ],
+     [
+      36.9646171,
+      -122.0156633
+     ],
+     [
+      36.9646298,
+      -122.0155478
+     ],
+     [
+      36.9645783,
+      -122.0155389
+     ],
+     [
+      36.9645942,
+      -122.0153947
+     ],
+     [
+      36.9646473,
+      -122.0154039
+     ],
+     [
+      36.9646779,
+      -122.0151879
+     ],
+     [
+      36.964686,
+      -122.0150995
+     ],
+     [
+      36.9646958,
+      -122.0150167
+     ],
+     [
+      36.9647061,
+      -122.0149485
+     ],
+     [
+      36.9647188,
+      -122.0148921
+     ],
+     [
+      36.9647348,
+      -122.0148331
+     ],
+     [
+      36.9647672,
+      -122.0147085
+     ],
+     [
+      36.9647752,
+      -122.0146569
+     ],
+     [
+      36.9647981,
+      -122.0145098
+     ],
+     [
+      36.9648003,
+      -122.0144945
+     ],
+     [
+      36.9648175,
+      -122.0143741
+     ],
+     [
+      36.9648576,
+      -122.0143179
+     ],
+     [
+      36.9649357,
+      -122.0142976
+     ],
+     [
+      36.9650013,
+      -122.0143272
+     ],
+     [
+      36.9650438,
+      -122.0143879
+     ],
+     [
+      36.9650517,
+      -122.0144796
+     ],
+     [
+      36.9650313,
+      -122.014537
+     ],
+     [
+      36.9649945,
+      -122.0145797
+     ],
+     [
+      36.9649146,
+      -122.0146903
+     ],
+     [
+      36.9648587,
+      -122.0148022
+     ],
+     [
+      36.9648479,
+      -122.0148575
+     ],
+     [
+      36.9648284,
+      -122.0149574
+     ],
+     [
+      36.9647676,
+      -122.0152965
+     ],
+     [
+      36.9646956,
+      -122.0156299
+     ],
+     [
+      36.9646559,
+      -122.0159504
+     ],
+     [
+      36.9646161,
+      -122.0162839
+     ]
+    ],
+    "size_m": [
+     182.8,
+     74.9
+    ],
+    "tags": {
+     "attraction": "roller_coaster"
+    }
+   },
+   "osm_note": "base = middle of the structure; its two ends are separate control points",
+   "fit": {
+    "affine_px": [
+     1061.1,
+     625.0
+    ],
+    "affine_residual_px": [
+     13.9,
+     -35.0
+    ],
+    "tps_px": [
+     1031.5,
+     623.8
+    ]
+   }
+  },
+  {
+   "id": "fireball",
+   "num": "16",
+   "name": "Fireball",
+   "group": "thrill",
+   "kind": "giant pendulum (frisbee)",
+   "model": "KMG Fireball (2003)",
+   "motion": "mixed",
+   "motion_note": "pendulum swings while the seat ring spins",
+   "map": {
+    "base": [
+     914,
+     640
+    ],
+    "conf": "high",
+    "marker": [
+     912.3,
+     633.7
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      889,
+      565
+     ],
+     [
+      938,
+      565
+     ],
+     [
+      940,
+      650
+     ],
+     [
+      889,
+      645
+     ]
+    ],
+    "png_1400": [
+     817.6,
+     572.6
+    ]
+   },
+   "region": "centre",
+   "osm": {
+    "ref": "w566023372",
+    "url": "https://www.openstreetmap.org/way/566023372",
+    "name": "Fireball",
+    "lat": 36.9645353,
+    "lon": -122.0158027,
+    "ground": [
+     106.5,
+     3.9
+    ],
+    "footprint": [
+     [
+      36.9645786,
+      -122.0159159
+     ],
+     [
+      36.9646009,
+      -122.0157078
+     ],
+     [
+      36.9644921,
+      -122.0156895
+     ],
+     [
+      36.9644697,
+      -122.0158976
+     ],
+     [
+      36.9645786,
+      -122.0159159
+     ]
+    ],
+    "size_m": [
+     20.1,
+     14.5
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     964.6,
+     639.3
+    ],
+    "affine_residual_px": [
+     -50.6,
+     0.7
+    ],
+    "tps_px": [
+     921.1,
+     634.0
+    ]
+   }
+  },
+  {
+   "id": "surge",
+   "num": "20",
+   "name": "Surge",
+   "group": "thrill",
+   "kind": "spinning ride",
+   "model": "Chance Rides, 24 seats (2024); Trabant type per coasterpedia",
+   "motion": "spin",
+   "motion_note": "tilted spinning disc",
+   "map": {
+    "base": [
+     1240,
+     755
+    ],
+    "conf": "medium",
+    "marker": [
+     1251.0,
+     725.9
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1216,
+      719
+     ],
+     [
+      1262,
+      719
+     ],
+     [
+      1262,
+      768
+     ],
+     [
+      1216,
+      768
+     ]
+    ],
+    "png_1400": [
+     1109.3,
+     675.5
+    ]
+   },
+   "region": "east",
+   "osm": null,
+   "osm_note": "not in OSM (n1380995282 'Cliff Hanger', retired, sits near here)",
+   "ground_estimated": {
+    "ground": [
+     241.5,
+     6.7
+    ],
+    "lat": 36.9645607,
+    "lon": -122.0142848,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "rock_o_plane",
+   "num": "22",
+   "name": "Rock-O-Plane",
+   "group": "thrill",
+   "kind": "wheel with tumbling cages",
+   "model": "Eyerly Rock-O-Plane",
+   "motion": "mixed",
+   "motion_note": "wheel turns in a vertical plane; cages rock and tumble",
+   "map": {
+    "base": [
+     1352,
+     790
+    ],
+    "conf": "medium",
+    "marker": [
+     1355.8,
+     754.3
+    ],
+    "marker_refined": true,
+    "outline": [
+     [
+      1330,
+      738
+     ],
+     [
+      1372,
+      738
+     ],
+     [
+      1372,
+      786
+     ],
+     [
+      1356,
+      797
+     ],
+     [
+      1340,
+      790
+     ]
+    ],
+    "png_1400": [
+     1209.5,
+     706.8
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995319",
+    "url": "https://www.openstreetmap.org/node/1380995319",
+    "name": "Rock -O- Plane",
+    "lat": 36.9646308,
+    "lon": -122.0135789,
+    "ground": [
+     304.3,
+     14.5
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1364.1,
+     775.4
+    ],
+    "affine_residual_px": [
+     -12.1,
+     14.6
+    ],
+    "tps_px": [
+     1378.8,
+     776.3
+    ]
+   }
+  },
+  {
+   "id": "cyclone",
+   "num": "31",
+   "name": "Cyclone",
+   "group": "thrill",
+   "kind": "spinning ride",
+   "model": "Dartron Round-Up (2004)",
+   "motion": "spin",
+   "motion_note": "ring spins and tilts up",
+   "map": {
+    "base": [
+     1452,
+     605
+    ],
+    "conf": "low",
+    "marker": [
+     1433.7,
+     588.3
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1298.9,
+     541.3
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995293",
+    "url": "https://www.openstreetmap.org/node/1380995293",
+    "name": "Cyclone",
+    "lat": 36.965278,
+    "lon": -122.0134624,
+    "ground": [
+     314.7,
+     86.0
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1427.7,
+     597.9
+    ],
+    "affine_residual_px": [
+     24.3,
+     7.1
+    ],
+    "tps_px": [
+     1436.0,
+     601.6
+    ]
+   }
+  },
+  {
+   "id": "crazy_surf",
+   "num": "32",
+   "name": "Crazy Surf",
+   "group": "thrill",
+   "kind": "surf platform ride",
+   "model": "Technical Park Miami (2019)",
+   "motion": "swing",
+   "motion_note": "board platform sweeps in circles on cranks",
+   "map": {
+    "base": [
+     1442,
+     565
+    ],
+    "conf": "low",
+    "marker": [
+     1434.0,
+     568.6
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1290.0,
+     505.5
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995290",
+    "url": "https://www.openstreetmap.org/node/1380995290",
+    "name": "Crazy Surf",
+    "lat": 36.9654228,
+    "lon": -122.0136076,
+    "ground": [
+     301.7,
+     102.0
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1411.5,
+     545.6
+    ],
+    "affine_residual_px": [
+     30.5,
+     19.4
+    ],
+    "tps_px": [
+     1408.8,
+     551.3
+    ]
+   }
+  },
+  {
+   "id": "wipeout",
+   "num": "36",
+   "name": "WipeOut",
+   "group": "thrill",
+   "kind": "spinning ride",
+   "model": "HUSS Breakdance (1998)",
+   "motion": "mixed",
+   "motion_note": "cars spin on turning crosses on a turning base",
+   "map": {
+    "base": [
+     1335,
+     690
+    ],
+    "conf": "low",
+    "marker": [
+     1351.9,
+     693.0
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     1194.2,
+     617.3
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "n1380995358",
+    "url": "https://www.openstreetmap.org/node/1380995358",
+    "name": "Wipeout",
+    "lat": 36.9648118,
+    "lon": -122.0138297,
+    "ground": [
+     282.0,
+     34.5
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1331.8,
+     704.9
+    ],
+    "affine_residual_px": [
+     3.2,
+     -14.9
+    ],
+    "tps_px": [
+     1345.9,
+     706.0
+    ]
+   }
+  },
+  {
+   "id": "boardwalk_bowl",
+   "num": "A",
+   "name": "Boardwalk Bowl",
+   "group": "attraction",
+   "kind": "building (bowling)",
+   "model": "",
+   "motion": "static",
+   "motion_note": "north of Beach Street; the map shows only a logo",
+   "map": {
+    "base": [
+     176,
+     360
+    ],
+    "conf": "low",
+    "marker": [
+     223.7,
+     340.0
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     157.4,
+     322.1
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "n394952929",
+    "url": "https://www.openstreetmap.org/node/394952929",
+    "name": "Boardwalk Bowl",
+    "lat": 36.9645848,
+    "lon": -122.0206167,
+    "ground": [
+     -321.7,
+     9.4
+    ],
+    "tags": {
+     "leisure": "sports_centre"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     116.7,
+     270.7
+    ],
+    "affine_residual_px": [
+     59.3,
+     89.3
+    ],
+    "tps_px": [
+     202.8,
+     269.5
+    ]
+   }
+  },
+  {
+   "id": "laser_tag",
+   "num": "B",
+   "name": "Laser Tag",
+   "group": "attraction",
+   "kind": "indoor attraction",
+   "model": "",
+   "motion": "static",
+   "motion_note": "inside the Casino / Cocoanut Grove building",
+   "map": {
+    "base": [
+     160,
+     520
+    ],
+    "conf": "low",
+    "marker": [
+     146.3,
+     497.0
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     143.1,
+     465.2
+    ]
+   },
+   "region": "west",
+   "osm": null,
+   "osm_note": "not in OSM; inside w34300810",
+   "ground_estimated": {
+    "ground": [
+     -284.1,
+     -74.4
+    ],
+    "lat": 36.9638271,
+    "lon": -122.020194,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "mini_golf",
+   "num": "C",
+   "name": "Mini Golf",
+   "group": "attraction",
+   "kind": "indoor attraction",
+   "model": "Buccaneer Bay pirate mini golf",
+   "motion": "static",
+   "motion_note": "inside Neptune's Kingdom",
+   "map": {
+    "base": [
+     345,
+     530
+    ],
+    "conf": "low",
+    "marker": [
+     322.7,
+     478.0
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     308.6,
+     474.2
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "n5450105321",
+    "url": "https://www.openstreetmap.org/node/5450105321",
+    "name": "Buccaneer Bay",
+    "lat": 36.9640784,
+    "lon": -122.0193528,
+    "ground": [
+     -209.3,
+     -46.6
+    ],
+    "tags": {
+     "leisure": "miniature_golf"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     306.5,
+     509.4
+    ],
+    "affine_residual_px": [
+     38.5,
+     20.6
+    ],
+    "tps_px": [
+     318.4,
+     509.8
+    ]
+   }
+  },
+  {
+   "id": "vault_laser_maze",
+   "num": "D",
+   "name": "The Vault Laser Maze",
+   "group": "attraction",
+   "kind": "indoor attraction",
+   "model": "",
+   "motion": "static",
+   "map": {
+    "base": [
+     473,
+     533
+    ],
+    "conf": "low",
+    "marker": [
+     476.8,
+     532.2
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     423.1,
+     476.9
+    ]
+   },
+   "region": "west",
+   "osm": null,
+   "osm_note": "not in OSM",
+   "ground_estimated": {
+    "ground": [
+     -134.9,
+     -31.3
+    ],
+    "lat": 36.9642172,
+    "lon": -122.0185167,
+    "method": "inverse thin-plate spline (map px -> metres) through the control points; +-10-20 m"
+   }
+  },
+  {
+   "id": "fright_walk",
+   "num": "E",
+   "name": "Fright Walk",
+   "group": "attraction",
+   "kind": "walk-through attraction",
+   "model": "",
+   "motion": "static",
+   "map": {
+    "base": [
+     489.6,
+     494
+    ],
+    "conf": "low",
+    "marker": [
+     489.7,
+     493.8
+    ],
+    "marker_refined": true,
+    "png_1400": [
+     438.0,
+     442.0
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "n1380995303",
+    "url": "https://www.openstreetmap.org/node/1380995303",
+    "name": "Fright Walk",
+    "lat": 36.964189,
+    "lon": -122.0184514,
+    "ground": [
+     -129.1,
+     -34.4
+    ],
+    "tags": {
+     "attraction": "amusement_ride"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     473.3,
+     544.0
+    ],
+    "affine_residual_px": [
+     16.3,
+     -50.0
+    ],
+    "tps_px": [
+     476.2,
+     551.9
+    ]
+   }
+  },
+  {
+   "id": "casino_arcade",
+   "num": null,
+   "name": "Casino Arcade",
+   "group": "building",
+   "kind": "building (arcade)",
+   "model": "1907 Casino building, Beach Street side",
+   "motion": "static",
+   "map": {
+    "base": [
+     190,
+     480
+    ],
+    "conf": "low",
+    "outline": [
+     [
+      131,
+      440
+     ],
+     [
+      212,
+      438
+     ],
+     [
+      250,
+      447
+     ],
+     [
+      255,
+      505
+     ],
+     [
+      135,
+      505
+     ]
+    ],
+    "png_1400": [
+     170.0,
+     429.4
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "w34300810",
+    "url": "https://www.openstreetmap.org/way/34300810",
+    "name": "Casino Arcade",
+    "lat": 36.9638904,
+    "lon": -122.0200139,
+    "ground": [
+     -268.1,
+     -67.4
+    ],
+    "footprint": [
+     [
+      36.9639875,
+      -122.0204424
+     ],
+     [
+      36.9636863,
+      -122.0203294
+     ],
+     [
+      36.9636882,
+      -122.0203225
+     ],
+     [
+      36.9636358,
+      -122.0203029
+     ],
+     [
+      36.9636931,
+      -122.0200664
+     ],
+     [
+      36.9636668,
+      -122.0200358
+     ],
+     [
+      36.9636491,
+      -122.020001
+     ],
+     [
+      36.9636411,
+      -122.019956
+     ],
+     [
+      36.9636442,
+      -122.0199131
+     ],
+     [
+      36.9636543,
+      -122.0198839
+     ],
+     [
+      36.9636713,
+      -122.0198579
+     ],
+     [
+      36.9636959,
+      -122.0198373
+     ],
+     [
+      36.9637248,
+      -122.0198251
+     ],
+     [
+      36.9637336,
+      -122.0197681
+     ],
+     [
+      36.9637669,
+      -122.0197741
+     ],
+     [
+      36.963792,
+      -122.0195845
+     ],
+     [
+      36.9640696,
+      -122.0196947
+     ],
+     [
+      36.9641632,
+      -122.019725
+     ],
+     [
+      36.9641597,
+      -122.0197408
+     ],
+     [
+      36.9641379,
+      -122.0198306
+     ],
+     [
+      36.9641317,
+      -122.0198306
+     ],
+     [
+      36.9641026,
+      -122.0199584
+     ],
+     [
+      36.9641277,
+      -122.0199662
+     ],
+     [
+      36.964075,
+      -122.0201899
+     ],
+     [
+      36.9640501,
+      -122.020181
+     ],
+     [
+      36.9640138,
+      -122.0203421
+     ],
+     [
+      36.9640329,
+      -122.0203492
+     ],
+     [
+      36.9640116,
+      -122.0204352
+     ],
+     [
+      36.9639913,
+      -122.0204269
+     ],
+     [
+      36.9639875,
+      -122.0204424
+     ]
+    ],
+    "size_m": [
+     76.3,
+     58.3
+    ],
+    "tags": {
+     "building": "yes",
+     "layer": "1",
+     "leisure": "amusement_arcade"
+    }
+   },
+   "osm_note": "OSM draws one polygon for the whole Casino / Cocoanut Grove building; the map splits it into Casino Arcade (north) and Cocoanut Grove (south)",
+   "fit": {
+    "affine_px": [
+     177.1,
+     514.9
+    ],
+    "affine_residual_px": [
+     12.9,
+     -34.9
+    ],
+    "tps_px": [
+     203.2,
+     511.6
+    ]
+   }
+  },
+  {
+   "id": "cocoanut_grove",
+   "num": null,
+   "name": "Cocoanut Grove",
+   "group": "building",
+   "kind": "building (ballroom, Sun Room)",
+   "model": "1907; domed ballroom and glass-roofed Sun Room",
+   "motion": "static",
+   "map": {
+    "base": [
+     185,
+     545
+    ],
+    "conf": "low",
+    "outline": [
+     [
+      113,
+      505
+     ],
+     [
+      255,
+      505
+     ],
+     [
+      255,
+      560
+     ],
+     [
+      240,
+      590
+     ],
+     [
+      210,
+      600
+     ],
+     [
+      140,
+      590
+     ],
+     [
+      113,
+      580
+     ]
+    ],
+    "png_1400": [
+     165.5,
+     487.6
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "n13828973601",
+    "url": "https://www.openstreetmap.org/node/13828973601",
+    "name": "The Grove: Santa Cruz Event Center",
+    "lat": 36.9640066,
+    "lon": -122.020394,
+    "ground": [
+     -301.9,
+     -54.5
+    ],
+    "tags": {
+     "amenity": "events_venue"
+    },
+    "related": [
+     {
+      "ref": "w34300833",
+      "url": "https://www.openstreetmap.org/way/34300833",
+      "name": "Sun Room",
+      "lat": 36.9639497,
+      "lon": -122.0195461,
+      "ground": [
+       -226.5,
+       -60.8
+      ],
+      "footprint": [
+       [
+        36.9638164,
+        -122.0194169
+       ],
+       [
+        36.963792,
+        -122.0195845
+       ],
+       [
+        36.9640696,
+        -122.0196947
+       ],
+       [
+        36.9640992,
+        -122.0194846
+       ],
+       [
+        36.9639935,
+        -122.019456
+       ],
+       [
+        36.9638164,
+        -122.0194169
+       ]
+      ],
+      "size_m": [
+       24.7,
+       34.0
+      ],
+      "tags": {
+       "building": "retail",
+       "layer": "1"
+      }
+     },
+     {
+      "ref": "w34300810",
+      "url": "https://www.openstreetmap.org/way/34300810",
+      "name": "Casino Arcade",
+      "lat": 36.9638904,
+      "lon": -122.0200139,
+      "ground": [
+       -268.1,
+       -67.4
+      ],
+      "footprint": [
+       [
+        36.9639875,
+        -122.0204424
+       ],
+       [
+        36.9636863,
+        -122.0203294
+       ],
+       [
+        36.9636882,
+        -122.0203225
+       ],
+       [
+        36.9636358,
+        -122.0203029
+       ],
+       [
+        36.9636931,
+        -122.0200664
+       ],
+       [
+        36.9636668,
+        -122.0200358
+       ],
+       [
+        36.9636491,
+        -122.020001
+       ],
+       [
+        36.9636411,
+        -122.019956
+       ],
+       [
+        36.9636442,
+        -122.0199131
+       ],
+       [
+        36.9636543,
+        -122.0198839
+       ],
+       [
+        36.9636713,
+        -122.0198579
+       ],
+       [
+        36.9636959,
+        -122.0198373
+       ],
+       [
+        36.9637248,
+        -122.0198251
+       ],
+       [
+        36.9637336,
+        -122.0197681
+       ],
+       [
+        36.9637669,
+        -122.0197741
+       ],
+       [
+        36.963792,
+        -122.0195845
+       ],
+       [
+        36.9640696,
+        -122.0196947
+       ],
+       [
+        36.9641632,
+        -122.019725
+       ],
+       [
+        36.9641597,
+        -122.0197408
+       ],
+       [
+        36.9641379,
+        -122.0198306
+       ],
+       [
+        36.9641317,
+        -122.0198306
+       ],
+       [
+        36.9641026,
+        -122.0199584
+       ],
+       [
+        36.9641277,
+        -122.0199662
+       ],
+       [
+        36.964075,
+        -122.0201899
+       ],
+       [
+        36.9640501,
+        -122.020181
+       ],
+       [
+        36.9640138,
+        -122.0203421
+       ],
+       [
+        36.9640329,
+        -122.0203492
+       ],
+       [
+        36.9640116,
+        -122.0204352
+       ],
+       [
+        36.9639913,
+        -122.0204269
+       ],
+       [
+        36.9639875,
+        -122.0204424
+       ]
+      ],
+      "size_m": [
+       76.3,
+       58.3
+      ],
+      "tags": {
+       "building": "yes",
+       "layer": "1",
+       "leisure": "amusement_arcade"
+      }
+     }
+    ]
+   },
+   "osm_note": "n13828973601 'The Grove: Santa Cruz Event Center'; w34300833 'Sun Room' (the glass roof between the Grove and Neptune's)",
+   "fit": {
+    "affine_px": [
+     117.7,
+     453.4
+    ],
+    "affine_residual_px": [
+     67.3,
+     91.6
+    ],
+    "tps_px": [
+     166.3,
+     449.8
+    ]
+   }
+  },
+  {
+   "id": "sun_room",
+   "num": null,
+   "name": "Sun Room (Cocoanut Grove)",
+   "group": "building",
+   "kind": "building (glass roof)",
+   "model": "",
+   "motion": "static",
+   "map": {
+    "base": [
+     268,
+     525
+    ],
+    "conf": "medium",
+    "outline": [
+     [
+      243,
+      525
+     ],
+     [
+      262,
+      478
+     ],
+     [
+      298,
+      482
+     ],
+     [
+      288,
+      552
+     ],
+     [
+      250,
+      552
+     ]
+    ],
+    "png_1400": [
+     239.7,
+     469.7
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "w34300833",
+    "url": "https://www.openstreetmap.org/way/34300833",
+    "name": "Sun Room",
+    "lat": 36.9639497,
+    "lon": -122.0195461,
+    "ground": [
+     -226.5,
+     -60.8
+    ],
+    "footprint": [
+     [
+      36.9638164,
+      -122.0194169
+     ],
+     [
+      36.963792,
+      -122.0195845
+     ],
+     [
+      36.9640696,
+      -122.0196947
+     ],
+     [
+      36.9640992,
+      -122.0194846
+     ],
+     [
+      36.9639935,
+      -122.019456
+     ],
+     [
+      36.9638164,
+      -122.0194169
+     ]
+    ],
+    "size_m": [
+     24.7,
+     34.0
+    ],
+    "tags": {
+     "building": "retail",
+     "layer": "1"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     263.8,
+     532.1
+    ],
+    "affine_residual_px": [
+     4.2,
+     -7.1
+    ],
+    "tps_px": [
+     273.6,
+     530.6
+    ]
+   }
+  },
+  {
+   "id": "neptunes_kingdom",
+   "num": null,
+   "name": "Neptune's Kingdom",
+   "group": "building",
+   "kind": "building (arcade, mini golf)",
+   "model": "1907 Plunge (natatorium)",
+   "motion": "static",
+   "map": {
+    "base": [
+     345,
+     528
+    ],
+    "conf": "low",
+    "outline": [
+     [
+      298,
+      440
+     ],
+     [
+      385,
+      440
+     ],
+     [
+      392,
+      560
+     ],
+     [
+      372,
+      600
+     ],
+     [
+      300,
+      600
+     ]
+    ],
+    "png_1400": [
+     308.6,
+     472.4
+    ]
+   },
+   "region": "west",
+   "osm": {
+    "ref": "w34300823",
+    "url": "https://www.openstreetmap.org/way/34300823",
+    "name": "Neptune's Kingdom",
+    "lat": 36.9640551,
+    "lon": -122.0191437,
+    "ground": [
+     -190.7,
+     -49.2
+    ],
+    "footprint": [
+     [
+      36.9641872,
+      -122.0195018
+     ],
+     [
+      36.9642138,
+      -122.0193179
+     ],
+     [
+      36.9642552,
+      -122.0193283
+     ],
+     [
+      36.9642776,
+      -122.0191803
+     ],
+     [
+      36.9642348,
+      -122.0191718
+     ],
+     [
+      36.9642643,
+      -122.0189633
+     ],
+     [
+      36.9642862,
+      -122.0189688
+     ],
+     [
+      36.9642998,
+      -122.0188618
+     ],
+     [
+      36.9642639,
+      -122.0188534
+     ],
+     [
+      36.9642629,
+      -122.0188603
+     ],
+     [
+      36.96421,
+      -122.018851
+     ],
+     [
+      36.9639767,
+      -122.0187966
+     ],
+     [
+      36.9639741,
+      -122.018815
+     ],
+     [
+      36.9639165,
+      -122.0188031
+     ],
+     [
+      36.963903,
+      -122.0187994
+     ],
+     [
+      36.9638164,
+      -122.0194169
+     ],
+     [
+      36.9639935,
+      -122.019456
+     ],
+     [
+      36.9640992,
+      -122.0194846
+     ],
+     [
+      36.9641436,
+      -122.019494
+     ],
+     [
+      36.9641591,
+      -122.0194979
+     ],
+     [
+      36.9641872,
+      -122.0195018
+     ]
+    ],
+    "size_m": [
+     62.7,
+     53.4
+    ],
+    "tags": {
+     "building": "yes",
+     "layer": "1",
+     "leisure": "amusement_arcade"
+    },
+    "related": [
+     {
+      "ref": "w881466848",
+      "url": "https://www.openstreetmap.org/way/881466848",
+      "name": null,
+      "lat": 36.9641135,
+      "lon": -122.019212,
+      "ground": [
+       -196.7,
+       -42.7
+      ],
+      "footprint": [
+       [
+        36.9640602,
+        -122.0189331
+       ],
+       [
+        36.9642391,
+        -122.018972
+       ],
+       [
+        36.9641591,
+        -122.0194979
+       ],
+       [
+        36.9641436,
+        -122.019494
+       ],
+       [
+        36.9640992,
+        -122.0194846
+       ],
+       [
+        36.9639935,
+        -122.019456
+       ],
+       [
+        36.9640602,
+        -122.0189331
+       ]
+      ],
+      "size_m": [
+       50.2,
+       27.1
+      ],
+      "tags": {
+       "building:part": "roof"
+      }
+     }
+    ]
+   },
+   "fit": {
+    "affine_px": [
+     341.9,
+     531.6
+    ],
+    "affine_residual_px": [
+     3.1,
+     -3.6
+    ],
+    "tps_px": [
+     346.1,
+     535.1
+    ]
+   }
+  },
+  {
+   "id": "funland_arcade",
+   "num": null,
+   "name": "Funland Arcade",
+   "group": "building",
+   "kind": "building (arcade)",
+   "model": "",
+   "motion": "static",
+   "map": {
+    "base": [
+     1192,
+     742
+    ],
+    "conf": "medium",
+    "outline": [
+     [
+      1165,
+      722
+     ],
+     [
+      1205,
+      714
+     ],
+     [
+      1218,
+      733
+     ],
+     [
+      1216,
+      757
+     ],
+     [
+      1170,
+      758
+     ],
+     [
+      1163,
+      740
+     ]
+    ],
+    "png_1400": [
+     1066.3,
+     663.9
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "w118718408",
+    "url": "https://www.openstreetmap.org/way/118718408",
+    "name": "Funland Arcade",
+    "lat": 36.9645484,
+    "lon": -122.0144697,
+    "ground": [
+     225.1,
+     5.3
+    ],
+    "footprint": [
+     [
+      36.9645914,
+      -122.0146334
+     ],
+     [
+      36.964469,
+      -122.0146129
+     ],
+     [
+      36.9645054,
+      -122.0142721
+     ],
+     [
+      36.9645182,
+      -122.0142742
+     ],
+     [
+      36.9645359,
+      -122.0143039
+     ],
+     [
+      36.9645341,
+      -122.0143217
+     ],
+     [
+      36.9645931,
+      -122.0143315
+     ],
+     [
+      36.9645919,
+      -122.0143435
+     ],
+     [
+      36.9646231,
+      -122.0143487
+     ],
+     [
+      36.9646168,
+      -122.0144078
+     ],
+     [
+      36.9646349,
+      -122.0144108
+     ],
+     [
+      36.9646244,
+      -122.01451
+     ],
+     [
+      36.964605,
+      -122.0145068
+     ],
+     [
+      36.9645914,
+      -122.0146334
+     ]
+    ],
+    "size_m": [
+     32.1,
+     18.3
+    ],
+    "tags": {
+     "building": "kiosk"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     1201.2,
+     733.8
+    ],
+    "affine_residual_px": [
+     -9.2,
+     8.2
+    ],
+    "tps_px": [
+     1205.4,
+     739.5
+    ]
+   }
+  },
+  {
+   "id": "looff_carousel_building",
+   "num": null,
+   "name": "Looff Carousel building",
+   "group": "building",
+   "kind": "building (carousel and arcade)",
+   "model": "",
+   "motion": "static",
+   "map": {
+    "base": [
+     700,
+     545
+    ],
+    "conf": "low",
+    "outline": [
+     [
+      643,
+      505
+     ],
+     [
+      693,
+      512
+     ],
+     [
+      757,
+      518
+     ],
+     [
+      758,
+      568
+     ],
+     [
+      690,
+      573
+     ],
+     [
+      645,
+      555
+     ]
+    ],
+    "png_1400": [
+     626.2,
+     487.6
+    ]
+   },
+   "region": "centre",
+   "osm": {
+    "ref": "w34300846",
+    "url": "https://www.openstreetmap.org/way/34300846",
+    "name": null,
+    "lat": 36.9643929,
+    "lon": -122.0172245,
+    "ground": [
+     -20.0,
+     -11.8
+    ],
+    "footprint": [
+     [
+      36.9644741,
+      -122.0175791
+     ],
+     [
+      36.9644674,
+      -122.0175939
+     ],
+     [
+      36.9644581,
+      -122.0176007
+     ],
+     [
+      36.964445,
+      -122.0176018
+     ],
+     [
+      36.9644306,
+      -122.0175981
+     ],
+     [
+      36.9643955,
+      -122.0175862
+     ],
+     [
+      36.9643623,
+      -122.017579
+     ],
+     [
+      36.9643222,
+      -122.0175734
+     ],
+     [
+      36.9642833,
+      -122.0175725
+     ],
+     [
+      36.9642612,
+      -122.0175648
+     ],
+     [
+      36.9642487,
+      -122.0175506
+     ],
+     [
+      36.9642403,
+      -122.0175313
+     ],
+     [
+      36.9642363,
+      -122.0175081
+     ],
+     [
+      36.9642488,
+      -122.0174438
+     ],
+     [
+      36.9642601,
+      -122.0173629
+     ],
+     [
+      36.9642673,
+      -122.0173014
+     ],
+     [
+      36.9642694,
+      -122.0172344
+     ],
+     [
+      36.9642717,
+      -122.0172142
+     ],
+     [
+      36.9642768,
+      -122.0171984
+     ],
+     [
+      36.9642838,
+      -122.0171905
+     ],
+     [
+      36.9643241,
+      -122.0168342
+     ],
+     [
+      36.9644946,
+      -122.0168653
+     ],
+     [
+      36.9645405,
+      -122.0169345
+     ],
+     [
+      36.9644741,
+      -122.0175791
+     ]
+    ],
+    "size_m": [
+     68.3,
+     33.6
+    ],
+    "tags": {
+     "building": "commercial"
+    }
+   },
+   "fit": {
+    "affine_px": [
+     703.7,
+     575.5
+    ],
+    "affine_residual_px": [
+     -3.7,
+     -30.5
+    ],
+    "tps_px": [
+     695.3,
+     559.7
+    ]
+   }
+  },
+  {
+   "id": "san_lorenzo_trestle",
+   "num": null,
+   "name": "San Lorenzo River trestle",
+   "group": "building",
+   "kind": "railway truss bridge",
+   "model": "Santa Cruz Branch line",
+   "motion": "static",
+   "motion_note": "a freight train could cross it (path) but none runs on the map",
+   "map": {
+    "base": [
+     1405,
+     478
+    ],
+    "conf": "medium",
+    "outline": [
+     [
+      1398,
+      494
+     ],
+     [
+      1418,
+      465
+     ],
+     [
+      1525,
+      398
+     ],
+     [
+      1525,
+      420
+     ],
+     [
+      1420,
+      490
+     ],
+     [
+      1405,
+      500
+     ]
+    ],
+    "png_1400": [
+     1256.9,
+     427.7
+    ]
+   },
+   "region": "east",
+   "osm": {
+    "ref": "w895366635",
+    "url": "https://www.openstreetmap.org/way/895366635",
+    "name": "San Lorenzo River Railroad Trestle Bridge",
+    "lat": 36.9656864,
+    "lon": -122.0134178,
+    "ground": [
+     318.6,
+     131.1
+    ],
+    "footprint": [
+     [
+      36.9661495,
+      -122.0124707
+     ],
+     [
+      36.9661382,
+      -122.012462
+     ],
+     [
+      36.9661015,
+      -122.012434
+     ],
+     [
+      36.9660808,
+      -122.0124181
+     ],
+     [
+      36.9657318,
+      -122.0131322
+     ],
+     [
+      36.9657423,
+      -122.0131403
+     ],
+     [
+      36.9656284,
+      -122.0133733
+     ],
+     [
+      36.9656362,
+      -122.0133793
+     ],
+     [
+      36.9656864,
+      -122.0134178
+     ],
+     [
+      36.9661495,
+      -122.0124707
+     ]
+    ],
+    "size_m": [
+     88.9,
+     57.6
+    ],
+    "tags": {
+     "layer": "1",
+     "man_made": "bridge"
+    },
+    "related": [
+     {
+      "ref": "w31490937",
+      "url": "https://www.openstreetmap.org/way/31490937",
+      "name": "Santa Cruz Branch",
+      "lat": 36.9658688,
+      "lon": -122.0129066,
+      "ground": [
+       364.1,
+       151.3
+      ],
+      "line": [
+       [
+        36.9656362,
+        -122.0133793
+       ],
+       [
+        36.9661015,
+        -122.012434
+       ]
+      ],
+      "size_m": [
+       84.1,
+       51.4
+      ],
+      "tags": {
+       "layer": "1"
+      }
+     }
+    ]
+   },
+   "fit": {
+    "affine_px": [
+     1462.6,
+     483.8
+    ],
+    "affine_residual_px": [
+     -57.6,
+     -5.8
+    ],
+    "tps_px": [
+     1437.6,
+     486.8
+    ]
+   }
+  }
+ ],
+ "osm_unmatched": [
+  {
+   "ref": "n1380995282",
+   "name": "Cliff Hanger",
+   "lat": 36.9646161,
+   "lon": -122.0140565,
+   "ground": [
+    261.8,
+    12.8
+   ],
+   "note": "Cliff Hanger: retired; sits between Funland and Riptide where the map draws Surge"
+  },
+  {
+   "ref": "n1380995284",
+   "name": "Climb 'N Conquer",
+   "lat": 36.9652577,
+   "lon": -122.0135962,
+   "ground": [
+    302.8,
+    83.8
+   ],
+   "note": "Climb 'N Conquer: retired"
+  },
+  {
+   "ref": "n1380995297",
+   "name": "Ferris Wheel",
+   "lat": 36.9646461,
+   "lon": -122.0134466,
+   "ground": [
+    316.1,
+    16.1
+   ],
+   "note": "Ferris Wheel: an older wheel next to Rock-O-Plane, not the 2024 Dream Wheel"
+  },
+  {
+   "ref": "n1380995312",
+   "name": "Red Baron",
+   "lat": 36.9646443,
+   "lon": -122.0134997,
+   "ground": [
+    311.3,
+    16.0
+   ],
+   "note": "Red Baron: retired kiddie ride; the map has Bulgy / Beach Swing / Boardwalk Racers here"
+  },
+  {
+   "ref": "n1380995321",
+   "name": "Rugged Buggies",
+   "lat": 36.9650419,
+   "lon": -122.0132874,
+   "ground": [
+    330.2,
+    59.9
+   ],
+   "note": "Rugged Buggies: retired; the map's Bouncin' Buggies is at the west end"
+  },
+  {
+   "ref": "w881447633",
+   "name": "Kiddie Cruzers",
+   "lat": 36.9645847,
+   "lon": -122.0148656,
+   "ground": [
+    189.8,
+    9.4
+   ],
+   "note": "Kiddie Cruzers: retired kiddie ride next to Sea Swings"
+  },
+  {
+   "ref": "n5060865213",
+   "name": null,
+   "lat": 36.9646351,
+   "lon": -122.0136948,
+   "ground": [
+    294.0,
+    14.9
+   ],
+   "note": "unnamed amusement_ride node next to Rock-O-Plane"
+  }
+ ],
+ "fit": {
+  "control_points": [
+   {
+    "id": "speed_boats",
+    "name": "Speed Boats",
+    "map": [
+     1467,
+     706
+    ],
+    "ground": [
+     329.2,
+     49.7
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     32.2,
+     1.6
+    ],
+    "affine_loo_residual_px": [
+     34.8,
+     1.7
+    ],
+    "tps_loo_residual_px": [
+     11.4,
+     9.6
+    ]
+   },
+   {
+    "id": "sea_dragons",
+    "name": "Sea Dragons",
+    "map": [
+     1478,
+     686
+    ],
+    "ground": [
+     328.4,
+     39.7
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     50.8,
+     -43.8
+    ],
+    "affine_loo_residual_px": [
+     55.4,
+     -47.7
+    ],
+    "tps_loo_residual_px": [
+     34.7,
+     -48.7
+    ]
+   },
+   {
+    "id": "convoy",
+    "name": "Convoy",
+    "map": [
+     1492,
+     608
+    ],
+    "ground": [
+     330.2,
+     96.4
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     27.2,
+     24.3
+    ],
+    "affine_loo_residual_px": [
+     28.7,
+     25.6
+    ],
+    "tps_loo_residual_px": [
+     29.2,
+     26.8
+    ]
+   },
+   {
+    "id": "pirate_ship",
+    "name": "Pirate Ship",
+    "map": [
+     395,
+     645
+    ],
+    "ground": [
+     -143.4,
+     -69.1
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "west",
+    "affine_residual_px": [
+     -29.0,
+     22.5
+    ],
+    "affine_loo_residual_px": [
+     -33.5,
+     26.0
+    ],
+    "tps_loo_residual_px": [
+     -15.4,
+     13.0
+    ]
+   },
+   {
+    "id": "lighthouse_lift_off",
+    "name": "Lighthouse Lift-Off",
+    "map": [
+     626,
+     540
+    ],
+    "ground": [
+     -57.8,
+     -20.3
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "centre",
+    "affine_residual_px": [
+     2.5,
+     -26.3
+    ],
+    "affine_loo_residual_px": [
+     2.7,
+     -28.1
+    ],
+    "tps_loo_residual_px": [
+     2.0,
+     -22.5
+    ]
+   },
+   {
+    "id": "looff_carousel",
+    "name": "Looff Carousel",
+    "map": [
+     668,
+     541
+    ],
+    "ground": [
+     -39.3,
+     -13.2
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "centre",
+    "affine_residual_px": [
+     3.5,
+     -22.2
+    ],
+    "affine_loo_residual_px": [
+     3.7,
+     -23.5
+    ],
+    "tps_loo_residual_px": [
+     6.5,
+     -12.1
+    ]
+   },
+   {
+    "id": "haunted_castle",
+    "name": "Haunted Castle",
+    "map": [
+     765,
+     586
+    ],
+    "ground": [
+     33.7,
+     -8.8
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "centre",
+    "affine_residual_px": [
+     -47.2,
+     -26.1
+    ],
+    "affine_loo_residual_px": [
+     -49.4,
+     -27.3
+    ],
+    "tps_loo_residual_px": [
+     -25.6,
+     -14.8
+    ]
+   },
+   {
+    "id": "sea_swings",
+    "name": "Sea Swings",
+    "map": [
+     1135,
+     737
+    ],
+    "ground": [
+     198.0,
+     -0.4
+    ],
+    "w": 1.0,
+    "kind": "ride/building",
+    "region": "centre",
+    "affine_residual_px": [
+     -8.9,
+     10.8
+    ],
+    "affine_loo_residual_px": [
+     -10.2,
+     12.4
+    ],
+    "tps_loo_residual_px": [
+     1.7,
+     11.7
+    ]
+   },
+   {
+    "id": "loggers_revenge",
+    "name": "Logger's Revenge",
+    "map": [
+     1283,
+     650
+    ],
+    "ground": [
+     249.3,
+     59.1
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     1.4,
+     36.2
+    ],
+    "affine_loo_residual_px": [
+     1.5,
+     37.1
+    ],
+    "tps_loo_residual_px": [
+     -8.6,
+     41.2
+    ]
+   },
+   {
+    "id": "riptide",
+    "name": "Riptide",
+    "map": [
+     1278,
+     757
+    ],
+    "ground": [
+     245.9,
+     7.9
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     33.9,
+     12.8
+    ],
+    "affine_loo_residual_px": [
+     37.2,
+     14.0
+    ],
+    "tps_loo_residual_px": [
+     31.4,
+     10.4
+    ]
+   },
+   {
+    "id": "tsunami",
+    "name": "Tsunami",
+    "map": [
+     1433,
+     755
+    ],
+    "ground": [
+     324.0,
+     28.8
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     21.1,
+     0.5
+    ],
+    "affine_loo_residual_px": [
+     23.4,
+     0.6
+    ],
+    "tps_loo_residual_px": [
+     -1.9,
+     8.1
+    ]
+   },
+   {
+    "id": "tornado",
+    "name": "Tornado",
+    "map": [
+     1418,
+     630
+    ],
+    "ground": [
+     309.1,
+     73.6
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     8.8,
+     4.4
+    ],
+    "affine_loo_residual_px": [
+     9.2,
+     4.6
+    ],
+    "tps_loo_residual_px": [
+     -3.1,
+     2.4
+    ]
+   },
+   {
+    "id": "sea_serpent",
+    "name": "Sea Serpent",
+    "map": [
+     1365,
+     588
+    ],
+    "ground": [
+     284.6,
+     80.3
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     0.5,
+     0.1
+    ],
+    "affine_loo_residual_px": [
+     0.6,
+     0.1
+    ],
+    "tps_loo_residual_px": [
+     -5.8,
+     -5.3
+    ]
+   },
+   {
+    "id": "cave_train",
+    "name": "Cave Train",
+    "map": [
+     1405,
+     648
+    ],
+    "ground": [
+     309.8,
+     66.2
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     -1.1,
+     2.6
+    ],
+    "affine_loo_residual_px": [
+     -1.1,
+     2.7
+    ],
+    "tps_loo_residual_px": [
+     -16.5,
+     1.8
+    ]
+   },
+   {
+    "id": "ghost_blasters",
+    "name": "Ghost Blasters",
+    "map": [
+     1336,
+     648
+    ],
+    "ground": [
+     270.9,
+     49.5
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     17.2,
+     -8.7
+    ],
+    "affine_loo_residual_px": [
+     17.7,
+     -8.9
+    ],
+    "tps_loo_residual_px": [
+     5.7,
+     -12.0
+    ]
+   },
+   {
+    "id": "space_race",
+    "name": "Space Race",
+    "map": [
+     1390,
+     722
+    ],
+    "ground": [
+     297.7,
+     33.3
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     27.7,
+     1.0
+    ],
+    "affine_loo_residual_px": [
+     28.7,
+     1.0
+    ],
+    "tps_loo_residual_px": [
+     13.7,
+     1.1
+    ]
+   },
+   {
+    "id": "freefall",
+    "name": "Freefall",
+    "map": [
+     1384,
+     684
+    ],
+    "ground": [
+     304.0,
+     52.4
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     -2.3,
+     7.5
+    ],
+    "affine_loo_residual_px": [
+     -2.4,
+     8.0
+    ],
+    "tps_loo_residual_px": [
+     -21.3,
+     9.4
+    ]
+   },
+   {
+    "id": "typhoon",
+    "name": "Typhoon",
+    "map": [
+     440,
+     552
+    ],
+    "ground": [
+     -144.4,
+     -42.4
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "west",
+    "affine_residual_px": [
+     2.0,
+     -0.2
+    ],
+    "affine_loo_residual_px": [
+     2.1,
+     -0.2
+    ],
+    "tps_loo_residual_px": [
+     3.8,
+     -12.1
+    ]
+   },
+   {
+    "id": "double_shot",
+    "name": "Double Shot",
+    "map": [
+     443,
+     657
+    ],
+    "ground": [
+     -125.2,
+     -65.2
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "west",
+    "affine_residual_px": [
+     -19.5,
+     29.6
+    ],
+    "affine_loo_residual_px": [
+     -22.3,
+     33.9
+    ],
+    "tps_loo_residual_px": [
+     -0.8,
+     25.8
+    ]
+   },
+   {
+    "id": "shockwave",
+    "name": "Shockwave",
+    "map": [
+     497,
+     525
+    ],
+    "ground": [
+     -125.8,
+     -27.1
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "west",
+    "affine_residual_px": [
+     12.8,
+     -2.8
+    ],
+    "affine_loo_residual_px": [
+     13.4,
+     -2.9
+    ],
+    "tps_loo_residual_px": [
+     6.6,
+     -12.1
+    ]
+   },
+   {
+    "id": "undertow",
+    "name": "Undertow",
+    "map": [
+     565,
+     540
+    ],
+    "ground": [
+     -93.6,
+     -18.8
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "west",
+    "affine_residual_px": [
+     11.8,
+     7.2
+    ],
+    "affine_loo_residual_px": [
+     12.3,
+     7.5
+    ],
+    "tps_loo_residual_px": [
+     3.0,
+     8.6
+    ]
+   },
+   {
+    "id": "fireball",
+    "name": "Fireball",
+    "map": [
+     914,
+     640
+    ],
+    "ground": [
+     106.5,
+     3.9
+    ],
+    "w": 1.0,
+    "kind": "ride/building",
+    "region": "centre",
+    "affine_residual_px": [
+     -50.6,
+     0.7
+    ],
+    "affine_loo_residual_px": [
+     -53.9,
+     0.7
+    ],
+    "tps_loo_residual_px": [
+     -17.2,
+     14.4
+    ]
+   },
+   {
+    "id": "rock_o_plane",
+    "name": "Rock-O-Plane",
+    "map": [
+     1352,
+     790
+    ],
+    "ground": [
+     304.3,
+     14.5
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     -12.1,
+     14.6
+    ],
+    "affine_loo_residual_px": [
+     -13.7,
+     16.5
+    ],
+    "tps_loo_residual_px": [
+     -40.5,
+     20.7
+    ]
+   },
+   {
+    "id": "cyclone",
+    "name": "Cyclone",
+    "map": [
+     1452,
+     605
+    ],
+    "ground": [
+     314.7,
+     86.0
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     24.3,
+     7.1
+    ],
+    "affine_loo_residual_px": [
+     25.3,
+     7.4
+    ],
+    "tps_loo_residual_px": [
+     18.4,
+     3.9
+    ]
+   },
+   {
+    "id": "crazy_surf",
+    "name": "Crazy Surf",
+    "map": [
+     1442,
+     565
+    ],
+    "ground": [
+     301.7,
+     102.0
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     30.5,
+     19.4
+    ],
+    "affine_loo_residual_px": [
+     32.5,
+     20.7
+    ],
+    "tps_loo_residual_px": [
+     39.3,
+     16.3
+    ]
+   },
+   {
+    "id": "wipeout",
+    "name": "WipeOut",
+    "map": [
+     1335,
+     690
+    ],
+    "ground": [
+     282.0,
+     34.5
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     3.2,
+     -14.9
+    ],
+    "affine_loo_residual_px": [
+     3.3,
+     -15.4
+    ],
+    "tps_loo_residual_px": [
+     -12.5,
+     -18.4
+    ]
+   },
+   {
+    "id": "sun_room",
+    "name": "Sun Room (Cocoanut Grove)",
+    "map": [
+     268,
+     525
+    ],
+    "ground": [
+     -226.5,
+     -60.8
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "west",
+    "affine_residual_px": [
+     4.2,
+     -7.1
+    ],
+    "affine_loo_residual_px": [
+     4.9,
+     -8.3
+    ],
+    "tps_loo_residual_px": [
+     -12.5,
+     -12.6
+    ]
+   },
+   {
+    "id": "neptunes_kingdom",
+    "name": "Neptune's Kingdom",
+    "map": [
+     345,
+     528
+    ],
+    "ground": [
+     -190.7,
+     -49.2
+    ],
+    "w": 0.3,
+    "kind": "ride/building",
+    "region": "west",
+    "affine_residual_px": [
+     3.1,
+     -3.6
+    ],
+    "affine_loo_residual_px": [
+     3.3,
+     -3.8
+    ],
+    "tps_loo_residual_px": [
+     -1.4,
+     -9.6
+    ]
+   },
+   {
+    "id": "funland_arcade",
+    "name": "Funland Arcade",
+    "map": [
+     1192,
+     742
+    ],
+    "ground": [
+     225.1,
+     5.3
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     -9.2,
+     8.2
+    ],
+    "affine_loo_residual_px": [
+     -10.0,
+     8.9
+    ],
+    "tps_loo_residual_px": [
+     -18.6,
+     3.5
+    ]
+   },
+   {
+    "id": "san_lorenzo_trestle",
+    "name": "San Lorenzo River trestle",
+    "map": [
+     1405,
+     478
+    ],
+    "ground": [
+     318.6,
+     131.1
+    ],
+    "w": 0.6,
+    "kind": "ride/building",
+    "region": "east",
+    "affine_residual_px": [
+     -57.6,
+     -5.8
+    ],
+    "affine_loo_residual_px": [
+     -73.9,
+     -7.5
+    ],
+    "tps_loo_residual_px": [
+     -82.2,
+     -22.4
+    ]
+   },
+   {
+    "id": "cliff_st",
+    "name": "Cliff St / Beach St",
+    "map": [
+     227.6,
+     390.6
+    ],
+    "ground": [
+     -287.7,
+     -26.5
+    ],
+    "w": 0.6,
+    "kind": "street",
+    "region": "west",
+    "affine_residual_px": [
+     64.9,
+     -1.6
+    ],
+    "affine_loo_residual_px": [
+     83.3,
+     -2.1
+    ],
+    "tps_loo_residual_px": [
+     40.6,
+     7.6
+    ]
+   },
+   {
+    "id": "riverside_ave",
+    "name": "Riverside Ave / Beach St",
+    "map": [
+     655.2,
+     450.9
+    ],
+    "ground": [
+     -72.0,
+     23.8
+    ],
+    "w": 0.6,
+    "kind": "street",
+    "region": "centre",
+    "affine_residual_px": [
+     33.5,
+     11.1
+    ],
+    "affine_loo_residual_px": [
+     38.1,
+     12.6
+    ],
+    "tps_loo_residual_px": [
+     10.8,
+     18.7
+    ]
+   },
+   {
+    "id": "raymond_st",
+    "name": "Raymond St / Beach St",
+    "map": [
+     780.3,
+     482.4
+    ],
+    "ground": [
+     -1.2,
+     34.1
+    ],
+    "w": 0.6,
+    "kind": "street",
+    "region": "centre",
+    "affine_residual_px": [
+     11.7,
+     10.8
+    ],
+    "affine_loo_residual_px": [
+     12.9,
+     11.9
+    ],
+    "tps_loo_residual_px": [
+     16.8,
+     26.5
+    ]
+   },
+   {
+    "id": "leibrandt_ave",
+    "name": "Leibrandt Ave / Beach St",
+    "map": [
+     1005.8,
+     504.5
+    ],
+    "ground": [
+     123.8,
+     59.1
+    ],
+    "w": 0.6,
+    "kind": "street",
+    "region": "centre",
+    "affine_residual_px": [
+     -26.3,
+     -5.5
+    ],
+    "affine_loo_residual_px": [
+     -28.5,
+     -5.9
+    ],
+    "tps_loo_residual_px": [
+     6.5,
+     -9.4
+    ]
+   },
+   {
+    "id": "park_pl",
+    "name": "Park Pl / Beach St",
+    "map": [
+     1155.8,
+     503.6
+    ],
+    "ground": [
+     198.8,
+     89.2
+    ],
+    "w": 0.6,
+    "kind": "street",
+    "region": "east",
+    "affine_residual_px": [
+     -43.5,
+     9.9
+    ],
+    "affine_loo_residual_px": [
+     -49.6,
+     11.3
+    ],
+    "tps_loo_residual_px": [
+     -45.3,
+     12.3
+    ]
+   },
+   {
+    "id": "third_st",
+    "name": "Third St / Beach St (bend)",
+    "map": [
+     1305.5,
+     465.5
+    ],
+    "ground": [
+     247.0,
+     118.0
+    ],
+    "w": 0.3,
+    "kind": "street",
+    "region": "east",
+    "affine_residual_px": [
+     -6.9,
+     6.8
+    ],
+    "affine_loo_residual_px": [
+     -7.7,
+     7.6
+    ],
+    "tps_loo_residual_px": [
+     16.9,
+     0.3
+    ]
+   },
+   {
+    "id": "dipper_west_end",
+    "name": "Giant Dipper west end",
+    "map": [
+     845,
+     585
+    ],
+    "ground": [
+     60,
+     0
+    ],
+    "w": 0.3,
+    "kind": "structure",
+    "region": "centre",
+    "affine_residual_px": [
+     -24.8,
+     -26.0
+    ],
+    "affine_loo_residual_px": [
+     -25.3,
+     -26.5
+    ],
+    "tps_loo_residual_px": [
+     16.4,
+     -14.8
+    ]
+   },
+   {
+    "id": "dipper_east_end",
+    "name": "Giant Dipper east turn",
+    "map": [
+     1305,
+     565
+    ],
+    "ground": [
+     228,
+     48
+    ],
+    "w": 0.3,
+    "kind": "structure",
+    "region": "east",
+    "affine_residual_px": [
+     72.4,
+     -60.1
+    ],
+    "affine_loo_residual_px": [
+     74.0,
+     -61.4
+    ],
+    "tps_loo_residual_px": [
+     78.9,
+     -72.0
+    ]
+   },
+   {
+    "id": "sky_glider_east",
+    "name": "Sky Glider east station",
+    "map": [
+     1017,
+     703
+    ],
+    "ground": [
+     155,
+     -10
+    ],
+    "w": 0.3,
+    "kind": "structure",
+    "region": "centre",
+    "affine_residual_px": [
+     -35.7,
+     -12.6
+    ],
+    "affine_loo_residual_px": [
+     -37.0,
+     -13.1
+    ],
+    "tps_loo_residual_px": [
+     -4.4,
+     -15.6
+    ]
+   }
+  ],
+  "weights": {
+   "high": 1.0,
+   "medium": 0.6,
+   "low": 0.3
+  },
+  "global_affine": {
+   "matrix_ground_to_pdf": [
+    [
+     1.98784,
+     0.60028,
+     750.53998
+    ],
+    [
+     0.82739,
+     -2.60198,
+     561.33559
+    ]
+   ],
+   "shape": {
+    "along_strip_px_per_m": 2.08,
+    "along_strip_screen_slope": -0.009,
+    "inland_px_per_m": 2.73,
+    "inland_screen_angle_deg": 91.0,
+    "inland_over_along": 1.32
+   },
+   "residuals": {
+    "west": {
+     "n": 8,
+     "rms_px": 30.2,
+     "mean_px": [
+      6.3,
+      5.5
+     ],
+     "max_px": 64.9
+    },
+    "centre": {
+     "n": 10,
+     "rms_px": 34.4,
+     "mean_px": [
+      -14.2,
+      -8.5
+     ],
+     "max_px": 54.0
+    },
+    "east": {
+     "n": 21,
+     "rms_px": 36.7,
+     "mean_px": [
+      10.4,
+      1.1
+     ],
+     "max_px": 94.1
+    },
+    "all": {
+     "n": 39,
+     "rms_px": 34.8
+    }
+   },
+   "leave_one_out": {
+    "west": {
+     "n": 8,
+     "rms_px": 36.9,
+     "mean_px": [
+      7.9,
+      6.3
+     ],
+     "max_px": 83.3
+    },
+    "centre": {
+     "n": 10,
+     "rms_px": 36.5,
+     "mean_px": [
+      -14.7,
+      -8.7
+     ],
+     "max_px": 56.4
+    },
+    "east": {
+     "n": 21,
+     "rms_px": 39.9,
+     "mean_px": [
+      10.2,
+      1.3
+     ],
+     "max_px": 96.1
+    },
+    "all": {
+     "n": 39,
+     "rms_px": 38.5
+    }
+   }
+  },
+  "stage_camera_model": {
+   "model": "px = T + s * (u * a0 + k * v * b0); a0, b0 from the stage camera (yaw 24.1 from strip, pitch 28.7)",
+   "scale_px_per_m": 2.304,
+   "depth_stretch_k": 0.76,
+   "T": [
+    761.5,
+    539.1
+   ],
+   "residuals": {
+    "west": {
+     "n": 8,
+     "rms_px": 102.9,
+     "mean_px": [
+      -7.0,
+      91.3
+     ],
+     "max_px": 163.2
+    },
+    "centre": {
+     "n": 10,
+     "rms_px": 52.1,
+     "mean_px": [
+      -19.5,
+      8.1
+     ],
+     "max_px": 98.7
+    },
+    "east": {
+     "n": 21,
+     "rms_px": 98.2,
+     "mean_px": [
+      15.5,
+      -52.2
+     ],
+     "max_px": 219.2
+    },
+    "all": {
+     "n": 39,
+     "rms_px": 89.8
+    }
+   }
+  },
+  "stage_camera_expects": {
+   "along_strip_screen_slope": 0.215,
+   "inland_screen_angle_deg": 47.0,
+   "inland_over_along": 0.64
+  },
+  "per_region_affine": {
+   "west": {
+    "n": 8,
+    "along_strip_px_per_m": 2.13,
+    "along_strip_screen_slope": -0.01,
+    "inland_px_per_m": 3.26,
+    "inland_screen_angle_deg": 70.9,
+    "inland_over_along": 1.53,
+    "rms_px": 10.0,
+    "stage_camera_model": {
+     "scale_px_per_m": 2.6,
+     "depth_stretch_k": 1.69,
+     "rms_px": 31.4
+    },
+    "affine": [
+     [
+      1.6974,
+      1.6748,
+      757.1155
+     ],
+     [
+      0.9346,
+      -2.9342,
+      571.4832
+     ]
+    ]
+   },
+   "centre": {
+    "n": 10,
+    "along_strip_px_per_m": 2.0,
+    "along_strip_screen_slope": 0.064,
+    "inland_px_per_m": 2.45,
+    "inland_screen_angle_deg": 84.5,
+    "inland_over_along": 1.23,
+    "rms_px": 23.0,
+    "stage_camera_model": {
+     "scale_px_per_m": 2.47,
+     "depth_stretch_k": 1.21,
+     "rms_px": 42.2
+    },
+    "affine": [
+     [
+      1.8235,
+      0.8419,
+      743.6695
+     ],
+     [
+      0.8789,
+      -2.2821,
+      550.3459
+     ]
+    ]
+   },
+   "east": {
+    "n": 21,
+    "along_strip_px_per_m": 2.16,
+    "along_strip_screen_slope": -0.031,
+    "inland_px_per_m": 2.71,
+    "inland_screen_angle_deg": 100.4,
+    "inland_over_along": 1.25,
+    "rms_px": 33.4,
+    "stage_camera_model": {
+     "scale_px_per_m": 2.2,
+     "depth_stretch_k": 1.24,
+     "rms_px": 79.1
+    },
+    "affine": [
+     [
+      2.2091,
+      0.2038,
+      717.3179
+     ],
+     [
+      0.7629,
+      -2.5591,
+      578.299
+     ]
+    ]
+   }
+  },
+  "along_strip_spacing_rides": [
+   {
+    "from": "pirate_ship",
+    "to": "double_shot",
+    "metres_along_strip": 18.5,
+    "map_dx_px": 48.0,
+    "px_per_m": 2.59
+   },
+   {
+    "from": "double_shot",
+    "to": "lighthouse_lift_off",
+    "metres_along_strip": 78.0,
+    "map_dx_px": 183.0,
+    "px_per_m": 2.35
+   },
+   {
+    "from": "lighthouse_lift_off",
+    "to": "looff_carousel",
+    "metres_along_strip": 19.8,
+    "map_dx_px": 42.0,
+    "px_per_m": 2.12
+   },
+   {
+    "from": "looff_carousel",
+    "to": "haunted_castle",
+    "metres_along_strip": 70.8,
+    "map_dx_px": 97.0,
+    "px_per_m": 1.37
+   },
+   {
+    "from": "haunted_castle",
+    "to": "fireball",
+    "metres_along_strip": 73.2,
+    "map_dx_px": 149.0,
+    "px_per_m": 2.04
+   },
+   {
+    "from": "fireball",
+    "to": "sea_swings",
+    "metres_along_strip": 85.7,
+    "map_dx_px": 221.0,
+    "px_per_m": 2.58
+   },
+   {
+    "from": "sea_swings",
+    "to": "funland_arcade",
+    "metres_along_strip": 27.5,
+    "map_dx_px": 57.0,
+    "px_per_m": 2.07
+   },
+   {
+    "from": "funland_arcade",
+    "to": "rock_o_plane",
+    "metres_along_strip": 78.2,
+    "map_dx_px": 160.0,
+    "px_per_m": 2.05
+   },
+   {
+    "from": "rock_o_plane",
+    "to": "tsunami",
+    "metres_along_strip": 23.2,
+    "map_dx_px": 81.0,
+    "px_per_m": 3.5
+   }
+  ],
+  "along_strip_spacing_streets": [
+   {
+    "from": "cliff_st",
+    "to": "riverside_ave",
+    "metres_along_strip": 220.7,
+    "map_dx_px": 427.6,
+    "px_per_m": 1.94
+   },
+   {
+    "from": "riverside_ave",
+    "to": "raymond_st",
+    "metres_along_strip": 70.5,
+    "map_dx_px": 125.1,
+    "px_per_m": 1.77
+   },
+   {
+    "from": "raymond_st",
+    "to": "leibrandt_ave",
+    "metres_along_strip": 126.6,
+    "map_dx_px": 225.5,
+    "px_per_m": 1.78
+   },
+   {
+    "from": "leibrandt_ave",
+    "to": "park_pl",
+    "metres_along_strip": 80.6,
+    "map_dx_px": 150.0,
+    "px_per_m": 1.86
+   }
+  ],
+  "thin_plate_spline": {
+   "lambda": 0.3,
+   "loo_weighted_rms_by_lambda": {
+    "0.003": 27.8,
+    "0.01": 26.5,
+    "0.03": 25.0,
+    "0.1": 23.6,
+    "0.3": 23.1,
+    "1.0": 23.6
+   },
+   "leave_one_out": {
+    "west": {
+     "n": 8,
+     "rms_px": 21.3,
+     "mean_px": [
+      3.0,
+      1.1
+     ],
+     "max_px": 41.3
+    },
+    "centre": {
+     "n": 10,
+     "rms_px": 21.3,
+     "mean_px": [
+      1.3,
+      -1.8
+     ],
+     "max_px": 31.4
+    },
+    "east": {
+     "n": 21,
+     "rms_px": 41.3,
+     "mean_px": [
+      1.1,
+      -0.5
+     ],
+     "max_px": 106.8
+    },
+    "all": {
+     "n": 39,
+     "rms_px": 33.6
+    }
+   },
+   "note": "use for carrying OSM geometry onto the map and back; the leave-one-out error is the honest accuracy"
+  },
+  "stage_camera": {
+   "yawDeg": 24.1,
+   "pitchDeg": 28.7,
+   "note": "base/stage.json, measured on the redrawn slice; yaw is from the strip"
+  }
+ },
+ "slices": {
+  "slices": [
+   {
+    "id": "S0_west",
+    "rect": [
+     30,
+     305,
+     630,
+     705
+    ],
+    "size": [
+     1536,
+     1024
+    ],
+    "covers": "Aloha Terrace, Casino Arcade, Cocoanut Grove, Neptune's Kingdom, Boardwalk Bowl, Pirate Ship, Double Shot, Typhoon",
+    "scale": 2.56,
+    "panorama_offset": [
+     0,
+     0
+    ],
+    "to_slice_px": "slice = (pdf - [30, 305]) * 2.56",
+    "items": [
+     "bouncin_buggies",
+     "speedway",
+     "jet_copters",
+     "pirate_ship",
+     "speed_bumps",
+     "sky_glider",
+     "wave_rider",
+     "lighthouse_lift_off",
+     "typhoon",
+     "double_shot",
+     "shockwave",
+     "undertow",
+     "boardwalk_bowl",
+     "laser_tag",
+     "mini_golf",
+     "vault_laser_maze",
+     "fright_walk",
+     "casino_arcade",
+     "cocoanut_grove",
+     "sun_room",
+     "neptunes_kingdom"
+    ],
+    "items_cut_by_edge": [
+     "lighthouse_lift_off",
+     "undertow"
+    ]
+   },
+   {
+    "id": "S1_entrance",
+    "rect": [
+     405,
+     355,
+     1005,
+     755
+    ],
+    "size": [
+     1536,
+     1024
+    ],
+    "covers": "main entrance plaza, Shockwave, Undertow, Wave Rider, kiddie rides, Looff Carousel, Haunted Castle, Dipper west end",
+    "scale": 2.56,
+    "panorama_offset": [
+     960,
+     128
+    ],
+    "to_slice_px": "slice = (pdf - [405, 355]) * 2.56",
+    "items": [
+     "speedway",
+     "jet_copters",
+     "speed_bumps",
+     "sky_glider",
+     "wave_rider",
+     "lighthouse_lift_off",
+     "looff_carousel",
+     "haunted_castle",
+     "typhoon",
+     "double_shot",
+     "shockwave",
+     "undertow",
+     "fireball",
+     "vault_laser_maze",
+     "fright_walk",
+     "looff_carousel_building"
+    ],
+    "items_cut_by_edge": [
+     "pirate_ship",
+     "giant_dipper"
+    ]
+   },
+   {
+    "id": "S2_dipper",
+    "rect": [
+     780,
+     430,
+     1380,
+     830
+    ],
+    "size": [
+     1536,
+     1024
+    ],
+    "existing": "base/stage.png",
+    "covers": "Giant Dipper, Fireball, Dream Wheel, Sea Swings, Funland Arcade, Logger's Revenge mill house",
+    "scale": 2.56,
+    "panorama_offset": [
+     1920,
+     320
+    ],
+    "to_slice_px": "slice = (pdf - [780, 430]) * 2.56",
+    "items": [
+     "bulgy_the_whale",
+     "beach_swing",
+     "dream_wheel",
+     "sea_swings",
+     "loggers_revenge",
+     "riptide",
+     "sea_serpent",
+     "ghost_blasters",
+     "giant_dipper",
+     "fireball",
+     "surge",
+     "rock_o_plane",
+     "wipeout",
+     "funland_arcade"
+    ],
+    "items_cut_by_edge": [
+     "beach_swing",
+     "haunted_castle",
+     "loggers_revenge",
+     "sea_serpent",
+     "cave_train",
+     "space_race",
+     "freefall"
+    ]
+   },
+   {
+    "id": "S3_river",
+    "rect": [
+     1155,
+     405,
+     1555,
+     805
+    ],
+    "size": [
+     1024,
+     1024
+    ],
+    "covers": "Logger's Revenge, east-end rides, kiddie rides, Tsunami, the river and the trestle",
+    "scale": 2.56,
+    "panorama_offset": [
+     2880,
+     256
+    ],
+    "to_slice_px": "slice = (pdf - [1155, 405]) * 2.56",
+    "items": [
+     "bulgy_the_whale",
+     "beach_swing",
+     "speed_boats",
+     "sea_dragons",
+     "convoy",
+     "boardwalk_racers",
+     "loggers_revenge",
+     "riptide",
+     "tsunami",
+     "twirlin_teacups",
+     "tornado",
+     "sea_serpent",
+     "cave_train",
+     "ghost_blasters",
+     "space_race",
+     "freefall",
+     "surge",
+     "rock_o_plane",
+     "cyclone",
+     "crazy_surf",
+     "wipeout",
+     "funland_arcade",
+     "san_lorenzo_trestle"
+    ],
+    "items_cut_by_edge": [
+     "giant_dipper",
+     "san_lorenzo_trestle"
+    ]
+   }
+  ],
+  "overlaps": [
+   {
+    "between": [
+     "S0_west",
+     "S1_entrance"
+    ],
+    "x": [
+     405,
+     630
+    ],
+    "y": [
+     355,
+     705
+    ],
+    "width_px": 225,
+    "width_stage_px": 576,
+    "y_offset_px": 50,
+    "free_vertical_corridors": []
+   },
+   {
+    "between": [
+     "S1_entrance",
+     "S2_dipper"
+    ],
+    "x": [
+     780,
+     1005
+    ],
+    "y": [
+     430,
+     755
+    ],
+    "width_px": 225,
+    "width_stage_px": 576,
+    "y_offset_px": 75,
+    "free_vertical_corridors": [
+     [
+      792,
+      830
+     ]
+    ]
+   },
+   {
+    "between": [
+     "S2_dipper",
+     "S3_river"
+    ],
+    "x": [
+     1155,
+     1380
+    ],
+    "y": [
+     430,
+     805
+    ],
+    "width_px": 225,
+    "width_stage_px": 576,
+    "y_offset_px": -25,
+    "free_vertical_corridors": []
+   }
+  ],
+  "panorama": {
+   "origin_pdf": [
+    30,
+    305
+   ],
+   "size_stage_px": [
+    3904,
+    1344
+   ],
+   "scale": 2.56,
+   "to_panorama_px": "pano = (pdf - [30, 305]) * 2.56",
+   "note": "slice origins sit on a 25 pdf px grid from the panorama origin, so every slice offset is a whole multiple of 64 stage px"
+  },
+  "seam_hints": [
+   {
+    "between": [
+     "S0_west",
+     "S1_entrance"
+    ],
+    "x_pdf": 470,
+    "why": "the main-entrance plaza between Double Shot / Typhoon (x <= 462) and Shockwave (x >= 478); no ride-free vertical corridor exists, so let a min-cut seam wander +-30 px"
+   },
+   {
+    "between": [
+     "S1_entrance",
+     "S2_dipper"
+    ],
+    "x_pdf": 810,
+    "why": "the only ride-free corridor (792-830): between the Haunted Castle and the Giant Dipper's west loop, down Raymond Street"
+   },
+   {
+    "between": [
+     "S2_dipper",
+     "S3_river"
+    ],
+    "x_pdf": 1320,
+    "why": "between the mill house / Dipper east end (x <= 1326) and Ghost Blasters / Rock-O-Plane (x >= 1325); cutting through the Dipper lattice or the flume chute shows, so search a min-cut path +-40 px around it"
+   }
+  ],
+  "procedure": [
+   "Same camera by construction: every slice is a crop of the same official map at the same 2.56 scale, redrawn with the same style frames and prompt template as base/stage.png (add stage.png itself as a style reference).",
+   "Grow outward from the existing S2: S1 then S0 to the west, S3 to the east, one at a time.",
+   "Input for a new slice: the official-map crop with map graphics removed, the overlap pasted in from the already-painted neighbour (same pdf frame and scale, so it is a pure integer shift by the panorama offsets), and flat platform discs drawn at layout.json bases so rides cannot drift; edit mask = everything except the pasted overlap, minus a 48 px band at its inner edge for blending.",
+   "After generation: colour-match the new slice to the neighbour on the overlap, measure any residual shift by phase correlation (re-run if > 8 stage px), cut a minimum-error seam through the overlap near the seam hint, and blend 32-48 px across it.",
+   "Register every painted slice back to the official map (10+ landmarks: platforms, building corners, wall stairs) and store its pdf -> slice warp next to its stage.json; reject a slice whose platforms land > 20 stage px from layout.json.",
+   "Ship the panorama as the four slices cropped at the seams (WebP tiles placed by panorama_offset); layers keep working in panorama px = (pdf - origin) * 2.56."
+  ]
+ },
+ "stage_registration": {
+  "crop_transform": "stage = (pdf - [780, 430]) * 2.56",
+  "landmarks": [
+   {
+    "id": "us_flag_top",
+    "map": [
+     1091,
+     471
+    ],
+    "stage": [
+     782,
+     75
+    ],
+    "kind": "structure",
+    "crop_prediction": [
+     796,
+     105
+    ],
+    "offset_stage_px": [
+     -14,
+     -30
+    ],
+    "offset_pdf_px": [
+     -5.5,
+     -11.7
+    ],
+    "after_structure_affine_stage_px": [
+     -2,
+     -3
+    ]
+   },
+   {
+    "id": "ca_flag_top",
+    "map": [
+     1128,
+     473
+    ],
+    "stage": [
+     867,
+     82
+    ],
+    "kind": "structure",
+    "crop_prediction": [
+     891,
+     110
+    ],
+    "offset_stage_px": [
+     -24,
+     -28
+    ],
+    "offset_pdf_px": [
+     -9.3,
+     -11.0
+    ],
+    "after_structure_affine_stage_px": [
+     -13,
+     -1
+    ]
+   },
+   {
+    "id": "dipper_west_loop",
+    "map": [
+     842,
+     560
+    ],
+    "stage": [
+     121,
+     293
+    ],
+    "kind": "structure",
+    "crop_prediction": [
+     159,
+     333
+    ],
+    "offset_stage_px": [
+     -38,
+     -40
+    ],
+    "offset_pdf_px": [
+     -14.7,
+     -15.5
+    ],
+    "after_structure_affine_stage_px": [
+     -17,
+     2
+    ]
+   },
+   {
+    "id": "dipper_crest",
+    "map": [
+     1107,
+     507
+    ],
+    "stage": [
+     824,
+     180
+    ],
+    "kind": "structure",
+    "crop_prediction": [
+     837,
+     197
+    ],
+    "offset_stage_px": [
+     -13,
+     -17
+    ],
+    "offset_pdf_px": [
+     -5.1,
+     -6.7
+    ],
+    "after_structure_affine_stage_px": [
+     -2,
+     16
+    ]
+   },
+   {
+    "id": "dipper_east_top",
+    "map": [
+     1307,
+     505
+    ],
+    "stage": [
+     1374,
+     158
+    ],
+    "kind": "structure",
+    "crop_prediction": [
+     1349,
+     192
+    ],
+    "offset_stage_px": [
+     25,
+     -34
+    ],
+    "offset_pdf_px": [
+     9.7,
+     -13.3
+    ],
+    "after_structure_affine_stage_px": [
+     27,
+     -1
+    ]
+   },
+   {
+    "id": "mill_house_roof",
+    "map": [
+     1310,
+     571
+    ],
+    "stage": [
+     1353,
+     305
+    ],
+    "kind": "structure",
+    "crop_prediction": [
+     1357,
+     361
+    ],
+    "offset_stage_px": [
+     -4,
+     -56
+    ],
+    "offset_pdf_px": [
+     -1.5,
+     -21.9
+    ],
+    "after_structure_affine_stage_px": [
+     -4,
+     -12
+    ]
+   },
+   {
+    "id": "wall_rail_west",
+    "map": [
+     780,
+     670
+    ],
+    "stage": [
+     0,
+     548
+    ],
+    "kind": "wall",
+    "crop_prediction": [
+     0,
+     614
+    ],
+    "offset_stage_px": [
+     0,
+     -66
+    ],
+    "offset_pdf_px": [
+     0.0,
+     -25.9
+    ],
+    "after_structure_affine_stage_px": [
+     20,
+     -6
+    ]
+   },
+   {
+    "id": "wall_rail_east",
+    "map": [
+     1380,
+     803
+    ],
+    "stage": [
+     1536,
+     878
+    ],
+    "kind": "wall",
+    "crop_prediction": [
+     1536,
+     955
+    ],
+    "offset_stage_px": [
+     0,
+     -77
+    ],
+    "offset_pdf_px": [
+     0.0,
+     -30.0
+    ],
+    "after_structure_affine_stage_px": [
+     -9,
+     5
+    ]
+   },
+   {
+    "id": "fireball",
+    "map": [
+     914,
+     640
+    ],
+    "stage": [
+     341,
+     440
+    ],
+    "kind": "platform",
+    "crop_prediction": [
+     343,
+     538
+    ],
+    "offset_stage_px": [
+     -2,
+     -98
+    ],
+    "offset_pdf_px": [
+     -0.8,
+     -38.1
+    ],
+    "after_structure_affine_stage_px": [
+     13,
+     -42
+    ]
+   },
+   {
+    "id": "dream_wheel",
+    "map": [
+     1076,
+     714
+    ],
+    "stage": [
+     730,
+     602
+    ],
+    "kind": "platform",
+    "crop_prediction": [
+     758,
+     727
+    ],
+    "offset_stage_px": [
+     -28,
+     -125
+    ],
+    "offset_pdf_px": [
+     -10.8,
+     -48.8
+    ],
+    "after_structure_affine_stage_px": [
+     -21,
+     -58
+    ]
+   },
+   {
+    "id": "sea_swings",
+    "map": [
+     1135,
+     737
+    ],
+    "stage": [
+     944,
+     641
+    ],
+    "kind": "platform",
+    "crop_prediction": [
+     909,
+     786
+    ],
+    "offset_stage_px": [
+     35,
+     -145
+    ],
+    "offset_pdf_px": [
+     13.7,
+     -56.6
+    ],
+    "after_structure_affine_stage_px": [
+     39,
+     -74
+    ]
+   }
+  ],
+  "structure_affine_pdf_to_stage": [
+   [
+    2.6025,
+    0.0266,
+    -2067.9481
+   ],
+   [
+    0.0007,
+    2.3939,
+    -1050.4785
+   ]
+  ],
+  "rms_crop_stage_px": {
+   "structure": 42.5,
+   "wall": 71.8,
+   "platform": 126.7
+  },
+  "rms_after_affine_stage_px": {
+   "structure": 16.6,
+   "wall": 16.6,
+   "platform": 64.9
+  },
+  "items_on_stage": [
+   {
+    "id": "bulgy_the_whale",
+    "num": "23",
+    "name": "Bulgy the Whale",
+    "group": "kiddie",
+    "kind": "kiddie ride",
+    "motion": "spin",
+    "crop_px": [
+     1498.0,
+     755.0
+    ],
+    "registered_px": [
+     1495.0,
+     682.0
+    ]
+   },
+   {
+    "id": "beach_swing",
+    "num": "24",
+    "name": "Beach Swing",
+    "group": "kiddie",
+    "kind": "kiddie ride",
+    "motion": "swing",
+    "crop_px": [
+     1528.0,
+     922.0
+    ],
+    "registered_px": [
+     1528.0,
+     846.0
+    ]
+   },
+   {
+    "id": "haunted_castle",
+    "num": "14",
+    "name": "Haunted Castle",
+    "group": "family",
+    "kind": "dark ride (building)",
+    "motion": "static",
+    "crop_px": [
+     -38.0,
+     399.0
+    ],
+    "registered_px": [
+     -68.0,
+     367.0
+    ]
+   },
+   {
+    "id": "dream_wheel",
+    "num": "17",
+    "name": "Dream Wheel",
+    "group": "family",
+    "kind": "Ferris wheel",
+    "motion": "spin",
+    "crop_px": [
+     758.0,
+     727.0
+    ],
+    "registered_px": [
+     730.0,
+     602.0
+    ]
+   },
+   {
+    "id": "sea_swings",
+    "num": "18",
+    "name": "Sea Swings",
+    "group": "family",
+    "kind": "swing ride",
+    "motion": "mixed",
+    "crop_px": [
+     909.0,
+     786.0
+    ],
+    "registered_px": [
+     944.0,
+     641.0
+    ]
+   },
+   {
+    "id": "loggers_revenge",
+    "num": "19",
+    "name": "Logger's Revenge",
+    "group": "family",
+    "kind": "log flume",
+    "motion": "path",
+    "crop_px": [
+     1288.0,
+     563.0
+    ],
+    "registered_px": [
+     1289.0,
+     482.0
+    ]
+   },
+   {
+    "id": "riptide",
+    "num": "21",
+    "name": "Riptide",
+    "group": "family",
+    "kind": "spinning ride",
+    "motion": "mixed",
+    "crop_px": [
+     1275.0,
+     837.0
+    ],
+    "registered_px": [
+     1300.0,
+     727.0
+    ]
+   },
+   {
+    "id": "sea_serpent",
+    "num": "33",
+    "name": "Sea Serpent",
+    "group": "family",
+    "kind": "kiddie roller coaster",
+    "motion": "path",
+    "crop_px": [
+     1498.0,
+     404.0
+    ],
+    "registered_px": [
+     1496.0,
+     353.0
+    ]
+   },
+   {
+    "id": "ghost_blasters",
+    "num": "35",
+    "name": "Ghost Blasters",
+    "group": "family",
+    "kind": "dark ride (building)",
+    "motion": "static",
+    "crop_px": [
+     1423.0,
+     558.0
+    ],
+    "registered_px": [
+     1418.0,
+     488.0
+    ]
+   },
+   {
+    "id": "space_race",
+    "num": "37",
+    "name": "Space Race",
+    "group": "family",
+    "kind": "bumper cars",
+    "motion": "path",
+    "crop_px": [
+     1562.0,
+     748.0
+    ],
+    "registered_px": [
+     1556.0,
+     682.0
+    ]
+   },
+   {
+    "id": "freefall",
+    "num": "38",
+    "name": "Freefall",
+    "group": "family",
+    "kind": "kiddie drop tower",
+    "motion": "slide",
+    "crop_px": [
+     1546.0,
+     650.0
+    ],
+    "registered_px": [
+     1540.0,
+     587.0
+    ]
+   },
+   {
+    "id": "giant_dipper",
+    "num": "15",
+    "name": "Giant Dipper",
+    "group": "thrill",
+    "kind": "wooden roller coaster",
+    "motion": "path",
+    "crop_px": [
+     755.0,
+     410.0
+    ],
+    "registered_px": [
+     737.0,
+     357.0
+    ]
+   },
+   {
+    "id": "fireball",
+    "num": "16",
+    "name": "Fireball",
+    "group": "thrill",
+    "kind": "giant pendulum (frisbee)",
+    "motion": "mixed",
+    "crop_px": [
+     343.0,
+     538.0
+    ],
+    "registered_px": [
+     341.0,
+     440.0
+    ]
+   },
+   {
+    "id": "surge",
+    "num": "20",
+    "name": "Surge",
+    "group": "thrill",
+    "kind": "spinning ride",
+    "motion": "spin",
+    "crop_px": [
+     1178.0,
+     832.0
+    ],
+    "registered_px": [
+     1214.0,
+     708.0
+    ]
+   },
+   {
+    "id": "rock_o_plane",
+    "num": "22",
+    "name": "Rock-O-Plane",
+    "group": "thrill",
+    "kind": "wheel with tumbling cages",
+    "motion": "mixed",
+    "crop_px": [
+     1464.0,
+     922.0
+    ],
+    "registered_px": [
+     1470.0,
+     836.0
+    ]
+   },
+   {
+    "id": "wipeout",
+    "num": "36",
+    "name": "WipeOut",
+    "group": "thrill",
+    "kind": "spinning ride",
+    "motion": "mixed",
+    "crop_px": [
+     1421.0,
+     666.0
+    ],
+    "registered_px": [
+     1420.0,
+     588.0
+    ]
+   },
+   {
+    "id": "funland_arcade",
+    "num": null,
+    "name": "Funland Arcade",
+    "group": "building",
+    "kind": "building (arcade)",
+    "motion": "static",
+    "crop_px": [
+     1055.0,
+     799.0
+    ],
+    "registered_px": [
+     1099.0,
+     663.0
+    ]
+   }
+  ]
+ }
+}

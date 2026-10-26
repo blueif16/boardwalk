@@ -1,0 +1,2 @@
+{"out": "tests/night/gen/night_v1", "prompt_file": "tests/night/prompts/night_v1.txt"}
+{"out": "tests/night/gen/golden_v1", "prompt_file": "tests/night/prompts/golden_v1.txt"}

@@ -1,0 +1,15 @@
+Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything.
+
+The new time: a clear evening about an hour after sunset. A deep blue dusk light covers everything. Keep it a storybook painting: the pastel colours stay readable, only cooler and darker, never grey, muddy or black. Moonlight from above makes the sand a soft pale lavender-blue, lighter than the boardwalk; the street and parking lots are dark slate blue.
+
+Every light is on, warm yellow and amber, each with a small soft glow:
+- Every lamp post: its round globes glow warm yellow with a soft halo, and a small pool of warm light lies on the planks at its foot.
+- The Giant Dipper: a line of small warm bulbs runs along both edges of the red track the whole way round, and along the top of the white lattice; the lattice is softly lit from below.
+- Every stall and booth: its inside glows warm, the counter and shelves are lit, a string of small round bulbs hangs along the front edge of its awning, and its blank signboard glows softly.
+- The log flume mill house: every window glows amber, a lantern hangs by its door, and small lights run along the edges of the water chutes.
+- The white building at the top left: its windows are lit.
+- The round empty ride platforms: a ring of small bulbs along the top of each low fence.
+- The white rail along the boardwalk wall: a string of small warm bulbs along it, and a lamp at the top of each staircase.
+- The two flags are lit from below by a small spotlight. The parked cars stay dark, with lights off.
+
+Keep the empty platforms empty. Do not add any people, animals, rides, cars, moon, stars or sky. Do not draw any text, letters, numbers, logos or watermarks.

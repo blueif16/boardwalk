@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything that stays still exactly as it is: the same framing, camera, colours, line style and position of every object. Only remove the things listed below and fill what they covered with the ground, wall or background that would be behind them, drawn in the same style.\n\nRemove:\n- Every person and animal character, everywhere: on the promenade, the beach, the street, the parking lots and on rides.\n- The moving parts of every ride, leaving only each ride's still footing so animated rides can be placed there later:\n  - the Ferris wheel (wheel, cabins, A-frame legs): leave only its round base platform and boarding steps;\n  - the swing ride with the blue-and-white canopy (canopy, tower, chains, seats): leave only its round platform and fence;\n  - the tall red ride at the left with the ring and arms: leave only its base pad and fence;\n  - the small round rides at the right: leave only their round platforms;\n  - the coaster train and its cars: keep the whole Giant Dipper track and white lattice, empty;\n  - the logs and riders on the log flume: keep the mill house and the water chutes, empty.\n- Moving cars on the street. Parked cars may stay.\n\nKeep: the Giant Dipper structure and track, the log flume mill house and chutes, every stall, awning, bench, lamp post, palm tree, flag, the boardwalk wall, rail and stairs, the sand, the parking lots and the street.\n\nDo not add anything new. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "gen/map_crop/dipper_wheel_v2_0.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "dipper_empty_v1"
+ },
+ "format": "png",
+ "generation_s": 34.3,
+ "attempts": 1,
+ "idempotency_key": "dbab270f-18e1-4eeb-990c-1f1a4e747318",
+ "request_id": "d14b92d1-aa23-46f4-88e7-281c92cf4dbe",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2830,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 341
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2830,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 341
+  },
+  "total_tokens": 5998
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/d5712e60-3503-46dd-bb80-2dd5aa60cf72",
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/bbf00ec6-d4fd-495b-9c9a-267a03af63a8"
+ ],
+ "files": [
+  "gen/stage/dipper_empty_v1_0.png",
+  "gen/stage/dipper_empty_v1_1.png"
+ ]
+}

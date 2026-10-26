@@ -1,0 +1,61 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is the official park map of the Santa Cruz Beach Boardwalk: the whole park, from the west end at the left to the San Lorenzo River at the right. It sets the LAYOUT: keep its exact framing and camera angle, and keep every ride, building, path, street, parking lot, tree, the beach edge and the river in the same place, at the same size and with the same shape. Images 2 and 3 are our style frames; image 2 is the middle of this same park already redrawn in our style. Redraw all of image 1 in exactly that style, so that image 2's area would fit into the result seamlessly.\n\nStyle (images 2 and 3): thin outlines tinted as darker versions of each fill (a very dark warm brown only where an outline needs it), soft gentle shading, a gentle paper texture, the warm pastel palette (salmon, peach, butter yellow, cornflower blue, mint, lavender grey), rounded toy-like proportions, crisp clean detail.\n\nWhat image 1 shows, west to east, to draw recognisably:\n- West end (left): the Cocoanut Grove, a white 1907 ballroom building with a glass-roofed Sun Room; the Casino Arcade and Neptune's Kingdom, big pale buildings along Beach Street; the bowling alley at the top left; a small open-air stage by the beach.\n- Around the main entrance: Typhoon, a tall looping arm; Double Shot, a tall drop tower; the Pirate Ship, a big swinging ship; Shockwave, a half-pipe disc ride; the Undertow spinning coaster on a roof; the Wave Rider giant slide; small kiddie rides; the Sky Glider chairlift running along the park; the Looff Carousel building with its round roof; the Haunted Castle.\n- Middle: the Giant Dipper, a long white wooden roller coaster with dark red track; Fireball, a tall pendulum ride with a red-and-yellow ring; the Dream Wheel, a Ferris wheel with colourful cabins; Sea Swings, chairs on chains under a canopy; Funland Arcade.\n- East end (right): Logger's Revenge, a log flume with a brown wooden mill house and long teal water chutes; a dense cluster of small round flat rides, kiddie rides, teacups and spinning rides; the Cave Train's rock; Ghost Blasters; and at the far right the San Lorenzo River with a dark steel railway trestle bridge across it.\n- Behind the park: Beach Street, parking lots with a few small cars, palm trees, the US and California flags on poles, low town buildings along the top edge.\n- In front: one tidy wooden retaining wall with a white rail along the whole beach edge, wooden staircases down to the sand every so often, the wide sandy beach, and at the bottom left the sea: flat blue water with short white ripples and curling white foam where it meets the sand.\n\nImage 1 is a map, so leave out everything that is map graphics, not a real object: number circles, round icons (food, toilets, ATM, information, cameras, parking), pink badges, labels, street names, the logo at the bottom left (draw beach and sea there instead) and the multicoloured stripe drawn along the beach edge. Do not draw any people or animals anywhere. Do not draw any text, letters, numbers, logos, signatures or watermarks.\n\nFraming is strict: the output must line up with image 1 when laid on top of it. Same framing and zoom as image 1: do not zoom out, do not crop, and do not add anything beyond image 1's edges.",
+ "refs": [
+  "gen/park/map_crop_full.png",
+  "gen/map_crop/dipper_wheel_v2_0.png",
+  "gen/style_frame/v1_1.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "4096x1408",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "master_v1"
+ },
+ "format": "png",
+ "generation_s": 61.5,
+ "attempts": 1,
+ "idempotency_key": "cee966d8-47bc-4af1-b311-b9c51808848e",
+ "request_id": "7048d8fa-d000-4bd5-bda8-e6208dd82c9d",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12522,
+  "completion_tokens_details": {
+   "image_tokens": 12522,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 7058,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 6300,
+   "text_tokens": 758
+  },
+  "output_tokens": 12522,
+  "output_tokens_details": {
+   "image_tokens": 12522,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 7058,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 6300,
+   "text_tokens": 758
+  },
+  "total_tokens": 19580
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/7360f118-1ed8-4bcd-8f05-c3ea5a7a6564",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/a0b3487f-f07b-461c-81e8-3512c22666d7"
+ ],
+ "files": [
+  "gen/park/master_v1_0.png",
+  "gen/park/master_v1_1.png"
+ ]
+}

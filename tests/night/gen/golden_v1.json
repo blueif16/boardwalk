@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything.\n\nThe new time: golden hour, about half an hour before sunset. A low warm sun from the lower left bathes everything in soft peach and honey-gold light; the sides of things that face the sun glow warm, the sides away from it turn a soft lilac. Keep it a storybook painting: the pastel colours stay clean and bright, only warmer. The sand is warm apricot, the boardwalk planks honey, the white coaster lattice peach-gold with lilac shade. Shadows stay short and soft, right under each object: no long shadows.\n\nAll lamps, bulbs and lit signs are still switched off.\n\nDo not add any people, animals, rides, cars, sun or sky. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "golden_v1"
+ },
+ "format": "png",
+ "generation_s": 35.7,
+ "attempts": 1,
+ "idempotency_key": "66b6eb75-ba0c-4015-bfdc-7a3eb90f8c27",
+ "request_id": "60bbf723-d27c-4945-9d62-3bcfcd63253c",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2718,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 229
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2718,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 229
+  },
+  "total_tokens": 5886
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/c6ea4f4e-6a5c-4226-9c94-3195acaa7867",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/2f0ef120-e161-4fc3-aa0c-642d29830514"
+ ],
+ "files": [
+  "tests/night/gen/golden_v1_0.png",
+  "tests/night/gen/golden_v1_1.png"
+ ]
+}

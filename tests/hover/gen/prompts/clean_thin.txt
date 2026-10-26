@@ -1,0 +1,6 @@
+Edit image 1. Keep everything exactly as it is: the same framing, camera, colours, line style and the position of every object, including all the small food stalls and booths. Remove only these objects and fill each place with what is behind it, continuing the surroundings seamlessly:
+- every palm tree: where a palm stands in front of a stall, complete the stall behind it (its roof, wall and counter); elsewhere fill with the planks, pavement, street, grass or coaster lattice behind it;
+- every blue lamp post with yellow globe lights: fill with boardwalk planks;
+- the wooden park benches: fill with planks and bushes;
+- the two flags at the top centre and their two flag poles: fill with the parking lot, street and kerb behind them.
+Do not remove or change the stalls. Leave no shadows or marks where the removed objects stood. Do not add anything new. Do not draw any text, letters, numbers, logos or watermarks.

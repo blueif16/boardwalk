@@ -1,0 +1,5 @@
+{"out": "tests/hover/gen/key_stalls", "prompt_file": "tests/hover/gen/prompts/key_stalls.txt"}
+{"out": "tests/hover/gen/key_lamps", "prompt_file": "tests/hover/gen/prompts/key_lamps.txt"}
+{"out": "tests/hover/gen/key_palms", "prompt_file": "tests/hover/gen/prompts/key_palms.txt"}
+{"out": "tests/hover/gen/key_benchflags", "prompt_file": "tests/hover/gen/prompts/key_benchflags.txt"}
+{"out": "tests/hover/gen/clean", "prompt_file": "tests/hover/gen/prompts/clean.txt", "n": 2}

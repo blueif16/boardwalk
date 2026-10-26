@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Paint each small food stall and booth on the boardwalk (the little kiosks with striped or coloured roofs, awnings and counters) as one solid, completely flat silhouette in pure magenta #FF00FF. Cover each stall's whole shape exactly, edge to edge, including its outline, roof, awning, posts and counter. No shading, no outline, no texture, no gradient inside the magenta: one single flat colour.\nDo not change anything else: keep the same framing, camera, colours, line style and every other object exactly in place, pixel for pixel. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "key_stalls"
+ },
+ "format": "png",
+ "generation_s": 37.2,
+ "attempts": 1,
+ "idempotency_key": "4253943a-79d0-48d5-b297-520d179d15de",
+ "request_id": "809ebe85-5f68-4700-846c-6e8a2af05dd8",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 1584,
+  "completion_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2627,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 138
+  },
+  "output_tokens": 1584,
+  "output_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2627,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 138
+  },
+  "total_tokens": 4211
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/21ecf283-112e-4a63-868a-e6f84c2a7877"
+ ],
+ "files": [
+  "tests/hover/gen/key_stalls_0.png"
+ ]
+}

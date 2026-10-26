@@ -1,0 +1,534 @@
+{
+ "about": "Front-layer occluders cut from base/stage.png by tests/hover. Stage px, y down. mask: the item's visible pixels (8-bit, 255 = item), placed at bbox[0], bbox[1]. cutout: the same item as an RGBA sprite placed at cutoutOrigin (stage pixels plus a 2 px ring, exact over the stage). depth: y of the foot line at the item's centre; footLine: the front edge of its footprint. A character whose feet are above the foot line (smaller y, at the character's x) is behind the item: draw the cut-out over it.",
+ "stage": "base/stage.png",
+ "size": [
+  1536,
+  1024
+ ],
+ "items": [
+  {
+   "id": "s1",
+   "kind": "stall",
+   "name": "Food",
+   "mask": "tests/hover/masks/s1.png",
+   "cutout": "tests/hover/sprites/s1.png",
+   "cutoutOrigin": [
+    80,
+    390
+   ],
+   "bbox": [
+    84,
+    394,
+    125,
+    120
+   ],
+   "depth": 509.8,
+   "footLine": [
+    [
+     88,
+     496
+    ],
+    [
+     172,
+     516
+    ],
+    [
+     204,
+     500
+    ]
+   ]
+  },
+  {
+   "id": "s2",
+   "kind": "stall",
+   "name": "Food",
+   "mask": "tests/hover/masks/s2.png",
+   "cutout": "tests/hover/sprites/s2.png",
+   "cutoutOrigin": [
+    403,
+    415
+   ],
+   "bbox": [
+    407,
+    419,
+    104,
+    111
+   ],
+   "depth": 526.0,
+   "footLine": [
+    [
+     408,
+     520
+    ],
+    [
+     470,
+     532
+    ]
+   ]
+  },
+  {
+   "id": "s3",
+   "kind": "stall",
+   "name": "Food",
+   "mask": "tests/hover/masks/s3.png",
+   "cutout": "tests/hover/sprites/s3.png",
+   "cutoutOrigin": [
+    474,
+    428
+   ],
+   "bbox": [
+    478,
+    432,
+    143,
+    114
+   ],
+   "depth": 544.5,
+   "footLine": [
+    [
+     480,
+     530
+    ],
+    [
+     562,
+     548
+    ],
+    [
+     612,
+     524
+    ]
+   ]
+  },
+  {
+   "id": "s4",
+   "kind": "stall",
+   "name": "MyBoardwalk Card Kiosk",
+   "mask": "tests/hover/masks/s4.png",
+   "cutout": "tests/hover/sprites/s4.png",
+   "cutoutOrigin": [
+    440,
+    541
+   ],
+   "bbox": [
+    444,
+    545,
+    155,
+    123
+   ],
+   "depth": 659.6,
+   "footLine": [
+    [
+     448,
+     643
+    ],
+    [
+     559,
+     668
+    ],
+    [
+     595,
+     650
+    ]
+   ]
+  },
+  {
+   "id": "s5",
+   "kind": "stall",
+   "name": "Funland Arcade",
+   "mask": "tests/hover/masks/s5.png",
+   "cutout": "tests/hover/sprites/s5.png",
+   "cutoutOrigin": [
+    1011,
+    668
+   ],
+   "bbox": [
+    1015,
+    672,
+    153,
+    133
+   ],
+   "depth": 796.2,
+   "footLine": [
+    [
+     1017,
+     783
+    ],
+    [
+     1125,
+     803
+    ],
+    [
+     1160,
+     784
+    ]
+   ]
+  },
+  {
+   "id": "s6",
+   "kind": "stall",
+   "name": "Tickets",
+   "mask": "tests/hover/masks/s6.png",
+   "cutout": "tests/hover/sprites/s6.png",
+   "cutoutOrigin": [
+    1245,
+    686
+   ],
+   "bbox": [
+    1249,
+    690,
+    134,
+    118
+   ],
+   "depth": 794.7,
+   "footLine": [
+    [
+     1254,
+     780
+    ],
+    [
+     1340,
+     800
+    ],
+    [
+     1380,
+     786
+    ]
+   ]
+  },
+  {
+   "id": "l1",
+   "kind": "lamp",
+   "name": "Lamp post",
+   "mask": "tests/hover/masks/l1.png",
+   "cutout": "tests/hover/sprites/l1.png",
+   "cutoutOrigin": [
+    247,
+    489
+   ],
+   "bbox": [
+    251,
+    493,
+    41,
+    114
+   ],
+   "depth": 603.0,
+   "footLine": [
+    [
+     260,
+     603
+    ],
+    [
+     283,
+     603
+    ]
+   ]
+  },
+  {
+   "id": "l2",
+   "kind": "lamp",
+   "name": "Lamp post",
+   "mask": "tests/hover/masks/l2.png",
+   "cutout": "tests/hover/sprites/l2.png",
+   "cutoutOrigin": [
+    588,
+    577
+   ],
+   "bbox": [
+    592,
+    581,
+    47,
+    106
+   ],
+   "depth": 688.0,
+   "footLine": [
+    [
+     600,
+     688
+    ],
+    [
+     624,
+     688
+    ]
+   ]
+  },
+  {
+   "id": "l3",
+   "kind": "lamp",
+   "name": "Lamp post",
+   "mask": "tests/hover/masks/l3.png",
+   "cutout": "tests/hover/sprites/l3.png",
+   "cutoutOrigin": [
+    945,
+    667
+   ],
+   "bbox": [
+    949,
+    671,
+    40,
+    98
+   ],
+   "depth": 769.0,
+   "footLine": [
+    [
+     956,
+     769
+    ],
+    [
+     979,
+     769
+    ]
+   ]
+  },
+  {
+   "id": "l4",
+   "kind": "lamp",
+   "name": "Lamp post",
+   "mask": "tests/hover/masks/l4.png",
+   "cutout": "tests/hover/sprites/l4.png",
+   "cutoutOrigin": [
+    1108,
+    478
+   ],
+   "bbox": [
+    1112,
+    482,
+    41,
+    107
+   ],
+   "depth": 582.0,
+   "footLine": [
+    [
+     1120,
+     582
+    ],
+    [
+     1142,
+     582
+    ]
+   ]
+  },
+  {
+   "id": "p1",
+   "kind": "palm",
+   "name": "Palm tree",
+   "mask": "tests/hover/masks/p1.png",
+   "cutout": "tests/hover/sprites/p1.png",
+   "cutoutOrigin": [
+    556,
+    478
+   ],
+   "bbox": [
+    560,
+    482,
+    65,
+    77
+   ],
+   "depth": 558.0,
+   "footLine": [
+    [
+     582,
+     558
+    ],
+    [
+     602,
+     558
+    ]
+   ]
+  },
+  {
+   "id": "p3",
+   "kind": "palm",
+   "name": "Palm tree",
+   "mask": "tests/hover/masks/p3.png",
+   "cutout": "tests/hover/sprites/p3.png",
+   "cutoutOrigin": [
+    1156,
+    682
+   ],
+   "bbox": [
+    1160,
+    686,
+    90,
+    143
+   ],
+   "depth": 828.0,
+   "footLine": [
+    [
+     1150,
+     828
+    ],
+    [
+     1190,
+     828
+    ]
+   ]
+  },
+  {
+   "id": "p4",
+   "kind": "palm",
+   "name": "Palm tree",
+   "mask": "tests/hover/masks/p4.png",
+   "cutout": "tests/hover/sprites/p4.png",
+   "cutoutOrigin": [
+    490,
+    31
+   ],
+   "bbox": [
+    494,
+    35,
+    93,
+    192
+   ],
+   "depth": 228.0,
+   "footLine": [
+    [
+     530,
+     228
+    ],
+    [
+     552,
+     228
+    ]
+   ]
+  },
+  {
+   "id": "p5",
+   "kind": "palm",
+   "name": "Palm tree",
+   "mask": "tests/hover/masks/p5.png",
+   "cutout": "tests/hover/sprites/p5.png",
+   "cutoutOrigin": [
+    887,
+    0
+   ],
+   "bbox": [
+    891,
+    3,
+    94,
+    218
+   ],
+   "depth": 220.0,
+   "footLine": [
+    [
+     930,
+     220
+    ],
+    [
+     952,
+     220
+    ]
+   ]
+  },
+  {
+   "id": "b1",
+   "kind": "bench",
+   "name": "Bench",
+   "mask": "tests/hover/masks/b1.png",
+   "cutout": "tests/hover/sprites/b1.png",
+   "cutoutOrigin": [
+    1148,
+    570
+   ],
+   "bbox": [
+    1152,
+    574,
+    72,
+    47
+   ],
+   "depth": 617.0,
+   "footLine": [
+    [
+     1155,
+     612
+    ],
+    [
+     1222,
+     622
+    ]
+   ]
+  },
+  {
+   "id": "b3",
+   "kind": "bench",
+   "name": "Bench",
+   "mask": "tests/hover/masks/b3.png",
+   "cutout": "tests/hover/sprites/b3.png",
+   "cutoutOrigin": [
+    1074,
+    660
+   ],
+   "bbox": [
+    1078,
+    664,
+    61,
+    26
+   ],
+   "depth": 690.0,
+   "footLine": [
+    [
+     1068,
+     684
+    ],
+    [
+     1132,
+     696
+    ]
+   ]
+  },
+  {
+   "id": "f1",
+   "kind": "flag",
+   "name": "Flag of the United States",
+   "mask": "tests/hover/masks/f1.png",
+   "cutout": "tests/hover/sprites/f1.png",
+   "cutoutOrigin": [
+    775,
+    68
+   ],
+   "bbox": [
+    779,
+    72,
+    78,
+    112
+   ],
+   "depth": 210.0,
+   "footLine": [
+    [
+     782,
+     210
+    ],
+    [
+     790,
+     210
+    ]
+   ]
+  },
+  {
+   "id": "f2",
+   "kind": "flag",
+   "name": "Flag of California",
+   "mask": "tests/hover/masks/f2.png",
+   "cutout": "tests/hover/sprites/f2.png",
+   "cutoutOrigin": [
+    858,
+    74
+   ],
+   "bbox": [
+    862,
+    78,
+    70,
+    106
+   ],
+   "depth": 210.0,
+   "footLine": [
+    [
+     862,
+     210
+    ],
+    [
+     872,
+     210
+    ]
+   ]
+  }
+ ]
+}

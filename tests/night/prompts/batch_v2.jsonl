@@ -1,0 +1,2 @@
+{"out": "tests/night/gen/dawn_v1", "prompt_file": "tests/night/prompts/dawn_v1.txt", "ref": ["base/stage.png"]}
+{"out": "tests/night/gen/lightsonly_v1", "prompt_file": "tests/night/prompts/lightsonly_v1.txt", "ref": ["tests/night/gen/night_v1_0_reg.png"]}

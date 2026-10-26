@@ -1,0 +1,60 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Images 1 and 2 are our own style frames. Draw a NEW frame of the same place in exactly their style: thin outlines tinted as darker versions of each fill colour (a very dark warm plum-brown only where an outline needs it), soft gentle shading, the warm pastel palette (salmon, peach, butter yellow, cornflower blue, mint, lavender grey), rounded toy-like chunky proportions, and many tiny cute animal characters (bears, bunnies, cats, dogs) each doing something.\n\nSubject: a slice of the Santa Cruz Beach Boardwalk seaside amusement park, seen from high above the ocean looking inland, in a parallel projection like an isometric game map: no vanishing points, vertical edges stay vertical, camera about 50 degrees down.\n- Front: the Pacific surf on a wide sandy beach. Flat blue water with short white dash ripples, curling white foam lines where waves run up the sand, a band of darker wet sand behind the foam. Towels, umbrellas, a sandcastle, a surfer, a lifeguard tower.\n- The boardwalk edge exactly as tidy as image 1: one straight wooden retaining wall with a white rail along the whole beach, and evenly spaced wooden staircases down to the sand.\n- On the boardwalk: a white-painted wooden roller coaster with a lattice of timber bents and a red train; a ride with chairs swinging on chains round a central tower; striped snack and game stands; strings of light bulbs; lamp posts; benches.\n- Behind: the street, low pastel buildings, palm trees.\n\nDo not draw any text, letters, numbers, logos, signatures or watermarks; leave signboards blank.\n\nCamera: the shoreline and the boardwalk run diagonally across the picture, about 30 degrees, as in image 1.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "gen/style_frame/v1_0.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "v3a"
+ },
+ "format": "png",
+ "generation_s": 64.1,
+ "attempts": 1,
+ "idempotency_key": "3db8bc40-389c-46ae-a55c-29e9345e182c",
+ "request_id": "1719bb04-8c3a-4c6f-8034-26c571954370",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 5345,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4978,
+   "text_tokens": 367
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 5345,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4978,
+   "text_tokens": 367
+  },
+  "total_tokens": 8513
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/8e40d663-48e1-4d64-adc8-48a559146c64",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/a0dc3f26-ddda-4c2c-8336-ebfecccd3178"
+ ],
+ "files": [
+  "gen/style_frame/v3a_0.png",
+  "gen/style_frame/v3a_1.png"
+ ]
+}

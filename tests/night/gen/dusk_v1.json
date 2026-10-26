@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything.\n\nThe new time: twilight, about twenty minutes after sunset, the blue hour. The sun has gone; the afterglow from the lower left touches the tops and the left-facing sides of things with soft rose and peach, and everything else sits in deep periwinkle and violet shade. Keep it a storybook painting: darker and cooler than daytime but lighter than night, the pastel colours still clean and rich, never grey or muddy. The sand is mauve-pink fading to periwinkle, the boardwalk planks dusty rose, the white coaster lattice lilac with a pink rim of light, the street and parking lots slate violet.\n\nAll lamps, bulbs and lit signs are still switched off.\n\nDo not add any people, animals, rides, cars, sun, moon or sky. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "dusk_v1"
+ },
+ "format": "png",
+ "generation_s": 46.8,
+ "attempts": 1,
+ "idempotency_key": "6c0a5ccc-0771-4ab5-8840-3dba09673966",
+ "request_id": "d1db7665-2b6c-4600-a442-62ed0f270a56",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2735,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 246
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2735,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 246
+  },
+  "total_tokens": 5903
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/9881f31d-d332-4756-8bf3-557da1e28605",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/89b11af5-bc79-4623-add6-18eadad32c14"
+ ],
+ "files": [
+  "tests/night/gen/dusk_v1_0.png",
+  "tests/night/gen/dusk_v1_1.png"
+ ]
+}

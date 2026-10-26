@@ -1,0 +1,19 @@
+{
+ "tiles": 321,
+ "confident": 321,
+ "median_px": 0.77,
+ "p90_px": 1.1,
+ "max_px": 1.23,
+ "mean_dx": 0.02,
+ "mean_dy": 0.63,
+ "after_warp": {
+  "tiles": 321,
+  "confident": 321,
+  "median_px": 0.08,
+  "p90_px": 0.19,
+  "max_px": 0.64,
+  "mean_dx": 0.02,
+  "mean_dy": -0.01
+ },
+ "field_max_px": 1.07
+}

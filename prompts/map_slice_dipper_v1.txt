@@ -1,0 +1,16 @@
+Image 1 is a crop of the official park map of the Santa Cruz Beach Boardwalk. It sets the LAYOUT: keep its exact camera angle and framing, and keep every ride, building, path, parking lot, street, tree and the beach edge in the same place, at the same size and with the same shape. Images 2 and 3 are our style frames: redraw image 1 entirely in their style.
+
+Style (from images 2 and 3): thin outlines tinted as darker versions of each fill (a very dark warm plum-brown only where an outline needs it), soft gentle shading, the warm pastel palette (salmon, peach, butter yellow, cornflower blue, mint, lavender grey), rounded toy-like proportions, flat blue sea with short white dash ripples and curling white foam where waves run up the sand, a band of darker wet sand behind the foam.
+
+What image 1 shows, to draw recognisably:
+- The Giant Dipper: a long white-painted wooden roller coaster, a dense lattice of timber bents, dark red track, a red train on the lift hill, its station at the left end.
+- Fireball, at the left: a tall ride with a red-and-yellow ring on a pillar.
+- The Dream Wheel: a Ferris wheel with colourful cabins, in front of the coaster.
+- Sea Swings: chairs swinging on chains under a blue-and-white canopy.
+- Funland Arcade: a low building on the promenade.
+- At the right: Logger's Revenge, a log flume with a brown wooden mill house and long teal water chutes, and small round flat rides.
+- The promenade with food stands and benches, palm trees, the US and California flags on poles, the parking lots and street behind.
+- The beach edge: one tidy wooden retaining wall with a white rail along the line of the map's beach edge, with evenly spaced wooden staircases down to the sand, as in image 2.
+- Add many tiny cute animal characters (bears, bunnies, cats, dogs) on the promenade, on the rides and on the beach.
+
+Image 1 is a map, so leave out everything that is map graphics, not a real object: number circles, round icons (food, toilets, ATM, information, cameras), pink badges, labels, and the multicoloured stripe drawn along the map's beach edge. Do not draw any text, letters, numbers, logos, signatures or watermarks.

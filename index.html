@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boardwalk Style Board</title>
+<style>
+  :root { --page: #f6f1ea; --card: #fffdf9; --line: #e4dbd0; --ink: #362223; --text: #5d4a47; --muted: #9a8783; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--text); font: 15px/1.5 system-ui, sans-serif; }
+  main { max-width: 1400px; margin: 0 auto; padding: 28px 16px 60px; }
+  h1 { color: var(--ink); font-size: 26px; margin: 0 0 4px; }
+  h2 { color: var(--ink); font-size: 18px; margin: 36px 0 4px; }
+  p.lead, p.sub { margin: 0 0 14px; color: var(--muted); }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); }
+  figure { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  figure a { display: block; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { padding: 10px 12px 12px; font-size: 13px; }
+  figcaption b { color: var(--ink); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .refs figure img { max-height: 520px; object-fit: contain; background: #eee7de; }
+  .swatch { image-rendering: pixelated; height: 28px; width: 100%; object-fit: fill; }
+  .pick { outline: 3px solid #e8946f; }
+  ul { margin: 6px 0 0 18px; padding: 0; }
+  ul.sub { margin: 0 0 14px 18px; }
+  li { margin: 3px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Boardwalk style board</h1>
+  <p class="lead">The real map first, then the style references and three rounds of style frames from shyfai (gpt-image-2.5). Click any image for full size.</p>
+
+  <h2>The whole park on one screen</h2>
+  <p class="sub"><a href="park.html" target="_blank"><b>park.html</b></a>: the whole park fixed to fill any screen, no scrolling, no bars. The painting is 3:2 with town and hills above and the beach and sea below, so on 16:10 (Mac) and 16:9 (monitor) screens only those margins are trimmed and the park stays whole. The buttons put animals on it at 30 / 38 / 47 / 60 / 70 (a static scale preview) and print how many pixels tall an animal is on your screen.</p>
+  <div class="grid">
+    <figure class="pick"><a href="gen/park/world_v1_0.png" target="_blank"><img src="gen/park/world_v1_0.webp" alt="The whole park in our style with the town above and the sea below" loading="lazy"></a><figcaption><b>world_v1_0</b> master_v1_0 extended to 3840 × 2560: town and hills added above, beach and sea below</figcaption></figure>
+  </div>
+
+  <h2>Why the whole park looks soft, and the fix</h2>
+  <p class="sub">Every image was made at the top settings. The softness comes from how they were chained: adding the town and sea repainted the whole picture and lost most of the park's fine detail, and one image has to hold the whole park. Redrawing it in pieces at full 4K, then shrinking to the screen, fixes it.</p>
+  <div class="grid">
+    <figure class="pick"><a href="gen/park/sharpness_now_vs_redraw.webp" target="_blank"><img src="gen/park/sharpness_now_vs_redraw.webp" alt="Left: the current whole-park picture, soft. Right: the same area redrawn at 4K and shrunk to the same size, crisp." loading="lazy"></a><figcaption><b>now (left) vs redrawn piece (right)</b> same area, same screen size: about 30× more fine detail</figcaption></figure>
+  </div>
+
+  <h2>The whole-park master</h2>
+  <p class="sub">First try at the full official map in one image, 4096 × 1408 (gpt-image-2.5, quality high), no characters. This would be the master that 4K tiles are redrawn from, so the whole park shares one layout, palette and light. Overlays put the official map over it at 50%.</p>
+  <div class="grid">
+    <figure><a href="gen/park/master_v1_0.png" target="_blank"><img src="gen/park/master_v1_0.webp" alt="The whole Santa Cruz Beach Boardwalk redrawn in our style, take 0" loading="lazy"></a><figcaption><b>master_v1_0</b> middle right (Dream Wheel, then Sea Swings); misses the Undertow coaster at the entrance</figcaption></figure>
+    <figure><a href="gen/park/master_v1_1.png" target="_blank"><img src="gen/park/master_v1_1.webp" alt="The whole Santa Cruz Beach Boardwalk redrawn in our style, take 1" loading="lazy"></a><figcaption><b>master_v1_1</b> entrance right (Undertow); the Dream Wheel and Sea Swings sit too far west</figcaption></figure>
+    <figure><a href="gen/park/overlay_v1_0.webp" target="_blank"><img src="gen/park/overlay_v1_0.webp" alt="Official map over take 0 at half opacity" loading="lazy"></a><figcaption><b>overlay, v1_0</b> outline and beach wall follow the map; rides squeezed toward the middle by up to about 100 px at map scale</figcaption></figure>
+    <figure><a href="gen/park/overlay_v1_1.webp" target="_blank"><img src="gen/park/overlay_v1_1.webp" alt="Official map over take 1 at half opacity" loading="lazy"></a><figcaption><b>overlay, v1_1</b></figcaption></figure>
+    <figure><a href="gen/park/map_crop_full.png" target="_blank"><img src="gen/park/map_crop_full.png" alt="The official map, the whole park" loading="lazy"></a><figcaption><b>input</b> the official map, pdf (30, 305) to (1555, 830)</figcaption></figure>
+  </div>
+
+  <h2>Now: the 4K stage, and how big the animals should be</h2>
+  <p class="sub">The stage is redrawn at 3840 × 2560 (gpt-image-2.5, quality high), 2.5× the old one, with the ghost figures gone. It lines up with the old stage to under a pixel (median), so every measured position still holds. <a href="base/stage_4k.png" target="_blank">Full 4K stage</a> · <a href="base/compose.html?grade=off" target="_blank">live page</a>.</p>
+  <div class="grid">
+    <figure class="pick"><a href="tests/characters/shots/size/stage_old_vs_4k.webp" target="_blank"><img src="tests/characters/shots/size/stage_old_vs_4k.webp" alt="Old stage enlarged on the left, new 4K stage on the right, same area" loading="lazy"></a><figcaption><b>old (left) vs 4K (right)</b> the same patch of deck at the same size: crisp planks and fences, no ghost figures</figcaption></figure>
+  </div>
+  <h2>Character size: 30, 38 or 47</h2>
+  <p class="sub">The number is how tall a standing grown-up animal is, ears to feet, in stage pixels (the stage is 1536 × 1024 of them). Kids and pets are smaller. In the scene:</p>
+  <ul class="sub">
+    <li><b>Lamp post</b> about 105 tall, <b>stall</b> about 120 roof to floor, <b>rail</b> about 18, <b>platform fence</b> 20–27.</li>
+    <li><b>30</b> (the brief): an animal is under a third of a lamp post, under twice the rail. Room to move; reads as a crowd.</li>
+    <li><b>38</b>: about a third of a lamp post, twice the rail. In between.</li>
+    <li><b>47</b> (what the style frame drew): about half a lamp post, two and a half rails. Chunkier and closer to the style frame, but queues swallow the platform gates and the deck fills up.</li>
+    <li><b>On screen</b>: the page fits the stage's height to the window, so on a 1080p monitor one stage pixel is about one screen pixel: 30 → about 30 px tall, 47 → about 47 px.</li>
+  </ul>
+  <p class="sub">Same moment, same crowd (150 at midday, seed 1), only the size changes. These are the test animals (bears, bunnies, cats, dogs) as stand-ins for the final cast. Click for full size; the link opens the live page.</p>
+  <div class="grid">
+    <figure><a href="tests/characters/shots/size/mid_px30.webp" target="_blank"><img src="tests/characters/shots/size/mid_px30.webp" alt="Deck, platforms and stairs with animals 30 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=30" target="_blank">30 px live</a></b> middle of the deck: platform queue, lamps, stairs</figcaption></figure>
+    <figure><a href="tests/characters/shots/size/mid_px38.webp" target="_blank"><img src="tests/characters/shots/size/mid_px38.webp" alt="Deck, platforms and stairs with animals 38 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=38" target="_blank">38 px live</a></b> middle of the deck: platform queue, lamps, stairs</figcaption></figure>
+    <figure><a href="tests/characters/shots/size/mid_px47.webp" target="_blank"><img src="tests/characters/shots/size/mid_px47.webp" alt="Deck, platforms and stairs with animals 47 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=47" target="_blank">47 px live</a></b> middle of the deck: platform queue, lamps, stairs</figcaption></figure>
+    <figure><a href="tests/characters/shots/size/west_px30.webp" target="_blank"><img src="tests/characters/shots/size/west_px30.webp" alt="West end: stalls, rail and beach with animals 30 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=30" target="_blank">30 px live</a></b> west end: stalls, rail watchers, beach</figcaption></figure>
+    <figure><a href="tests/characters/shots/size/west_px38.webp" target="_blank"><img src="tests/characters/shots/size/west_px38.webp" alt="West end: stalls, rail and beach with animals 38 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=38" target="_blank">38 px live</a></b> west end: stalls, rail watchers, beach</figcaption></figure>
+    <figure><a href="tests/characters/shots/size/west_px47.webp" target="_blank"><img src="tests/characters/shots/size/west_px47.webp" alt="West end: stalls, rail and beach with animals 47 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=47" target="_blank">47 px live</a></b> west end: stalls, rail watchers, beach</figcaption></figure>
+    <figure><a href="tests/characters/shots/size/full_px30.webp" target="_blank"><img src="tests/characters/shots/size/full_px30.webp" alt="The whole 4K stage with animals 30 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=30" target="_blank">30 px live</a></b> the whole stage (4K)</figcaption></figure>
+    <figure><a href="tests/characters/shots/size/full_px38.webp" target="_blank"><img src="tests/characters/shots/size/full_px38.webp" alt="The whole 4K stage with animals 38 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=38" target="_blank">38 px live</a></b> the whole stage (4K)</figcaption></figure>
+    <figure><a href="tests/characters/shots/size/full_px47.webp" target="_blank"><img src="tests/characters/shots/size/full_px47.webp" alt="The whole 4K stage with animals 47 px tall" loading="lazy"></a><figcaption><b><a href="base/compose.html?tests=characters&time=midday&grade=off&t=300&px=47" target="_blank">47 px live</a></b> the whole stage (4K)</figcaption></figure>
+  </div>
+
+  <h2>The real map</h2>
+  <p class="sub">The park is about 685 m long and runs east-northeast at about 10° in plan, from the Casino Arcade and Cocoanut Grove (west) to the San Lorenzo River and its rail trestle (east).</p>
+  <div class="grid">
+    <figure class="pick"><a href="reference/map/boardwalk-map-2025.png" target="_blank"><img src="reference/map/boardwalk-map-2025.png" alt="The official 2025 Boardwalk park map, an illustrated oblique view from the beach"></a>
+      <figcaption><b>official park map, 2025</b>
+        <ul>
+          <li>Seen from over the beach looking inland, the strip almost horizontal: the camera angle to copy</li>
+          <li>About 3.2:1 wide, with heights and depth exaggerated; the crowded east end is drawn larger than it is</li>
+          <li>Every ride numbered: Giant Dipper 15, Looff Carousel 13, Dream Wheel 17, Sky Glider 7, Logger's Revenge 19</li>
+        </ul>
+        Via themeparkbrochures.net; © Santa Cruz Seaside Company, reference only.</figcaption></figure>
+    <figure><a href="reference/map/osm_plan.png" target="_blank"><img src="reference/map/osm_plan.png" alt="Top-down plan of the Boardwalk drawn from OpenStreetMap, rides in salmon"></a>
+      <figcaption><b>OpenStreetMap plan, north up</b>
+        <ul>
+          <li>True positions in metres: where every layout position will come from</li>
+          <li>About 40 rides tagged by name; the Giant Dipper, Looff Carousel, Logger's Revenge and others have outlines, smaller ones are points</li>
+        </ul>
+        © OpenStreetMap contributors (ODbL). Drawn by <code>tools/osm_plan.mjs</code>.</figcaption></figure>
+    <figure><a href="reference/map/aerial_usgs.jpg" target="_blank"><img src="reference/map/aerial_usgs.jpg" alt="USGS aerial photograph of the Boardwalk, the beach and the river mouth"></a>
+      <figcaption><b>USGS aerial photo, same area</b>
+        <ul>
+          <li>Real roof colours, the beach's real width and the river mouth's shape</li>
+          <li>Low resolution (about 1 m per pixel), good for layout, not detail</li>
+        </ul>
+        USGS The National Map imagery, public domain.</figcaption></figure>
+  </div>
+
+  <h2>A real slice: the official map, in our style</h2>
+  <p class="sub">Inputs: the crop (layout) plus v1_1 and v1_0 (style). Overlays put the crop over the result at 50% to show how far things moved.</p>
+  <div class="grid">
+    <figure><a href="gen/map_crop/dipper_wheel.png" target="_blank"><img src="gen/map_crop/dipper_wheel.png" alt="Crop of the official map: Giant Dipper, Dream Wheel, Sea Swings, Logger's Revenge"></a><figcaption><b>the crop</b> Fireball 16, Giant Dipper 15, Dream Wheel 17, Sea Swings 18, Funland Arcade, Logger's Revenge 19</figcaption></figure>
+    <figure class="pick"><a href="gen/map_crop/dipper_wheel_v2_0.png" target="_blank"><img src="gen/map_crop/dipper_wheel_v2_0.png" alt="The slice redrawn in our style with strict framing"></a><figcaption><b>v2_0</b> strict framing: the style frame for the real park</figcaption></figure>
+    <figure><a href="gen/map_crop/overlay_v2_0.png" target="_blank"><img src="gen/map_crop/overlay_v2_0.png" alt="The map crop over v2_0 at half opacity"></a><figcaption><b>overlay, v2_0</b> beach edge and rides within about 50–100 px; the coaster nearly matches</figcaption></figure>
+    <figure><a href="gen/map_crop/dipper_wheel_v2_1.png" target="_blank"><img src="gen/map_crop/dipper_wheel_v2_1.png" alt="Second strict-framing result"></a><figcaption><b>v2_1</b> strict framing, second take</figcaption></figure>
+    <figure><a href="gen/map_crop/overlay_v2_1.png" target="_blank"><img src="gen/map_crop/overlay_v2_1.png" alt="The map crop over v2_1 at half opacity"></a><figcaption><b>overlay, v2_1</b></figcaption></figure>
+    <figure><a href="gen/map_crop/dipper_wheel_v1_0.png" target="_blank"><img src="gen/map_crop/dipper_wheel_v1_0.png" alt="First attempt, loose framing"></a><figcaption><b>v1_0</b> loose framing: zoomed out and added sea</figcaption></figure>
+    <figure><a href="gen/map_crop/overlay_v1_0.png" target="_blank"><img src="gen/map_crop/overlay_v1_0.png" alt="The map crop over v1_0 at half opacity"></a><figcaption><b>overlay, v1_0</b> beach edge and rides pulled up about 200 px</figcaption></figure>
+  </div>
+
+  <h2>The empty stage: v2_0 with the moving things removed</h2>
+  <p class="sub">Edits of v2_0, not new images, so they stay registered: live rides and characters go on top. A difference image is black wherever nothing changed. Live tests: <a href="base/compose.html?tests=calibration" target="_blank">base/compose.html</a> (add <code>?tests=name,name</code>).</p>
+  <div class="grid">
+    <figure class="pick"><a href="base/stage.png" target="_blank"><img src="base/stage.png" alt="The final empty stage: Fireball removed too, a plain base pad in its place"></a><figcaption><b>base/stage.png</b> the stage (second edit): Fireball removed too, every ride reduced to its platform</figcaption></figure>
+    <figure><a href="tests/calibration/calibration.png" target="_blank"><img src="tests/calibration/calibration.png" alt="Calibration: the camera's ground circles drawn over the painted platforms"></a><figcaption><b>calibration</b> ground circles projected through the measured camera (yaw 24.1°, pitch 28.7°) land on the painted platforms</figcaption></figure>
+    <figure><a href="gen/stage/dipper_empty_v1_0.png" target="_blank"><img src="gen/stage/dipper_empty_v1_0.png" alt="The slice with rides and characters removed, round platforms left"></a><figcaption><b>dipper_empty_v1_0</b> first edit: Fireball (left) not removed, a few specks</figcaption></figure>
+    <figure><a href="gen/stage/diff_v1_0.png" target="_blank"><img src="gen/stage/diff_v1_0.png" alt="Difference between the stage and v2_0"></a><figcaption><b>difference from v2_0</b> static parts show only as hairline edges: registered to within a pixel or two</figcaption></figure>
+    <figure><a href="gen/stage/dipper_empty_v1_1.png" target="_blank"><img src="gen/stage/dipper_empty_v1_1.png" alt="Second take: the Ferris wheel's platform erased too"></a><figcaption><b>dipper_empty_v1_1</b> rejected: erased the Dream Wheel's platform as well</figcaption></figure>
+  </div>
+
+  <h2>Test results</h2>
+  <p class="sub">Seven parallel tests on the stage. Click a picture for full size, the name for the live page. Frame rates were measured headless in software WebGL, not on a GPU.</p>
+  <div class="grid">
+    <figure><a href="tests/characters/shots/px47_zoom.png" target="_blank"><img src="tests/characters/shots/px47_zoom.png" alt="Animal characters walking, queueing and standing at the rail"></a><figcaption><b><a href="base/compose.html?tests=characters" target="_blank">characters</a></b> shyfai sprites, keep-right lanes, queues facing gates, one draw call for 1000. No collision avoidance yet.</figcaption></figure>
+    <figure><a href="tests/night/shots/board_hours.png" target="_blank"><img src="tests/night/shots/board_hours.png" alt="Colour grade versus painted plates at five hours"></a><figcaption><b><a href="base/compose.html?tests=night&grade=off" target="_blank">night</a></b> painted plates (bottom row) beat the colour grade (top). Lights come on in a wave at dusk.</figcaption></figure>
+    <figure><a href="tests/wheel-rive/shots/vs_style_frame.png" target="_blank"><img src="tests/wheel-rive/shots/vs_style_frame.png" alt="Style frame wheel versus the Rive wheel"></a><figcaption><b><a href="base/compose.html?tests=wheel-rive" target="_blank">wheel-rive</a></b> page-driven Rive, exact to the camera, 60 KB. Flatter than the painting.</figcaption></figure>
+    <figure><a href="tests/swings-three/shots/side_t20_full.png" target="_blank"><img src="tests/swings-three/shots/side_t20_full.png" alt="Style frame, three.js and Rive swing rides side by side"></a><figcaption><b><a href="base/compose.html?tests=swings-three" target="_blank">swings-three</a></b> vs <b><a href="base/compose.html?tests=swings-rive" target="_blank">swings-rive</a></b> (style frame, 3D, Rive). 3D: 193 KB, smooth. Rive: 1.9 MB, view pops.</figcaption></figure>
+    <figure><a href="tests/water/shots/look_midday.png" target="_blank"><img src="tests/water/shots/look_midday.png" alt="The sea shader along the beach"></a><figcaption><b><a href="base/compose.html?tests=water" target="_blank">water</a></b> waterline parallel to the wall, seamless 72 s loop. Foam thinner than the style frame's curls.</figcaption></figure>
+    <figure><a href="tests/hover/shots/hover_s5_sign.png" target="_blank"><img src="tests/hover/shots/hover_s5_sign.png" alt="Hovering Funland Arcade shows its name sign"></a><figcaption><b><a href="base/compose.html?tests=hover" target="_blank">hover</a></b> 18 cut-outs bounce and show names; clean-plate masks are exact at rest.</figcaption></figure>
+    <figure><a href="tests/layout/shots/slices.png" target="_blank"><img src="tests/layout/shots/slices.png" alt="The official map divided into four slices"></a><figcaption><b><a href="base/compose.html?tests=layout" target="_blank">layout</a></b> 51 items, the official map's distortion measured, four slices make a 3904×1344 panorama.</figcaption></figure>
+  </div>
+
+  <h2>Style references</h2>
+  <p class="sub">Third-party images, for style study only. Ref 2 carries faint Fiverr watermarks.</p>
+  <div class="grid refs">
+    <figure>
+      <a href="reference/style_ref1.jpg" target="_blank"><img src="reference/style_ref1.jpg" alt="Reference 1: a crowded pastel street scene full of animal characters"></a>
+      <figcaption><b>ref 1</b>
+        <ul>
+          <li>Warm pastel palette; thin lines tinted to each fill, ink #362223 (0.3% of pixels)</li>
+          <li>Soft shading with gradients, pencil texture</li>
+          <li>Dense crowds, animal characters, buildings shaped like characters</li>
+        </ul>
+        <img class="swatch" src="style_ref1_swatch.png" alt="">
+      </figcaption>
+    </figure>
+    <figure>
+      <a href="reference/style_ref2.jpg" target="_blank"><img src="reference/style_ref2.jpg" alt="Reference 2: a top-down fantasy village map with a river and bridges"></a>
+      <figcaption><b>ref 2</b>
+        <ul>
+          <li>Map-like, steeper camera, room between objects</li>
+          <li>Heavy dark outlines, ink #272419 (7.3% of pixels)</li>
+          <li>Flat fills with one shade, crisp short shadows, tick-mark textures</li>
+          <li>Water: flat blue with white dashes; lit yellow windows</li>
+        </ul>
+        <img class="swatch" src="style_ref2_swatch.png" alt="">
+      </figcaption>
+    </figure>
+  </div>
+
+  <h2>Round 1: both references, equal weight</h2>
+  <p class="sub">Leans toward ref 1: thin, tinted lines. The shoreline runs at a steep diagonal, which is awkward for a strip you pan sideways.</p>
+  <div class="grid">
+    <figure><a href="gen/style_frame/v1_0.png" target="_blank"><img src="gen/style_frame/v1_0.png" alt="Round 1, frame 0"></a><figcaption><b>v1_0</b> animals, coaster dominant, softest lines</figcaption></figure>
+    <figure><a href="gen/style_frame/v1_1.png" target="_blank"><img src="gen/style_frame/v1_1.png" alt="Round 1, frame 1"></a><figcaption><b>v1_1</b> animals, tidy, beach stairs, the best blend of round 1</figcaption></figure>
+    <figure><a href="gen/style_frame/v1_2.png" target="_blank"><img src="gen/style_frame/v1_2.png" alt="Round 1, frame 2"></a><figcaption><b>v1_2</b> human kids instead of animals, for comparison</figcaption></figure>
+  </div>
+
+  <h2>Round 3: the chosen look (v1), at two camera angles</h2>
+  <p class="sub">References: v1_1 and v1_0 themselves. Same lines, palette and tidy wall with evenly spaced stairs. Which angle?</p>
+  <div class="grid">
+    <figure><a href="gen/style_frame/v3a_0.png" target="_blank"><img src="gen/style_frame/v3a_0.png" alt="Round 3, diagonal camera, frame 0"></a><figcaption><b>v3a_0</b> shoreline at about 30°, as in v1</figcaption></figure>
+    <figure><a href="gen/style_frame/v3a_1.png" target="_blank"><img src="gen/style_frame/v3a_1.png" alt="Round 3, diagonal camera, frame 1"></a><figcaption><b>v3a_1</b> shoreline at about 30°, closest to v1_1</figcaption></figure>
+    <figure><a href="gen/style_frame/v3b_0.png" target="_blank"><img src="gen/style_frame/v3b_0.png" alt="Round 3, near-horizontal camera, frame 0"></a><figcaption><b>v3b_0</b> shoreline at about 10°, the park pans as a strip</figcaption></figure>
+    <figure><a href="gen/style_frame/v3b_1.png" target="_blank"><img src="gen/style_frame/v3b_1.png" alt="Round 3, near-horizontal camera, frame 1"></a><figcaption><b>v3b_1</b> shoreline at about 15°</figcaption></figure>
+  </div>
+
+  <h2>Round 2: ref 2 weighted up, horizontal shoreline</h2>
+  <p class="sub">Heavier outlines, flatter fills, and the park reads as a strip: beach, boardwalk wall, rides, street, town.</p>
+  <div class="grid">
+    <figure><a href="gen/style_frame/v2_0.png" target="_blank"><img src="gen/style_frame/v2_0.png" alt="Round 2, frame 0"></a><figcaption><b>v2_0</b> busiest, lines still tinted</figcaption></figure>
+    <figure><a href="gen/style_frame/v2_1.png" target="_blank"><img src="gen/style_frame/v2_1.png" alt="Round 2, frame 1"></a><figcaption><b>v2_1</b> clean layers, darker lines, readable at map scale</figcaption></figure>
+    <figure><a href="gen/style_frame/v2_2.png" target="_blank"><img src="gen/style_frame/v2_2.png" alt="Round 2, frame 2"></a><figcaption><b>v2_2</b> flattest fills, most breathing room</figcaption></figure>
+  </div>
+</main>
+</body>
+</html>

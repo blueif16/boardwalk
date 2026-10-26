@@ -1,0 +1,62 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Images 1 and 2 are style references only. Draw a NEW illustration in a style that combines them.\n\nSubject: a small slice of the Santa Cruz Beach Boardwalk, the seaside amusement park in California, seen from high above the ocean looking inland. Parallel projection like an isometric game map: no vanishing points, vertical edges stay vertical, camera about 50 degrees down. The shoreline and the boardwalk run almost horizontally across the picture, tilted only slightly (about 15 degrees), with the ocean along the bottom edge, so the park reads as a long strip you could scroll sideways.\n- Bottom third: the Pacific surf rolling onto a wide sandy beach. Flat blue water with short white dash ripples, curling white foam lines where the waves run up the sand, a band of darker wet sand behind the foam. Beach towels, umbrellas, a sandcastle, a surfer.\n- Middle: the boardwalk promenade along the beach. A white-painted wooden roller coaster with a lattice of timber bents and a red coaster train on its track; a small open-air ride with chairs swinging on chains around a central tower; a striped snack stand; strings of light bulbs; lamp posts; benches.\n- Top: the street behind, a few low pastel buildings and palm trees.\n- Many tiny cute animal characters like those in image 1 (bears, bunnies, cats, dogs), each doing something: eating cotton candy, queueing, riding, waving, building a sandcastle, flying a kite.\n\nStyle:\n- From image 1: the warm pastel palette (salmon, peach, butter yellow, cornflower blue, mint, lavender grey), soft rounded toy-like chunky proportions, cute characters, every patch telling a small story.\n- From image 2, weighted strongly: the readable map-like layout with breathing room between objects, a bold, heavy, uniform outline around every object and character silhouette (clearly heavier than image 1), perfectly flat colour fills with exactly one darker cel-shade tone and no gradients or painterly texture, short crisp shadows, tiny tick-mark textures on sand, water drawn flat with short white dashes.\n- Outline colour: very dark warm plum-brown, not pure black. Interior detail lines thinner and tinted darker versions of the fill.\n- Daytime, soft even light.\n\nDo not draw any text, letters, numbers, logos, signatures or watermarks; leave signboards blank. Do not copy any building, object or character from the references.",
+ "refs": [
+  "reference/style_ref1.jpg",
+  "reference/style_ref2.jpg"
+ ],
+ "mask": null,
+ "params": {
+  "n": 3,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "v2"
+ },
+ "format": "png",
+ "generation_s": 45.3,
+ "attempts": 1,
+ "idempotency_key": "56fdf8b1-8191-4270-8be4-a635fdb9e72a",
+ "request_id": "e2b1a62f-ccbd-4223-9f70-9ec3cd4625ed",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 4752,
+  "completion_tokens_details": {
+   "image_tokens": 4752,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2981,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2478,
+   "text_tokens": 503
+  },
+  "output_tokens": 4752,
+  "output_tokens_details": {
+   "image_tokens": 4752,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2981,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2478,
+   "text_tokens": 503
+  },
+  "total_tokens": 7733
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/8eb8ea2b-f911-4373-8161-58a033287b55",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/b118ef9d-094f-4f9c-9bf0-cb8678cdb148",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/5a9eb5a5-3f4d-4d49-bd54-eb6ad9f7b99c"
+ ],
+ "files": [
+  "gen/style_frame/v2_0.png",
+  "gen/style_frame/v2_1.png",
+  "gen/style_frame/v2_2.png"
+ ]
+}

@@ -1,0 +1,7 @@
+Edit image 1. Keep everything exactly as it is: the same framing, camera, colours, line style and the position of every object. Remove only these objects and fill each place with what is behind it, continuing the surroundings seamlessly:
+- every small food stall and booth on the boardwalk (the kiosks with striped or coloured roofs and counters): fill with the boardwalk planks and, behind them, the roller coaster lattice and planting;
+- every blue lamp post with yellow globe lights: fill with boardwalk planks;
+- every palm tree: fill with the planks, pavement, street, grass or coaster lattice behind it;
+- the wooden park benches: fill with planks and bushes;
+- the two flags at the top centre and their two flag poles: fill with the parking lot, street and kerb behind them.
+Leave a soft empty boardwalk where they stood: no shadows, no marks. Do not add anything new. Do not draw any text, letters, numbers, logos or watermarks.

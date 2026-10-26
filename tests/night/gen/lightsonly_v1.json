@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is a night scene. Turn it into a light map of the same scene: paint everything solid black except the lights themselves.\n\nKeep every light exactly where it is in image 1, at the same size and shape, so the result lines up with image 1 pixel for pixel: the lamp globes, every small bulb along the coaster track, the rail and the ride fences, the lit windows, the glowing insides and counters of the stalls, the lanterns, and the soft pools of light the lamps cast on the planks. The lights keep their warm colours and their soft glow.\n\nEverything that is not a light (outlines, walls, planks, lattice, sand, trees, cars, the street) is solid black. Do not add any light that is not in image 1. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night/gen/night_v1_0_reg.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "lightsonly_v1"
+ },
+ "format": "png",
+ "generation_s": 59.2,
+ "attempts": 1,
+ "idempotency_key": "4c473e58-ff9c-407c-b4c0-15f56fb7dd9c",
+ "request_id": "496f526f-fb88-4ffd-b638-90d7230d186d",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2670,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 181
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2670,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 181
+  },
+  "total_tokens": 5838
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/770dd146-d49a-44ae-a8be-7ba8de392859",
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/187911d2-c154-411f-8288-4a30a951171c"
+ ],
+ "files": [
+  "tests/night/gen/lightsonly_v1_0.png",
+  "tests/night/gen/lightsonly_v1_1.png"
+ ]
+}

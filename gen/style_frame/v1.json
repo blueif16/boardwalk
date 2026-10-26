@@ -1,0 +1,62 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Images 1 and 2 are style references only. Draw a NEW illustration in a style that combines them.\n\nSubject: a small slice of the Santa Cruz Beach Boardwalk, the seaside amusement park in California, seen from high above the ocean looking inland. Parallel projection like an isometric game map: no vanishing points, vertical edges stay vertical, camera about 50 degrees down.\n- Bottom third: the Pacific surf rolling onto a wide sandy beach. Flat blue water with short white dash ripples, curling white foam lines where the waves run up the sand, a band of darker wet sand behind the foam. Beach towels, umbrellas, a sandcastle, a surfer.\n- Middle: the boardwalk promenade along the beach. A white-painted wooden roller coaster with a lattice of timber bents and a red coaster train on its track; a small open-air ride with chairs swinging on chains around a central tower; a striped snack stand; strings of light bulbs; lamp posts; benches.\n- Top: the street behind, a few low pastel buildings and palm trees.\n- Many tiny cute cartoon people and a few animals, each doing something: eating cotton candy, queueing, riding, waving, building a sandcastle, flying a kite.\n\nStyle:\n- From image 1: the warm pastel palette (salmon, peach, butter yellow, cornflower blue, mint, lavender grey), soft rounded toy-like chunky proportions, cute characters, every patch telling a small story.\n- From image 2: the readable map-like layout with breathing room between objects, a bold uniform outline around every object's silhouette, flat colour fills with exactly one darker cel-shade tone, short crisp shadows, tiny tick-mark textures on sand, water drawn flat with short white dashes.\n- Outline colour: very dark warm plum-brown, not pure black. Interior detail lines thinner and tinted darker versions of the fill.\n- Daytime, soft even light.\n\nDo not draw any text, letters, numbers, logos, signatures or watermarks; leave signboards blank. Do not copy any building, object or character from the references.",
+ "refs": [
+  "reference/style_ref1.jpg",
+  "reference/style_ref2.jpg"
+ ],
+ "mask": null,
+ "params": {
+  "n": 3,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "v1"
+ },
+ "format": "png",
+ "generation_s": 74.9,
+ "attempts": 1,
+ "idempotency_key": "9561f9bd-536c-4acf-b1f3-246aa70f793f",
+ "request_id": "13cbcd0f-b102-4101-8444-2f7b5e8b4ac5",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 4752,
+  "completion_tokens_details": {
+   "image_tokens": 4752,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2902,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2478,
+   "text_tokens": 424
+  },
+  "output_tokens": 4752,
+  "output_tokens_details": {
+   "image_tokens": 4752,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2902,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2478,
+   "text_tokens": 424
+  },
+  "total_tokens": 7654
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/7c13f3c4-c4a2-4a71-bf93-8c74d5f156c0",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/b3178f26-8ad3-4e9a-aef1-cca904f37415",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/740b8c88-19d8-45ec-99c1-cdd815e24d9c"
+ ],
+ "files": [
+  "gen/style_frame/v1_0.png",
+  "gen/style_frame/v1_1.png",
+  "gen/style_frame/v1_2.png"
+ ]
+}

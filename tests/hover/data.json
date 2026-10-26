@@ -1,0 +1,690 @@
+{
+ "size": [
+  1536,
+  1024
+ ],
+ "items": [
+  {
+   "id": "s1",
+   "kind": "stall",
+   "name": "Food",
+   "source": "map icon",
+   "bbox": [
+    84,
+    394,
+    125,
+    120
+   ],
+   "sprite": [
+    80,
+    390
+   ],
+   "depth": 509.8,
+   "foot": [
+    [
+     88,
+     496
+    ],
+    [
+     172,
+     516
+    ],
+    [
+     204,
+     500
+    ]
+   ],
+   "area": 11604,
+   "awning": [
+    [
+     86,
+     434
+    ],
+    [
+     175,
+     450
+    ],
+    [
+     175,
+     461
+    ],
+    [
+     86,
+     447
+    ]
+   ],
+   "caption": "food stand \u00b7 map icon"
+  },
+  {
+   "id": "s2",
+   "kind": "stall",
+   "name": "Food",
+   "source": "map icon",
+   "bbox": [
+    407,
+    419,
+    104,
+    111
+   ],
+   "sprite": [
+    403,
+    415
+   ],
+   "depth": 526.0,
+   "foot": [
+    [
+     408,
+     520
+    ],
+    [
+     470,
+     532
+    ]
+   ],
+   "area": 7996,
+   "awning": [
+    [
+     409,
+     447
+    ],
+    [
+     472,
+     458
+    ],
+    [
+     474,
+     474
+    ],
+    [
+     409,
+     462
+    ]
+   ],
+   "caption": "food stand \u00b7 map icon"
+  },
+  {
+   "id": "s3",
+   "kind": "stall",
+   "name": "Food",
+   "source": "map icon",
+   "bbox": [
+    478,
+    432,
+    143,
+    114
+   ],
+   "sprite": [
+    474,
+    428
+   ],
+   "depth": 544.5,
+   "foot": [
+    [
+     480,
+     530
+    ],
+    [
+     562,
+     548
+    ],
+    [
+     612,
+     524
+    ]
+   ],
+   "area": 9995,
+   "awning": [
+    [
+     488,
+     474
+    ],
+    [
+     578,
+     484
+    ],
+    [
+     580,
+     497
+    ],
+    [
+     488,
+     485
+    ]
+   ],
+   "caption": "food stand \u00b7 map icon"
+  },
+  {
+   "id": "s4",
+   "kind": "stall",
+   "name": "MyBoardwalk Card Kiosk",
+   "source": "map icon",
+   "bbox": [
+    444,
+    545,
+    155,
+    123
+   ],
+   "sprite": [
+    440,
+    541
+   ],
+   "depth": 659.6,
+   "foot": [
+    [
+     448,
+     643
+    ],
+    [
+     559,
+     668
+    ],
+    [
+     595,
+     650
+    ]
+   ],
+   "area": 14018,
+   "awning": [
+    [
+     448,
+     583
+    ],
+    [
+     560,
+     605
+    ],
+    [
+     560,
+     617
+    ],
+    [
+     448,
+     597
+    ]
+   ],
+   "caption": "map icon"
+  },
+  {
+   "id": "s5",
+   "kind": "stall",
+   "name": "Funland Arcade",
+   "source": "map label",
+   "bbox": [
+    1015,
+    672,
+    153,
+    133
+   ],
+   "sprite": [
+    1011,
+    668
+   ],
+   "depth": 796.2,
+   "foot": [
+    [
+     1017,
+     783
+    ],
+    [
+     1125,
+     803
+    ],
+    [
+     1160,
+     784
+    ]
+   ],
+   "area": 15370,
+   "awning": [
+    [
+     1020,
+     712
+    ],
+    [
+     1128,
+     736
+    ],
+    [
+     1128,
+     750
+    ],
+    [
+     1020,
+     728
+    ]
+   ],
+   "caption": "on the park map"
+  },
+  {
+   "id": "s6",
+   "kind": "stall",
+   "name": "Tickets",
+   "source": "map label",
+   "bbox": [
+    1249,
+    690,
+    134,
+    118
+   ],
+   "sprite": [
+    1245,
+    686
+   ],
+   "depth": 794.7,
+   "foot": [
+    [
+     1254,
+     780
+    ],
+    [
+     1340,
+     800
+    ],
+    [
+     1380,
+     786
+    ]
+   ],
+   "area": 11533,
+   "awning": [
+    [
+     1276,
+     716
+    ],
+    [
+     1366,
+     730
+    ],
+    [
+     1366,
+     748
+    ],
+    [
+     1276,
+     736
+    ]
+   ],
+   "caption": "on the park map"
+  },
+  {
+   "id": "l1",
+   "kind": "lamp",
+   "name": "Lamp post",
+   "source": "generic",
+   "bbox": [
+    251,
+    493,
+    41,
+    114
+   ],
+   "sprite": [
+    247,
+    489
+   ],
+   "depth": 603.0,
+   "foot": [
+    [
+     260,
+     603
+    ],
+    [
+     283,
+     603
+    ]
+   ],
+   "area": 2027
+  },
+  {
+   "id": "l2",
+   "kind": "lamp",
+   "name": "Lamp post",
+   "source": "generic",
+   "bbox": [
+    592,
+    581,
+    47,
+    106
+   ],
+   "sprite": [
+    588,
+    577
+   ],
+   "depth": 688.0,
+   "foot": [
+    [
+     600,
+     688
+    ],
+    [
+     624,
+     688
+    ]
+   ],
+   "area": 2336
+  },
+  {
+   "id": "l3",
+   "kind": "lamp",
+   "name": "Lamp post",
+   "source": "generic",
+   "bbox": [
+    949,
+    671,
+    40,
+    98
+   ],
+   "sprite": [
+    945,
+    667
+   ],
+   "depth": 769.0,
+   "foot": [
+    [
+     956,
+     769
+    ],
+    [
+     979,
+     769
+    ]
+   ],
+   "area": 1868
+  },
+  {
+   "id": "l4",
+   "kind": "lamp",
+   "name": "Lamp post",
+   "source": "generic",
+   "bbox": [
+    1112,
+    482,
+    41,
+    107
+   ],
+   "sprite": [
+    1108,
+    478
+   ],
+   "depth": 582.0,
+   "foot": [
+    [
+     1120,
+     582
+    ],
+    [
+     1142,
+     582
+    ]
+   ],
+   "area": 1684
+  },
+  {
+   "id": "p1",
+   "kind": "palm",
+   "name": "Palm tree",
+   "source": "generic",
+   "bbox": [
+    560,
+    482,
+    65,
+    77
+   ],
+   "sprite": [
+    556,
+    478
+   ],
+   "depth": 558.0,
+   "foot": [
+    [
+     582,
+     558
+    ],
+    [
+     602,
+     558
+    ]
+   ],
+   "area": 2645
+  },
+  {
+   "id": "p3",
+   "kind": "palm",
+   "name": "Palm tree",
+   "source": "generic",
+   "bbox": [
+    1160,
+    686,
+    90,
+    143
+   ],
+   "sprite": [
+    1156,
+    682
+   ],
+   "depth": 828.0,
+   "foot": [
+    [
+     1150,
+     828
+    ],
+    [
+     1190,
+     828
+    ]
+   ],
+   "area": 5772
+  },
+  {
+   "id": "p4",
+   "kind": "palm",
+   "name": "Palm tree",
+   "source": "generic",
+   "bbox": [
+    494,
+    35,
+    93,
+    192
+   ],
+   "sprite": [
+    490,
+    31
+   ],
+   "depth": 228.0,
+   "foot": [
+    [
+     530,
+     228
+    ],
+    [
+     552,
+     228
+    ]
+   ],
+   "area": 5591
+  },
+  {
+   "id": "p5",
+   "kind": "palm",
+   "name": "Palm tree",
+   "source": "generic",
+   "bbox": [
+    891,
+    3,
+    94,
+    218
+   ],
+   "sprite": [
+    887,
+    0
+   ],
+   "depth": 220.0,
+   "foot": [
+    [
+     930,
+     220
+    ],
+    [
+     952,
+     220
+    ]
+   ],
+   "area": 5907
+  },
+  {
+   "id": "b1",
+   "kind": "bench",
+   "name": "Bench",
+   "source": "generic",
+   "bbox": [
+    1152,
+    574,
+    72,
+    47
+   ],
+   "sprite": [
+    1148,
+    570
+   ],
+   "depth": 617.0,
+   "foot": [
+    [
+     1155,
+     612
+    ],
+    [
+     1222,
+     622
+    ]
+   ],
+   "area": 2175
+  },
+  {
+   "id": "b3",
+   "kind": "bench",
+   "name": "Bench",
+   "source": "generic",
+   "bbox": [
+    1078,
+    664,
+    61,
+    26
+   ],
+   "sprite": [
+    1074,
+    660
+   ],
+   "depth": 690.0,
+   "foot": [
+    [
+     1068,
+     684
+    ],
+    [
+     1132,
+     696
+    ]
+   ],
+   "area": 1016
+  },
+  {
+   "id": "f1",
+   "kind": "flag",
+   "name": "Flag of the United States",
+   "source": "map",
+   "bbox": [
+    779,
+    72,
+    78,
+    112
+   ],
+   "sprite": [
+    775,
+    68
+   ],
+   "depth": 210.0,
+   "foot": [
+    [
+     782,
+     210
+    ],
+    [
+     790,
+     210
+    ]
+   ],
+   "area": 3721,
+   "cloth": {
+    "poly": [
+     [
+      786,
+      76
+     ],
+     [
+      860,
+      80
+     ],
+     [
+      860,
+      136
+     ],
+     [
+      786,
+      136
+     ]
+    ],
+    "pole": 786
+   },
+   "caption": "on the park map"
+  },
+  {
+   "id": "f2",
+   "kind": "flag",
+   "name": "Flag of California",
+   "source": "map",
+   "bbox": [
+    862,
+    78,
+    70,
+    106
+   ],
+   "sprite": [
+    858,
+    74
+   ],
+   "depth": 210.0,
+   "foot": [
+    [
+     862,
+     210
+    ],
+    [
+     872,
+     210
+    ]
+   ],
+   "area": 3245,
+   "cloth": {
+    "poly": [
+     [
+      870,
+      86
+     ],
+     [
+      940,
+      93
+     ],
+     [
+      940,
+      144
+     ],
+     [
+      870,
+      144
+     ]
+    ],
+    "pole": 870
+   },
+   "caption": "on the park map"
+  }
+ ]
+}

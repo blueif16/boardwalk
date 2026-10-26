@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boardwalk Compose</title>
+<link rel="stylesheet" href="compose.css">
+</head>
+<body>
+<div class="viewport">
+  <div class="world" id="world">
+    <img class="stage" id="stage" alt="The Santa Cruz Beach Boardwalk, Giant Dipper stretch, empty stage">
+    <div class="slot" data-slot="water"></div>
+    <div class="slot" data-slot="rides"></div>
+    <div class="slot" data-slot="characters"></div>
+    <div class="slot" data-slot="front"></div>
+    <div class="grade" id="grade"></div>
+    <div class="slot" data-slot="lights"></div>
+    <div class="slot" data-slot="debug"></div>
+  </div>
+</div>
+<div class="panel">
+  <span class="tests" id="tests"></span>
+  <span class="times" id="times"></span>
+  <input type="range" id="hour" min="0" max="24" step="0.1" aria-label="Hour of day">
+  <span class="hour" id="hourLabel"></span>
+  <span class="bench" id="bench"></span>
+</div>
+<script type="module" src="compose.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same framing, camera, colours, line style and the position of every object. Remove only these objects and fill each place with what is behind it, continuing the surroundings seamlessly:\n- every small food stall and booth on the boardwalk (the kiosks with striped or coloured roofs and counters): fill with the boardwalk planks and, behind them, the roller coaster lattice and planting;\n- every blue lamp post with yellow globe lights: fill with boardwalk planks;\n- every palm tree: fill with the planks, pavement, street, grass or coaster lattice behind it;\n- the wooden park benches: fill with planks and bushes;\n- the two flags at the top centre and their two flag poles: fill with the parking lot, street and kerb behind them.\nLeave a soft empty boardwalk where they stood: no shadows, no marks. Do not add anything new. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "clean"
+ },
+ "format": "png",
+ "generation_s": 37.8,
+ "attempts": 1,
+ "idempotency_key": "7def96b0-0c4e-434d-909f-70f46ab396cd",
+ "request_id": "7ca001a4-b731-4d2e-be4c-afc2041853a1",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2695,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 206
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2695,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 206
+  },
+  "total_tokens": 5863
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/1aee5161-ee77-4033-8260-fbdb0b34ad1d",
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/92545f60-240c-4901-8582-09f94664c640"
+ ],
+ "files": [
+  "tests/hover/gen/clean_0.png",
+  "tests/hover/gen/clean_1.png"
+ ]
+}

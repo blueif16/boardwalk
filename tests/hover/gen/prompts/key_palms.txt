@@ -1,0 +1,2 @@
+Edit image 1. Paint each palm tree as one solid, completely flat silhouette in pure magenta #FF00FF. Cover each palm's whole shape exactly, edge to edge, including its outline, every frond and the trunk down to the ground, but not the bushes at its foot. No shading, no outline, no texture, no gradient inside the magenta: one single flat colour.
+Do not change anything else: keep the same framing, camera, colours, line style and every other object exactly in place, pixel for pixel. Do not draw any text, letters, numbers, logos or watermarks.

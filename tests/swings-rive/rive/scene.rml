@@ -1,0 +1,471 @@
+<Rive version="1" kind="fragment">
+<ImageAsset file="chairs.webp" name="chairs" id="0:10"/>
+<ImageAsset file="canopy.webp" name="canopy" id="0:11"/>
+<ImageAsset file="tower.webp" name="tower" id="0:12"/>
+<Artboard width="320" height="290" clip="false" name="Swings" id="0:2">
+<Node name="fs8" scaleX="0" scaleY="0" id="0:101">
+  <Node name="fs8_clip" id="0:102">
+    <ClippingShape sourceId="0:100" name="fs8_clipper"/>
+    <Node name="fs8_img" id="0:103">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs8_image" id="0:104"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs8_mask" id="0:100">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs8_rect"/>
+  </Shape>
+</Node>
+<Node name="fs7" scaleX="0" scaleY="0" id="0:106">
+  <Node name="fs7_clip" id="0:107">
+    <ClippingShape sourceId="0:105" name="fs7_clipper"/>
+    <Node name="fs7_img" id="0:108">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs7_image" id="0:109"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs7_mask" id="0:105">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs7_rect"/>
+  </Shape>
+</Node>
+<Node name="fs6" scaleX="0" scaleY="0" id="0:111">
+  <Node name="fs6_clip" id="0:112">
+    <ClippingShape sourceId="0:110" name="fs6_clipper"/>
+    <Node name="fs6_img" id="0:113">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs6_image" id="0:114"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs6_mask" id="0:110">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs6_rect"/>
+  </Shape>
+</Node>
+<Node name="fs5" scaleX="0" scaleY="0" id="0:116">
+  <Node name="fs5_clip" id="0:117">
+    <ClippingShape sourceId="0:115" name="fs5_clipper"/>
+    <Node name="fs5_img" id="0:118">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs5_image" id="0:119"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs5_mask" id="0:115">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs5_rect"/>
+  </Shape>
+</Node>
+<Node name="fs4" scaleX="0" scaleY="0" id="0:121">
+  <Node name="fs4_clip" id="0:122">
+    <ClippingShape sourceId="0:120" name="fs4_clipper"/>
+    <Node name="fs4_img" id="0:123">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs4_image" id="0:124"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs4_mask" id="0:120">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs4_rect"/>
+  </Shape>
+</Node>
+<Node name="fs3" scaleX="0" scaleY="0" id="0:126">
+  <Node name="fs3_clip" id="0:127">
+    <ClippingShape sourceId="0:125" name="fs3_clipper"/>
+    <Node name="fs3_img" id="0:128">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs3_image" id="0:129"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs3_mask" id="0:125">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs3_rect"/>
+  </Shape>
+</Node>
+<Node name="fs2" scaleX="0" scaleY="0" id="0:131">
+  <Node name="fs2_clip" id="0:132">
+    <ClippingShape sourceId="0:130" name="fs2_clipper"/>
+    <Node name="fs2_img" id="0:133">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs2_image" id="0:134"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs2_mask" id="0:130">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs2_rect"/>
+  </Shape>
+</Node>
+<Node name="fs1" scaleX="0" scaleY="0" id="0:136">
+  <Node name="fs1_clip" id="0:137">
+    <ClippingShape sourceId="0:135" name="fs1_clipper"/>
+    <Node name="fs1_img" id="0:138">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs1_image" id="0:139"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs1_mask" id="0:135">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs1_rect"/>
+  </Shape>
+</Node>
+<Node name="fs0" scaleX="0" scaleY="0" id="0:141">
+  <Node name="fs0_clip" id="0:142">
+    <ClippingShape sourceId="0:140" name="fs0_clipper"/>
+    <Node name="fs0_img" id="0:143">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="fs0_image" id="0:144"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="fs0_mask" id="0:140">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="fs0_rect"/>
+  </Shape>
+</Node>
+<Node name="canopy" x="72" y="24" id="0:146">
+  <Node name="canopy_clip" id="0:147">
+    <ClippingShape sourceId="0:145" name="canopy_clipper"/>
+    <Node name="canopy_img" id="0:148">
+      <Image assetId="0:11" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="canopy_image" id="0:149"/>
+    </Node>
+  </Node>
+  <Shape x="0" y="0" name="canopy_mask" id="0:145">
+    <Rectangle width="176" height="143.5" originX="0" originY="0" name="canopy_rect"/>
+  </Shape>
+</Node>
+<Node name="fc8" id="0:150">
+<Node name="fc8a" scaleX="0" scaleY="0" id="0:151">
+  <Shape name="fc8a_shape" id="0:152">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc8a_rect"/>
+    <Fill name="fc8a_fill"><SolidColor colorValue="FF7A6662" name="fc8a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc8b" scaleX="0" scaleY="0" id="0:153">
+  <Shape name="fc8b_shape" id="0:154">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc8b_rect"/>
+    <Fill name="fc8b_fill"><SolidColor colorValue="FF7A6662" name="fc8b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="fc7" id="0:155">
+<Node name="fc7a" scaleX="0" scaleY="0" id="0:156">
+  <Shape name="fc7a_shape" id="0:157">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc7a_rect"/>
+    <Fill name="fc7a_fill"><SolidColor colorValue="FF7A6662" name="fc7a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc7b" scaleX="0" scaleY="0" id="0:158">
+  <Shape name="fc7b_shape" id="0:159">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc7b_rect"/>
+    <Fill name="fc7b_fill"><SolidColor colorValue="FF7A6662" name="fc7b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="fc6" id="0:160">
+<Node name="fc6a" scaleX="0" scaleY="0" id="0:161">
+  <Shape name="fc6a_shape" id="0:162">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc6a_rect"/>
+    <Fill name="fc6a_fill"><SolidColor colorValue="FF7A6662" name="fc6a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc6b" scaleX="0" scaleY="0" id="0:163">
+  <Shape name="fc6b_shape" id="0:164">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc6b_rect"/>
+    <Fill name="fc6b_fill"><SolidColor colorValue="FF7A6662" name="fc6b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="fc5" id="0:165">
+<Node name="fc5a" scaleX="0" scaleY="0" id="0:166">
+  <Shape name="fc5a_shape" id="0:167">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc5a_rect"/>
+    <Fill name="fc5a_fill"><SolidColor colorValue="FF7A6662" name="fc5a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc5b" scaleX="0" scaleY="0" id="0:168">
+  <Shape name="fc5b_shape" id="0:169">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc5b_rect"/>
+    <Fill name="fc5b_fill"><SolidColor colorValue="FF7A6662" name="fc5b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="fc4" id="0:170">
+<Node name="fc4a" scaleX="0" scaleY="0" id="0:171">
+  <Shape name="fc4a_shape" id="0:172">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc4a_rect"/>
+    <Fill name="fc4a_fill"><SolidColor colorValue="FF7A6662" name="fc4a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc4b" scaleX="0" scaleY="0" id="0:173">
+  <Shape name="fc4b_shape" id="0:174">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc4b_rect"/>
+    <Fill name="fc4b_fill"><SolidColor colorValue="FF7A6662" name="fc4b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="fc3" id="0:175">
+<Node name="fc3a" scaleX="0" scaleY="0" id="0:176">
+  <Shape name="fc3a_shape" id="0:177">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc3a_rect"/>
+    <Fill name="fc3a_fill"><SolidColor colorValue="FF7A6662" name="fc3a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc3b" scaleX="0" scaleY="0" id="0:178">
+  <Shape name="fc3b_shape" id="0:179">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc3b_rect"/>
+    <Fill name="fc3b_fill"><SolidColor colorValue="FF7A6662" name="fc3b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="fc2" id="0:180">
+<Node name="fc2a" scaleX="0" scaleY="0" id="0:181">
+  <Shape name="fc2a_shape" id="0:182">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc2a_rect"/>
+    <Fill name="fc2a_fill"><SolidColor colorValue="FF7A6662" name="fc2a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc2b" scaleX="0" scaleY="0" id="0:183">
+  <Shape name="fc2b_shape" id="0:184">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc2b_rect"/>
+    <Fill name="fc2b_fill"><SolidColor colorValue="FF7A6662" name="fc2b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="fc1" id="0:185">
+<Node name="fc1a" scaleX="0" scaleY="0" id="0:186">
+  <Shape name="fc1a_shape" id="0:187">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc1a_rect"/>
+    <Fill name="fc1a_fill"><SolidColor colorValue="FF7A6662" name="fc1a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc1b" scaleX="0" scaleY="0" id="0:188">
+  <Shape name="fc1b_shape" id="0:189">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc1b_rect"/>
+    <Fill name="fc1b_fill"><SolidColor colorValue="FF7A6662" name="fc1b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="fc0" id="0:190">
+<Node name="fc0a" scaleX="0" scaleY="0" id="0:191">
+  <Shape name="fc0a_shape" id="0:192">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc0a_rect"/>
+    <Fill name="fc0a_fill"><SolidColor colorValue="FF7A6662" name="fc0a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="fc0b" scaleX="0" scaleY="0" id="0:193">
+  <Shape name="fc0b_shape" id="0:194">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="fc0b_rect"/>
+    <Fill name="fc0b_fill"><SolidColor colorValue="FF7A6662" name="fc0b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="tower" x="120.5" y="84.5" id="0:195">
+<Image assetId="0:12" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="tower_image" id="0:196"/>
+</Node>
+<Node name="b8" id="0:197">
+<Node name="b8s" scaleX="0" scaleY="0" id="0:199">
+  <Node name="b8s_clip" id="0:200">
+    <ClippingShape sourceId="0:198" name="b8s_clipper"/>
+    <Node name="b8s_img" id="0:201">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b8s_image" id="0:202"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b8s_mask" id="0:198">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b8s_rect"/>
+  </Shape>
+</Node>
+<Node name="b8a" scaleX="0" scaleY="0" id="0:203">
+  <Shape name="b8a_shape" id="0:204">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b8a_rect"/>
+    <Fill name="b8a_fill"><SolidColor colorValue="FF7A6662" name="b8a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b8b" scaleX="0" scaleY="0" id="0:205">
+  <Shape name="b8b_shape" id="0:206">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b8b_rect"/>
+    <Fill name="b8b_fill"><SolidColor colorValue="FF7A6662" name="b8b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="b7" id="0:207">
+<Node name="b7s" scaleX="0" scaleY="0" id="0:209">
+  <Node name="b7s_clip" id="0:210">
+    <ClippingShape sourceId="0:208" name="b7s_clipper"/>
+    <Node name="b7s_img" id="0:211">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b7s_image" id="0:212"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b7s_mask" id="0:208">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b7s_rect"/>
+  </Shape>
+</Node>
+<Node name="b7a" scaleX="0" scaleY="0" id="0:213">
+  <Shape name="b7a_shape" id="0:214">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b7a_rect"/>
+    <Fill name="b7a_fill"><SolidColor colorValue="FF7A6662" name="b7a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b7b" scaleX="0" scaleY="0" id="0:215">
+  <Shape name="b7b_shape" id="0:216">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b7b_rect"/>
+    <Fill name="b7b_fill"><SolidColor colorValue="FF7A6662" name="b7b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="b6" id="0:217">
+<Node name="b6s" scaleX="0" scaleY="0" id="0:219">
+  <Node name="b6s_clip" id="0:220">
+    <ClippingShape sourceId="0:218" name="b6s_clipper"/>
+    <Node name="b6s_img" id="0:221">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b6s_image" id="0:222"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b6s_mask" id="0:218">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b6s_rect"/>
+  </Shape>
+</Node>
+<Node name="b6a" scaleX="0" scaleY="0" id="0:223">
+  <Shape name="b6a_shape" id="0:224">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b6a_rect"/>
+    <Fill name="b6a_fill"><SolidColor colorValue="FF7A6662" name="b6a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b6b" scaleX="0" scaleY="0" id="0:225">
+  <Shape name="b6b_shape" id="0:226">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b6b_rect"/>
+    <Fill name="b6b_fill"><SolidColor colorValue="FF7A6662" name="b6b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="b5" id="0:227">
+<Node name="b5s" scaleX="0" scaleY="0" id="0:229">
+  <Node name="b5s_clip" id="0:230">
+    <ClippingShape sourceId="0:228" name="b5s_clipper"/>
+    <Node name="b5s_img" id="0:231">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b5s_image" id="0:232"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b5s_mask" id="0:228">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b5s_rect"/>
+  </Shape>
+</Node>
+<Node name="b5a" scaleX="0" scaleY="0" id="0:233">
+  <Shape name="b5a_shape" id="0:234">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b5a_rect"/>
+    <Fill name="b5a_fill"><SolidColor colorValue="FF7A6662" name="b5a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b5b" scaleX="0" scaleY="0" id="0:235">
+  <Shape name="b5b_shape" id="0:236">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b5b_rect"/>
+    <Fill name="b5b_fill"><SolidColor colorValue="FF7A6662" name="b5b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="b4" id="0:237">
+<Node name="b4s" scaleX="0" scaleY="0" id="0:239">
+  <Node name="b4s_clip" id="0:240">
+    <ClippingShape sourceId="0:238" name="b4s_clipper"/>
+    <Node name="b4s_img" id="0:241">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b4s_image" id="0:242"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b4s_mask" id="0:238">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b4s_rect"/>
+  </Shape>
+</Node>
+<Node name="b4a" scaleX="0" scaleY="0" id="0:243">
+  <Shape name="b4a_shape" id="0:244">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b4a_rect"/>
+    <Fill name="b4a_fill"><SolidColor colorValue="FF7A6662" name="b4a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b4b" scaleX="0" scaleY="0" id="0:245">
+  <Shape name="b4b_shape" id="0:246">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b4b_rect"/>
+    <Fill name="b4b_fill"><SolidColor colorValue="FF7A6662" name="b4b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="b3" id="0:247">
+<Node name="b3s" scaleX="0" scaleY="0" id="0:249">
+  <Node name="b3s_clip" id="0:250">
+    <ClippingShape sourceId="0:248" name="b3s_clipper"/>
+    <Node name="b3s_img" id="0:251">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b3s_image" id="0:252"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b3s_mask" id="0:248">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b3s_rect"/>
+  </Shape>
+</Node>
+<Node name="b3a" scaleX="0" scaleY="0" id="0:253">
+  <Shape name="b3a_shape" id="0:254">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b3a_rect"/>
+    <Fill name="b3a_fill"><SolidColor colorValue="FF7A6662" name="b3a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b3b" scaleX="0" scaleY="0" id="0:255">
+  <Shape name="b3b_shape" id="0:256">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b3b_rect"/>
+    <Fill name="b3b_fill"><SolidColor colorValue="FF7A6662" name="b3b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="b2" id="0:257">
+<Node name="b2s" scaleX="0" scaleY="0" id="0:259">
+  <Node name="b2s_clip" id="0:260">
+    <ClippingShape sourceId="0:258" name="b2s_clipper"/>
+    <Node name="b2s_img" id="0:261">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b2s_image" id="0:262"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b2s_mask" id="0:258">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b2s_rect"/>
+  </Shape>
+</Node>
+<Node name="b2a" scaleX="0" scaleY="0" id="0:263">
+  <Shape name="b2a_shape" id="0:264">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b2a_rect"/>
+    <Fill name="b2a_fill"><SolidColor colorValue="FF7A6662" name="b2a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b2b" scaleX="0" scaleY="0" id="0:265">
+  <Shape name="b2b_shape" id="0:266">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b2b_rect"/>
+    <Fill name="b2b_fill"><SolidColor colorValue="FF7A6662" name="b2b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="b1" id="0:267">
+<Node name="b1s" scaleX="0" scaleY="0" id="0:269">
+  <Node name="b1s_clip" id="0:270">
+    <ClippingShape sourceId="0:268" name="b1s_clipper"/>
+    <Node name="b1s_img" id="0:271">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b1s_image" id="0:272"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b1s_mask" id="0:268">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b1s_rect"/>
+  </Shape>
+</Node>
+<Node name="b1a" scaleX="0" scaleY="0" id="0:273">
+  <Shape name="b1a_shape" id="0:274">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b1a_rect"/>
+    <Fill name="b1a_fill"><SolidColor colorValue="FF7A6662" name="b1a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b1b" scaleX="0" scaleY="0" id="0:275">
+  <Shape name="b1b_shape" id="0:276">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b1b_rect"/>
+    <Fill name="b1b_fill"><SolidColor colorValue="FF7A6662" name="b1b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+<Node name="b0" id="0:277">
+<Node name="b0s" scaleX="0" scaleY="0" id="0:279">
+  <Node name="b0s_clip" id="0:280">
+    <ClippingShape sourceId="0:278" name="b0s_clipper"/>
+    <Node name="b0s_img" id="0:281">
+      <Image assetId="0:10" originX="0" originY="0" scaleX="0.5" scaleY="0.5" name="b0s_image" id="0:282"/>
+    </Node>
+  </Node>
+  <Shape x="-32.5" y="-38.5" name="b0s_mask" id="0:278">
+    <Rectangle width="65" height="54.5" originX="0" originY="0" name="b0s_rect"/>
+  </Shape>
+</Node>
+<Node name="b0a" scaleX="0" scaleY="0" id="0:283">
+  <Shape name="b0a_shape" id="0:284">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b0a_rect"/>
+    <Fill name="b0a_fill"><SolidColor colorValue="FF7A6662" name="b0a_color"/></Fill>
+  </Shape>
+</Node>
+<Node name="b0b" scaleX="0" scaleY="0" id="0:285">
+  <Shape name="b0b_shape" id="0:286">
+    <Rectangle width="1.1" height="1" originX="0.5" originY="0" name="b0b_rect"/>
+    <Fill name="b0b_fill"><SolidColor colorValue="FF7A6662" name="b0b_color"/></Fill>
+  </Shape>
+</Node>
+</Node>
+</Artboard>
+</Rive>

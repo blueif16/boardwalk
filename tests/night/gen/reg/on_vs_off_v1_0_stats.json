@@ -1,0 +1,9 @@
+{
+ "tiles": 345,
+ "confident": 345,
+ "median_px": 0.1,
+ "p90_px": 0.33,
+ "max_px": 0.87,
+ "mean_dx": -0.03,
+ "mean_dy": 0.12
+}

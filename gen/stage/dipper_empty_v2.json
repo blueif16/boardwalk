@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same framing, camera, colours, line style and the position of every object. Change only these:\n- At the left, in front of the coaster, there is a tall red ride with a round red-and-yellow hub and red arms reaching to the ground. Remove the hub and arms completely. Leave only a low round concrete base pad on the boardwalk where its feet stood, with a short white fence around it, and fill the rest with the coaster lattice and boardwalk that are behind it.\n- Remove any small leftover figures, specks, bits of people or animals on the boardwalk and the sand; fill them with the boardwalk planks or sand around them.\nDo not add anything new. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "gen/stage/dipper_empty_v1_0.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "dipper_empty_v2"
+ },
+ "format": "png",
+ "generation_s": 47.9,
+ "attempts": 1,
+ "idempotency_key": "afae01a3-68e6-424b-950a-cee1e824f061",
+ "request_id": "a2db8663-28a6-4c89-bac2-db2822ae0fc8",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2659,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 170
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2659,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 170
+  },
+  "total_tokens": 5827
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/494e67f3-66d5-4c06-80ab-5ba2c73ff99f",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/4be81998-c53b-471d-b13a-111e6a4e6aad"
+ ],
+ "files": [
+  "gen/stage/dipper_empty_v2_0.png",
+  "gen/stage/dipper_empty_v2_1.png"
+ ]
+}

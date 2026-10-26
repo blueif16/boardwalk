@@ -1,0 +1,58 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our style frame: a cute storybook map of a seaside boardwalk crowded with tiny animal characters. Image 2 is a close-up of those characters. Draw a sprite sheet of ONE new animal character that belongs in that crowd, in exactly their style: chunky toy-like proportions with the head as big as the body, short stubby arms and legs, thin warm dark-brown outlines (#2c201b) around the whole silhouette, thinner tinted lines inside, flat pastel fills with one soft shade tone, tiny dot eyes, a small mouth, rosy cheeks, a plain t-shirt.\n\nThe character: a little tan shiba dog with pointed ears and a cream muzzle, wearing a mint-green t-shirt and lavender-grey shorts.\n\nLayout, strict: a grid of 4 columns and 3 rows on a plain flat pure white background. The same character twelve times, identical in size, colours, clothes and head shape in every cell, each one whole from the ears to the feet, standing on the row's baseline, centred in its cell with a wide empty margin. Nothing touches or overlaps a neighbour. No grid lines, no borders, no shadows, no ground, no text, no labels.\nRow 1, front view, facing the viewer: standing still, arms down; walking, left foot stepping forward; walking, right foot stepping forward; sitting on the ground, legs stretched out in front, hands on knees.\nRow 2, side view in profile, facing RIGHT: standing still; walking mid-stride with the NEAR leg forward and the far leg back; walking mid-stride with the FAR leg forward and the near leg back (these two cells must show different legs in front); standing and licking an ice cream cone held up at its mouth.\nRow 3, back view, facing away from the viewer: standing still, arms down; walking, left foot stepping forward; walking, right foot stepping forward; standing and holding a phone up with both hands to take a photo.\nThe walking poses are small, simple steps that read at a tiny size: one leg clearly forward, the opposite arm swinging forward, the body bobbing slightly.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "tests/characters/gen/ref_chars.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "sheet_dog_shiba"
+ },
+ "format": "png",
+ "generation_s": 58.9,
+ "attempts": 1,
+ "idempotency_key": "70be4988-84ec-4d7f-903e-1a0bfff1dba8",
+ "request_id": "482f09e0-a764-420b-97c7-8bc84e3d3186",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 1584,
+  "completion_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 3881,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3442,
+   "text_tokens": 439
+  },
+  "output_tokens": 1584,
+  "output_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 3881,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3442,
+   "text_tokens": 439
+  },
+  "total_tokens": 5465
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/d23a69b3-45ad-4c84-be33-a7362c6ebffe"
+ ],
+ "files": [
+  "tests/characters/gen/sheet_dog_shiba_0.png"
+ ]
+}

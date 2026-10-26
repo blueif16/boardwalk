@@ -1,0 +1,58 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our style frame: a cute storybook map with tiny animal characters. Image 2 is a sprite sheet of one of them: the little brown bear in a cornflower-blue t-shirt and butter-yellow shorts. Draw that same bear as a character turnaround sheet for 3D modelling, in exactly image 2's look: the same head shape, ears, muzzle, colours and clothes, chunky toy-like proportions with the head as big as the body, thin warm dark-brown outlines, flat pastel fills with soft shading.\nThe same bear three times side by side, evenly spaced, at the same size, feet on the same baseline, each one whole from the ears to the feet with empty margin around it. Left: front view. Middle: side view, facing left. Right: back view. Neutral A-pose: arms straight and held slightly away from the body, legs straight and slightly apart, empty hands, nothing held or carried. Plain flat mid-grey background, no ground, no shadows, no scenery, no props, no text or labels.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "tests/characters/gen/sheet_bear_0.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "turnaround_bear"
+ },
+ "format": "png",
+ "generation_s": 54.0,
+ "attempts": 1,
+ "idempotency_key": "f2371ed0-8409-470e-beff-a5bc3d2a92f0",
+ "request_id": "f1d82513-c68a-400f-9650-33152c3fa779",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 1584,
+  "completion_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 5195,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4978,
+   "text_tokens": 217
+  },
+  "output_tokens": 1584,
+  "output_tokens_details": {
+   "image_tokens": 1584,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 5195,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4978,
+   "text_tokens": 217
+  },
+  "total_tokens": 6779
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/240577ad-3af2-4e1c-86f6-ace33ea4ff14"
+ ],
+ "files": [
+  "tests/characters/gen/turnaround_bear_0.png"
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same framing, camera, colours, line style and the position of every object, including all the small food stalls and booths. Remove only these objects and fill each place with what is behind it, continuing the surroundings seamlessly:\n- every palm tree: where a palm stands in front of a stall, complete the stall behind it (its roof, wall and counter); elsewhere fill with the planks, pavement, street, grass or coaster lattice behind it;\n- every blue lamp post with yellow globe lights: fill with boardwalk planks;\n- the wooden park benches: fill with planks and bushes;\n- the two flags at the top centre and their two flag poles: fill with the parking lot, street and kerb behind them.\nDo not remove or change the stalls. Leave no shadows or marks where the removed objects stood. Do not add anything new. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "clean_thin"
+ },
+ "format": "png",
+ "generation_s": 63.9,
+ "attempts": 1,
+ "idempotency_key": "00cbb825-c957-4982-aaae-5f1957a9d638",
+ "request_id": "7de28f78-6871-4d9f-8862-aecec09400ec",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2689,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 200
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2689,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 200
+  },
+  "total_tokens": 5857
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/05d0ec01-dea6-465f-abab-c923d3687bd8",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/ffa67d52-32ae-44eb-9c15-8ab16b580aa2"
+ ],
+ "files": [
+  "tests/hover/gen/clean_thin_0.png",
+  "tests/hover/gen/clean_thin_1.png"
+ ]
+}

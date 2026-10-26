@@ -1,0 +1,21 @@
+{
+  "image": "stage_4k.webp",
+  "imageScale": 2.5,
+  "size": [1536, 1024],
+  "source": "stage_4k.png = gen/stage/dipper_4k_v1_1.png (gpt-image-2.5, 3840 x 2560, quality high): the previous stage (gen/stage/stage_v0_1536.png, from dipper_empty_v2_0) redrawn at 4K with the ghost figures removed; registered to it within 0.8 px median, 3.7 px max at stage scale. stage.png is its 1536 x 1024 Lanczos downscale for tools that read stage pixels.",
+  "camera": {
+    "yawDeg": 24.1,
+    "pitchDeg": 28.7,
+    "unit": "1 ground unit = 1 stage px along the screen's horizontal",
+    "measured": "platform rim ellipses: dream_wheel 178 x 80.5 px (ratio 0.45), sea_swings 170.8 x 87 px (ratio 0.51); pitch = asin(mean ratio 0.48). Wall rail from (0, 548) to (1536, 878): slope 0.215 = tan(yaw) * sin(pitch)"
+  },
+  "platforms": {
+    "dream_wheel": { "floor": [730, 602], "radius": 89, "fencePx": 20, "rimCenter": [730, 582], "gate": [690, 640] },
+    "sea_swings": { "floor": [944, 641], "radius": 85, "fencePx": 27, "rimCenter": [944, 614], "gate": [905, 685] },
+    "fireball": { "floor": [341, 440], "radius": 79, "fencePx": 12, "approx": true },
+    "east_flat_ride": { "floor": [1402, 655], "radius": 90, "fencePx": 20, "approx": true }
+  },
+  "wall": { "railTop": [[0, 548], [1536, 878]] },
+  "stairs": [[165, 628], [368, 676], [645, 744], [912, 812], [1305, 905]],
+  "notes": "Positions are stage pixels, y down, measured by eye on gridded zooms; platforms marked approx are rougher. Floor = the ground circle the ride stands on; rimCenter = the top of its fence."
+}

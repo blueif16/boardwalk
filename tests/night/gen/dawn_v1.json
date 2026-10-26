@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything.\n\nThe new time: early morning, just after sunrise. A soft, fresh light: pale rose and apricot where the low sun from the upper right touches the tops of things, cool lilac-blue in the shade, a faint morning haze over the far street. Keep it a storybook painting: the pastel colours stay clean and gentle, a little cooler and paler than midday. The sand is pale peach with a lilac tint, the white coaster lattice rosy on its sunlit side and lilac on the rest. Shadows stay short and soft, right under each object: no long shadows.\n\nAll lamps, bulbs and lit signs are switched off.\n\nDo not add any people, animals, rides, cars, sun or sky. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "1536x1024",
+  "quality": "auto",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "dawn_v1"
+ },
+ "format": "png",
+ "generation_s": 59.1,
+ "attempts": 1,
+ "idempotency_key": "8bd8a67b-ec0e-4c59-83de-01e4fb049787",
+ "request_id": "bc0af7c3-c90b-41dc-a707-0d63eaaebfac",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 3168,
+  "completion_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2722,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 233
+  },
+  "output_tokens": 3168,
+  "output_tokens_details": {
+   "image_tokens": 3168,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2722,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 233
+  },
+  "total_tokens": 5890
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/b09ea47d-0cb7-47b3-906d-2a532f53a848",
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/575e328b-c83c-4b05-a79d-9fa97d22efc8"
+ ],
+ "files": [
+  "tests/night/gen/dawn_v1_0.png",
+  "tests/night/gen/dawn_v1_1.png"
+ ]
+}

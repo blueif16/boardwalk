@@ -1,0 +1,5 @@
+Image 1 is a night scene. Turn it into a light map of the same scene: paint everything solid black except the lights themselves.
+
+Keep every light exactly where it is in image 1, at the same size and shape, so the result lines up with image 1 pixel for pixel: the lamp globes, every small bulb along the coaster track, the rail and the ride fences, the lit windows, the glowing insides and counters of the stalls, the lanterns, and the soft pools of light the lamps cast on the planks. The lights keep their warm colours and their soft glow.
+
+Everything that is not a light (outlines, walls, planks, lattice, sand, trees, cars, the street) is solid black. Do not add any light that is not in image 1. Do not draw any text, letters, numbers, logos or watermarks.

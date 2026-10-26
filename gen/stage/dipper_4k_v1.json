@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same framing, camera, colours and line style, and the position, size and shape of every object: the coaster, the log ride, every round platform, stall, lamp, bench, stair, rail post, palm, car and flag. Redraw the whole picture at full resolution with crisp, clean detail: thin warm dark-brown outlines, thinner tinted lines inside, soft pastel fills with a gentle paper texture, and wood grain on the boardwalk planks and the wall.\nChange only these:\n- Remove every faint, washed-out or half-transparent figure, person, animal, ghost shape, balloon bunch or speck standing on the boardwalk, on the round platforms and on the sand. Fill each one with the boardwalk planks, platform floor or sand around it.\n- The round platforms stay empty: only their floor and their fence.\nDo not add anything new. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "base/stage.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "dipper_4k_v1"
+ },
+ "format": "png",
+ "generation_s": 66.9,
+ "attempts": 1,
+ "idempotency_key": "eda8d6a0-d1fd-4339-83bd-f3f87a7b9915",
+ "request_id": "7c9452fb-8a1e-4942-bf91-9a6194a2dad3",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2702,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 213
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2702,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 213
+  },
+  "total_tokens": 15182
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/3c2ba646-d1de-44b5-9f88-7d821ad277fb",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/749d5f5a-c0d0-4a74-a0f9-7ea94c5db2d7"
+ ],
+ "files": [
+  "gen/stage/dipper_4k_v1_0.png",
+  "gen/stage/dipper_4k_v1_1.png"
+ ]
+}
