@@ -1,0 +1,9 @@
+{"out": "gen/park/tiles_v2/r0c0", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r0c0.png"]}
+{"out": "gen/park/tiles_v2/r0c1", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r0c1.png"]}
+{"out": "gen/park/tiles_v2/r0c2", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r0c2.png"]}
+{"out": "gen/park/tiles_v2/r1c0", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r1c0.png"]}
+{"out": "gen/park/tiles_v2/r1c1", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r1c1.png"]}
+{"out": "gen/park/tiles_v2/r1c2", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r1c2.png"]}
+{"out": "gen/park/tiles_v2/r2c0", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r2c0.png"]}
+{"out": "gen/park/tiles_v2/r2c1", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r2c1.png"]}
+{"out": "gen/park/tiles_v2/r2c2", "prompt_file": "prompts/park_tile_v1.txt", "ref": ["gen/park/tiles_v2/in_r2c2.png"]}

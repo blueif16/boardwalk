@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our painting of the whole Santa Cruz Beach Boardwalk, with a blank white band above it and another below it. Fill both bands so the result is one complete picture, in exactly the painting's style: thin outlines tinted as darker versions of each fill, soft gentle shading, a gentle paper texture, the warm pastel palette, rounded toy-like proportions, crisp clean detail.\n- Keep the painted middle band exactly as it is: every ride, building, street, tree, the beach wall and the river stay in the same place with the same shape and colours.\n- Top band: continue the scene behind the park, seen from the same camera: Beach Street and its parking lots continue, then blocks of small colourful houses, motels and shops of the town with palm trees and gardens, rising gently to green wooded hills along the top edge, with a soft pale sky only as a thin strip at the very top if anything.\n- Bottom band: continue the wide sandy beach in front of the park, then the sea of Monterey Bay: flat blue water with short white ripples, curling white foam lines where the waves run up the sand, and a band of darker wet sand behind the foam. The waterline is gently curved and continues the one already painted at the bottom left.\n- The two new bands must join the middle seamlessly, with no visible edge, line or change of colour.\nDo not draw any people or animals. Do not draw any text, letters, numbers, logos, signatures or watermarks.",
+ "refs": [
+  "gen/park/world_in_v2.png"
+ ],
+ "mask": "gen/park/world_mask_v2.png",
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "world_v2"
+ },
+ "format": "png",
+ "generation_s": 63.5,
+ "attempts": 1,
+ "idempotency_key": "fa401405-11dd-47cf-9754-640be5924bf9",
+ "request_id": "fcf757e5-8560-4236-b70c-743542d87ac3",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2796,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 307
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2796,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 307
+  },
+  "total_tokens": 15276
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/e243d2a0-62db-47b4-b09e-f5810a616f81",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/9e957dcb-778b-4358-8e91-e14192bd5f5a"
+ ],
+ "files": [
+  "gen/park/world_v2_0.png",
+  "gen/park/world_v2_1.png"
+ ]
+}

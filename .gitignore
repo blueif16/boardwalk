@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 node_modules/
 .DS_Store
+gen/park/world_v2_hd.png

@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. It is one piece of a larger painting. Keep everything exactly as it is: the same framing, zoom, camera, colours and line style, and the position, size and shape of every object and every edge: every ride, building, track, chute, tree, lamp, bench, stair, rail post, the beach wall, the waterline, the foam lines and the ripples. Redraw the whole piece at full resolution with crisp, clean detail: thin warm dark-brown outlines, thinner tinted lines inside, soft pastel fills with a gentle paper texture, clear readable shapes for every small ride and building, wood grain on the boardwalk planks and the wall.\nThe framing is strict: do not zoom out, do not crop, and do not add anything that is not in image 1. Objects cut by the edges of image 1 stay cut at exactly the same place. Where image 1 shows only sand and sea, the result shows only sand and sea, with the waterline in the same place.\nDo not add anything new. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "gen/park/tiles_v2/in_r2c1.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "r2c1"
+ },
+ "format": "png",
+ "generation_s": 59.8,
+ "attempts": 1,
+ "idempotency_key": "4d3e6f84-f7ce-437e-8038-ab353a305f3c",
+ "request_id": "dca0fb50-07a3-471f-a99b-8c6d29635e7c",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2730,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 241
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2730,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 241
+  },
+  "total_tokens": 15210
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/3d8d4872-22c0-471b-a571-2d22683f267c",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/e404cf52-52ac-4209-8dbc-6f8c331e9644"
+ ],
+ "files": [
+  "gen/park/tiles_v2/redo/r2c1_0.png",
+  "gen/park/tiles_v2/redo/r2c1_1.png"
+ ]
+}

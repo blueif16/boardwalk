@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. It is one piece of a larger painting. Keep everything exactly as it is: the same framing, camera, colours and line style, and the position, size and shape of every object: every ride, building, track, chute, tree, lamp, bench, stair, rail post and the beach wall. Redraw the whole piece at full resolution with crisp, clean detail: thin warm dark-brown outlines, thinner tinted lines inside, soft pastel fills with a gentle paper texture, clear readable shapes for every small ride and building, wood grain on the boardwalk planks and the wall.\nObjects cut by the edges of image 1 stay cut at exactly the same place.\nDo not add anything new. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "gen/park/tiles_v2/in_r1c2.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "r1c2"
+ },
+ "format": "png",
+ "generation_s": 50.1,
+ "attempts": 1,
+ "idempotency_key": "24127e24-4efb-4027-aecb-594d286e3f14",
+ "request_id": "d751a4ae-0eb5-4cda-b181-e7dbc9fd86ae",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2659,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 170
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2659,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 170
+  },
+  "total_tokens": 8899
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/b2182172-47c3-48ac-9fb5-f819a033c2ad"
+ ],
+ "files": [
+  "gen/park/tiles_v2/r1c2_0.png"
+ ]
+}
