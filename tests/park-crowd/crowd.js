@@ -1,5 +1,6 @@
 // The animal crowd on the whole park: the characters test's sim and sprite batcher on park.json's frame and
-// walk.json's network. Everything is drawn in one WebGL call, sorted by feet; no cut-outs yet, because the lanes keep
+// walk.json's network, with its own atlas (tests/characters/tools/build_atlas.py --park). &room= spreads groups out
+// (1 = huddled as in the characters test). Everything is drawn in one WebGL call, sorted by feet; no cut-outs yet, because the lanes keep
 // walkers in front of everything they pass.
 import { createCamera } from "../../base/camera.js";
 import { createClock } from "../../base/clock.js";
@@ -9,29 +10,32 @@ import { createRenderer } from "../characters/render.js";
 const WARM = 25;
 const WALK = ["walk0", "stand", "walk1", "stand"];
 const UNIT = 3840 / 3904; // park px per Dipper-stage unit, the unit the size number is given in
-const LOOKS = ["bear", "bunny", "cat_orange", "dog_shiba", "cat_grey", "bunny_brown", "dog_cream"];
+const KIDS = ["bear_cub"];
 const load = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
 
-export async function mountCrowd(canvas, { params = new URLSearchParams(location.search), size = 38, count = 300, hour = 13 } = {}) {
+export async function mountCrowd(canvas, { params = new URLSearchParams(location.search), size = 38, count = 120, hour = 13, room = 1.5 } = {}) {
   const dir = new URL("./", import.meta.url);
   const chars = new URL("../characters/", import.meta.url);
   const [park, walk, meta, atlas] = await Promise.all([
     fetch(new URL("park.json", dir)).then((r) => r.json()),
     fetch(new URL("walk.json", dir)).then((r) => r.json()),
-    fetch(new URL("atlas.json", chars)).then((r) => r.json()),
-    load(new URL("atlas.png", chars).href),
+    fetch(new URL("atlas.json", dir)).then((r) => r.json()),
+    load(new URL("atlas.png", dir).href),
   ]);
   const camera = createCamera(park);
   const clock = createClock();
   const r = createRenderer(canvas, atlas, meta, { W: camera.W, H: camera.H });
-  const looks = LOOKS.filter((l) => r.frames[`${l}/front_stand`]);
+  // Every adult in the atlas walks; kids and pets come from their own lists.
+  const looks = [...new Set(Object.keys(r.frames).filter((k) => k.endsWith("/front_stand")).map((k) => k.split("/")[0]))]
+    .filter((l) => !KIDS.includes(l) && l !== "pet");
+  const K = ((Number(params.get("px")) || size) * UNIT) / 30;
   const crowd = createCrowd({
     walk, camera, max: Number(params.get("n")) || count, seed: Number(params.get("seed")) || 1,
-    hour: () => Number(params.get("hour") ?? hour), looks, kids: ["bear_cub"],
+    hour: () => Number(params.get("hour") ?? hour), looks, kids: KIDS.filter((l) => r.frames[`${l}/front_stand`]),
+    spacing: K * (Number(params.get("room")) || room),
   });
   crowd.advance(clock.now() + WARM);
 
-  const K = ((Number(params.get("px")) || size) * UNIT) / 30;
   const shadow = r.frames.shadow, ink = r.frames.ink;
   const list = [];
 

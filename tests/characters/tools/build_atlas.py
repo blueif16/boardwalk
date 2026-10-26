@@ -1,6 +1,9 @@
 """Character atlas: shyfai sheets (4 x 3 grid) -> keyed, scaled, outlined frames -> one atlas.png + atlas.json.
 
-  uv run --with pillow --with numpy --with scipy python -I tests/characters/tools/build_atlas.py   (from the repo root)
+  uv run --with pillow --with numpy --with scipy python -I tests/characters/tools/build_atlas.py [--park]   (from the repo root)
+
+--park: only the animal sheets (no 3D test sets, no Dipper-stage cut-outs), written to tests/park-crowd/ for the
+whole-park crowd. Sheets that have not been generated are skipped.
 
 Frames are drawn at 4 atlas px per stage px (SCALE), sharp up to 47 px characters on the 2.5x stage. Each frame's anchor is the feet point. Rows of a sheet are
 front / side (facing right) / back; columns stand / walk0 / walk1 / act (sit, eat, photo; the pet: sit, sniff, sit).
@@ -19,6 +22,8 @@ INK = (44, 32, 27)
 SHEETS = {
     "bear": 30, "bunny": 31, "cat_orange": 29, "dog_shiba": 30, "cat_grey": 29,
     "bear_cub": 22, "bunny_brown": 30, "dog_cream": 29, "pet": 13,
+    "panda": 30, "fox": 30, "pig": 29, "raccoon": 29, "koala": 29, "frog": 27, "penguin": 28, "tiger": 30,
+    "sheep": 29, "duck": 27, "elephant": 31, "hamster": 27,
 }
 VIEWS = ["front", "side", "back"]
 POSES = ["stand", "walk0", "walk1", "act"]
@@ -190,22 +195,26 @@ def extra_sets():
 
 
 def main():
+    park = "--park" in sys.argv
+    out_dir = os.path.join(TEST, "..", "park-crowd") if park else TEST
     frames = {}
     for name, h in SHEETS.items():
-        frames.update(sheet_frames(name, h))
+        if os.path.exists(os.path.join(GEN, f"sheet_{name}_0.png")):
+            frames.update(sheet_frames(name, h))
     frames.update(shadow())
     frames.update(solid())
-    frames.update(extra_sets())
+    if not park:
+        frames.update(extra_sets())
     occ_path = os.path.join(GEN, "occluders.npz")
     occ_meta = {}
-    if os.path.exists(occ_path):
+    if os.path.exists(occ_path) and not park:
         occ_meta = json.load(open(os.path.join(GEN, "occluders.json")))
         z = np.load(occ_path)
         for name, m in occ_meta.items():
             frames[f"occ/{name}"] = (z[name], m["anchor"][0], m["anchor"][1])
     atlas, placed = pack(frames)
     out = (np.clip(atlas, 0, 1) * 255 + 0.5).astype(np.uint8)
-    Image.fromarray(out, "RGBA").save(os.path.join(TEST, "atlas.png"), optimize=True)
+    Image.fromarray(out, "RGBA").save(os.path.join(out_dir, "atlas.png"), optimize=True)
     meta = {"scale": SCALE, "size": [out.shape[1], out.shape[0]], "frames": {}}
     for name, (x, y, w, h, ax, ay) in sorted(placed.items()):
         fr = {"rect": [x, y, w, h], "anchor": [round(ax, 2), round(ay, 2)]}
@@ -213,7 +222,7 @@ def main():
             m = occ_meta[name[4:]]
             fr.update({"scale": m.get("scale", 1), "at": m["at"], "sortY": m["sortY"]})
         meta["frames"][name] = fr
-    json.dump(meta, open(os.path.join(TEST, "atlas.json"), "w"), separators=(",", ":"))
+    json.dump(meta, open(os.path.join(out_dir, "atlas.json"), "w"), separators=(",", ":"))
     print(f"atlas {out.shape[1]}x{out.shape[0]}, {len(placed)} frames")
 
 

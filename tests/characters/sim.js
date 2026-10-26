@@ -49,8 +49,11 @@ export function density(hour) {
   return DENSITY.at(-1)[1];
 }
 
-export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13, looks = ADULTS, kids = ["bear_cub"] }) {
+// spacing scales how far apart the members of a group stand and walk (1 suits 30 px characters; scale it with their
+// size, and more for a roomier crowd).
+export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13, looks = ADULTS, kids = ["bear_cub"], spacing = 1 }) {
   const R = rng(seed);
+  const SP = spacing;
   const sy = Math.sin(camera.yaw), cy = Math.cos(camera.yaw);
   const nodes = walk.nodes.map((n, i) => ({ ...n, i, x: n.g[0], z: n.g[2], adj: [] }));
   const byId = new Map(nodes.map((n) => [n.id, n]));
@@ -132,18 +135,18 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     const look = () => R.pick(looks);
     if (kind === "jogger") { g.pace = R.range(40, 52); makeAgent(g, look()); }
     else if (kind === "single") { g.pace = R.range(16, 23); makeAgent(g, look()); }
-    else if (kind === "couple") { g.pace = R.range(14, 19); makeAgent(g, look(), { ox: 0, oz: -5 }); makeAgent(g, look(), { ox: 0, oz: 5 }); }
-    else if (kind === "friends") { g.pace = R.range(15, 20); makeAgent(g, look(), { oz: -7 }); makeAgent(g, look(), { oz: 7 }); makeAgent(g, look(), { ox: -8, oz: 0 }); }
+    else if (kind === "couple") { g.pace = R.range(14, 19); makeAgent(g, look(), { ox: 0, oz: -5 * SP }); makeAgent(g, look(), { ox: 0, oz: 5 * SP }); }
+    else if (kind === "friends") { g.pace = R.range(15, 20); makeAgent(g, look(), { oz: -7 * SP }); makeAgent(g, look(), { oz: 7 * SP }); makeAgent(g, look(), { ox: -8 * SP, oz: 0 }); }
     else if (kind === "family") {
       g.pace = R.range(13, 17);
-      makeAgent(g, look(), { oz: -5 });
-      if (R() < 0.6) makeAgent(g, look(), { oz: 5 });
-      makeAgent(g, R.pick(kids), { kid: true, ox: 10, oz: R.range(-3, 3) });
-      if (R() < 0.35) makeAgent(g, R.pick(kids), { kid: true, ox: 6, oz: R.range(6, 9) });
+      makeAgent(g, look(), { oz: -5 * SP });
+      if (R() < 0.6) makeAgent(g, look(), { oz: 5 * SP });
+      makeAgent(g, R.pick(kids), { kid: true, ox: 10 * SP, oz: R.range(-3, 3) * SP });
+      if (R() < 0.35) makeAgent(g, R.pick(kids), { kid: true, ox: 6 * SP, oz: R.range(6, 9) * SP });
     } else if (kind === "dogwalker") {
       g.pace = R.range(15, 20);
-      const owner = makeAgent(g, look(), { oz: -3 });
-      makeAgent(g, "pet", { pet: true, owner, ox: 13, oz: 4 });
+      const owner = makeAgent(g, look(), { oz: -3 * SP });
+      makeAgent(g, "pet", { pet: true, owner, ox: 13 * SP, oz: 4 * SP });
     }
     for (const a of g.members) { Object.assign(a, { x: at.x + a.ox, h: at.h, z: at.z + a.oz }); a.tx = a.x; a.th = a.h; a.tz = a.z; }
     groups.push(g);
@@ -250,37 +253,37 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     if (p.kind === "queue") { g.what = "queue"; g.until = Infinity; return; }
     if (p.kind === "stall") {
       const s = p.spots[g.spot];
-      ppl.forEach((a, i) => { a.tx = s.x + (i ? (i % 2 ? -7 : 7) : 0); a.tz = s.z + (i ? 9 + (i > 2 ? 7 : 0) : 0); a.th = 0; a.want = { heading: -Math.PI / 2, pose: "stand" }; });
+      ppl.forEach((a, i) => { a.tx = s.x + (i ? (i % 2 ? -7 : 7) : 0) * SP; a.tz = s.z + (i ? 9 + (i > 2 ? 7 : 0) : 0) * SP; a.th = 0; a.want = { heading: -Math.PI / 2, pose: "stand" }; });
       g.what = "stall"; g.until = now + R.range(10, 20); return;
     }
     if (p.kind === "bench") {
-      ppl.forEach((a, i) => { const s = p.spots[Math.min(i, p.spots.length - 1)]; a.tx = s.x + (i >= p.spots.length ? 9 : 0); a.tz = s.z + (i >= p.spots.length ? 8 : 0); a.th = 0; a.want = { heading: sea, pose: i < p.spots.length ? "sit" : "stand" }; });
+      ppl.forEach((a, i) => { const s = p.spots[Math.min(i, p.spots.length - 1)]; a.tx = s.x + (i >= p.spots.length ? 9 * SP : 0); a.tz = s.z + (i >= p.spots.length ? 8 * SP : 0); a.th = 0; a.want = { heading: sea, pose: i < p.spots.length ? "sit" : "stand" }; });
       g.what = "bench"; g.until = now + R.range(40, 90); return;
     }
     if (p.kind === "rail" || (p.kind === "beach" && p.mode !== "castle")) {
       const s = p.spots[0];
-      ppl.forEach((a, i) => { const k = i - (ppl.length - 1) / 2; a.tx = s.x + k * 10; a.tz = s.z - k * 1.5; a.th = s.h; a.want = { heading: sea, pose: p.kind === "beach" && p.mode === "towel" ? "sit" : "stand" }; });
+      ppl.forEach((a, i) => { const k = i - (ppl.length - 1) / 2; a.tx = s.x + k * 10 * SP; a.tz = s.z - k * 1.5 * SP; a.th = s.h; a.want = { heading: sea, pose: p.kind === "beach" && p.mode === "towel" ? "sit" : "stand" }; });
       g.what = p.kind; g.until = now + (p.kind === "rail" ? R.range(30, 80) : R.range(70, 160)); return;
     }
     if (p.kind === "beach") {
       const s = p.spots[0];
       ppl.forEach((a, i) => {
         const ang = (i / ppl.length) * Math.PI * 2 + 0.6;
-        a.tx = s.x + (a.kid ? 0 : Math.cos(ang) * 14); a.tz = s.z + (a.kid ? 0 : Math.sin(ang) * 10); a.th = s.h;
+        a.tx = s.x + (a.kid ? 0 : Math.cos(ang) * 14 * SP); a.tz = s.z + (a.kid ? 0 : Math.sin(ang) * 10 * SP); a.th = s.h;
         a.want = { at: s, pose: a.kid ? "sit" : "stand" };
       });
       g.what = "castle"; g.until = now + R.range(60, 150); return;
     }
     if (p.kind === "photo" || p.kind === "watch") {
       const s = p.spots[0];
-      ppl.forEach((a, i) => { const k = i - (ppl.length - 1) / 2; a.tx = s.x + k * 9; a.tz = s.z + Math.abs(k) * 5; a.th = 0; a.want = { at: p.targetG, pose: i === 0 && p.kind === "photo" ? "photo" : "stand" }; });
+      ppl.forEach((a, i) => { const k = i - (ppl.length - 1) / 2; a.tx = s.x + k * 9 * SP; a.tz = s.z + Math.abs(k) * 5 * SP; a.th = 0; a.want = { at: p.targetG, pose: i === 0 && p.kind === "photo" ? "photo" : "stand" }; });
       g.what = p.kind; g.until = now + (p.kind === "photo" ? R.range(8, 16) : R.range(25, 55)); return;
     }
     if (p.kind === "hangout") {
-      const s = p.spots[0], off = [[0, 0], [34, -14], [-32, 12]][(p.used - 1) % 3], cx = s.x + off[0], cz = s.z + off[1];
+      const s = p.spots[0], off = [[0, 0], [34, -14], [-32, 12]][(p.used - 1) % 3], cx = s.x + off[0] * SP, cz = s.z + off[1] * SP;
       ppl.forEach((a, i) => {
         const ang = ppl.length === 2 ? i * Math.PI : (i / ppl.length) * Math.PI * 2 + 0.3;
-        a.tx = cx + Math.cos(ang) * 8; a.tz = cz + Math.sin(ang) * 6; a.th = 0;
+        a.tx = cx + Math.cos(ang) * 8 * SP; a.tz = cz + Math.sin(ang) * 6 * SP; a.th = 0;
         a.want = { at: { x: cx, z: cz }, pose: R() < 0.7 ? "eat" : "stand" };
       });
       g.what = "hangout"; g.until = now + R.range(30, 65); return;
@@ -294,10 +297,10 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     if (was?.kind === "stall" && R() < 0.65 && !g.leaving) {
       const hs = byKind.hangout.filter((p) => fits(p, g) && dist(p.spots[0], g.pos) < 200).sort((a, b) => dist(a.spots[0], g.pos) - dist(b.spots[0], g.pos));
       if (hs.length) { g.plan = { kind: "hangout", place: hs[0] }; reserve(g, hs[0]); setRoute(g, hs[0].nodeIdx); return; }
-      const ppl = people(g), cx = g.pos.x + R.range(-6, 6), cz = g.pos.z + 16;
+      const ppl = people(g), cx = g.pos.x + R.range(-6, 6) * SP, cz = g.pos.z + 16 * SP;
       ppl.forEach((a, i) => {
         const ang = ppl.length === 1 ? Math.PI / 2 : ppl.length === 2 ? i * Math.PI : (i / ppl.length) * Math.PI * 2 + 0.3;
-        a.tx = cx + Math.cos(ang) * 8; a.tz = cz + Math.sin(ang) * 6; a.th = g.pos.h;
+        a.tx = cx + Math.cos(ang) * 8 * SP; a.tz = cz + Math.sin(ang) * 6 * SP; a.th = g.pos.h;
         a.want = ppl.length === 1 ? { heading: Math.PI / 2, pose: "eat" } : { at: { x: cx, z: cz }, pose: R() < 0.7 ? "eat" : "stand" };
       });
       g.plan = { kind: "snack" }; g.state = "act"; g.what = "hangout"; g.until = now + R.range(15, 35); return;
@@ -372,7 +375,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     const [fx, fz] = g.dir, rx = -fz, rz = fx;
     g.members.forEach((m, i) => {
       if (m.want) return;
-      const ox = stair ? -i * 7 : m.ox, oz = stair ? 0 : m.oz + g.lat;
+      const ox = stair ? -i * 7 * SP : m.ox, oz = stair ? 0 : m.oz + g.lat;
       m.tx = g.pos.x + fx * ox + rx * oz;
       m.tz = g.pos.z + fz * ox + rz * oz;
       m.th = g.pos.h;

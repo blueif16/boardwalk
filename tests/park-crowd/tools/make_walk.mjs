@@ -123,7 +123,7 @@ function place(p) {
 // Stalls: three customers at the counter, facing it.
 objects.filter((o) => o[3] === "stall" || o[3] === "kiosk").forEach(([a, b, y], i) => {
   const c = (a + b) / 2;
-  place({ id: `stall_${i}`, kind: "stall", slots: [[c - 22, y + 5], [c, y + 6], [c + 22, y + 5]], lane: "n" });
+  place({ id: `stall_${i}`, kind: "stall", slots: [[c - 30, y + 5], [c, y + 6], [c + 30, y + 5]], lane: "n" });
 });
 const bench = (id, slots) => place({ id, kind: "bench", slots, lane: "n" });
 bench("bench_w", [[2128, 1368], [2156, 1371]]);
@@ -142,10 +142,10 @@ photo("photo_carousel", [1700, 1322], [1670, 1230]);
 const hangout = (id, center) => place({ id, kind: "hangout", slots: [center], lane: "s" });
 [[600, 1236], [1262, 1293], [2150, 1412], [2705, 1548], [3090, 1626]].forEach((c, i) => hangout(`hang_${i}`, c));
 
-// Rail spots: lean on the rail and look at the sea, one every 34 px, clear of stairs and lamps.
+// Rail spots: lean on the rail and look at the sea, one every 72 px, clear of stairs and lamps.
 const railSpots = [];
 const blocked = [...stairs.map((s) => [s.top[0], 28]), ...lamps.map((l) => [l[0], 16])];
-for (let x = 240; x < 3520; x += 34) {
+for (let x = 250; x < 3520; x += 72) {
   if (blocked.some(([bx, r]) => Math.abs(bx - x) < r)) continue;
   const y = along(rail, x) - 3;
   if (frontAt(x, 4) > y - 2) continue;
@@ -157,13 +157,13 @@ railSpots.forEach((p, i) => place({ id: `rail_${i}`, kind: "rail", slots: [p], a
 let seed = 11;
 const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 const beach = [];
-for (let tries = 0; tries < 30000 && beach.length < 150; tries++) {
+for (let tries = 0; tries < 30000 && beach.length < 70; tries++) {
   const x = 80 + rnd() * 3640;
   const top = x > 3537 ? 1835 : along(wallFoot, x) + 34;
   const bottom = Math.min(along(waterline, x) - 28, VISIBLE_BOTTOM);
   if (bottom - top < 10) continue;
   const y = top + rnd() * (bottom - top);
-  if (beach.some((b) => Math.hypot(b[0] - x, (b[1] - y) * 1.8) < 62)) continue;
+  if (beach.some((b) => Math.hypot(b[0] - x, (b[1] - y) * 1.8) < 150)) continue;
   beach.push([r1(x), r1(y)]);
 }
 beach.forEach((p, i) => {

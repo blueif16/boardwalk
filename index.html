@@ -12,20 +12,35 @@
   .world > * { position: absolute; inset: 0; width: 3840px; height: 2560px; display: block; }
   .panel { position: absolute; left: 12px; bottom: 12px; max-width: calc(100% - 24px); display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 8px 12px; background: color-mix(in srgb, var(--card) 90%, transparent); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 2px 10px rgb(54 34 35 / 0.12); }
   .panel[hidden] { display: none; }
+  .slot { pointer-events: none; }
+  .slot canvas, .slot img { position: absolute; display: block; }
   .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
 </style>
 </head>
 <body>
 <div class="world" id="world">
   <img id="painting" alt="The whole Santa Cruz Beach Boardwalk in our style, with the town above and the sea below">
+  <div class="slot" data-slot="plate"></div>
+  <div class="slot" data-slot="rides"></div>
   <canvas id="animals"></canvas>
+  <div class="slot" data-slot="front"></div>
 </div>
 <div class="panel mono" id="panel" hidden></div>
 <script type="module">
 // The whole park, fixed: the 3:2 painting always covers the window (no scrolling, no bars) and the park strip in its
 // middle stays whole on screens from 3:2 to about 2.4:1. Live layers draw in the same 3840 x 2560 park frame.
-// Params: &n= crowd size, &hour= 0-24 (default 13), &px= animal size (default 38), &t= frozen clock, &panel shows stats.
+// Params: &n= crowd size, &hour= 0-24 (default 13), &px= animal size (default 38), &t= frozen clock, &panel shows stats,
+// &layers=a,b (only these ride layers; empty for none), &crowd=0 (no animals).
+//
+// Ride layers live in rides/<name>/layer.js and export mount(ctx) -> { update(t, dt), resize(scale) }. ctx gives
+// the park frame (3840 x 2560 park px; camera from tests/park-crowd/park.json), the master clock, the slots (plate:
+// painting patches; rides; front: drawn over the crowd), addPatch(url, rect) for plate patches made with
+// tools/park_patch.py, and canvas(slot) for a park-sized canvas that tracks the window's scale.
 import { mountCrowd } from "./tests/park-crowd/crowd.js";
+import { createCamera } from "./base/camera.js";
+import { createClock } from "./base/clock.js";
+
+const RIDES = ["coaster", "wheel", "teacups", "traffic"];
 
 const W = 3840, H = 2560;
 const world = document.getElementById("world");
@@ -50,20 +65,66 @@ function fit() {
   crowd?.resize(scale);
 }
 let crowd = null;
+const rides = [];
 fit();
 addEventListener("resize", fit);
 
-crowd = await mountCrowd(document.getElementById("animals"), { params });
-crowd.resize(scale);
+const slots = Object.fromEntries([...world.querySelectorAll("[data-slot]")].map((el) => [el.dataset.slot, el]));
+const park = await fetch("tests/park-crowd/park.json").then((r) => r.json());
+const clock = createClock();
+const canvases = [];
+const ctx = {
+  park, W, H, camera: createCamera(park), clock, params, slots,
+  scale: () => scale,
+  addPatch(url, [x, y, w, h]) {
+    const img = new Image();
+    img.src = url;
+    img.alt = "";
+    img.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+    slots.plate.append(img);
+    return img;
+  },
+  // A park-sized canvas in a slot; its backing store follows the window (at most maxDensity device px per park px).
+  canvas(slot = "rides", { maxDensity = 1.25 } = {}) {
+    const c = document.createElement("canvas");
+    c.style.cssText = `left:0;top:0;width:${W}px;height:${H}px`;
+    slots[slot].append(c);
+    const entry = { c, maxDensity, fit() { const d = scale * Math.min(devicePixelRatio || 1, maxDensity / scale); c.width = Math.round(W * d); c.height = Math.round(H * d); c.density = d; } };
+    entry.fit();
+    canvases.push(entry);
+    return c;
+  },
+};
+addEventListener("resize", () => { for (const e of canvases) e.fit(); for (const l of rides) l.resize?.(scale); });
+
+const wanted = params.has("layers") ? params.get("layers").split(",").filter(Boolean) : RIDES;
+for (const name of wanted) {
+  try {
+    const mod = await import(`./rides/${name}/layer.js`);
+    const layer = (await mod.mount({ ...ctx, name, dir: new URL(`./rides/${name}/`, location.href) })) || {};
+    layer.resize?.(scale);
+    rides.push(layer);
+  } catch (err) {
+    console.error(`ride layer ${name} failed`, err);
+  }
+}
+
+if (params.get("crowd") !== "0") {
+  crowd = await mountCrowd(document.getElementById("animals"), { params });
+  crowd.resize(scale);
+}
 
 const panel = document.getElementById("panel");
 panel.hidden = !params.has("panel");
 addEventListener("keydown", (e) => { if (e.key === "h" || e.key === "H") panel.hidden = !panel.hidden; });
-let frames = 0;
+let frames = 0, prev = clock.now();
 function frame() {
-  crowd.update();
+  const t = clock.now(), dt = Math.min(0.1, Math.max(0, t - prev));
+  prev = t;
+  for (const l of rides) l.update?.(t, dt);
+  crowd?.update();
   if (!panel.hidden && frames++ % 30 === 0) {
-    const st = crowd.stats();
+    const st = crowd?.stats() ?? {};
     panel.textContent = `window ${innerWidth}×${innerHeight} at ${devicePixelRatio}× · painting ${loaded} px · ${JSON.stringify(st)}`;
   }
   requestAnimationFrame(frame);

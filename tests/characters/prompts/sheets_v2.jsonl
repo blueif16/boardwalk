@@ -1,0 +1,12 @@
+{"out": "tests/characters/gen/sheet_panda", "prompt_file": "tests/characters/prompts/sheet_panda.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_fox", "prompt_file": "tests/characters/prompts/sheet_fox.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_pig", "prompt_file": "tests/characters/prompts/sheet_pig.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_raccoon", "prompt_file": "tests/characters/prompts/sheet_raccoon.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_koala", "prompt_file": "tests/characters/prompts/sheet_koala.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_frog", "prompt_file": "tests/characters/prompts/sheet_frog.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_penguin", "prompt_file": "tests/characters/prompts/sheet_penguin.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_tiger", "prompt_file": "tests/characters/prompts/sheet_tiger.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_sheep", "prompt_file": "tests/characters/prompts/sheet_sheep.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_duck", "prompt_file": "tests/characters/prompts/sheet_duck.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_elephant", "prompt_file": "tests/characters/prompts/sheet_elephant.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
+{"out": "tests/characters/gen/sheet_hamster", "prompt_file": "tests/characters/prompts/sheet_hamster.txt", "ref": ["gen/style_frame/v1_1.png", "tests/characters/gen/ref_chars.png"]}
