@@ -8,17 +8,19 @@ Split out of `living-anatomy` on 2026-10-26.
 ## Run
 
 ```sh
-python3 -m http.server 5178 --bind 127.0.0.1    # from the repo root
+python3 -m http.server 15178 --bind 127.0.0.1    # from the repo root
+"/mnt/c/Program Files/Tailscale/tailscale.exe" serve --bg --http=5178 http://127.0.0.1:15178   # once; it persists
 ```
+
+On any device in the tailnet: **http://ran:5178/** (the park), `http://ran:5178/board.html` (the board). Local tools
+(capture scripts, bakes) use `http://localhost:15178/`. The server listens on a different local port because WSL's
+mirrored networking holds the port on the Windows side, and Tailscale needs 5178 there.
 
 | Page | What it is |
 |---|---|
-| `park.html` | The whole park on one screen (the shape of the real site) |
-| `index.html` | The board: style frames, tests, decisions, with pictures and live links |
+| `index.html` | The whole park on one screen (the shape of the real site) |
+| `board.html` | The board: style frames, tests, decisions, with pictures and live links |
 | `base/compose.html?tests=name,name` | The workbench: live test layers on the Giant Dipper slice |
-
-Over Tailscale the same server is at `https://ran.tail9bc40f.ts.net:8443/` (set up with `tailscale serve` on the
-Windows host; tailnet only).
 
 ## Folders
 

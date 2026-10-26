@@ -5,8 +5,8 @@ same pose at the same `&t=`.
 
 | | URL |
 |---|---|
-| A, live three.js | `http://localhost:5178/base/compose.html?tests=swings-three` |
-| B, Rive with pre-rendered views | `http://localhost:5178/base/compose.html?tests=swings-rive` |
+| A, live three.js | `http://localhost:15178/base/compose.html?tests=swings-three` |
+| B, Rive with pre-rendered views | `http://localhost:15178/base/compose.html?tests=swings-rive` |
 | Frozen frames | add `&t=2` (stopped), `&t=10` (spinning up), `&t=20` (full speed); `&time=night` for the bulbs |
 
 ## What was built

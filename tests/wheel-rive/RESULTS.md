@@ -1,6 +1,6 @@
 # wheel-rive: the Dream Wheel as a page-driven Rive ride
 
-View: `http://localhost:5178/base/compose.html?tests=wheel-rive`
+View: `http://localhost:15178/base/compose.html?tests=wheel-rive`
 (add `&time=night`, `&time=golden`, `&t=3` for a frozen frame, `&rive=webgl2` for the WebGL2 runtime, `&bench=10`).
 
 **Question:** does a page-driven Rive ride look right and run well?

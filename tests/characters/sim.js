@@ -163,7 +163,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
       const kind = R.weighted(table);
       if (kind === "leave") return { kind: "leave" };
       if (kind === "stroll") {
-        const near = nodes.filter((n) => n.kind === "lane" && n.px[0] > 0 && n.px[0] < 1536 && dist(n, g.pos) < 260 && dist(n, g.pos) > 60);
+        const near = nodes.filter((n) => n.kind === "lane" && n.px[0] > 0 && n.px[0] < camera.W && dist(n, g.pos) < 260 && dist(n, g.pos) > 60);
         if (near.length) return { kind: "stroll", node: R.pick(near).i };
         continue;
       }
@@ -440,7 +440,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     const kind = forced || R.weighted(GROUPS[period]);
     let at;
     if (initial) {
-      const n = R.pick(nodes.filter((x) => x.kind !== "exit" && x.kind !== "place" && x.px[0] > 0 && x.px[0] < 1536));
+      const n = R.pick(nodes.filter((x) => x.kind !== "exit" && x.kind !== "place" && x.px[0] > 0 && x.px[0] < camera.W));
       at = { x: n.x, h: n.h, z: n.z };
     } else {
       const ex = kind === "jogger" ? R.pick(deckExits.filter((i) => nodes[i].kind === "lane")) : R() < 0.78 ? R.pick(deckExits) : R.pick(exits);

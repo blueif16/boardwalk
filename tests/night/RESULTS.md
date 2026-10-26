@@ -1,6 +1,6 @@
 # Night: painted plates and a light wave, instead of a colour grade
 
-View: `http://localhost:5178/base/compose.html?tests=night&grade=off` (follows the clock; add `&time=19.4`
+View: `http://localhost:15178/base/compose.html?tests=night&grade=off` (follows the clock; add `&time=19.4`
 for a fixed hour, or `&dusk=20` to loop 18:12 → 20:36 in 20 s and watch the lights come on).
 
 ![five hours, base grade above, plates below](shots/board_hours.png)

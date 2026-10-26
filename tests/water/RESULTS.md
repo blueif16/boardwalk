@@ -1,6 +1,6 @@
 # Water: sea and surf as one WebGL2 shader pass
 
-View: `http://localhost:5178/base/compose.html?tests=water` (add `&time=morning|midday|golden|night`, `&t=12.5` to freeze).
+View: `http://localhost:15178/base/compose.html?tests=water` (add `&time=morning|midday|golden|night`, `&t=12.5` to freeze).
 
 ![midday](shots/look_midday.png)
 

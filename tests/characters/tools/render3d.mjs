@@ -13,7 +13,7 @@ const browser = await chromium.launch({ executablePath: exe, args: ["--use-angle
 const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
 page.on("console", (m) => m.type() === "error" && console.log("console:", m.text()));
 page.on("pageerror", (e) => console.log("pageerror:", e.message));
-const url = `http://localhost:5178/tests/characters/tools/render3d.html?glb=${encodeURIComponent(glb)}&lit=${lit}`;
+const url = `http://localhost:15178/tests/characters/tools/render3d.html?glb=${encodeURIComponent(glb)}&lit=${lit}`;
 await page.goto(url);
 await page.waitForFunction(() => window.__result, null, { timeout: 120000 });
 const res = await page.evaluate(() => window.__result);

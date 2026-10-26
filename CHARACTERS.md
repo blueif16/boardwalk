@@ -26,7 +26,7 @@ how it behaves, not how detailed it is.
 
 - **Views.** The promenade runs almost horizontally on screen, so most walking is seen from the side. Three drawn views
   (front, back, side, the side mirrored for the other direction) cover it; stairs and gates use front and back.
-- **Walk.** About 30 px tall: a two-frame step or a hop with a little squash reads as walking. Turning swaps the view with
+- **Walk.** 38 units tall (decided 2026-10-26; about 37 px in the park frame, about 25 CSS px on a 2560-wide window): a two-frame step or a hop with a little squash reads as walking. Turning swaps the view with
   a small hop.
 - **Drawing.** Hundreds of characters as sprites from one atlas, drawn in one WebGL call. Rive only for a few featured
   characters with interactions.

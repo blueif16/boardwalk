@@ -2,7 +2,7 @@
 
 - **Goal:** the whole official park map, painted in our style, fixed on one screen. It covers the window (no scrolling,
   no bars) on desktop monitors and MacBooks alike. The painting is 3:2: the park strip across the full width, town and
-  hills above, beach and sea below as margins that wider screens trim. `park.html` is the current shape of the site.
+  hills above, beach and sea below as margins that wider screens trim. `index.html` (the root page) is the current shape of the site.
 - **Image settings for anything that ships:** gpt-image-2.5, 3840 x 2560, quality high. These are the defaults of
   `tools/shyfai_image.py`. Smaller sizes or quality auto only for throwaway tests.
 - **Edits lose detail:** an edit repaints the whole canvas from a reduced copy of its input, even with a mask. Never pass

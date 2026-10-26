@@ -1,6 +1,6 @@
 # Characters test: the crowd on the stage
 
-View: `http://localhost:5178/base/compose.html?tests=characters`
+View: `http://localhost:15178/base/compose.html?tests=characters`
 
 | Param | Meaning |
 |---|---|

@@ -1,0 +1,11 @@
+{
+  "size": [3840, 2560],
+  "image": "site/park/world_<w>.webp",
+  "source": "gen/park/world_v2_hd.png (9600 x 6400) at 0.4: the park frame is 3840 x 2560 px whatever file is shown",
+  "camera": {
+    "yawDeg": 24.1,
+    "pitchDeg": 28.7,
+    "unit": "1 ground unit = 1 park px along the screen's horizontal; the park strip is about 3904 of the Dipper stage's units wide, so 1 park px = 1.017 stage units",
+    "measured": "the rail runs at a slope of about 0.20 on the painting (tests/park-crowd/walk.json rail), close to the Dipper stage's 0.215, so the stage camera's angles are kept"
+  }
+}

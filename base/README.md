@@ -5,8 +5,8 @@ Every test builds on this folder and is judged against the same stage, camera, p
 
 ## Run
 
-- The repo is served at `http://localhost:5178/` (`python3 -m http.server 5178` from the repo root).
-- One test: `http://localhost:5178/base/compose.html?tests=<name>`
+- The repo is served at `http://localhost:15178/` (`python3 -m http.server 15178 --bind 127.0.0.1` from the repo root); on the tailnet it is `http://ran:5178/`.
+- One test: `http://localhost:15178/base/compose.html?tests=<name>`
 - Several together: `?tests=wheel-rive,water,characters`
 - Time of day: `&time=morning|midday|golden|night` or `&time=21.5` (hours). Without it the page follows the viewer's clock.
 - Frozen clock for screenshots: `&t=12.5` (seconds).

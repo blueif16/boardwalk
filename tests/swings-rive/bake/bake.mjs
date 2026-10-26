@@ -35,7 +35,7 @@ const value = async (expression) => (await send("Runtime.evaluate", { expression
 
 try {
   await send("Runtime.enable");
-  await send("Page.navigate", { url: `http://localhost:5178/tests/swings-rive/bake/bake.html${query}` });
+  await send("Page.navigate", { url: `http://localhost:15178/tests/swings-rive/bake/bake.html${query}` });
   const t0 = Date.now();
   while (!(await value("!!window.__bake"))) {
     if (Date.now() - t0 > 300000) throw new Error("bake timed out");
