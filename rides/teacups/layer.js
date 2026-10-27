@@ -23,7 +23,14 @@ const CYCLE = T.load + T.up + T.ride + T.down;
 const PLATFORM_REV = 1 / 9;           // turns per second at full speed
 const RATE = 120;                     // integration steps per second
 const OUTLINE = 0.85;                 // park px
-const KIDS = ["bear_cub"];
+// Kid looks are drawn a little larger in the cups (their sprites are small); any look of a kid species counts.
+const isKid = (look) => /(_cub|_kid)$|^(piglet|kitten)$/.test(look.split("~")[0]);
+// Riders from the park's crowd (rides/RIDERS.md): each cup is a key (cup<i>, 2 seats), loaded LOAD_AT s into the
+// loading pause, riding until the next pause has sunk them (OFF_AT s into it). Without the crowd (ctx.riders null) the
+// cups pick their own riders each cycle.
+const LOAD_AT = 5, OFF_AT = 4, SEATS = 2;
+const GATE = [3318, 1616], EXIT = [3120, 1622]; // just off the drum's east rim; riders step off at its west front
+const QUEUE = [[3318, 1616], [3327, 1606], [3336, 1597], [3344, 1588], [3351, 1578], [3357, 1568]];
 
 const CUPS = [ // pattern band and body colour (handle, outline tint)
   { band: "pink_dots", color: "#ec8378" }, { band: "yellow_daisies", color: "#f4cf63" },
@@ -153,7 +160,7 @@ export async function mount(ctx) {
   canvas.style.cssText = `left:${bx}px;top:${by}px;width:${bw}px;height:${bh}px`;
   ctx.slots.rides.append(canvas);
   function resize(scale) {
-    renderer.setPixelRatio(scale * Math.min(devicePixelRatio || 1, 1.5 / scale)); // at most 1.5 device px per park px
+    renderer.setPixelRatio(Math.min(2.5, Math.max(1.5, scale * (devicePixelRatio || 1)))); // at least 1.5 px per park px, shrunk by the browser: crisp at monitor size
     renderer.setSize(bw, bh, false);
   }
   resize(ctx.scale());
@@ -275,7 +282,8 @@ export async function mount(ctx) {
   // Riders: the crowd's sprites on cards that always face the camera, placed at their seats each frame.
   const frames = atlasMeta.frames, AS = atlasMeta.scale, [AW, AH] = atlasMeta.size;
   const looks = [...new Set(Object.keys(frames).filter((k) => k.endsWith("/front_stand")).map((k) => k.split("/")[0]))];
-  const adults = looks.filter((l) => !KIDS.includes(l) && l !== "pet");
+  const adults = looks.filter((l) => !isKid(l) && !l.startsWith("pet"));
+  const kidLooks = looks.filter(isKid);
   const K = ((38 * (3840 / 3904)) / 30) * 0.72; // the crowd's size, a little smaller sitting in a cup
   const cardGeo = new THREE.PlaneGeometry(1, 1).translate(0, 0.5, 0);
   const cards = [];
@@ -332,7 +340,7 @@ export async function mount(ctx) {
   function crew(n) {
     const R = rng(1000003 * (n + 7) + 17);
     return cups.map(() => {
-      const pick = () => (R() < 0.22 ? KIDS[0] : adults[Math.floor(R() * adults.length)]);
+      const pick = () => (R() < 0.22 && kidLooks.length ? kidLooks[Math.floor(R() * kidLooks.length)] : adults[Math.floor(R() * adults.length)]);
       return R() < 0.55 ? [pick(), pick()] : [adults[Math.floor(R() * adults.length)]];
     });
   }
@@ -359,6 +367,9 @@ export async function mount(ctx) {
     if (ph < T.load) {
       if (ph < 5) { who = crew(n - 1); sink = smooth((ph - 2) / 2); } else sink = 1 - smooth((ph - 6) / 2);
     }
+    // The crowd's riders, when it runs: the trip at this time (the last one still sinking in the pause's first seconds).
+    const fromCrowd = ctx.riders ? cups.map((_, i) => ctx.riders(ctx.name, `cup${i}`, clock)) : null;
+    if (fromCrowd && fromCrowd.every((w) => w)) who = fromCrowd.map((w) => w.slice(0, SEATS));
     cups.forEach((c, i) => c.seats.forEach((seat, s) => {
       const alpha = (s / Math.max(1, who[i].length)) * Math.PI * 2 + 0.6 + i;
       seat.position.set(Math.cos(alpha) * SEAT_R, SEAT_Y - sink * SINK, Math.sin(alpha) * SEAT_R);
@@ -369,7 +380,7 @@ export async function mount(ctx) {
       if (!look || sink > 0.999) { card.mesh.visible = false; return; }
       const alpha = (s / Math.max(1, who[i].length)) * Math.PI * 2 + 0.6 + i;
       const [v, flip] = view(theta + phis[i] + alpha); // the seat's angle in the world
-      placeCard(card, `${look}/${v}_stand`, flip, KIDS.includes(look), sink * SINK);
+      placeCard(card, `${look}/${v}_stand`, flip, isKid(look), sink * SINK);
     });
     renderer.render(scene, cam);
     timing.ms += performance.now() - t0;
@@ -378,8 +389,20 @@ export async function mount(ctx) {
   render(ctx.clock.now());
   window.__teacups = { timing, cycle: CYCLE, calls: () => ({ ...renderer.info.render }) };
 
+  // Load events (rides/RIDERS.md), closed form: every cup loads LOAD_AT s into each cycle's pause.
+  function loads(t0, t1) {
+    const out = [];
+    for (let n = Math.max(0, Math.floor((t0 - LOAD_AT) / CYCLE)); n * CYCLE + LOAD_AT < t1; n++) {
+      const t = n * CYCLE + LOAD_AT;
+      if (t >= t0) cups.forEach((_, i) => out.push({ t, key: `cup${i}`, seats: SEATS, until: (n + 1) * CYCLE + OFF_AT }));
+    }
+    return out;
+  }
+  window.__teacups.loads = loads;
+
   return {
     update(t) { render(t); },
     resize(scale) { resize(scale); render(ctx.clock.now()); },
+    riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads },
   };
 }

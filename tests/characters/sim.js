@@ -52,7 +52,12 @@ export function density(hour) {
 // spacing scales how far apart the members of a group stand and walk (1 suits 30 px characters; scale it with their
 // size, and more for a roomier crowd). pets: the looks walked on a lead. kidOf: adult look -> kid looks of the same
 // species; when given, most families are one species (parents and kids), the rest mixed.
-export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13, looks = ADULTS, kids = ["bear_cub"], spacing = 1, pets = ["pet"], kidOf = null }) {
+// rides: scheduled rides (rides/RIDERS.md), each { name, loads(t0, t1), entries: [{ place, keys, exit }] }: place is
+// the id of a queue place in walk (with maxSeats), keys the vehicle keys it boards (null: every key no other entry
+// claims), exit the park px where its riders step out. offset: ride time = sim time - offset. Queue places with a ride
+// board on the ride's load events; queue places without one keep their fixed cycle (the characters test). rideBoost
+// multiplies how often a group picks a ride queue.
+export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13, looks = ADULTS, kids = ["bear_cub"], spacing = 1, pets = ["pet"], kidOf = null, rides = [], offset = 0, rideBoost = 1 }) {
   const R = rng(seed);
   const SP = spacing;
   const sy = Math.sin(camera.yaw), cy = Math.cos(camera.yaw);
@@ -165,6 +170,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     const table = { ...ACTS[period] };
     if (g.kind === "dogwalker") { delete table.queue; delete table.stall; delete table.bench; }
     if (hour() >= 22.5 || hour() < 11) delete table.queue;
+    if (table.queue && rides.length) table.queue *= rideBoost;
     for (let tries = 0; tries < 8; tries++) {
       const kind = R.weighted(table);
       if (kind === "leave") return { kind: "leave" };
@@ -189,7 +195,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
 
   function fits(p, g) {
     const n = people(g).length;
-    if (p.kind === "queue") return p.line.length + n <= p.spots.length;
+    if (p.kind === "queue") return p.line.length + n <= p.spots.length && (!p.ride || n <= p.maxSeats);
     if (p.kind === "bench") return !p.used && n <= p.spots.length;
     if (p.kind === "stall") return p.used < p.spots.length;
     if (p.kind === "hangout") return p.used < p.cap;
@@ -327,7 +333,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
         const s = p.spots[Math.min(i, p.spots.length - 1)];
         if (a.group.state === "act") { a.tx = s.x; a.tz = s.z; a.th = 0; const nx = i ? p.spots[i - 1] : ground(p.gate); a.want = { at: nx, pose: "stand" }; }
       });
-      if (p.clock < p.cycle) continue;
+      if (p.ride || p.clock < p.cycle) continue;
       p.clock = 0;
       let boarded = 0;
       while (line.length && boarded < p.board) {
@@ -347,6 +353,71 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
       }
       p.line = line;
     }
+  }
+
+  // Scheduled rides. Load events with the same t on the same entry are one batch (a train's cars, a carousel's
+  // horses): whole groups board from the head of the line while they fit, filling the keys in order (a group starts a
+  // fresh key when it would otherwise be split and fits one); a group that does not fit waits for the next load.
+  // Every event is recorded, empty ones too, so riders() can answer for any key and time.
+  const trips = new Map();
+  let rideT = -offset;
+  for (const ride of rides) for (const e of ride.entries) e.placeRef = places.find((p) => p.id === e.place);
+  function boardRides(t0, t1) {
+    for (const ride of rides) {
+      const entry = (ev) => ride.entries.find((e) => e.keys?.includes(ev.key)) ?? ride.entries.find((e) => !e.keys);
+      const evs = ride.loads(t0, t1).filter((e) => e.t >= t0 && e.t < t1).sort((a, b) => a.t - b.t);
+      for (let i = 0; i < evs.length;) {
+        const t = evs[i].t, same = [];
+        while (i < evs.length && evs[i].t === t) same.push(evs[i++]);
+        for (const e of ride.entries) {
+          const batch = same.filter((ev) => entry(ev) === e);
+          if (batch.length) board(ride.name, e, batch);
+        }
+      }
+    }
+  }
+  function board(name, entry, batch) {
+    const p = entry?.placeRef;
+    const got = batch.map(() => []);
+    if (p) {
+      const seats = batch.map((ev) => Math.max(0, ev.seats | 0));
+      let ki = 0, used = 0;
+      const left = () => seats.slice(ki).reduce((s, n) => s + n, 0) - used;
+      const inLine = [...new Set(p.line.map((a) => a.group))].filter((g) => g.state === "act" && g.what === "queue");
+      for (const g of inLine) {
+        const ppl = people(g), n = ppl.length;
+        if (n > left()) continue;
+        if (used && n > seats[ki] - used && ki + 1 < seats.length && n <= seats[ki + 1]) { ki++; used = 0; }
+        const keys = new Set();
+        for (const a of ppl) {
+          while (used >= seats[ki]) { ki++; used = 0; }
+          got[ki].push(a.look);
+          keys.add(ki);
+          used++;
+        }
+        p.line = p.line.filter((a) => a.group !== g);
+        g.place = null;
+        g.state = "ride";
+        g.until = Math.max(...[...keys].map((k) => batch[k].until)) + offset;
+        g.exitAt = entry.exit ? ground(entry.exit) : null;
+        const gate = ground(p.gate);
+        for (const a of g.members) { a.hidden = true; a.x = a.tx = gate.x; a.z = a.tz = gate.z; a.h = a.th = 0; a.want = null; }
+        g.pos = { ...gate, h: 0 };
+        if (!left()) break;
+      }
+    }
+    batch.forEach((ev, k) => {
+      const id = `${name}|${ev.key}`, list = trips.get(id) || [];
+      list.push({ t: ev.t, until: ev.until, looks: got[k] });
+      if (list.length > 6) list.shift();
+      trips.set(id, list);
+    });
+  }
+  function riders(name, key, t) {
+    const list = trips.get(`${name}|${key}`);
+    if (!list) return [];
+    for (let i = list.length - 1; i >= 0; i--) if (list[i].t <= t) return t < list[i].until ? list[i].looks : [];
+    return [];
   }
 
   function moveGroup(g, dt) {
@@ -480,11 +551,21 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     now += STEP;
     target = Math.round(max * density(hour()));
     stepQueues();
+    if (rides.length) {
+      const t1 = now - offset;
+      if (t1 > 0) boardRides(Math.max(0, rideT), t1);
+      rideT = t1;
+    }
     for (let i = groups.length - 1; i >= 0; i--) {
       const g = groups[i];
       if (g.state === "walk" || g.state === "pause") moveGroup(g, STEP);
       else if (g.state === "act" && now >= g.until) finish(g);
       else if (g.state === "ride" && now >= g.until) {
+        if (g.exitAt) {
+          g.pos = { ...g.exitAt };
+          for (const a of g.members) { a.x = a.tx = g.exitAt.x + a.ox; a.z = a.tz = g.exitAt.z + a.oz; a.h = a.th = g.exitAt.h; }
+          g.exitAt = null;
+        }
         for (const a of g.members) a.hidden = false;
         finish(g);
       }
@@ -525,6 +606,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
   return {
     agents, groups, places, byKind,
     get now() { return now; },
+    riders,
     get target() { return target; },
     advance(t) { let n = 0; while (now + STEP <= t && n < 3600) { step(); n++; } return n; },
     stats() {

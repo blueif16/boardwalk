@@ -24,6 +24,16 @@ const FULL = 0.7;                     // chance that a serviced cabin leaves ful
 const SWAY_L = 22, SWAY_G = 180, SWAY_C = 0.7, SWAY_K = 0.45, SWAY_HZ = 30;
 const KICK_AT = 2.6;                  // s into a stop when the new riders step in
 const RAD = Math.PI / 180;
+// Riders from the park's crowd (rides/RIDERS.md): each cabin is a key (cabin<k>, 2 seats), loaded when it is serviced
+// at the bottom (new riders fade in 2.4-2.9 s into the stop) and riding until its next service, four cycles later
+// (the old riders fade out 0.9-1.4 s into it). With the crowd the empty cabin is drawn with the crowd's animals in its
+// window; without it (ctx.riders null) the cabins keep their own painted riders.
+const LOAD_AT = 2.4, OUT_AT = 1.4, SEATS = 2;
+const RIDER = 0.55;                   // a rider's size against the crowd's
+const WINDOW = [13, 55, 82, 97];      // cabin frame px: the window opening, its sill at the bottom
+const SEAT_X = [0.34, 0.68];          // across the cabin frame
+const GATE = [2578, 1476], EXIT = [2600, 1488]; // the deck under the bottom cabin, between the A-frame's feet
+const QUEUE = [[2578, 1476], [2563, 1478], [2548, 1480], [2533, 1482], [2518, 1484]];
 
 const loadImage = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
 const hash = (n) => { let x = Math.imul((n | 0) ^ 0x9e3779b9, 0x85ebca6b); x ^= x >>> 13; x = Math.imul(x, 0xc2b2ae35); x ^= x >>> 16; return (x >>> 0) / 4294967296; };
@@ -52,10 +62,13 @@ function inCycle(tau) {
 
 export async function mount(ctx) {
   const url = (f) => new URL(f, ctx.dir).href;
-  const [meta, plate, wheelImg, hubImg, cabinsImg] = await Promise.all([
+  const crowdDir = new URL("../../tests/park-crowd/", ctx.dir);
+  const [meta, plate, wheelImg, hubImg, cabinsImg, crowdMeta, crowdAtlas] = await Promise.all([
     fetch(url("wheel.json")).then((r) => r.json()),
     fetch(url("plate.json")).then((r) => r.json()),
     loadImage(url("wheel.webp")), loadImage(url("hub.webp")), loadImage(url("cabins.webp")),
+    fetch(new URL("atlas.json", crowdDir)).then((r) => r.json()),
+    loadImage(new URL("atlas.png", crowdDir).href),
   ]);
   const [HX, HY] = meta.hub, [RA, RB] = meta.ring;
   const W = meta.wheel, SX = RA / W.knob_radius, SY = RB / W.knob_radius;
@@ -154,7 +167,7 @@ export async function mount(ctx) {
 
   let density = 1;
   function resize(scale) {
-    density = scale * Math.min(devicePixelRatio || 1, 2 / scale);
+    density = Math.min(2.5, Math.max(1.5, scale * (devicePixelRatio || 1))); // at least 1.5 px per park px, shrunk by the browser: crisp at monitor size
     g.canvas.width = Math.round(bw * density); g.canvas.height = Math.round(bh * density);
     gh.canvas.width = Math.round(hb[2] * density); gh.canvas.height = Math.round(hb[3] * density);
   }
@@ -168,7 +181,9 @@ export async function mount(ctx) {
     c2.drawImage(img, -size / 2, -size / 2, size, size);
     c2.restore();
   }
-  function cabin(name, x, y, rot, alpha) {
+  // A cabin; with crowd riders, those looks sit in its window at riderAlpha (cut at the sill and the window's sides).
+  const RF = crowdMeta.frames, RK = (((Number(ctx.params.get("px")) || 38) * (3840 / 3904)) / 30) * RIDER / crowdMeta.scale;
+  function cabin(name, x, y, rot, alpha, riders = null, riderAlpha = 1) {
     if (alpha <= 0.004) return;
     const f = CF[name], [sx, sy, sw, sh] = f.rect, [ax, ay] = f.anchor;
     g.save();
@@ -176,7 +191,27 @@ export async function mount(ctx) {
     g.translate(x, y);
     g.rotate(rot);
     g.drawImage(cabinsImg, sx, sy, sw, sh, -ax / CD, -ay / CD, sw / CD, sh / CD);
+    if (riders?.length && riderAlpha > 0.004) {
+      const [wx0, wy0, wx1, wy1] = WINDOW.map((v, i) => (v - (i % 2 ? ay : ax)) / CD);
+      g.beginPath();
+      g.rect(wx0, wy0, wx1 - wx0, wy1 - wy0);
+      g.clip();
+      g.globalAlpha = alpha * riderAlpha;
+      riders.slice(0, SEATS).forEach((look, i) => {
+        const rf = RF[`${look}/front_stand`];
+        if (!rf) return;
+        const [rx, ry, rw, rh] = rf.rect, [rax, ray] = rf.anchor;
+        const fx = (SEAT_X[i] * sw - ax) / CD, fy = wy1 + 0.3 * ray * RK;
+        g.drawImage(crowdAtlas, rx, ry, rw, rh, fx - rax * RK, fy - ray * RK, rw * RK, rh * RK);
+      });
+    }
     g.restore();
+  }
+  // How much of cabin k's crowd riders shows at t: they fade out and in during its service stop.
+  function swap(k, t) {
+    const w = where(t);
+    if (w.stop == null || bottomCabin(w.n, w.stop) !== k) return 1;
+    return w.into < 2 ? 1 - smooth(0.9, OUT_AT, w.into) : smooth(LOAD_AT, LOAD_AT + 0.5, w.into);
   }
 
   function draw(t) {
@@ -193,6 +228,8 @@ export async function mount(ctx) {
     hang.sort((p, q) => p.y - q.y);
     for (const { k, x, y } of hang) {
       const col = COLOURS[k % COLOURS.length], rot = swayAt(k, t), dy = bounce(k, t);
+      const who = ctx.riders ? ctx.riders(ctx.name, `cabin${k}`, t) : null;
+      if (who) { cabin(`${col}_empty`, x, y + dy, rot, 1, who, swap(k, t)); continue; }
       // Full over empty, so the cabin itself never fades.
       cabin(`${col}_empty`, x, y + dy, rot, 1);
       cabin(`${col}_full`, x, y + dy, rot, riders(k, t));
@@ -203,9 +240,30 @@ export async function mount(ctx) {
     spin(gh, hubImg, W.hub_size, a);
   }
 
+  // Load events (rides/RIDERS.md), closed form: stop j of cycle n starts at n*CYCLE + RUN + j*(DWELL + STEP_T) and
+  // services its bottom cabin, whose riders stay until its next service at the same stop four cycles later. At t = 0
+  // every cabin gets riders until its first service.
+  const stopAt = (n, j) => n * CYCLE + RUN + j * (DWELL + STEP_T);
+  const firstService = Array.from({ length: N }, (_, k) => {
+    for (let n = 0; n < 5; n++) for (let j = 0; j < 3; j++) if (bottomCabin(n, j) === k) return stopAt(n, j);
+    return 4 * CYCLE;
+  });
+  function loads(t0, t1) {
+    const out = [];
+    if (t0 <= 0 && 0 < t1) for (let k = 0; k < N; k++) out.push({ t: 0, key: `cabin${k}`, seats: SEATS, until: firstService[k] + OUT_AT });
+    for (let n = Math.max(0, Math.floor((t0 - RUN) / CYCLE) - 1); stopAt(n, 0) + LOAD_AT < t1; n++) {
+      for (let j = 0; j < 3; j++) {
+        const t = stopAt(n, j) + LOAD_AT;
+        if (t >= t0 && t < t1) out.push({ t, key: `cabin${bottomCabin(n, j)}`, seats: SEATS, until: stopAt(n + 4, j) + OUT_AT });
+      }
+    }
+    return out.sort((a, b) => a.t - b.t);
+  }
+
   let cost = 0, frames = 0;
-  window.__wheel = { cycle: CYCLE, run: RUN, angle, riders, swayAt, bottomCabin, where, draw, simMs, cost: () => cost / Math.max(1, frames) };
+  window.__wheel = { cycle: CYCLE, run: RUN, angle, riders, swayAt, bottomCabin, where, draw, simMs, loads, cost: () => cost / Math.max(1, frames) };
   return {
+    riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads },
     update(t) {
       const t0 = performance.now();
       draw(t);

@@ -25,18 +25,31 @@ const OCC_LATTICE_ALPHA = 0.88; // the lattice over the return run: mostly solid
 const BEHIND_FADE = 24;  // px of track over which a car moves from the front canvas to the back one
 const VIEW_END = [68, 80]; // screen slope (deg) where the side view dissolves into the end-on view: only the near-
                            // vertical turnaround legs, where the track runs into or out of the picture
+// Riders from the park's crowd (rides/RIDERS.md): each car is a key (t<train>c<car>, 2 seats); a train's riders get off
+// as it arrives and the next ones sit down LOAD_AT s into the dwell, riding until its next arrival. Their cars are drawn
+// cut at the rim (rims.json, tools/car_rims.py) with the crowd's animals sitting in them; without the crowd
+// (ctx.riders null) the cars keep the riders painted on their sheet.
+const LOAD_AT = 3.0, SEATS = 2;
+const RIDER = 0.55;        // a rider's size against the crowd's
+const SEAT = { side: [0.33, 0.61], side_0: [0.26, 0.52], back: [0.32, 0.68], front: [0.32, 0.68] }; // across the frame
+const GATE = [2264, 1356], EXIT = [2245, 1446]; // the deck in front of the station, between the bench and the lamp
+const QUEUE = [[2264, 1356], [2265, 1370], [2266, 1384], [2267, 1398], [2268, 1412], [2269, 1426]];
 
 const loadImage = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
 
 export async function mount(ctx) {
   const url = (f) => new URL(f, ctx.dir).href;
-  const [track, sheet, atlas, occF, occL, occS] = await Promise.all([
+  const crowdDir = new URL("../../tests/park-crowd/", ctx.dir);
+  const [track, sheet, atlas, occF, occL, occS, rims, crowdMeta, crowdAtlas] = await Promise.all([
     fetch(url("track.json")).then((r) => r.json()),
     fetch(url("sprites.json")).then((r) => r.json()),
     loadImage(url("sprites.png")),
     fetch(url("occ_fireball.json")).then((r) => r.json()),
     fetch(url("occ_lattice.json")).then((r) => r.json()),
     fetch(url("occ_station.json")).then((r) => r.json()),
+    fetch(url("rims.json")).then((r) => r.json()),
+    fetch(new URL("atlas.json", crowdDir)).then((r) => r.json()),
+    loadImage(new URL("atlas.png", crowdDir).href),
   ]);
   const P = track.points, ALPHA = track.alpha, L = track.keys.length;
   const S0 = track.keys.station, CREST = track.keys.lift_end;
@@ -112,7 +125,7 @@ export async function mount(ctx) {
   cutout("fireball", occF);
   let density = 1;
   function resize(scale) {
-    density = scale * Math.min(devicePixelRatio || 1, 2 / scale);
+    density = Math.min(2.5, Math.max(1.5, scale * (devicePixelRatio || 1))); // at least 1.5 px per park px, shrunk by the browser: crisp at monitor size
     for (const g of [back, front]) { g.canvas.width = Math.round(bw * density); g.canvas.height = Math.round(bh * density); }
   }
   resize(ctx.scale());
@@ -121,7 +134,9 @@ export async function mount(ctx) {
   const trains = [{ offset: 0, cars: [0, 1, 2] }, { offset: CYCLE / 2, cars: [0, 2, 1] }];
   const smooth = (e0, e1, x) => { const k = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return k * k * (3 - 2 * k); };
 
-  function sprite(g, name, x, y, rot, flip, alpha) {
+  // A car: with riders === null as painted; otherwise cut at its rim, with these crowd looks sitting in it.
+  const CF = crowdMeta.frames, RK = (((Number(ctx.params.get("px")) || 38) * (3840 / 3904)) / 30) * RIDER / crowdMeta.scale;
+  function sprite(g, name, x, y, rot, flip, alpha, riders = null) {
     if (alpha <= 0.004) return;
     const f = F[name];
     const [sx, sy, sw, sh] = f.rect, [ax, ay] = f.anchor;
@@ -130,6 +145,20 @@ export async function mount(ctx) {
     g.translate(x, y);
     g.rotate(rot);
     if (flip) g.scale(-1, 1);
+    if (riders) {
+      const view = name.split("_")[0], left = -ax / SD, top = -ay / SD, rim = top + rims.rim[name] / SD;
+      const seat = SEAT[name] || SEAT[view];
+      riders.slice(0, SEATS).forEach((look, i) => {
+        const cf = CF[`${look}/${view === "back" ? "back" : "front"}_stand`] || CF[`${look}/front_stand`];
+        if (!cf) return;
+        const [rx, ry, rw, rh] = cf.rect, [cax, cay] = cf.anchor;
+        const fx = left + seat[i] * (sw / SD), fy = rim + 0.45 * cay * RK;
+        g.drawImage(crowdAtlas, rx, ry, rw, rh, fx - cax * RK, fy - cay * RK, rw * RK, rh * RK);
+      });
+      g.beginPath();
+      g.rect(left - 2, rim, sw / SD + 4, sh / SD);
+      g.clip();
+    }
     g.drawImage(atlas, sx, sy, sw, sh, -ax / SD, -ay / SD, sw / SD, sh / SD);
     g.restore();
   }
@@ -141,7 +170,7 @@ export async function mount(ctx) {
       g.imageSmoothingQuality = "high";
     }
     const cars = [];
-    for (const tr of trains) {
+    for (const [ti, tr] of trains.entries()) {
       const lead = S0 + travel(clock + tr.offset);
       tr.cars.forEach((kind, k) => {
         const u = lead - k * SPACING;
@@ -153,7 +182,8 @@ export async function mount(ctx) {
         const nx = vy / len, ny = -vx / len;          // a normal to the direction of travel ...
         const up = ny < 0 ? [nx, ny] : [-nx, -ny];     // ... the one that points up the screen
         const c = at(u);
-        cars.push({ kind, a, b: behindAt(u), vx, vy, x: c[0] + up[0] * LIFT, y: c[1] + up[1] * LIFT });
+        const riders = ctx.riders ? ctx.riders(ctx.name, `t${ti}c${k}`, clock) : null;
+        cars.push({ kind, a, b: behindAt(u), vx, vy, x: c[0] + up[0] * LIFT, y: c[1] + up[1] * LIFT, riders });
       });
     }
     cars.sort((p, q) => p.y - q.y);
@@ -168,16 +198,34 @@ export async function mount(ctx) {
       const aSide = Math.min(1, 2 * (1 - wEnd)), aEnd = Math.min(1, 2 * wEnd);
       for (const [g, w] of [[back, c.b], [front, 1 - c.b]]) {
         if (w <= 0) continue;
-        const side = () => sprite(g, `side_${c.kind}`, c.x, c.y, rot, flip, c.a * w * aSide);
-        const endOn = () => sprite(g, end, c.x, c.y, 0, false, c.a * w * aEnd);
+        const side = () => sprite(g, `side_${c.kind}`, c.x, c.y, rot, flip, c.a * w * aSide, c.riders);
+        const endOn = () => sprite(g, end, c.x, c.y, 0, false, c.a * w * aEnd, c.riders);
         if (wEnd < 0.5) { side(); endOn(); } else { endOn(); side(); }
       }
     }
   }
 
-  window.__coaster = { cycle: CYCLE, run: RUN, length: L, station: S0, travel, at, draw };
+  // Load events (rides/RIDERS.md), closed form: train i arrives at n*CYCLE - offset_i and loads LOAD_AT s later. A train
+  // already out on the circuit at t = 0 gets one load at 0, so the ride isn't empty for its first lap.
+  function loads(t0, t1) {
+    const out = [];
+    trains.forEach((tr, i) => {
+      const keys = tr.cars.map((_, k) => `t${i}c${k}`);
+      const ph0 = ((tr.offset % CYCLE) + CYCLE) % CYCLE;
+      if (ph0 >= LOAD_AT && t0 <= 0 && 0 < t1) for (const key of keys) out.push({ t: 0, key, seats: SEATS, until: CYCLE - ph0 });
+      for (let n = Math.ceil((Math.max(t0, 0) + tr.offset - LOAD_AT) / CYCLE); ; n++) {
+        const t = n * CYCLE - tr.offset + LOAD_AT;
+        if (t >= t1) break;
+        if (t >= t0 && t >= 0) for (const key of keys) out.push({ t, key, seats: SEATS, until: t - LOAD_AT + CYCLE });
+      }
+    });
+    return out.sort((a, b) => a.t - b.t);
+  }
+
+  window.__coaster = { cycle: CYCLE, run: RUN, length: L, station: S0, travel, at, draw, loads };
   return {
     update(clock) { draw(clock); },
     resize,
+    riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads },
   };
 }

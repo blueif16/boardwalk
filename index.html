@@ -74,6 +74,8 @@ const park = await fetch("tests/park-crowd/park.json").then((r) => r.json());
 const clock = createClock();
 const canvases = [];
 const ctx = {
+  // Who rides a ride's vehicle key at clock time t (rides/RIDERS.md); null without the crowd: the ride picks its own.
+  riders: (name, key, t) => crowd?.riders(name, key, t) ?? null,
   park, W, H, camera: createCamera(park), clock, params, slots,
   scale: () => scale,
   addPatch(url, [x, y, w, h]) {
@@ -85,7 +87,7 @@ const ctx = {
     return img;
   },
   // A park-sized canvas in a slot; its backing store follows the window (at most maxDensity device px per park px).
-  canvas(slot = "rides", { maxDensity = 1.25 } = {}) {
+  canvas(slot = "rides", { maxDensity = 1.5 } = {}) {
     const c = document.createElement("canvas");
     c.style.cssText = `left:0;top:0;width:${W}px;height:${H}px`;
     slots[slot].append(c);
@@ -98,19 +100,21 @@ const ctx = {
 addEventListener("resize", () => { for (const e of canvases) e.fit(); for (const l of rides) l.resize?.(scale); });
 
 const wanted = params.has("layers") ? params.get("layers").split(",").filter(Boolean) : RIDES;
+const riderBlocks = [];
 for (const name of wanted) {
   try {
     const mod = await import(`./rides/${name}/layer.js`);
     const layer = (await mod.mount({ ...ctx, name, dir: new URL(`./rides/${name}/`, location.href) })) || {};
     layer.resize?.(scale);
     rides.push(layer);
+    if (layer.riders) riderBlocks.push({ ...layer.riders, name });
   } catch (err) {
     console.error(`ride layer ${name} failed`, err);
   }
 }
 
 if (params.get("crowd") !== "0") {
-  crowd = await mountCrowd(document.getElementById("animals"), { params });
+  crowd = await mountCrowd(document.getElementById("animals"), { params, clock, rides: riderBlocks });
   crowd.resize(scale);
 }
 
@@ -121,8 +125,8 @@ let frames = 0, prev = clock.now();
 function frame() {
   const t = clock.now(), dt = Math.min(0.1, Math.max(0, t - prev));
   prev = t;
-  for (const l of rides) l.update?.(t, dt);
   crowd?.update();
+  for (const l of rides) l.update?.(t, dt);
   if (!panel.hidden && frames++ % 30 === 0) {
     const st = crowd?.stats() ?? {};
     panel.textContent = `window ${innerWidth}×${innerHeight} at ${devicePixelRatio}× · painting ${loaded} px · ${JSON.stringify(st)}`;
