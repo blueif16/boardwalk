@@ -7,10 +7,16 @@ Updated 2026-10-26 (evening). Start Claude Code in `~/boardwalk` (its memory liv
 - **Live:** http://ran:5178/ (the park; `board.html` is the style board). Tailnet only. Never hand the user localhost
   links. Server: `nohup setsid python3 -I tools/serve.py > .server.log 2>&1 < /dev/null &` on 127.0.0.1:15178 (no-cache
   headers); Tailscale (Windows CLI) maps it to `ran:5178`; the mapping persists across restarts.
-- **Repo:** github.com/blueif16/boardwalk (private), branch main. Repo is 1.5 GB because every ride commits its raw
-  4K source images (`rides/*/gen/`); see open issue 1. **This evening's work is not committed yet**, and its new raw
-  folders add about 1.3 GB more (`tests/night-park/gen` 733 MB, `rides/beach/gen` 201, `tests/night-lights/gen` 172,
-  `rides/swings/gen` 94, `rides/wildlife/gen` 38): don't `git add` any `gen/` folder before issue 1 is decided.
+- **Public site:** https://me.infinityopus.com (Vercel project `boardwalk`, team blueif16s-projects; DNS at Cloudflare,
+  a CNAME to Vercel). Publish with `tools/deploy.sh` (crawls the page into `dist/`, checks it, `vercel deploy --prod`).
+  Explore leaves for the original site, the Vercel project `astro-blog`: `EXPLORE` in index.html points at
+  astro-blog-lemon.vercel.app until the Cloudflare CNAME for blog.infinityopus.com is in (already added in Vercel);
+  then switch it and redeploy.
+- **Repo:** github.com/blueif16/boardwalk (private). Tonight's work is on branch `park-night-beach` (pushed); main
+  is one commit behind until it's merged. Repo is 1.5 GB because every ride commits its raw
+  4K source images in its history. Since 2026-10-26 every `gen/` and `work/` folder is out of git (`.gitignore` keeps
+  their json/txt/glb records and the style frame) and backed up to D:\boardwalk-raw (`/mnt/d/boardwalk-raw`, same
+  paths; refresh with rsync, see `.gitignore`). Shrinking the old history needs a force-push: ask first.
 - **The painting:** `gen/park/world_v2_hd.png` (9600 x 6400, kept out of git; lossless `.webp` beside it), shipped as
   `site/park/world_{1920..5120}.webp`. Park frame = 3840 x 2560 park px; camera in `tests/park-crowd/park.json`.
 - **Not ours, uncommitted on purpose:** another session's landing title ("Shiran" + Explore): `site/title/`, and its
@@ -64,9 +70,9 @@ only the band animals can reach (about 4x sharper); coaster, wheel and teacups g
 
 ## Open issues, in priority order
 
-1. **Repo size.** Move raw `rides/*/gen/**/*.png` and other 4K scratch out of git (an LFS store or a separate backup;
-   ask the user) and keep only request records, prompts and shipped assets. Then commit this evening's work.
-2. **Page weight** (research done, nothing applied): `tests/perf/ASSETS.md` (WebP re-encodes at the same URLs:
+1. **Merge `park-night-beach` into main**, and switch Explore to blog.infinityopus.com once its DNS record exists.
+2. **Page weight** (applied 2026-10-26: WebP re-encodes and the load order; still open: AVIF, a check on a real
+   MacBook over 4G, per-file cache hashes): `tests/perf/ASSETS.md` (WebP re-encodes at the same URLs:
    14.8 -> 7.2 MB at 2560, no code change; AVIF about 5.9 MB but needs code in every layer) and
    `tests/perf/LOADING.md` (painting first, rides after, loop started first, placeholders: sharp painting at 3.0 s
    instead of 7.1 s on 4G; `tests/perf/index_loading.diff`, re-made by `tests/perf/tools/load_apply.py`; host:
