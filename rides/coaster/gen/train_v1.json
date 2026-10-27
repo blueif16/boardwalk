@@ -1,0 +1,61 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is a close-up of our storybook painting of the Giant Dipper, a white wooden roller coaster with dark red track. Images 2 and 3 are our style frame and its tiny animal characters. Draw a sprite sheet of the Giant Dipper's train in exactly this painting's style: thin warm dark-brown outlines (#2c201b) around every shape, thinner tinted lines inside, flat warm pastel fills with one soft shade tone, chunky rounded toy-like proportions, a gentle paper texture.\n\nThe train: three small open roller coaster cars in the classic 1920s wooden-coaster style. Each car has a low rounded red body (the same red as the track in image 1), a cream trim along its top edge, a thin gold stripe along the side, two small dark wheels showing below. The front car has a rounded nose with a small round brass headlamp. Two cute tiny animal riders sit in each car, one behind the other (a bear, a bunny, a cat, a dog, a fox and a panda, in the style of image 3), only their heads and shoulders above the car's side, some with both arms up, cheerful faces.\n\nLayout, strict: on a plain flat pure white background, a grid of 3 columns and 3 rows. Each cell holds exactly one car, whole, centred, all cars the same size, with a wide empty margin; nothing touches a neighbour or the edge.\nRow 1, exact side view in profile, every car facing RIGHT and level: the front car, a middle car, the rear car.\nRow 2, the same three cars seen from directly behind and a little above, as when the train runs away from the viewer.\nRow 3, the same three cars seen from directly in front and a little above, as when the train comes towards the viewer.\nNo track, no ground, no shadows, no text, no labels, no numbers, no grid lines, no borders.",
+ "refs": [
+  "rides/coaster/gen/ref_coaster.png",
+  "gen/style_frame/v1_1.png",
+  "tests/characters/gen/ref_chars.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "train_v1"
+ },
+ "format": "png",
+ "generation_s": 83.3,
+ "attempts": 1,
+ "idempotency_key": "c6103d2d-8d61-4c33-b4cb-ff7b3d440ae8",
+ "request_id": "28af53fd-d492-4212-b202-6b3a598c5ca5",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 4741,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4335,
+   "text_tokens": 406
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 4741,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4335,
+   "text_tokens": 406
+  },
+  "total_tokens": 17221
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/c8efacec-7907-4806-9e31-0eeac1c0c3b5",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/4f303211-3c8c-4d76-8ab5-ae7a07fa4483"
+ ],
+ "files": [
+  "rides/coaster/gen/train_v1_0.png",
+  "rides/coaster/gen/train_v1_1.png"
+ ]
+}

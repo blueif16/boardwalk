@@ -1,0 +1,9 @@
+Image 1 is a close-up of our storybook painting of the Giant Dipper, a white wooden roller coaster with dark red track. Images 2 and 3 are our style frame and its tiny animal characters. Draw a sprite sheet of the Giant Dipper's train in exactly this painting's style: thin warm dark-brown outlines (#2c201b) around every shape, thinner tinted lines inside, flat warm pastel fills with one soft shade tone, chunky rounded toy-like proportions, a gentle paper texture.
+
+The train: three small open roller coaster cars in the classic 1920s wooden-coaster style. Each car has a low rounded red body (the same red as the track in image 1), a cream trim along its top edge, a thin gold stripe along the side, two small dark wheels showing below. The front car has a rounded nose with a small round brass headlamp. Two cute tiny animal riders sit in each car, one behind the other (a bear, a bunny, a cat, a dog, a fox and a panda, in the style of image 3), only their heads and shoulders above the car's side, some with both arms up, cheerful faces.
+
+Layout, strict: on a plain flat pure white background, a grid of 3 columns and 3 rows. Each cell holds exactly one car, whole, centred, all cars the same size, with a wide empty margin; nothing touches a neighbour or the edge.
+Row 1, exact side view in profile, every car facing RIGHT and level: the front car, a middle car, the rear car.
+Row 2, the same three cars seen from directly behind and a little above, as when the train runs away from the viewer.
+Row 3, the same three cars seen from directly in front and a little above, as when the train comes towards the viewer.
+No track, no ground, no shadows, no text, no labels, no numbers, no grid lines, no borders.
