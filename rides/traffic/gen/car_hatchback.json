@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our storybook painting of a seaside boardwalk town: its style sets the look. Image 2 shows small cars painted in that picture, but blurry and lumpy; draw a crisp, clean version of that kind of car. Image 3 is a sprite sheet already made in this style (a roller coaster train), for the line and colour treatment.\n\nDraw ONE little toy car in exactly the painting's style: thin warm dark-brown outlines (#2c201b) around every shape, thinner tinted lines inside, flat warm pastel fills with one soft shade tone, a gentle paper texture. Chunky, rounded, toy-like proportions, like a tiny wind-up toy: a short body with soft bulging curves, a big rounded cabin, big round wheels with cream hubcaps, simple round headlamps, pale sky-blue windows with one white highlight. No people or animals inside, no text, no number plates, no logos.\n\nThe car: a small rounded hatchback painted soft salmon coral (#ec8167) with a cream roof, cream bumpers and a little roof rack.\n\nLayout, strict: on a plain flat pure white background, a grid of 2 columns and 2 rows, the same car four times, identical in shape, size, colours and details, each whole, centred in its cell with a wide empty margin, nothing touching a neighbour or the edge, all four standing level on the same invisible ground.\nTop left: seen exactly from the front, straight on, at the car's own height.\nTop right: exact side view in profile, the car facing RIGHT.\nBottom left: seen exactly from behind, straight on, at the car's own height.\nBottom right: a three-quarter view from the front-left corner and a little above.\nNo ground, no road, no shadows, no grid lines, no borders, no labels.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "rides/traffic/gen/ref_painted_cars.png",
+  "rides/coaster/gen/train_v2_0.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "car_hatchback"
+ },
+ "format": "png",
+ "generation_s": 36.2,
+ "attempts": 1,
+ "idempotency_key": "d02d2a50-49e2-4411-adf9-8b00e2339710",
+ "request_id": "54152843-1fee-4a2c-80e6-73296907bbeb",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 6084,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 5704,
+   "text_tokens": 380
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 6084,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 5704,
+   "text_tokens": 380
+  },
+  "total_tokens": 12324
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/73974a6e-0ed2-45b4-92af-a496eafd079b"
+ ],
+ "files": [
+  "rides/traffic/gen/car_hatchback_0.png"
+ ]
+}

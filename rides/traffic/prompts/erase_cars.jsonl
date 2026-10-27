@@ -1,0 +1,3 @@
+{"out": "rides/traffic/gen/erase/R1_edit", "prompt_file": "rides/traffic/prompts/erase_cars.txt", "ref": ["rides/traffic/gen/erase/R1_in.png"]}
+{"out": "rides/traffic/gen/erase/R2_edit", "prompt_file": "rides/traffic/prompts/erase_cars.txt", "ref": ["rides/traffic/gen/erase/R2_in.png"]}
+{"out": "rides/traffic/gen/erase/R3_edit", "prompt_file": "rides/traffic/prompts/erase_cars.txt", "ref": ["rides/traffic/gen/erase/R3_in.png"]}

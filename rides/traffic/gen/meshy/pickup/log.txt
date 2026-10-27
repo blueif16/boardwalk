@@ -1,0 +1,12 @@
+task multi-image-to-3d 01a17ad9-5476-7408-9bbc-13f001b7a41e
+  IN_PROGRESS 1
+  IN_PROGRESS 11
+  IN_PROGRESS 26
+  IN_PROGRESS 45
+  IN_PROGRESS 58
+  IN_PROGRESS 99
+  SUCCEEDED 100
+  saved rides/traffic/gen/meshy/pickup/model_urls_glb.glb 3264928
+  saved rides/traffic/gen/meshy/pickup/texture_urls_0_base_color.png 4315463
+  saved rides/traffic/gen/meshy/pickup/thumbnail_url.png 129299
+ok multi-image-to-3d 01a17ad9-5476-7408-9bbc-13f001b7a41e 30 credits

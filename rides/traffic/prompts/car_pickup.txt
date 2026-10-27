@@ -1,0 +1,12 @@
+Image 1 is our storybook painting of a seaside boardwalk town: its style sets the look. Image 2 shows small cars painted in that picture, but blurry and lumpy; draw a crisp, clean version of that kind of car. Image 3 is a sprite sheet already made in this style (a roller coaster train), for the line and colour treatment.
+
+Draw ONE little toy car in exactly the painting's style: thin warm dark-brown outlines (#2c201b) around every shape, thinner tinted lines inside, flat warm pastel fills with one soft shade tone, a gentle paper texture. Chunky, rounded, toy-like proportions, like a tiny wind-up toy: a short body with soft bulging curves, a big rounded cabin, big round wheels with cream hubcaps, simple round headlamps, pale sky-blue windows with one white highlight. No people or animals inside, no text, no number plates, no logos.
+
+The car: a tiny rounded pickup truck painted cornflower blue (#85adcd) with a cream cab roof, a short open load bed carrying a lavender beach umbrella and a striped cooler.
+
+Layout, strict: on a plain flat pure white background, a grid of 2 columns and 2 rows, the same car four times, identical in shape, size, colours and details, each whole, centred in its cell with a wide empty margin, nothing touching a neighbour or the edge, all four standing level on the same invisible ground.
+Top left: seen exactly from the front, straight on, at the car's own height.
+Top right: exact side view in profile, the car facing RIGHT.
+Bottom left: seen exactly from behind, straight on, at the car's own height.
+Bottom right: a three-quarter view from the front-left corner and a little above.
+No ground, no road, no shadows, no grid lines, no borders, no labels.

@@ -1,0 +1,4 @@
+{"out": "rides/traffic/gen/car_hatchback", "prompt_file": "rides/traffic/prompts/car_hatchback.txt", "ref": ["gen/style_frame/v1_1.png", "rides/traffic/gen/ref_painted_cars.png", "rides/coaster/gen/train_v2_0.png"]}
+{"out": "rides/traffic/gen/car_beetle", "prompt_file": "rides/traffic/prompts/car_beetle.txt", "ref": ["gen/style_frame/v1_1.png", "rides/traffic/gen/ref_painted_cars.png", "rides/coaster/gen/train_v2_0.png"]}
+{"out": "rides/traffic/gen/car_van", "prompt_file": "rides/traffic/prompts/car_van.txt", "ref": ["gen/style_frame/v1_1.png", "rides/traffic/gen/ref_painted_cars.png", "rides/coaster/gen/train_v2_0.png"]}
+{"out": "rides/traffic/gen/car_pickup", "prompt_file": "rides/traffic/prompts/car_pickup.txt", "ref": ["gen/style_frame/v1_1.png", "rides/traffic/gen/ref_painted_cars.png", "rides/coaster/gen/train_v2_0.png"]}

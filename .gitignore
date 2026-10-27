@@ -4,3 +4,7 @@ __pycache__/
 node_modules/
 .DS_Store
 gen/park/world_v2_hd.png
+
+# Ride build scratch that is too big for git: keep request records (json), prompts (txt) and the four car models
+rides/traffic/gen/**/*.png
+rides/traffic/gen/probe/

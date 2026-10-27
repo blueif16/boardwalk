@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our storybook painting of a seaside boardwalk town: its style sets the look. Image 2 shows small cars painted in that picture, but blurry and lumpy; draw a crisp, clean version of that kind of car. Image 3 is a sprite sheet already made in this style (a roller coaster train), for the line and colour treatment.\n\nDraw ONE little toy car in exactly the painting's style: thin warm dark-brown outlines (#2c201b) around every shape, thinner tinted lines inside, flat warm pastel fills with one soft shade tone, a gentle paper texture. Chunky, rounded, toy-like proportions, like a tiny wind-up toy: a short body with soft bulging curves, a big rounded cabin, big round wheels with cream hubcaps, simple round headlamps, pale sky-blue windows with one white highlight. No people or animals inside, no text, no number plates, no logos.\n\nThe car: a round bubbly beetle-shaped car painted butter yellow (#f2b275) with cream mudguards, round bug-eye headlamps and a small chrome bumper.\n\nLayout, strict: on a plain flat pure white background, a grid of 2 columns and 2 rows, the same car four times, identical in shape, size, colours and details, each whole, centred in its cell with a wide empty margin, nothing touching a neighbour or the edge, all four standing level on the same invisible ground.\nTop left: seen exactly from the front, straight on, at the car's own height.\nTop right: exact side view in profile, the car facing RIGHT.\nBottom left: seen exactly from behind, straight on, at the car's own height.\nBottom right: a three-quarter view from the front-left corner and a little above.\nNo ground, no road, no shadows, no grid lines, no borders, no labels.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "rides/traffic/gen/ref_painted_cars.png",
+  "rides/coaster/gen/train_v2_0.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "car_beetle"
+ },
+ "format": "png",
+ "generation_s": 46.8,
+ "attempts": 1,
+ "idempotency_key": "aaf1af23-e37f-47a9-aa65-ce3d0f250cf4",
+ "request_id": "8fc399ec-acd0-43f5-9163-cd0f4296d4bd",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 6089,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 5704,
+   "text_tokens": 385
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 6089,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 5704,
+   "text_tokens": 385
+  },
+  "total_tokens": 12329
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/3f86a128-cb14-460a-be9b-e6eb33753d0c"
+ ],
+ "files": [
+  "rides/traffic/gen/car_beetle_0.png"
+ ]
+}

@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same framing, camera, colours, line style, and the position of every object. Change only this: remove every car, van, truck and vehicle, every lumpy coloured blob and every stray bush standing on the street's grey asphalt and in its parking spaces. Where they were, continue the empty grey asphalt with its own painted lines exactly as they run around them: the white parking-stall lines, the white and yellow lane lines, the crosswalk stripes and the kerbs. Do not change the palm trees, the planted median, the buildings, the sidewalks, the rides, the flags or anything else, and do not add anything new. Do not draw any people, animals, text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "rides/traffic/gen/erase/R2_in.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "R2_edit"
+ },
+ "format": "png",
+ "generation_s": 47.8,
+ "attempts": 1,
+ "idempotency_key": "0182f03f-b06e-4a0b-8f35-aeec4f34b52e",
+ "request_id": "42766f85-94b6-412d-835e-c68d52f12b8a",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2651,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 162
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2651,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 162
+  },
+  "total_tokens": 8891
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/13008af1-ef38-45b6-9390-22fa7ed8d9b2"
+ ],
+ "files": [
+  "rides/traffic/gen/erase/R2_edit_0.png"
+ ]
+}
