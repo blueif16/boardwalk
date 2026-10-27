@@ -1,0 +1,44 @@
+{
+ "image_park": [
+  212.8,
+  183.6
+ ],
+ "pivot_in_image": [
+  101.02,
+  3.31
+ ],
+ "density": 2.5,
+ "pivot": [
+  933.0,
+  1110.0
+ ],
+ "keel_at_rest": 1290.0,
+ "length": 200.0,
+ "seats": [
+  {
+   "x": -48.48,
+   "gunwale": 142.46
+  },
+  {
+   "x": -30.48,
+   "gunwale": 146.19
+  },
+  {
+   "x": -10.02,
+   "gunwale": 148.62
+  },
+  {
+   "x": 14.52,
+   "gunwale": 149.09
+  },
+  {
+   "x": 37.13,
+   "gunwale": 147.51
+  },
+  {
+   "x": 66.82,
+   "gunwale": 140.54
+  }
+ ],
+ "note": "image_park is the sprite's size in park px; pivot_in_image is the hub's position in it (park px). seats: x and the near gunwale's y relative to the pivot at rest (park px)."
+}

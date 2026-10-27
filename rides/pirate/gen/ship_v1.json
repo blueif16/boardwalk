@@ -1,0 +1,60 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is a crop of our painting, a cute storybook map of a seaside boardwalk; in its middle is a swinging pirate ship ride. Image 2 is our style frame. Draw ONE swinging ship for this ride, alone, in exactly image 2's style: chunky toy-like proportions, thin warm dark-brown outlines (#2c201b) around the whole silhouette, thinner tinted lines inside, flat pastel fills with one soft shade tone, a gentle paper texture.\n\nThe ship: a wooden pirate ship with a warm honey-brown hull, a curved bow at the left and a curved stern at the right that both sweep up high, a cornflower-blue band and a row of small round portholes along the hull, a little carved figurehead at the bow, a small red-and-white flag on a short pole at the stern. No mast and no sails.\nThe view: from the side, the ship's long axis exactly horizontal, seen a little from above, so the inside of the ship shows: six rows of empty wooden benches running across the ship, stepping up towards the bow and the stern. The near side of the hull hides the lower half of the benches.\nIt hangs from two straight steel arms, blue with red bands, that rise from the middle of the hull, lean together and meet at one small round hub at the top centre, directly above the middle of the ship. The hub is above the ship's deck by about two thirds of the ship's length.\n\nNo frame, no legs, no ground, no shadow, no people, no animals, no text. The background is flat pure magenta (#FF00FF) everywhere, also between the arms and between the benches. The whole ship and its arms are centred with a wide empty margin and nothing touches the edges.",
+ "refs": [
+  "rides/pirate/gen/plate_in.png",
+  "gen/style_frame/v1_1.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "ship_v1"
+ },
+ "format": "png",
+ "generation_s": 48.5,
+ "attempts": 1,
+ "idempotency_key": "ba96e48c-1c0b-44e3-8381-c437b961829e",
+ "request_id": "67310cd2-3cc3-4eb4-8d5d-c7153e3032bf",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 4123,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3756,
+   "text_tokens": 367
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 4123,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3756,
+   "text_tokens": 367
+  },
+  "total_tokens": 16603
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/c855a90e-75f9-46cc-8c2c-4e623492768f",
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/cc22d936-36d5-4cea-8826-2d12acf026bb"
+ ],
+ "files": [
+  "rides/pirate/gen/ship_v1_0.png",
+  "rides/pirate/gen/ship_v1_1.png"
+ ]
+}

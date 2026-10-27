@@ -1,0 +1,60 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is a crop of our painting, a cute storybook map of a seaside boardwalk; in its middle is a swinging pirate ship ride. Image 2 is our style frame. Draw ONE swinging ship for this ride, alone, in exactly image 2's style: chunky toy-like proportions, thin warm dark-brown outlines (#2c201b) around the whole silhouette, thinner tinted lines inside, flat pastel fills with one soft shade tone, a gentle paper texture.\n\nThe ship: a wooden pirate ship with a warm honey-brown hull, a curved bow at the left and a curved stern at the right that both sweep up high, a cornflower-blue band and a row of small round portholes along the hull, a little carved figurehead at the bow, a small red-and-white flag on a short pole at the stern. No mast and no sails.\nThe view: from the side, the ship's long axis exactly horizontal, seen a little from above, so the inside of the ship shows: six rows of empty wooden benches running across the ship, stepping up towards the bow and the stern. The near side of the hull hides the lower half of the benches.\nIt hangs from two straight steel arms, blue with red bands, that rise from the middle of the hull, lean together and meet at one small round hub at the top centre, directly above the middle of the ship. The arms are long: the hub is high above the ship, and the distance from the hub straight down to the bottom of the keel is the same as the ship's whole length from bow tip to stern tip. The two arms meet the hull close to its middle, not near its ends.\n\nNo frame, no legs, no ground, no shadow, no people, no animals, no text. The background is flat pure magenta (#FF00FF) everywhere, also between the arms and between the benches. The whole ship and its arms are centred with a wide empty margin and nothing touches the edges.",
+ "refs": [
+  "rides/pirate/gen/plate_in.png",
+  "gen/style_frame/v1_1.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "ship_v2"
+ },
+ "format": "png",
+ "generation_s": 48.7,
+ "attempts": 1,
+ "idempotency_key": "e5f7fba7-0db6-4e06-b5e2-ea9aee4323b1",
+ "request_id": "f1e673ea-a05c-45c1-b9bc-819af7715d88",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 4164,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3756,
+   "text_tokens": 408
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 4164,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3756,
+   "text_tokens": 408
+  },
+  "total_tokens": 16644
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/c5fa4a7e-7bce-4e25-9d53-3c17bad715e5",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/997c86b0-0289-4526-b32d-48ab7e833888"
+ ],
+ "files": [
+  "rides/pirate/gen/ship_v2_0.png",
+  "rides/pirate/gen/ship_v2_1.png"
+ ]
+}
