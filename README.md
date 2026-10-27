@@ -8,7 +8,7 @@ Split out of `living-anatomy` on 2026-10-26.
 ## Run
 
 ```sh
-python3 -m http.server 15178 --bind 127.0.0.1    # from the repo root
+nohup setsid python3 -I tools/serve.py > .server.log 2>&1 < /dev/null &    # from the repo root (no-cache headers)
 "/mnt/c/Program Files/Tailscale/tailscale.exe" serve --bg --http=5178 http://127.0.0.1:15178   # once; it persists
 ```
 

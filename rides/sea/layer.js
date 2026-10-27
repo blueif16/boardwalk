@@ -164,7 +164,7 @@ const loadImage = (url) => new Promise((done, fail) => { const im = new Image();
 
 export async function mount(ctx) {
   const { params, slots, W, H, dir } = ctx;
-  const mode = { a: 0, b: 1, c: 2, copy: 3 }[params.get("sea")] ?? 0;
+  const mode = { a: 0, b: 1, c: 2, copy: 3 }[params.get("sea")] ?? 1; // b (drift) is the default: the study's pick
   const reduced = matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   const calm = reduced ? 0 : Math.max(0, Math.min(1, Number(params.get("calm") ?? 1)));
   const fps = Number(params.get("fps")) || 0;
