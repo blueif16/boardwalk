@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. It is a piece of a painted storybook map of a seaside amusement park. In the middle stands an open carousel: a blue-and-white striped roof with a decorated panel band around its edge, a single centre column, and a round platform with a painted side band.\nRemove every horse, animal, rider, seat and pole under the roof, so the carousel stands completely empty. Under the roof, show the empty cream floor of the round platform and, behind it, the shadowy inside of the carousel: the dark underside of the roof and the back of the panel band, in the same soft painted style.\nKeep exactly as they are, in the same place, size, shape and colours: the striped roof and its finial, the decorated panel band around the roof's edge, the single centre column standing in the middle from the floor up to the roof, the round platform and its side band, and everything around the carousel (the wooden deck, stalls, lamps, rails, other rides).\nDo not add anything new. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "rides/carousel/gen/plate_west_in.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "plate_west_v1"
+ },
+ "format": "png",
+ "generation_s": 34.4,
+ "attempts": 1,
+ "idempotency_key": "24935871-c9b0-4812-b934-92cad907062a",
+ "request_id": "b764fd1e-cf84-45c0-8007-3dce2343681d",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 924,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 689,
+   "text_tokens": 235
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 924,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 689,
+   "text_tokens": 235
+  },
+  "total_tokens": 13404
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/413902ed-fe6a-4742-9525-1e0202bbfd6e",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/8b27c510-e8e2-4364-9473-09cd3cb62777"
+ ],
+ "files": [
+  "rides/carousel/gen/plate_west_v1_0.png",
+  "rides/carousel/gen/plate_west_v1_1.png"
+ ]
+}

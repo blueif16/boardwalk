@@ -1,0 +1,2 @@
+{"out": "rides/carousel/gen/plate_west_v1", "prompt_file": "rides/carousel/prompts/plate_v1.txt", "ref": ["rides/carousel/gen/plate_west_in.png"], "n": 2}
+{"out": "rides/carousel/gen/plate_east_v1", "prompt_file": "rides/carousel/prompts/plate_v1.txt", "ref": ["rides/carousel/gen/plate_east_in.png"], "n": 2}

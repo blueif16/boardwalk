@@ -1,0 +1,16 @@
+Image 1 is a carousel in our painted storybook map of a seaside amusement park; image 2 is our style frame. Draw a sprite sheet of CAROUSEL HORSES for that carousel, in exactly the painting's style: chunky, rounded, toy-like proportions, thin warm dark-brown outlines (#2c201b) around every silhouette, thinner tinted lines inside, soft pastel fills with one soft shade tone, a gentle paper texture. Each is a classic carousel jumping horse: front legs bent up, back legs stretched out, a curly mane and tail, a decorated saddle and bridle with little gold trims. There is no pole, no rider and no platform: just the horse, as if floating.
+
+Layout, strict: a grid of 5 columns and 4 rows on a flat, pure magenta background (#FF00FF) with nothing else on it. Every horse is whole, the same size, centred in its cell with a wide empty margin; nothing touches or overlaps a neighbour. No shadows, no ground, no grid lines, no borders, no text.
+
+Each ROW is one horse, the same horse in all five cells, identical in colours and decoration:
+Row 1: a white horse with a pink saddle and a golden mane.
+Row 2: a cream horse with a cornflower-blue saddle and a light brown mane.
+Row 3: a pale lavender horse with a butter-yellow saddle and a white mane.
+Row 4: a mint-green horse with a salmon-pink saddle and a cream mane.
+
+Each COLUMN is one viewing direction, the same in every row, all seen from slightly above (about 30 degrees down, as the carousel in image 1 is seen):
+Column 1: side view, the horse facing RIGHT, in profile.
+Column 2: three-quarter view, the horse facing to the right and towards the viewer (its head and chest turned a little to us).
+Column 3: front view, the horse facing straight towards the viewer.
+Column 4: three-quarter view, the horse facing to the right and away from the viewer (we see its right side and its back half, its head turned away).
+Column 5: back view, the horse facing straight away from the viewer (we see its tail and back).
