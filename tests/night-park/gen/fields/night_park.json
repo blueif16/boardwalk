@@ -1,0 +1,19 @@
+{
+ "rect": [
+  0.0,
+  0.0,
+  3840.0,
+  2560.0
+ ],
+ "res": 4,
+ "size": [
+  960,
+  640
+ ],
+ "r_park_px": 4,
+ "eps": 0.01,
+ "robust": 1,
+ "fit_scale": 0.5,
+ "day": "gen/park_day_1920.png",
+ "plate": "gen/park_night_v1_0_1920_reg.png"
+}

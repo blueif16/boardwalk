@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. It is a piece of our hand-painted storybook map of a seaside amusement park, seen from above at an angle: soft watercolour washes, thin warm dark-brown ink outlines, lighter tinted lines inside, gentle paper grain. In the middle, a flat grey area marks where an old carousel used to stand, and flat-colour blocking shapes over it mark the base of the new ride that replaces it.\n\nRepaint only the grey area and the blocking shapes. Keep every other pixel as it is: the Ferris wheel and its cabins on the left, the lamp post, the small swing frame behind, the stalls, the rocks, the green bin, the white rail and the deck planks.\n\n1. In the grey area, paint what was hidden behind the old carousel, continuing the painting around it: the warm wooden deck planks, the lower front of the stall behind, the pale rocks on the right, the small swing frame on the left. Nothing new there, no carousel left.\n\n2. Turn the blocking shapes into the empty base of a swing ride, at exactly their size, shape and position:\n- a low round raised platform: its side is a red skirt painted with little white waves and orange shells, and its top is a pale cream floor;\n- a low white railing on the platform's edge, thin posts and two rails, with two openings at the front;\n- in the middle, a short round drum, sky blue, with a ring of orange scallop shells round its side and a gold rim on top; its top has a round dark opening in the middle, where the ride's column will stand.\n\nThere is no canopy, no column above the drum, no chairs and no chains: only this empty base. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.\n\nSame finish as the rest of the painting: the same ink colour and line weight, the same watercolour softness, the same paper grain and the same light. Not cleaner, not brighter, not more saturated than the painting around it.",
+ "refs": [
+  "rides/swings/gen/plate_in_v1.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "plate_v1"
+ },
+ "format": "png",
+ "generation_s": 54.3,
+ "attempts": 1,
+ "idempotency_key": "3b29a73d-9b9d-4311-9335-aaca2fe9d903",
+ "request_id": "9358106a-cb5c-490b-8ad5-dbfe9dd898ec",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2916,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 427
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2916,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 427
+  },
+  "total_tokens": 15396
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/ff2dd15b-642c-4f81-a7fb-8d1a34c0e15b",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/e6b802a7-db3f-4a90-916c-cfc53710f09d"
+ ],
+ "files": [
+  "rides/swings/gen/plate_v1_0.png",
+  "rides/swings/gen/plate_v1_1.png"
+ ]
+}

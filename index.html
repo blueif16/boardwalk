@@ -4,80 +4,136 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Santa Cruz Boardwalk</title>
+<link rel="icon" href="data:,">
 <style>
   :root { --page: #f6f1ea; --card: #fffdf9; --line: #e4dbd0; --ink: #362223; --text: #5d4a47; }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; overflow: hidden; background: var(--page); color: var(--text); font: 13px/1.4 system-ui, sans-serif; }
+  /* body clips the 3840 px world, so phones keep their real width instead of zooming out to fit it */
+  body { position: relative; }
   .world { position: absolute; left: 0; top: 0; width: 3840px; height: 2560px; transform-origin: 0 0; }
   .world > * { position: absolute; inset: 0; width: 3840px; height: 2560px; display: block; }
-  .panel { position: absolute; left: 12px; bottom: 12px; max-width: calc(100% - 24px); display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 8px 12px; background: color-mix(in srgb, var(--card) 90%, transparent); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 2px 10px rgb(54 34 35 / 0.12); }
+  /* A 64 px copy of the painting inlined here (about 0.5 KB), blurred, under the painting while it loads */
+  .world > .lqip { background: var(--lqip) 0 0 / 100% 100%; filter: blur(36px); transform: scale(1.03); }
+  #painting { color: transparent; }   /* no alt text flashing while the painting loads */
+  .panel { position: absolute; left: 12px; top: 12px; max-width: calc(100% - 24px); display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 8px 12px; background: color-mix(in srgb, var(--card) 90%, transparent); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 2px 10px rgb(54 34 35 / 0.12); }
   .panel[hidden] { display: none; }
   .slot { pointer-events: none; }
   .slot canvas, .slot img { position: absolute; display: block; }
   .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+
 </style>
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/vendor.js",
+  "gsap": "./vendor/vendor.js",
+  "three/addons/lines/LineSegments2.js": "./vendor/vendor.js",
+  "three/addons/lines/LineSegmentsGeometry.js": "./vendor/vendor.js",
+  "three/addons/lines/LineMaterial.js": "./vendor/vendor.js",
+  "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js": "./vendor/vendor.js"
+} }
+</script>
+<link rel="modulepreload" href="vendor/vendor.js">
 </head>
 <body>
 <div class="world" id="world">
-  <img id="painting" alt="The whole Santa Cruz Beach Boardwalk in our style, with the town above and the sea below">
+  <div class="lqip" style="--lqip: url(data:image/webp;base64,UklGRgYCAABXRUJQVlA4IPoBAAAQDQCdASpAACsAPpE+mUglo6KhNVYMALASCWYAtvtHTilYyEv14C/5exf9TvasSBhIJpXbPNCegGYKkqn81dHj2bjRllQRO677x16vmDVqp6L0rrcNX4enW0wkLzX9x2ox3SJ5Ph3AuLXBXbCztbIU4AD+8j45Id1r9zZqSXadEuXh4tVE9TiEoa9telQk5bftdKxFImyIOZDJl2DTfiw0ee0PU6EXVMRz28PWFrxCY+RPz5mIM9ZjmuMvr4s7Ps2iKNdMBM4BCv02Z4fK6JwuvR2FGU7QOp1xR2deqFFqGvzJiunLw/Orqqb5aysIQDoFFokQmHM+q94Ricu27FT0N6kY29Z4MFp80/UIBeQlbAdc/FHJsoxYBlkBvejqEc5FOUX/Qh541Cp4ZtqYumaXlj/TKkSKSk2LLg7sltvaymXvVnOsyo9g8jnpbdjjXntKeQOb9XsYhfqgspwvB3I8iInOq63MTkrTIlZfbaLSTsIvDCWURqEanuPAftce6rznP6PnIrqQshpzq1B2rDuAxVpeEn/5CghgKwrXEYMGL44kfM4luhrMdR9BXEUQXqHZKVUGM3phxgP4a+FzN9GiJHDAqSY0xZfM3ZbwUp4K7QehdgXT0Quz/Ri/V+uvlaO/+6p3Yy5XzQIPFhB5vnNb9RYFYJpA1AAAAA==)"></div>
+  <img id="preview" alt="" fetchpriority="high">
+  <img id="painting" alt="The whole Santa Cruz Beach Boardwalk in our style, with the town above and the sea below" fetchpriority="high">
   <div class="slot" data-slot="plate"></div>
   <div class="slot" data-slot="rides"></div>
   <canvas id="animals"></canvas>
   <div class="slot" data-slot="front"></div>
+  <div class="slot" data-slot="grade"></div>
+  <div class="slot" data-slot="pool"></div>
+  <div class="slot" data-slot="lights"></div>
 </div>
+<script>
+// During parse, before any module loads: fit the world to the window and start the painting (from the module it
+// waited three round trips for crowd.js and its imports). The module reuses window.__fit.
+(() => {
+  const W = 3840, H = 2560, WIDTHS = [1920, 2560, 3456, 3840, 5120];
+  const world = document.getElementById("world"), painting = document.getElementById("painting");
+  const F = window.__fit = { W, H, scale: 1, loaded: 0 };
+  // The smallest width that covers the window at the screen's pixel density, at most 2x (a 3x phone gets the 2x
+  // painting: 1.3 MB less), and only ever stepping up.
+  F.pick = (s) => {
+    const need = W * s * Math.min(devicePixelRatio || 1, 2);
+    const w = WIDTHS.find((v) => v >= need * 0.95) ?? WIDTHS.at(-1);
+    if (w > F.loaded) { F.loaded = w; painting.src = `site/park/world_${w}.webp`; }
+  };
+  F.fit = () => {
+    F.scale = Math.max(innerWidth / W, innerHeight / H);
+    F.pick(F.scale);
+    world.style.transform = `translate(${(innerWidth - W * F.scale) / 2}px, ${(innerHeight - H * F.scale) / 2}px) scale(${F.scale})`;
+  };
+  F.fit();
+  document.getElementById("preview").src = "site/park/world_960.webp";   // a readable park in ~0.4 s on 4G
+})();
+</script>
 <div class="panel mono" id="panel" hidden></div>
 <script type="module">
 // The whole park, fixed: the 3:2 painting always covers the window (no scrolling, no bars) and the park strip in its
 // middle stays whole on screens from 3:2 to about 2.4:1. Live layers draw in the same 3840 x 2560 park frame.
-// Params: &n= crowd size, &hour= 0-24 (default 13), &px= animal size (default 38), &t= frozen clock, &panel shows stats,
-// &layers=a,b (only these ride layers; empty for none), &crowd=0 (no animals).
+// Params: &n= crowd size, &hour= 0-24 (default: the visitor's own clock, base/sky.js), &px= animal size (default 38), &t= frozen clock, &panel shows stats,
+// &layers=a,b (only these ride layers; empty for none), &crowd=0 (no animals), &occ=0 (no depth order for the
+// crowd; &occ=rides: the rides' occluders only, not the painting's cut-outs).
 //
-// Ride layers live in rides/<name>/layer.js and export mount(ctx) -> { update(t, dt), resize(scale) }. ctx gives
-// the park frame (3840 x 2560 park px; camera from tests/park-crowd/park.json), the master clock, the slots (plate:
-// painting patches; rides; front: drawn over the crowd), addPatch(url, rect) for plate patches made with
-// tools/park_patch.py, and canvas(slot) for a park-sized canvas that tracks the window's scale.
-import { mountCrowd } from "./tests/park-crowd/crowd.js";
+// Ride layers live in rides/<name>/layer.js and export mount(ctx) -> { update(t, dt), resize(scale), riders?,
+// occluders? }. ctx gives the park frame (3840 x 2560 park px; camera from tests/park-crowd/park.json), the master
+// clock, the slots (plate: painting patches; rides; front: drawn over the crowd), addPatch(url, rect) for plate
+// patches made with tools/park_patch.py, canvas(slot) for a park-sized canvas that tracks the window's scale, and
+// riders(name, key, t) (rides/RIDERS.md), and sky (base/sky.js: the time of day every layer reads; rides/sky grades
+// the page by it and draws the sun/moon badge; slots grade, pool and lights sit over front for it and rides/lights).
+// Depth (rides/RIDERS.md "Depth"): the crowd's canvas is above the rides slot, so a layer returns `occluders` for
+// whatever it draws (or lays back) that animals can stand behind: an array, or a function of clock time t returning
+// one, of { rect: [x, y, w, h] park px, sortY, mask? }. sortY is the y of the thing's base (where it meets the deck,
+// park px); mask is an image, canvas or URL whose alpha covers rect (none: the rect itself). Animals whose feet are
+// above sortY are hidden where the mask is opaque, in the crowd's one draw call; riders a ride draws itself are not
+// touched. Optional: matrix [a, b, c, d, e, f] places rect like a canvas transform (a swinging ship: rect in the
+// sprite's own units, matrix as drawn); sortLine [xa, ya, xb, yb] replaces sortY with a sloped base for long or
+// slanted things (read at the animal's x); crop [sx, sy, sw, sh] takes the mask from part of a sheet. Masks are packed
+// once, the first time the crowd sees them: return the same mask objects every frame and move them with rect/matrix.
 import { createCamera } from "./base/camera.js";
 import { createClock } from "./base/clock.js";
+import { getSky } from "./base/sky.js";
 
-const RIDES = ["sea", "traffic", "coaster", "wheel", "teacups", "flume", "pirate", "carousel", "thrill"]; // reviewed rides only
+const RIDES = ["sky", "sea", "beach", "wildlife", "traffic", "coaster", "wheel", "swings", "teacups", "flume", "pirate", "carousel", "thrill", "corgi", "streetlights", "lights"]; // reviewed rides only
 
 const W = 3840, H = 2560;
 const world = document.getElementById("world");
 const params = new URLSearchParams(location.search);
+// Explore (the title's button fires "explore" on window) leaves for the original site for now; &explore= overrides.
+const EXPLORE = params.get("explore") ?? "https://astro-blog-lemon.vercel.app";
+addEventListener("explore", () => { location.href = EXPLORE; });
 
-// The painting (gen/park/world_v2_hd, 9600 x 6400) ships in five widths; load the smallest that covers the window
-// at the screen's real pixel density, and only ever step up.
-const WIDTHS = [1920, 2560, 3456, 3840, 5120];
+// The painting (gen/park/world_v2_hd, 9600 x 6400) ships in five widths; the classic script above picks one and
+// steps up on resize (window.__fit).
+const F = window.__fit;
 const painting = document.getElementById("painting");
-let loaded = 0;
-function pick(s) {
-  const need = W * s * (devicePixelRatio || 1);
-  const w = WIDTHS.find((v) => v >= need * 0.95) ?? WIDTHS.at(-1);
-  if (w > loaded) { loaded = w; painting.src = `site/park/world_${w}.webp`; }
-}
-
-let scale = 1;
+let scale = F.scale;
 function fit() {
-  scale = Math.max(innerWidth / W, innerHeight / H);
-  pick(scale);
-  world.style.transform = `translate(${(innerWidth - W * scale) / 2}px, ${(innerHeight - H * scale) / 2}px) scale(${scale})`;
+  F.fit();
+  scale = F.scale;
   crowd?.resize(scale);
 }
 let crowd = null;
 const rides = [];
-fit();
 addEventListener("resize", fit);
+// The painting is on screen once it is decoded; the placeholders go then.
+const shown = painting.decode().catch(() => {});
+shown.then(() => { document.getElementById("preview")?.remove(); document.querySelector(".world > .lqip")?.remove(); });
 
 const slots = Object.fromEntries([...world.querySelectorAll("[data-slot]")].map((el) => [el.dataset.slot, el]));
 const park = await fetch("tests/park-crowd/park.json").then((r) => r.json());
 const clock = createClock();
+const sky = getSky({ params });
 const canvases = [];
 const ctx = {
+  park, W, H, camera: createCamera(park), clock, params, slots, sky,
+  scale: () => scale,
   // Who rides a ride's vehicle key at clock time t (rides/RIDERS.md); null without the crowd: the ride picks its own.
   riders: (name, key, t) => crowd?.riders(name, key, t) ?? null,
-  park, W, H, camera: createCamera(park), clock, params, slots,
-  scale: () => scale,
   addPatch(url, [x, y, w, h]) {
     const img = new Image();
     img.src = url;
@@ -99,43 +155,95 @@ const ctx = {
 };
 addEventListener("resize", () => { for (const e of canvases) e.fit(); for (const l of rides) l.resize?.(scale); });
 
-const wanted = params.has("layers") ? params.get("layers").split(",").filter(Boolean) : RIDES;
-const riderBlocks = [];
-for (const name of wanted) {
-  try {
-    const mod = await import(`./rides/${name}/layer.js`);
-    const layer = (await mod.mount({ ...ctx, name, dir: new URL(`./rides/${name}/`, location.href) })) || {};
-    layer.resize?.(scale);
-    rides.push(layer);
-    if (layer.riders) riderBlocks.push({ ...layer.riders, name });
-  } catch (err) {
-    console.error(`ride layer ${name} failed`, err);
-  }
-}
-
-if (params.get("crowd") !== "0") {
-  crowd = await mountCrowd(document.getElementById("animals"), { params, clock, rides: riderBlocks });
-  crowd.resize(scale);
-}
-
 const panel = document.getElementById("panel");
 panel.hidden = !params.has("panel");
 addEventListener("keydown", (e) => { if (e.key === "h" || e.key === "H") panel.hidden = !panel.hidden; });
 let frames = 0, prev = clock.now();
 function frame() {
+  sky.tick();
   const t = clock.now(), dt = Math.min(0.1, Math.max(0, t - prev));
   prev = t;
   crowd?.update();
   for (const l of rides) l.update?.(t, dt);
   if (!panel.hidden && frames++ % 30 === 0) {
     const st = crowd?.stats() ?? {};
-    panel.textContent = `window ${innerWidth}×${innerHeight} at ${devicePixelRatio}× · painting ${loaded} px · ${JSON.stringify(st)}`;
+    panel.textContent = `window ${innerWidth}×${innerHeight} at ${devicePixelRatio}× · painting ${F.loaded} px · ${JSON.stringify(st)}`;
   }
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 
-await painting.decode().catch(() => {});
+// Rides: once the painting is on screen, the ones the window shows, AT_ONCE at a time, in ORDER (what a visitor looks
+// at first); the crowd after that first wave (it takes their riders and occluders); rides off screen (phones) load
+// when a resize brings them on screen.
+const ORDER = ["sky", "sea", "coaster", "wheel", "swings", "carousel", "teacups", "pirate", "thrill", "flume", "traffic"]; // rides not listed load last
+const BOXES = { // each ride's box in park px [x0, y0, x1, y1] (from its layer.js); a ride not listed counts as on screen
+  sea: [0, 1187, 3840, 2560], traffic: [0, 440, 3840, 1150], coaster: [1990, 900, 3240, 1262], wheel: [2452, 1176, 2708, 1484],
+  teacups: [3080, 1428, 3340, 1650], flume: [3010, 890, 3740, 1400], pirate: [690, 1035, 1180, 1305],
+  carousel: [1555, 1095, 1790, 1315], thrill: [895, 725, 1415, 1240], swings: [2680, 1335, 2892, 1542],
+};
+const AT_ONCE = 3;
+const wanted = params.has("layers") ? params.get("layers").split(",").filter(Boolean) : RIDES;
+// rides/lights mounts last, after the crowd: it reads the live rides it lights (window.__wheel and the rest).
+const queue = [...ORDER.filter((n) => wanted.includes(n)), ...wanted.filter((n) => !ORDER.includes(n) && n !== "lights")];
+const riderBlocks = [], occluders = [], state = {};
+let running = 0, started = false, waveDone = () => {};
+function onScreen(name) {
+  const b = BOXES[name];
+  if (!b) return true;
+  const m = 40, hw = innerWidth / (2 * scale), hh = innerHeight / (2 * scale);
+  return b[0] < W / 2 + hw + m && b[2] > W / 2 - hw - m && b[1] < H / 2 + hh + m && b[3] > H / 2 - hh - m;
+}
+async function mountRide(name) {
+  // Plate patches (the painting with the ride erased) stay hidden until the ride is ready, so the painted ride never
+  // disappears before the live one shows.
+  const patches = [];
+  let mounting = true;
+  const rideCtx = { ...ctx, name, dir: new URL(`./rides/${name}/`, location.href),
+    addPatch(url, rect) { const img = ctx.addPatch(url, rect); if (mounting) { img.style.visibility = "hidden"; patches.push(img); } return img; } };
+  try {
+    const mod = await import(`./rides/${name}/layer.js`);
+    const layer = (await mod.mount(rideCtx)) || {};
+    mounting = false;
+    await Promise.all(patches.map((img) => img.decode().catch(() => {})));
+    for (const img of patches) img.style.visibility = "";
+    layer.resize?.(scale);
+    rides.push(layer);
+    performance.mark(`alive:${name}`);   // milestones for measuring (tests/perf/tools), free in production
+    if (layer.riders) riderBlocks.push({ ...layer.riders, name });
+    if (layer.occluders) occluders.push({ name, occluders: layer.occluders });
+  } catch (err) {
+    console.error(`ride layer ${name} failed`, err);
+  }
+}
+function schedule() {
+  for (const name of queue) {
+    if (running >= AT_ONCE) break;
+    if (state[name] || !onScreen(name)) continue;
+    state[name] = "loading";
+    running++;
+    mountRide(name).finally(() => { state[name] = "alive"; running--; schedule(); waveDone(); });
+  }
+}
+addEventListener("resize", () => { if (started) schedule(); });
+const firstWave = queue.filter(onScreen);
+await shown;
+started = true;
+// The layers' code is small: ask for every first-wave module now, so the later ones skip a round trip.
+for (const n of firstWave) document.head.append(Object.assign(document.createElement("link"), { rel: "modulepreload", href: `rides/${n}/layer.js` }));
+await new Promise((done) => { waveDone = () => { if (firstWave.every((n) => state[n] === "alive")) done(); }; schedule(); waveDone(); });
+
+if (params.get("crowd") !== "0") {
+  const { mountCrowd } = await import("./tests/park-crowd/crowd.js");
+  crowd = await mountCrowd(document.getElementById("animals"), { params, clock, rides: riderBlocks, occluders });
+  crowd.resize(scale);
+  performance.mark("alive:crowd");
+}
+if (wanted.includes("lights")) await mountRide("lights");
+performance.mark("alive:all");
+
+
+await shown;
 requestAnimationFrame(() => requestAnimationFrame(() => { document.documentElement.dataset.ready = "1"; }));
 </script>
 </body>

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec uv run -q --no-project --with pillow --with numpy --with scipy python -I "$@"

@@ -1,0 +1,105 @@
+{
+ "about": "The Sea Swings, designed in park px. A point (X, Y, z) round the ride's axis (X right, Y towards the viewer, z up, all park px) is drawn at screen (hub.x + X, hub.y + k(z) Y - z) with k(z) = k0 - kz z: ground circles are ellipses 0.39 as tall as wide (the east carousel's floor, measured), flattening a little with height as the painting's roofs do. phi = 90 degrees is the front (lowest on screen). Heights z are above the deck.",
+ "hub": [
+  2786,
+  1501.5
+ ],
+ "k0": 0.39,
+ "kz": 0.0007,
+ "platform": {
+  "r": 60,
+  "h": 14
+ },
+ "fence": {
+  "r": 59,
+  "h": 6.5,
+  "gaps": [
+   [
+    101,
+    121
+   ],
+   [
+    55,
+    74
+   ]
+  ]
+ },
+ "drum": {
+  "r": 16.6,
+  "z1": 33
+ },
+ "column": {
+  "r": 7.5
+ },
+ "canopy": {
+  "hang": 48,
+  "r": 54.3,
+  "band": 13,
+  "cone": 15,
+  "collar": 12,
+  "cupola_r": 11.3,
+  "cupola_h": 12,
+  "finial": 6
+ },
+ "chain": 36,
+ "rest": 69,
+ "lift": 35,
+ "region": [
+  2615,
+  1330,
+  2957,
+  1558
+ ],
+ "painted": {
+  "about": "The painted canopy and column as the takes draw them, park px, with the canopy at full lift (gen/ride_v1_0.png: band, cone, cupola, finial) and the column (gen/ride_v1_1.png). Ellipses {c, a, b}; fitted with tools/fit_canopy.py and gridded zooms (tools/zoom_grid.py).",
+  "band_top": {
+   "c": [
+    2786.3,
+    1390.7
+   ],
+   "a": 55.3,
+   "b": 18.7
+  },
+  "band_bot": {
+   "c": [
+    2785.8,
+    1399.6
+   ],
+   "a": 58.9,
+   "b": 23.8
+  },
+  "collar": {
+   "c": [
+    2785.9,
+    1376.7
+   ],
+   "a": 11.7,
+   "b": 4.0
+  },
+  "cupola": {
+   "a": 10.7,
+   "b": 3.66,
+   "h": 10.2,
+   "collar_h": 2.3,
+   "collar_v": 0.15
+  },
+  "finial": {
+   "c": [
+    2785.4,
+    1360.6
+   ],
+   "r": 2.9
+  },
+  "column": {
+   "c": [
+    2786.2,
+    1420.5
+   ],
+   "r": 8.3,
+   "b": 2.9,
+   "len": 39.5
+  }
+ },
+ "hang_z": 104,
+ "about_motion": "Chains hang from a ring of radius canopy.hang under the crown band, at z hang_z when the canopy is lifted (as painted in gen/ride_v1_0.png) and hang_z - lift at rest; chain is the chain length to the chair's rings (at the top of the chair). At rest the rings hang at z rest - chain = 33, the chairs' footrests (17.4 px below the rings) 1.6 px over the platform floor (z 14)."
+}

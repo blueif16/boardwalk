@@ -11,6 +11,12 @@
 // each stop the cabin at the bottom is serviced: its riders get out, new ones (or nobody) get in, and it rocks.
 // Cabins sway as pendulums driven by their hanger's acceleration; that is simulated once at mount for the four cycles
 // after which every cabin is back where it started, and looked up per frame.
+//
+// Depth for the crowd (rides/RIDERS.md "Depth"): `occluders(t)` gives the front legs (legs.webp) and the hub on the
+// front A-frame's foot line, and the turning wheel and its twelve cabins (their own sprites, placed as drawn) on the
+// wheel's plane halfway between the front and back feet. The A-frame is not face-on (its right feet stand 27 px
+// lower than its left), so both use a sloped base (sortLine). The queue under the bottom cabin stands in front of the
+// wheel and behind the front-right leg.
 const BOX = [2452, 1176, 2708, 1484]; // park px: the canvas covers the wheel and its cabins
 const OMEGA = 12;                     // deg/s, cruising
 const RAMP = 3;                       // s to start or stop the turn
@@ -34,6 +40,9 @@ const WINDOW = [13, 55, 82, 97];      // cabin frame px: the window opening, its
 const SEAT_X = [0.34, 0.68];          // across the cabin frame
 const GATE = [2578, 1476], EXIT = [2600, 1488]; // the deck under the bottom cabin, between the A-frame's feet
 const QUEUE = [[2578, 1476], [2563, 1478], [2548, 1480], [2533, 1482], [2518, 1484]];
+
+import { rideHours } from "../../base/park_hours.js";
+import { getSky } from "../../base/sky.js";
 
 const loadImage = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
 const hash = (n) => { let x = Math.imul((n | 0) ^ 0x9e3779b9, 0x85ebca6b); x ^= x >>> 13; x = Math.imul(x, 0xc2b2ae35); x ^= x >>> 16; return (x >>> 0) / 4294967296; };
@@ -70,6 +79,9 @@ export async function mount(ctx) {
     fetch(new URL("atlas.json", crowdDir)).then((r) => r.json()),
     loadImage(new URL("atlas.png", crowdDir).href),
   ]);
+  // Park hours (base/park_hours.js): closed, the wheel turns on to its first loading stop and stays there, the cabin at
+  // the bottom emptied (1.8 s into the stop: old riders out, nobody in).
+  const hours = rideHours(ctx.sky ?? getSky({ params: ctx.params }), { period: CYCLE, rest: RUN + 1.8, frozen: ctx.clock.frozen });
   const [HX, HY] = meta.hub, [RA, RB] = meta.ring;
   const W = meta.wheel, SX = RA / W.knob_radius, SY = RB / W.knob_radius;
   const CF = meta.cabins.frames, CD = meta.cabins.density, COLOURS = meta.cabins.colours;
@@ -228,7 +240,7 @@ export async function mount(ctx) {
     hang.sort((p, q) => p.y - q.y);
     for (const { k, x, y } of hang) {
       const col = COLOURS[k % COLOURS.length], rot = swayAt(k, t), dy = bounce(k, t);
-      const who = ctx.riders ? ctx.riders(ctx.name, `cabin${k}`, t) : null;
+      const who = ctx.riders ? ctx.riders(ctx.name, `cabin${k}`, hours.master(t)) : null;
       if (who) { cabin(`${col}_empty`, x, y + dy, rot, 1, who, swap(k, t)); continue; }
       // Full over empty, so the cabin itself never fades.
       cabin(`${col}_empty`, x, y + dy, rot, 1);
@@ -260,11 +272,31 @@ export async function mount(ctx) {
     return out.sort((a, b) => a.t - b.t);
   }
 
+  // Depth (rides/RIDERS.md): foot lines measured on the plate (the middle of each foot): front (2512, 1460) and
+  // (2625, 1487), back (2560, 1420) and (2668, 1461); the wheel turns halfway between.
+  const FRONT_LINE = [2512, 1460, 2625, 1487], WHEEL_LINE = [2536, 1440, 2646, 1474];
+  const mid = (l) => (l[1] + l[3]) / 2;
+  const legsOcc = { rect: meta.legs.rect, mask: legs, sortY: mid(FRONT_LINE), sortLine: FRONT_LINE };
+  const hubOcc = (a) => { const c = Math.cos(a * RAD), s = Math.sin(a * RAD); return { rect: [-W.hub_size / 2, -W.hub_size / 2, W.hub_size, W.hub_size], matrix: [SX * c, SY * s, -SX * s, SY * c, HX, HY], mask: hubImg, sortY: mid(FRONT_LINE), sortLine: FRONT_LINE }; };
+  function occluders(t) {
+    t = hours.run(t);
+    const a = angle(t), c = Math.cos(a * RAD), s = Math.sin(a * RAD);
+    const out = [legsOcc, hubOcc(a), { rect: [-W.size / 2, -W.size / 2, W.size, W.size], matrix: [SX * c, SY * s, -SX * s, SY * c, HX, HY], mask: wheelImg, sortY: mid(WHEEL_LINE), sortLine: WHEEL_LINE }];
+    for (let k = 0; k < N; k++) {
+      const p = (knob(k) + a) * RAD, x = HX + RA * Math.cos(p), y = HY + RB * Math.sin(p) + bounce(k, t), r = swayAt(k, t);
+      const f = CF[`${COLOURS[k % COLOURS.length]}_empty`], [sx, sy, sw, sh] = f.rect, [ax, ay] = f.anchor;
+      out.push({ rect: [-ax / CD, -ay / CD, sw / CD, sh / CD], matrix: [Math.cos(r), Math.sin(r), -Math.sin(r), Math.cos(r), x, y], mask: cabinsImg, crop: [sx, sy, sw, sh], sortY: mid(WHEEL_LINE), sortLine: WHEEL_LINE });
+    }
+    return out;
+  }
+
   let cost = 0, frames = 0;
-  window.__wheel = { cycle: CYCLE, run: RUN, angle, riders, swayAt, bottomCabin, where, draw, simMs, loads, cost: () => cost / Math.max(1, frames) };
+  window.__wheel = { occluders, cycle: CYCLE, run: RUN, angle, riders, swayAt, bottomCabin, where, draw, simMs, loads, cost: () => cost / Math.max(1, frames) };
   return {
-    riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads },
+    riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads: hours.loads(loads) },
+    occluders,
     update(t) {
+      t = hours.run(t);
       const t0 = performance.now();
       draw(t);
       cost += performance.now() - t0;

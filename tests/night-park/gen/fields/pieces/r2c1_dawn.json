@@ -1,0 +1,19 @@
+{
+ "rect": [
+  1152.0,
+  1536.0,
+  1536.0,
+  1024.0
+ ],
+ "res": 4,
+ "size": [
+  384,
+  256
+ ],
+ "r_park_px": 4,
+ "eps": 0.01,
+ "robust": 1,
+ "fit_scale": 1.0,
+ "day": "gen/pieces/in_r2c1.png",
+ "plate": "gen/pieces/r2c1_dawn_1536_reg.png"
+}

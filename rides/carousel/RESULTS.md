@@ -1,8 +1,17 @@
-# The two carousels: the painting's own carousels, turning
+# The carousel: the painting's own carousel, turning
 
-View: **http://ran:5178/?layers=carousel** (with the crowd), `&crowd=0` for the rides alone, `&t=30` for a frozen
-frame. One layer drives both: the west carousel by the entrance (hub about (1673, 1244) park px) and the east one
-beside the Dream Wheel (about (2783, 1487)). Not in the page's default ride list yet.
+View: **http://ran:5178/?layers=carousel** (with the crowd), `&crowd=0` for the ride alone, `&t=30` for a frozen
+frame. The west carousel by the entrance and the Haunted Castle (hub about (1673, 1244) park px), where the official
+map puts the Looff Carousel. On the default page.
+
+**2026-10-26: one carousel.** The painting had a second, near-identical open carousel east of the Dream Wheel (hub
+about (2783, 1487)). It is now the Sea Swings (rides/swings), whose plate paints over it; this layer drives the west
+carousel only: `CAROUSELS`, `QUEUES`, `geom.json`, `plates.json`, `tools/build_columns.py` and the riders block keep
+only `west` (keys `west:horse0-11`, gate (1594, 1299), exit (1756, 1290), no `more`); the canvas box shrank to
+[1555, 1095, 235, 220]; `surfaces.webp` was rebuilt without the east tiles (identical west tiles, 111 -> 62 KB);
+`plate_east.webp` and `column_east.webp` are gone (their sources stay in `gen/`). The layer also returns `occluders`
+(rides/RIDERS.md "Depth"): one static mask, the convex hull of the finial, roof rim, valance and platform ellipses,
+sortY 1263 (the platform's centre on the deck). The sections below describe the work when it drove both carousels.
 
 ![Painting (left) and live (right), both carousels, at monitor size](shots/monitor_2560_painting_vs_live_x3.png)
 

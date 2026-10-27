@@ -1,0 +1,30 @@
+{
+ "win_w": {
+  "found": 92,
+  "road": 6,
+  "rejected": 7,
+  "dup": 0,
+  "kept": 79
+ },
+ "blob_w": {
+  "found": 155,
+  "road": 12,
+  "rejected": 6,
+  "dup": 64,
+  "kept": 73
+ },
+ "win_wp": {
+  "found": 18,
+  "road": 0,
+  "rejected": 10,
+  "dup": 0,
+  "kept": 8
+ },
+ "blob_wp": {
+  "found": 57,
+  "road": 0,
+  "rejected": 57,
+  "dup": 0,
+  "kept": 0
+ }
+}

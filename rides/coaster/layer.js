@@ -35,6 +35,9 @@ const SEAT = { side: [0.33, 0.61], side_0: [0.26, 0.52], back: [0.32, 0.68], fro
 const GATE = [2264, 1356], EXIT = [2245, 1446]; // the deck in front of the station, between the bench and the lamp
 const QUEUE = [[2264, 1356], [2265, 1370], [2266, 1384], [2267, 1398], [2268, 1412], [2269, 1426]];
 
+import { rideHours } from "../../base/park_hours.js";
+import { getSky } from "../../base/sky.js";
+
 const loadImage = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
 
 export async function mount(ctx) {
@@ -78,6 +81,20 @@ export async function mount(ctx) {
     times.push(t); dist.push(d);
   }
   const RUN = t, CYCLE = DWELL + RUN;
+  // Park hours (base/park_hours.js): closed, train 0 comes in and waits in the station, emptied (1.5 s into its
+  // dwell); train 1 stops in the brake run just behind it. Open again, train 0 leaves first and train 1 waits until it
+  // is half a cycle behind again, so the two never meet in the station.
+  const PARK = 3 * SPACING + 12;  // px behind the station where train 1 waits
+  const P1 = DWELL + times[Math.max(0, dist.findIndex((v) => v >= L - PARK))];
+  const mod = (v) => ((v % CYCLE) + CYCLE) % CYCLE;
+  const sky = ctx.sky ?? getSky({ params: ctx.params });
+  let tau0 = 0;
+  const hours = [
+    rideHours(sky, { period: CYCLE, rest: 1.5, frozen: ctx.clock.frozen }),
+    rideHours(sky, { period: CYCLE, rest: mod(P1 - CYCLE / 2), frozen: ctx.clock.frozen,
+      release: () => { const ph = mod(tau0 + CYCLE / 2); return ph >= P1 && ph < P1 + 0.4; } }),
+  ];
+  const rideTimes = (t) => { tau0 = hours[0].run(t); return [tau0, hours[1].run(t)]; };
   function travel(clock) {
     const ph = ((clock % CYCLE) + CYCLE) % CYCLE;
     if (ph < DWELL) return 0;
@@ -117,12 +134,23 @@ export async function mount(ctx) {
     const [x, y, w, h] = meta.rect;
     im.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;opacity:${alpha}`;
     ctx.slots.rides.append(im);
+    return im;
   };
   const back = layer();
-  cutout("lattice", occL, OCC_LATTICE_ALPHA);
+  const latticeImg = cutout("lattice", occL, OCC_LATTICE_ALPHA);
   const front = layer();
-  cutout("station", occS);
-  cutout("fireball", occF);
+  const stationImg = cutout("station", occS);
+  const fireballImg = cutout("fireball", occF);
+  // Depth for the crowd (rides/RIDERS.md "Depth"): the cut-outs it lays back hide animals behind them too. The
+  // station shed stands on its own lowest pixel; the Fireball's hub is on the Fireball's A-frame, whose feet stand
+  // about y 1340 on the deck; the lattice is raised track structure whose ground line is hidden, so it sorts on its
+  // own lower edge. No walking place reaches behind any of them today (they matter for the open deck behind the
+  // stalls, if it ever opens).
+  const occluders = [
+    { rect: occS.rect, mask: stationImg, sortY: 1245 },
+    { rect: occF.rect, mask: fireballImg, sortY: 1340 },
+    { rect: occL.rect, mask: latticeImg, sortY: 1199 },
+  ];
   let density = 1;
   function resize(scale) {
     density = Math.min(2.5, Math.max(1.5, scale * (devicePixelRatio || 1))); // at least 1.5 px per park px, shrunk by the browser: crisp at monitor size
@@ -163,7 +191,8 @@ export async function mount(ctx) {
     g.restore();
   }
 
-  function draw(clock) {
+  function draw(t) {
+    const taus = rideTimes(t);
     for (const g of [back, front]) {
       g.setTransform(density, 0, 0, density, -bx * density, -by * density);
       g.clearRect(bx, by, bw, bh);
@@ -171,7 +200,7 @@ export async function mount(ctx) {
     }
     const cars = [];
     for (const [ti, tr] of trains.entries()) {
-      const lead = S0 + travel(clock + tr.offset);
+      const clock = taus[ti], lead = S0 + travel(clock + tr.offset);
       tr.cars.forEach((kind, k) => {
         const u = lead - k * SPACING;
         const a = alphaAt(u);
@@ -182,7 +211,7 @@ export async function mount(ctx) {
         const nx = vy / len, ny = -vx / len;          // a normal to the direction of travel ...
         const up = ny < 0 ? [nx, ny] : [-nx, -ny];     // ... the one that points up the screen
         const c = at(u);
-        const riders = ctx.riders ? ctx.riders(ctx.name, `t${ti}c${k}`, clock) : null;
+        const riders = ctx.riders ? ctx.riders(ctx.name, `t${ti}c${k}`, hours[ti].master(clock)) : null;
         cars.push({ kind, a, b: behindAt(u), vx, vy, x: c[0] + up[0] * LIFT, y: c[1] + up[1] * LIFT, riders });
       });
     }
@@ -207,9 +236,12 @@ export async function mount(ctx) {
 
   // Load events (rides/RIDERS.md), closed form: train i arrives at n*CYCLE - offset_i and loads LOAD_AT s later. A train
   // already out on the circuit at t = 0 gets one load at 0, so the ride isn't empty for its first lap.
-  function loads(t0, t1) {
+  // Each train's events in its own ride time, mapped to the master clock by its park-hours clock.
+  const loads = (t0, t1) => [0, 1].flatMap((i) => hours[i].loads((a, b) => trainLoads(i, a, b))(t0, t1)).sort((a, b) => a.t - b.t);
+  function trainLoads(only, t0, t1) {
     const out = [];
     trains.forEach((tr, i) => {
+      if (i !== only) return;
       const keys = tr.cars.map((_, k) => `t${i}c${k}`);
       const ph0 = ((tr.offset % CYCLE) + CYCLE) % CYCLE;
       if (ph0 >= LOAD_AT && t0 <= 0 && 0 < t1) for (const key of keys) out.push({ t: 0, key, seats: SEATS, until: CYCLE - ph0 });
@@ -227,5 +259,6 @@ export async function mount(ctx) {
     update(clock) { draw(clock); },
     resize,
     riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads },
+    occluders,
   };
 }

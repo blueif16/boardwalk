@@ -1,0 +1,12 @@
+Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything. Objects cut by the edges of image 1 stay cut at exactly the same place.
+
+Image 1 is the whole map: the town and wooded hills at the top under a thin strip of sky, the street and the parking lots, the amusement park on its boardwalk, the beach and the sea at the bottom. Relight all of it in one consistent light. The sea becomes the colour the sky would give it at this time and keeps its white foam lines and short ripple dashes; the hills and the sky strip take the same light.
+
+The new time: early morning, just after sunrise. A soft, fresh light: pale rose and apricot where the low sun from the right touches the tops and the right-facing sides of things, cool lilac-blue in the shade, a faint morning haze over the town. Keep it a storybook painting: the pastel colours stay clean and gentle, a little cooler and paler than midday. The sand is pale peach with a lilac tint, the boardwalk planks soft rose-brown, the white coaster lattice rosy on its sunlit side and lilac on the rest, the street and the parking lots cool grey-lilac.
+
+Every artificial light is switched off.
+At this time the sea is a soft pale blue with pink glints on its ripple dashes; the hills are misty blue-green, the sky strip pale rose-gold.
+
+Shadows stay short and soft, right under each object: no long cast shadows.
+
+Do not add anything new: no people, animals, cars, boats, birds, moon, sun or stars. Do not draw any text, letters, numbers, logos or watermarks.

@@ -1,0 +1,23 @@
+{
+ "rect": [
+  0.0,
+  0.0,
+  1536.0,
+  1024.0
+ ],
+ "res": 4,
+ "size": [
+  384,
+  256
+ ],
+ "r_park_px": 4,
+ "eps": 0.01,
+ "robust": 1,
+ "fit_scale": 1.0,
+ "day": "gen/pieces/in_r0c0.png",
+ "plate": "gen/pieces/r0c0_night_1536_reg.png",
+ "merged": [
+  "gen/fields/pieces/r0c0_night"
+ ],
+ "base": "gen/fields/park_night"
+}

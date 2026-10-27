@@ -1,0 +1,30 @@
+{
+ "win_e": {
+  "found": 26,
+  "road": 13,
+  "rejected": 5,
+  "dup": 0,
+  "kept": 8
+ },
+ "blob_e": {
+  "found": 44,
+  "road": 16,
+  "rejected": 7,
+  "dup": 5,
+  "kept": 16
+ },
+ "win_ep": {
+  "found": 17,
+  "road": 0,
+  "rejected": 17,
+  "dup": 0,
+  "kept": 0
+ },
+ "blob_ep": {
+  "found": 71,
+  "road": 0,
+  "rejected": 71,
+  "dup": 0,
+  "kept": 0
+ }
+}

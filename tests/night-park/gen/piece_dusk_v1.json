@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything. Objects cut by the edges of image 1 stay cut at exactly the same place.\n\nImage 1 is one piece of a larger painting: the town and the street at the top, the parking lots, the Giant Dipper roller coaster, a Ferris wheel and the stalls and lamps of the boardwalk, the beach wall and the sand at the bottom. Relight it in the same light as the rest of the painting.\n\nThe new time: twilight, about twenty minutes after sunset, the blue hour. The sun has gone down beyond the left edge; its afterglow from the lower left touches the tops and the left-facing sides of things with soft rose and peach, and everything else sits in periwinkle and violet shade. Keep it a storybook painting: darker and cooler than daytime but much lighter than night, the pastel colours still clean and rich, never grey or muddy. The sand is mauve-pink fading to periwinkle, the boardwalk planks dusty rose, the white coaster lattice lilac with a pink rim of light, the street and the parking lots slate violet, the town's walls lilac and rose.\n\nEvery artificial light is still switched off: lamps, windows, stalls, signs and rides are all unlit.\n\nShadows stay short and soft, right under each object: no long cast shadows.\n\nDo not add anything new: no people, animals, cars, boats, birds, moon, sun or stars. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night-park/gen/in_piece_day.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "piece_dusk_v1"
+ },
+ "format": "png",
+ "generation_s": 37.0,
+ "attempts": 1,
+ "idempotency_key": "cc1a086f-fc34-40d3-b7e7-0896e27c3d15",
+ "request_id": "077da811-5b3f-42a7-97f4-629684ef2136",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2868,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 379
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2868,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 379
+  },
+  "total_tokens": 9108
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/b0270c56-4ac7-45c1-b29d-5062feec8f3f"
+ ],
+ "files": [
+  "tests/night-park/gen/piece_dusk_v1_0.png"
+ ]
+}

@@ -1,0 +1,7 @@
+{
+ "sources": 1293,
+ "bulbs": 942,
+ "lit_px_share": 0.2697,
+ "recon_mean_err": 0.0252,
+ "recon_p99_err": 0.1221
+}

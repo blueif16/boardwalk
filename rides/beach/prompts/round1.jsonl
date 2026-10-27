@@ -1,0 +1,3 @@
+{"out": "rides/beach/gen/beach_bear", "prompt_file": "rides/beach/prompts/beach_bear.txt", "ref": ["tests/characters/gen/sheet_bear_0.png"]}
+{"out": "rides/beach/gen/props_v1", "prompt_file": "rides/beach/prompts/props_v1.txt", "ref": ["gen/style_frame/v1_1.png", "rides/beach/gen/ref_painting_east.png"], "n": 2}
+{"out": "rides/beach/gen/smalls_v1", "prompt_file": "rides/beach/prompts/smalls_v1.txt", "ref": ["gen/style_frame/v1_1.png", "rides/beach/gen/ref_painting_east.png"]}

@@ -13,6 +13,7 @@
 //
 // Riders: the park's animals (rides/RIDERS.md). riders.loads(t0, t1) lists the load events; each frame asks
 // ctx.riders(ctx.name, key, t) who is on board and falls back to its own picks when that returns null.
+// Depth: occluders(t) gives the crowd the Typhoon's moving arm and cars and the two towers (see below).
 
 // ---- Double Shot: drop tower ----
 const DS = {
@@ -56,6 +57,9 @@ const CP = Math.cos((28.7 * Math.PI) / 180); // the arm turns in the plane facin
 // Car sprite px: the two seats (feet of a standing rider, hidden below the lap bar) and the lap bar's top edge.
 const CAR_SEATS = [[262, 470], [588, 470]];
 const LAP_Y = 188;
+
+import { rideHours } from "../../base/park_hours.js";
+import { getSky } from "../../base/sky.js";
 
 const smooth = (e0, e1, x) => { const k = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return k * k * (3 - 2 * k); };
 const hash = (n) => { let x = Math.imul((n | 0) ^ 0x9e3779b9, 0x85ebca6b); x ^= x >>> 13; x = Math.imul(x, 0xc2b2ae35); x ^= x >>> 16; return (x >>> 0) / 4294967296; };
@@ -140,6 +144,11 @@ export async function mount(ctx) {
   ctx.addPatch(url("plate_typhoon.webp"), plate.rect);
 
   const T = typhoonTable();
+  // Park hours (base/park_hours.js): closed, each ride finishes its cycle and waits at its loading stop, emptied: the
+  // drop ring down at the deck (2.2 s into its cycle), the Typhoon's arm still with car 0 at the bottom (1.5 s).
+  const sky = ctx.sky ?? getSky({ params: ctx.params });
+  const dsHours = rideHours(sky, { period: DS.period, rest: 2.2, frozen: ctx.clock.frozen });
+  const tyHours = rideHours(sky, { period: T.total, rest: 1.5, frozen: ctx.clock.frozen });
   const sample = (arr, tau) => { const x = tau * 60, i = Math.min(arr.length - 2, Math.floor(x)), f = x - i; return arr[i] * (1 - f) + arr[i + 1] * f; };
   const cyc = (t, P) => { const n = Math.floor(t / P); return { n, tau: t - n * P }; };
 
@@ -155,13 +164,13 @@ export async function mount(ctx) {
     return Array.from({ length: count }, (_, i) => LOOKS[Math.floor(hash(n * 977 + i * 31 + key.length) * LOOKS.length)]);
   };
   // Who is on `key` at t, and how visible (fading in as they board, out as they get off).
-  function onBoard(key, t, P, loadAt, unloadAt, seats) {
+  function onBoard(key, t, P, loadAt, unloadAt, seats, hours) {
     const { n, tau } = cyc(t, P);
     // The newest load at or before t: this cycle's if past it, else the last cycle's.
     const m = tau >= loadAt ? n : n - 1;
     const tl = m * P + loadAt, tu = (m + 1) * P + unloadAt;
     if (t >= tu + 0.5 || m < 0) return { looks: [], alpha: 0 };
-    const crowd = ctx.riders ? ctx.riders(ctx.name, key, t) : null;
+    const crowd = ctx.riders ? ctx.riders(ctx.name, key, hours.master(t)) : null;
     const looks = crowd ?? own(key, m, seats);
     return { looks, alpha: smooth(tl, tl + 0.5, t) * (1 - smooth(tu, tu + 0.5, t)) };
   }
@@ -198,7 +207,7 @@ export async function mount(ctx) {
     g.drawImage(ringBack, x0, y0, rw * k, rh * k);
     occDraw(occColumn, "dropcolumn");
     g.drawImage(ringFront, x0, y0, rw * k, rh * k);
-    const on = onBoard("doubleshot:ring", t, DS.period, DS.load, DS.unload, DS.seats);
+    const on = onBoard("doubleshot:ring", t, DS.period, DS.load, DS.unload, DS.seats, dsHours);
     on.looks.slice(0, RING_SEATS.length).forEach((look, i) => {
       const [sx, sy] = RING_SEATS[i];
       rider(look, "front_act", x0 + sx * k, y0 + sy * k, on.alpha, 0.92);
@@ -223,7 +232,7 @@ export async function mount(ctx) {
     for (let j = 0; j < 2; j++) {
       const a = th + j * Math.PI, cx = TY.r * Math.sin(a), cy = TY.r * Math.cos(a);
       const loadAt = T.loads[j], unloadAt = T.unloads[j];
-      const on = onBoard(`typhoon:car${j}`, t, T.total, loadAt, unloadAt, 2);
+      const on = onBoard(`typhoon:car${j}`, t, T.total, loadAt, unloadAt, 2, tyHours);
       g.save();
       g.translate(cx, cy);
       g.rotate(sample(T.psi[j], tau));
@@ -249,9 +258,9 @@ export async function mount(ctx) {
     g.setTransform(density, 0, 0, density, -bx * density, -by * density);
     g.clearRect(bx, by, bw, bh);
     g.imageSmoothingQuality = "high";
-    drawDrop(t);
+    drawDrop(dsHours.run(t));
     occDraw(occTower, "typhoontower");
-    drawTyphoon(t);
+    drawTyphoon(tyHours.run(t));
     occDraw(occBush, "bush");
   }
 
@@ -264,8 +273,8 @@ export async function mount(ctx) {
     }
     return out;
   };
-  const dsLoads = loadsOf("doubleshot:ring", DS.period, DS.load, DS.unload, DS.seats);
-  const tyLoads = [0, 1].map((j) => loadsOf(`typhoon:car${j}`, T.total, T.loads[j], T.unloads[j], 2));
+  const dsLoads = dsHours.loads(loadsOf("doubleshot:ring", DS.period, DS.load, DS.unload, DS.seats));
+  const tyLoads = [0, 1].map((j) => tyHours.loads(loadsOf(`typhoon:car${j}`, T.total, T.loads[j], T.unloads[j], 2)));
   const riders = {
     gate: [1096, 1213],
     queue: [[1096, 1213], [1080, 1229], [1062, 1232], [1044, 1232], [1026, 1231], [1008, 1230]],
@@ -282,10 +291,40 @@ export async function mount(ctx) {
     keys: ["doubleshot:ring"],
   };
 
-  window.__thrill = { draw, dropHeight: (t) => dropHeight(cyc(t, DS.period).tau), theta: (t) => sample(T.theta, cyc(t, T.total).tau), psi: (j, t) => sample(T.psi[j], cyc(t, T.total).tau), table: T, riders };
+  // Depth for the crowd (rides/RIDERS.md "Depth"): the Typhoon's arm and both cars as drawn (matrix from t), on the
+  // tower's plane through the middle of its round base (y 1191); the tower itself and the drop column (its base hidden
+  // behind the bush, about y 1140) from their cut-outs. The flower bush is in the crowd's own cut-outs (its polygon
+  // here carries deck). The drop ring never reaches down to an animal's head.
+  const TOWER_Y = 1191, COLUMN_Y = 1140;
+  const still = [
+    { rect: occ.typhoontower.rect, mask: occTower, sortY: TOWER_Y },
+    { rect: occ.dropcolumn.rect, mask: occColumn, sortY: COLUMN_Y },
+  ];
+  function occluders(t) {
+    const { tau } = cyc(tyHours.run(t), T.total);
+    const th = sample(T.theta, tau), [px, py] = TY.pivot;
+    const A = parts.arm, ka = TY.r / (A.hub[0] - A.ends[0][0]), C = parts.car, kc = TY.carW / C.size[0];
+    const phi = -Math.PI / 2 - th;
+    const out = [...still, {
+      rect: [-A.hub[0] * ka, -A.hub[1] * ka, A.size[0] * ka, A.size[1] * ka],
+      matrix: [Math.cos(phi), CP * Math.sin(phi), -Math.sin(phi), CP * Math.cos(phi), px, py], mask: armImg, sortY: TOWER_Y,
+    }];
+    for (let j = 0; j < 2; j++) {
+      const a = th + j * Math.PI, psi = sample(T.psi[j], tau);
+      out.push({
+        rect: [-C.pivot[0] * kc, -C.pivot[1] * kc, C.size[0] * kc, C.size[1] * kc],
+        matrix: [Math.cos(psi), CP * Math.sin(psi), -Math.sin(psi), CP * Math.cos(psi), px + TY.r * Math.sin(a), py + CP * TY.r * Math.cos(a)],
+        mask: carImg, sortY: TOWER_Y,
+      });
+    }
+    return out;
+  }
+
+  window.__thrill = { occluders, draw, dropHeight: (t) => dropHeight(cyc(t, DS.period).tau), theta: (t) => sample(T.theta, cyc(t, T.total).tau), psi: (j, t) => sample(T.psi[j], cyc(t, T.total).tau), table: T, riders };
 
   return {
     riders,
+    occluders,
     resize,
     update(t) { draw(t); },
   };

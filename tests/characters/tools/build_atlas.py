@@ -1,6 +1,6 @@
 """Character atlas: shyfai sheets (4 x 3 grid) -> keyed, scaled, outlined frames -> one atlas.png + atlas.json.
 
-  uv run --with pillow --with numpy --with scipy python -I tests/characters/tools/build_atlas.py [--park]   (from the repo root)
+  uv run --with pillow --with numpy --with scipy --with imagequant python -I tests/characters/tools/build_atlas.py [--park] [--lossless]   (from the repo root)
 
 --park: only the animal sheets (no 3D test sets, no Dipper-stage cut-outs), written to tests/park-crowd/ for the
 whole-park crowd, at 2 atlas px per stage px (still twice what a screen shows at size 38), plus outfit variants:
@@ -332,7 +332,16 @@ def main():
             frames[f"occ/{name}"] = (z[name], m["anchor"][0], m["anchor"][1])
     atlas, placed = pack(frames)
     out = (np.clip(atlas, 0, 1) * 255 + 0.5).astype(np.uint8)
-    Image.fromarray(out, "RGBA").save(os.path.join(out_dir, "atlas.png"), optimize=True)
+    img = Image.fromarray(out, "RGBA")
+    if park and "--lossless" not in sys.argv:
+        # The park atlas ships as a 256-colour palette PNG (libimagequant, the pngquant library, dither 1.0): about a
+        # quarter of the lossless size and indistinguishable on screen (tests/perf/ASSETS.md). --lossless skips it.
+        try:
+            import imagequant
+            img = imagequant.quantize_pil_image(img, dithering_level=1.0, max_colors=256)
+        except ImportError:
+            print("imagequant is missing (uv run --with imagequant): atlas.png written lossless")
+    img.save(os.path.join(out_dir, "atlas.png"), optimize=True)
     meta = {"scale": SCALE, "size": [out.shape[1], out.shape[0]], "frames": {}}
     for name, (x, y, w, h, ax, ay) in sorted(placed.items()):
         fr = {"rect": [x, y, w, h], "anchor": [round(ax, 2), round(ay, 2)]}

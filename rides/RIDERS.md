@@ -77,15 +77,51 @@ ride must still work alone. Draw riders with the crowd's atlas (`tests/park-crow
 | teacups | `cup0`-`cup5`, 2 | (3318, 1616) just off the drum's east rim | 6 slots north-east up the drum's side | (3120, 1622) | all cups 5 s into each loading pause |
 | flume | `log0`-`log3`, 3 | (3100, 1430) | 10 slots south | (3040, 1428) | 0.8 s after each log's arrival |
 | pirate | `row0`-`row5`, 3 | (995, 1298) | rides/pirate/RESULTS.md | (850, 1290) | at its stop, row by row |
-| carousel | `east:horse0-9`, `west:horse0-11`, 1 | east (2738, 1548); west in `more` | rides/carousel/RESULTS.md | east (2832, 1537), west (1756, 1290) | every horse at the loading stop |
+| carousel | `west:horse0-11`, 1 | (1594, 1299) | 10 slots west along the rail | (1756, 1290) | every horse at the loading stop (7 s into each 64 s cycle) |
+| swings | `chair0`-`chair11`, 1 (single) or 2 (`chair2`, 5, 8, 11: doubles) | (2760, 1536) at the platform's front-left opening | 10 slots: two south-west, then west along the rail in front of the lamp | (2818, 1536) at the front-right opening | every chair 8 s into each 75 s cycle; off at the next cycle's 2 s |
 | thrill | `doubleshot:ring` 8; `typhoon:car0/1` 2 in `more` | (1096, 1213); Typhoon (1196, 1198) | 6 slots each | (1122, 1246), (1108, 1222) | at each ride's stop |
+
+## Depth: what animals stand behind
+
+The crowd's canvas is above the rides slot, so a layer tells the crowd what it draws (or lays back) that animals can
+stand behind. In the object returned by `mount(ctx)`:
+
+```js
+occluders: [ { rect, sortY, mask?, matrix?, sortLine?, crop? }, ... ]   // or a function (t) => that array
+```
+
+- `rect: [x, y, w, h]`: park px (or, with `matrix`, the mask's own units).
+- `sortY`: the y (park px) of the thing's base, where it meets the deck. Animals whose feet are above it (smaller y)
+  are behind it and are hidden where the mask is opaque; animals at or below it draw over it as before. For a round
+  or boxy footprint use the middle of the footprint (a lamp's round foot: its lowest pixel minus ~3), not its front.
+- `mask` (optional): an image, canvas or URL whose alpha covers `rect`. Without one, the whole rect hides. Keep it
+  tight: a cut-out polygon that carries deck pixels cuts holes in animals.
+- `matrix` (optional): `[a, b, c, d, e, f]`, a canvas transform placing `rect` (park = a x + c y + e, b x + d y + f), for
+  things that swing or turn: pass the transform you draw with (the pirate ship, the wheel, the Typhoon's arm).
+- `sortLine` (optional): `[xa, ya, xb, yb]`, a sloped base for long or slanted things (the wheel's A-frame, which is
+  not face-on); read at the animal's x, flat past its ends. `sortY` is still given (its middle).
+- `crop` (optional): `[sx, sy, sw, sh]`, the mask's part of a sheet, in the image's px.
+- A function of `t` (the master clock, as `update(t)` gets) is called once per frame. Masks are packed into the
+  crowd's texture the first time it sees them, so return the same mask objects every frame and move them with
+  `rect` / `matrix`; a canvas mask is read once, not every frame. A new mask later costs one re-pack.
+- Riders a ride draws itself are not touched. Ride-against-ride order is still each layer's own.
+- Static things painted on the deck (lamps, stalls, the rail, bushes) are in the crowd's own cut-outs
+  (`tests/park-crowd/occ.*`, `tests/park-crowd/tools/make_occluders.py`), which leave out every live ride's area: a
+  ride covers its own structures. A new ride area must be added to that builder's `EXCLUDE` (and its queue to the
+  reach: rebuild as in `tests/park-crowd/DEPTH.md`).
+
+| Layer | Occluders | Base |
+|---|---|---|
+| pirate | the ship (`ship_back.webp`, the swing matrix) as f(t); the front A-frame and hub (a crop of `front.webp`) | ship 1245 (halfway between the A-frame's feet); A-frame line (850, 1264)-(1020, 1269) |
+| wheel | front legs (`legs.webp`); hub, wheel and 12 cabins as f(t) | front feet line (2512, 1460)-(2625, 1487); wheel plane (2536, 1440)-(2646, 1474) |
+| thrill | Typhoon arm and both cars as f(t); Typhoon tower; drop column | tower 1191 (middle of its round base); column 1140 |
+| coaster | station shed, Fireball hub, lattice cut-outs | 1245, 1340, 1199 (nothing reaches behind them yet) |
+| flume | porch, box at the lift's foot | 1339, 1193 (nothing reaches behind them yet) |
+| teacups | the drum (a capsule canvas) | 1576, the middle of its footprint; cups not yet |
+| traffic | none: the crowd never stands in the street's band | |
 
 ## Open problems
 
-- The crowd's canvas is above the rides slot, so an animal standing behind a ride (behind the Pirate Ship, between
-  the wheel's legs) is drawn over it. A cheap fix that fits this contract: a ride layer may return
-  `occluders: [{ rect: [x, y, w, h], sortY }]` (its screen-space footprint and the y of its base); the crowd skips, or
-  clips away, the part of any animal whose feet are above `sortY` inside that rect. Not built.
 - Riders sit as standing sprites cut at a rim or window; there is no seated pose in the sheets.
 - Queues fill partly with groups still walking there from across the park (they reserve when they choose), so a line
   can look shorter than it is.

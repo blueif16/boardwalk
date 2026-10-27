@@ -37,7 +37,12 @@ function rng(seed) {
   return f;
 }
 
+import { getSky } from "../../base/sky.js";
+// Fewer cars at night (the sky's hour, base/sky.js): two at most from 23:00 to 06:30, one from 01:00 to 05:00.
+const carsAt = (h) => (h >= 1 && h < 5 ? 1 : h >= 23 || h < 6.5 ? 2 : MAX_CARS);
+
 export async function mount(ctx) {
+  const sky = ctx.sky ?? getSky({ params: ctx.params });
   const url = (f) => new URL(f, ctx.dir).href;
   const crowdDir = new URL("../../tests/park-crowd/", ctx.dir);
   const [lanes, sheet, atlas, occ, occImg, patches, animals, animalImg] = await Promise.all([
@@ -137,7 +142,7 @@ export async function mount(ctx) {
     if (t >= nextSpawn) {
       const n = cars.filter(onLoop).length;
       const clear = !cars.some((o) => onLoop(o) && o.s < CAR_LEN + 60);
-      if (n < MAX_CARS && clear) {
+      if (n < carsAt(sky.hour) && clear) {
         cars.push({ id: nextId++, design: CARS[R.int(CARS.length)], mode: "loop", s: 0, v: V0 * 0.8, v0: V0 * R.range(0.85, 1.12), parks: R() < PARK_P, parked: false });
         nextSpawn = t + R.range(...SPAWN);
       } else nextSpawn = t + 1;

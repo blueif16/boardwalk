@@ -1,0 +1,11 @@
+Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything. Objects cut by the edges of image 1 stay cut at exactly the same place.
+
+Image 1 is one piece of a larger painting: the town and the street at the top, the parking lots, the Giant Dipper roller coaster, a Ferris wheel and the stalls and lamps of the boardwalk, the beach wall and the sand at the bottom. Relight it in the same light as the rest of the painting.
+
+The new time: golden hour, about forty minutes before sunset. A low warm sun from the lower left bathes everything in soft peach and honey-gold light; the sides of things that face the sun glow warm, the sides away from it turn a soft lilac. Keep it a storybook painting: the pastel colours stay clean and bright, only warmer. The sand is warm apricot, the boardwalk planks honey, the white coaster lattice peach-gold with lilac shade, the street and the parking lots warm lilac-grey, the town's walls glowing peach.
+
+Every artificial light is switched off.
+
+Shadows stay short and soft, right under each object: no long cast shadows.
+
+Do not add anything new: no people, animals, cars, boats, birds, moon, sun or stars. Do not draw any text, letters, numbers, logos or watermarks.

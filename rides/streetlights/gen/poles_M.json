@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "This image is a crop of a hand-painted illustrated map of the Santa Cruz Beach Boardwalk and Beach Street: soft gouache and watercolour colour with fine, slightly scratchy dark-brown ink outlines and paper grain, seen from above at an angle.\n\nI have roughly sketched a few flat grey street lights onto it. Repaint ONLY those sketched street lights, turning each one into a finished, slim, modern city street light painted in exactly this painting's style:\n- a thin, straight, light galvanised-grey steel pole with a fine dark ink outline and a soft painted shade down one side, tapering very slightly toward the top;\n- a small square base plate where it meets the sidewalk;\n- one slim arm at the top reaching out over the road, exactly as sketched;\n- a flat, compact LED head at the end of the arm (a slim grey shoebox shape, pale glass underneath). Daytime: the lamp is OFF, no glow;\n- a faint soft cool shadow on the sidewalk at its foot, like the palm trees' shadows.\n\nKeep every street light exactly where the sketch is, exactly as tall and as thin as the sketch (they must stay slim, about as thick as a palm trunk's outline), and with the arm pointing the same way. Do not add any other street lights.\n\nChange nothing else at all: every building, window, awning, palm tree, planter, kerb, parking line, crosswalk, road marking, ride, flag, colour and ink line stays exactly as it is. The road stays empty of cars. No new objects, no people, no text, no glow, no lens flare.",
+ "refs": [
+  "rides/streetlights/gen/in_M.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "poles_M"
+ },
+ "format": "png",
+ "generation_s": 50.6,
+ "attempts": 1,
+ "idempotency_key": "a22ca30d-d6f4-4378-bd45-09e5573c0ebc",
+ "request_id": "95d447f2-fcd3-4c39-a04c-d3417ea7ff06",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2826,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 337
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2826,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 337
+  },
+  "total_tokens": 9066
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/50e2de17-6076-454f-a7f7-b49b016042b5"
+ ],
+ "files": [
+  "rides/streetlights/gen/poles_M_0.png"
+ ]
+}

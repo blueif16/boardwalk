@@ -1,0 +1,57 @@
+{
+ "label": "fast_prod",
+ "url": "https://localhost:18444/index_fast.html",
+ "runs": 2,
+ "cpuPhone": 1,
+ "results": {
+  "phone/4g": {
+   "fcp": 224,
+   "first": 224,
+   "painting": 2176,
+   "lqip": 224,
+   "preview": 656,
+   "title": 2055,
+   "ready": 13339,
+   "all": 13051,
+   "bytes": 12395328,
+   "requests": 82,
+   "longTasks": 30,
+   "longMs": 4516,
+   "maxLong": 316,
+   "tbt": 3016,
+   "canvasMB": 82.9,
+   "rssMB": 1788,
+   "heapMB": 10,
+   "errors": 0,
+   "alive_sea": 4771,
+   "alive_coaster": 7661,
+   "alive_carousel": 9146,
+   "alive_wheel": 9605,
+   "alive_thrill": 10028,
+   "alive_traffic": 12190,
+   "alive_crowd": 13051,
+   "main_decode": 324,
+   "main_script": 754,
+   "main_render": 56,
+   "main_gc": 39,
+   "main_commit": 4784,
+   "main_other": 674,
+   "main_offMainDecode": 434,
+   "main_longestDecode": 83,
+   "reached": true,
+   "load": 11.9,
+   "runs": [
+    {
+     "painting": 2280,
+     "title": 2127,
+     "all": 13058
+    },
+    {
+     "painting": 2176,
+     "title": 2055,
+     "all": 13051
+    }
+   ]
+  }
+ }
+}

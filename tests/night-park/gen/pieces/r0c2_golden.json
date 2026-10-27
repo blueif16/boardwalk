@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything. Objects cut by the edges of image 1 stay cut at exactly the same place.\n\nImage 1 is one piece of a larger painting of a seaside town: wooded hills and houses, a street with parking lots, an amusement park on its boardwalk, the beach and the sea. Relight it in the same light as the rest of the painting.\n\nThe new time: golden hour, about forty minutes before sunset. A low warm sun from the lower left bathes everything in soft peach and honey-gold light; the sides of things that face the sun glow warm, the sides away from it turn a soft lilac. Keep it a storybook painting: the pastel colours stay clean and bright, only warmer. The sand is warm apricot, the boardwalk planks honey, the white coaster lattice peach-gold with lilac shade, the street and the parking lots warm lilac-grey, the town's walls glowing peach.\n\nEvery artificial light is switched off.\n\nWhere the piece shows the sea, it is turquoise with warm gold glints on its ripple dashes; hills are sunlit olive-gold and any sky is pale apricot.\n\nShadows stay short and soft, right under each object: no long cast shadows.\n\nDo not add anything new: no people, animals, cars, boats, birds, moon, sun or stars. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night-park/gen/pieces/in_r0c2.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "r0c2_golden"
+ },
+ "format": "png",
+ "generation_s": 53.1,
+ "attempts": 1,
+ "idempotency_key": "92e6fa96-0ffd-4639-a248-9eb133191a56",
+ "request_id": "a6fb306d-20c6-49b1-8aad-b0664ab433ba",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2846,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 357
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2846,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 357
+  },
+  "total_tokens": 9086
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/a98a1b74-cc0a-4e7a-9e0d-1e4f54116dc7"
+ ],
+ "files": [
+  "tests/night-park/gen/pieces/r0c2_golden_0.png"
+ ]
+}

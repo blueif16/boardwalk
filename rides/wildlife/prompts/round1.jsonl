@@ -1,0 +1,4 @@
+{"out": "rides/wildlife/gen/gulls_v1", "prompt_file": "rides/wildlife/prompts/gulls_v1.txt", "ref": ["gen/style_frame/v1_1.png", "rides/wildlife/gen/ref_beach.png", "rides/wildlife/gen/ref_gulls_beach.png"], "n": 2}
+{"out": "rides/wildlife/gen/pelicans_v1", "prompt_file": "rides/wildlife/prompts/pelicans_v1.txt", "ref": ["gen/style_frame/v1_1.png", "rides/wildlife/gen/ref_beach.png"], "n": 2}
+{"out": "rides/wildlife/gen/sea_v1", "prompt_file": "rides/wildlife/prompts/sea_v1.txt", "ref": ["gen/style_frame/v1_1.png", "rides/wildlife/gen/ref_water.png"], "n": 2}
+{"out": "rides/wildlife/gen/whales_v1", "prompt_file": "rides/wildlife/prompts/whales_v1.txt", "ref": ["gen/style_frame/v1_1.png", "rides/wildlife/gen/ref_water.png"], "n": 2}

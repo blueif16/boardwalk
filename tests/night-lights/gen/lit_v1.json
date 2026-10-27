@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw, add or remove anything.\n\nThe new time: a clear summer evening about an hour and a half after sunset. A deep blue night light covers everything. Keep it a storybook painting: the pastel colours stay readable, only cooler and darker, never grey, muddy or black. Moonlight from above makes the sand a soft pale lavender-blue; the street is dark slate blue.\n\nSwitch on only the lights that are already painted in image 1, warm yellow and amber, each with a small soft watercolour glow (soft blooms of colour, no lens flares, no rays, no sparkles):\n- Every lamp post with yellow globes: the globes glow warm yellow-white with a soft halo, and a small soft pool of warm light lies on the planks round the foot of its post.\n- Every stall and booth: its open front glows warm from inside, the counter and the goods on it are lit, and the underside of its awning catches the light.\n- The shops and houses in the town at the top: about half of their windows are lit, a warm yellow or soft orange, varied and uneven, the rest stay dark blue; the shop fronts under the awnings glow softly.\n- The flags are lit from below by a soft spotlight.\n\nDo not add any new lamps, lamp posts, street lights, bulbs, strings of lights, signs or windows: light only what image 1 already shows. The roller coaster, the Ferris wheel, the carousel and the other rides stay unlit, in the same cool night light as everything else. The cars stay dark. Do not add any people, animals, moon, stars or sky. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night-lights/gen/slice_in.jpg"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "lit_v1"
+ },
+ "format": "png",
+ "generation_s": 37.5,
+ "attempts": 1,
+ "idempotency_key": "59c4d705-5eac-45ba-abcb-af7958d1daae",
+ "request_id": "0bc04102-bb1e-4fb1-87dc-af144eca97d9",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2908,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 419
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2908,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 419
+  },
+  "total_tokens": 9148
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/e33d2eb1-06b7-4e2d-9e4c-472c74f73c2c"
+ ],
+ "files": [
+  "tests/night-lights/gen/lit_v1_0.png"
+ ]
+}

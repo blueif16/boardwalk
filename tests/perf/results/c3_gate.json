@@ -1,0 +1,55 @@
+{
+ "label": "c3_gate",
+ "url": "https://localhost:18444/index_fast.html",
+ "runs": 1,
+ "cpuPhone": 1,
+ "results": {
+  "macbook/4g": {
+   "fcp": 428,
+   "first": 2976,
+   "painting": 2976,
+   "lqip": null,
+   "preview": null,
+   "title": 2843,
+   "ready": 19690,
+   "all": 19588,
+   "bytes": 14990916,
+   "requests": 119,
+   "longTasks": 45,
+   "longMs": 4513,
+   "maxLong": 287,
+   "tbt": 2263,
+   "canvasMB": 75.5,
+   "rssMB": 1931,
+   "heapMB": 13,
+   "errors": 0,
+   "alive_sea": 4381,
+   "alive_coaster": 8016,
+   "alive_wheel": 9635,
+   "alive_carousel": 11233,
+   "alive_teacups": 12384,
+   "alive_pirate": 13319,
+   "alive_thrill": 14662,
+   "alive_flume": 15836,
+   "alive_traffic": 18785,
+   "alive_crowd": 19588,
+   "main_decode": 355,
+   "main_script": 764,
+   "main_render": 51,
+   "main_gc": 37,
+   "main_commit": 5968,
+   "main_other": 723,
+   "main_offMainDecode": 486,
+   "main_longestDecode": 108,
+   "reached": true,
+   "load": 8.4,
+   "runs": [
+    {
+     "painting": 2976,
+     "title": 2843,
+     "all": 19588
+    }
+   ]
+  }
+ }
+}

@@ -17,24 +17,5 @@
     51.6
    ]
   }
- },
- "east": {
-  "file": "plate_east.webp",
-  "rect": [
-   2705.8,
-   1421.8,
-   157.6,
-   99.2
-  ],
-  "take": "plate_east_v1_1",
-  "column": {
-   "file": "column_east.webp",
-   "rect": [
-    2767.0,
-    1449.4,
-    19.6,
-    55.2
-   ]
-  }
  }
 }

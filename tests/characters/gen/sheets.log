@@ -1,9 +1,0 @@
-ok   tests/characters/gen/sheet_bunny: gpt-image-2.5 102.7s, 1 images
-ok   tests/characters/gen/sheet_cat_orange: gpt-image-2.5 53.5s, 1 images
-ok   tests/characters/gen/sheet_dog_shiba: gpt-image-2.5 58.9s, 1 images
-ok   tests/characters/gen/sheet_cat_grey: gpt-image-2.5 45.0s, 1 images
-ok   tests/characters/gen/sheet_bear_cub: gpt-image-2.5 45.6s, 1 images
-ok   tests/characters/gen/sheet_bunny_brown: gpt-image-2.5 41.6s, 1 images
-ok   tests/characters/gen/sheet_dog_cream: gpt-image-2.5 42.8s, 1 images
-ok   tests/characters/gen/sheet_pet: gpt-image-2.5 36.2s, 1 images
-8/8 jobs ok

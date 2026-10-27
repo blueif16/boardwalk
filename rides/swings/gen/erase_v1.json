@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. It is a piece of our hand-painted storybook map of a seaside amusement park, seen from above at an angle: soft watercolour washes, thin warm dark-brown ink outlines, lighter tinted lines inside, gentle paper grain. In the middle, a flat grey area marks where an old carousel used to stand. It has been taken away.\n\nPaint only the grey area, with what was hidden behind the old carousel, continuing the painting around it seamlessly: the warm wooden deck planks running on in the same direction and spacing, the lower front of the stall behind, the pale rocks on the right, the small swing frame on the left. Mostly empty deck. Nothing new: no ride, no carousel, no platform, no stall, no people, no animals, no text.\n\nKeep every pixel outside the grey area exactly as it is: the Ferris wheel and its cabins, the lamp post, the swing frame, the stalls, the rocks, the bin, the white rail and the deck.\n\nSame finish as the rest of the painting: the same ink, the same watercolour softness, the same paper grain and light. Not cleaner, not brighter, not more saturated than the painting around it.",
+ "refs": [
+  "rides/swings/gen/erase_in_v1.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "erase_v1"
+ },
+ "format": "png",
+ "generation_s": 33.7,
+ "attempts": 1,
+ "idempotency_key": "119c9fee-69b4-4340-9caf-4fd098449cdb",
+ "request_id": "5534e604-4dfe-42cc-b987-9504799f2784",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2736,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 247
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2736,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 247
+  },
+  "total_tokens": 15216
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/edf08fbb-69f0-49ca-b940-242887d20ed3",
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/d0d366c7-6c48-4387-b23e-d2819abaf3ce"
+ ],
+ "files": [
+  "rides/swings/gen/erase_v1_0.png",
+  "rides/swings/gen/erase_v1_1.png"
+ ]
+}

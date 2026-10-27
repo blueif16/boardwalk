@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Decode bench</title>
+<base href="../../">
+</head>
+<body>
+<pre id="out">running</pre>
+<script type="module">
+// Main-thread cost of the first use of an image, four ways (tests/perf/LOADING.md "Decode"):
+//   img     new Image() + onload, then drawImage / texImage2D (what the layers do: the decode runs on the main thread)
+//   decode  the same, after await img.decode()
+//   bitmap  fetch -> blob -> createImageBitmap (decoded off the main thread), then drawImage / texImage2D
+// Each image gets a fresh ?v= so no decoded copy is reused. Results in window.__bench (ms).
+const FILES = (new URLSearchParams(location.search).get("files") ?? [
+  "tests/park-crowd/atlas.png", "rides/traffic/sprites.webp", "rides/traffic/occ.webp", "rides/sea/clean.webp",
+  "rides/wheel/plate.webp", "rides/flume/sprites.png", "rides/coaster/sprites.png", "site/park/world_2560.webp",
+].join(",")).split(",");
+let v = 0;
+const fresh = (f) => `${f}?v=${Date.now()}_${v++}`;
+const loadImg = (u) => new Promise((ok, bad) => { const im = new Image(); im.onload = () => ok(im); im.onerror = bad; im.src = u; });
+const gl = document.createElement("canvas").getContext("webgl2");
+function draw2d(src) {
+  const c = document.createElement("canvas");
+  c.width = src.width; c.height = src.height;
+  const g = c.getContext("2d");
+  const t0 = performance.now();
+  g.drawImage(src, 0, 0);
+  g.getImageData(0, 0, 1, 1);   // flush: the draw (and any decode) happens now
+  return performance.now() - t0;
+}
+function upload(src) {
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  const t0 = performance.now();
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
+  const dt = performance.now() - t0;
+  gl.deleteTexture(tex);
+  return dt;
+}
+const rows = [];
+for (const f of FILES) {
+  const row = { file: f };
+  for (const [k, use] of [["2d", draw2d], ["gl", upload]]) {
+    const a = await loadImg(fresh(f));
+    row.w = a.naturalWidth; row.h = a.naturalHeight;
+    row[`img_${k}`] = use(a);
+    const b = await loadImg(fresh(f));
+    await b.decode();
+    row[`decode_${k}`] = use(b);
+    const blob = await (await fetch(fresh(f))).blob();
+    const tb = performance.now();
+    const bm = await createImageBitmap(blob, k === "gl" ? { premultiplyAlpha: "none", colorSpaceConversion: "none" } : {});
+    row.bitmapWait = performance.now() - tb;
+    row[`bitmap_${k}`] = use(bm);
+    bm.close();
+  }
+  for (const k of Object.keys(row)) if (typeof row[k] === "number" && !["w", "h"].includes(k)) row[k] = Math.round(row[k] * 10) / 10;
+  rows.push(row);
+}
+window.__bench = rows;
+document.getElementById("out").textContent = JSON.stringify(rows, null, 1);
+performance.mark("alive:all");
+</script>
+</body>
+</html>

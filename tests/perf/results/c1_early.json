@@ -1,0 +1,55 @@
+{
+ "label": "c1_early",
+ "url": "https://localhost:18444/index_fast.html",
+ "runs": 1,
+ "cpuPhone": 1,
+ "results": {
+  "macbook/4g": {
+   "fcp": 428,
+   "first": 5116,
+   "painting": 5116,
+   "lqip": null,
+   "preview": null,
+   "title": 5096,
+   "ready": 18753,
+   "all": 18646,
+   "bytes": 14990910,
+   "requests": 119,
+   "longTasks": 44,
+   "longMs": 4501,
+   "maxLong": 189,
+   "tbt": 2301,
+   "canvasMB": 75.5,
+   "rssMB": 2039,
+   "heapMB": 12,
+   "errors": 0,
+   "alive_sea": 2483,
+   "alive_coaster": 7074,
+   "alive_wheel": 8794,
+   "alive_carousel": 10455,
+   "alive_teacups": 11621,
+   "alive_pirate": 12526,
+   "alive_thrill": 13885,
+   "alive_flume": 15055,
+   "alive_traffic": 18001,
+   "alive_crowd": 18646,
+   "main_decode": 381,
+   "main_script": 801,
+   "main_render": 52,
+   "main_gc": 41,
+   "main_commit": 5904,
+   "main_other": 660,
+   "main_offMainDecode": 539,
+   "main_longestDecode": 124,
+   "reached": true,
+   "load": 10.8,
+   "runs": [
+    {
+     "painting": 5116,
+     "title": 5096,
+     "all": 18646
+    }
+   ]
+  }
+ }
+}

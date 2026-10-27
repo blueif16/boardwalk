@@ -1,0 +1,634 @@
+{
+ "about": "rides/wildlife sprites, built by rides/wildlife/tools/build_atlas.py from rides/wildlife/gen sheets. rect = x, y, w, h in atlas px; anchor = x, y in the frame's own px; density = atlas px per park px.",
+ "density": 3.0,
+ "size": [
+  768,
+  823
+ ],
+ "frames": {
+  "dolphin/dive": {
+   "rect": [
+    341,
+    1,
+    132,
+    148
+   ],
+   "anchor": [
+    90.5,
+    89.4
+   ]
+  },
+  "dolphin/rise": {
+   "rect": [
+    1,
+    1,
+    145,
+    164
+   ],
+   "anchor": [
+    85.4,
+    45.1
+   ]
+  },
+  "dolphin/swim": {
+   "rect": [
+    530,
+    300,
+    184,
+    83
+   ],
+   "anchor": [
+    111.2,
+    43.0
+   ]
+  },
+  "dolphin/top": {
+   "rect": [
+    146,
+    167,
+    182,
+    120
+   ],
+   "anchor": [
+    109.1,
+    35.8
+   ]
+  },
+  "fish/down": {
+   "rect": [
+    340,
+    300,
+    61,
+    85
+   ],
+   "anchor": [
+    42.1,
+    50.3
+   ]
+  },
+  "fish/level": {
+   "rect": [
+    1,
+    771,
+    88,
+    51
+   ],
+   "anchor": [
+    54.0,
+    16.8
+   ]
+  },
+  "fish/up": {
+   "rect": [
+    178,
+    399,
+    60,
+    82
+   ],
+   "anchor": [
+    31.4,
+    20.3
+   ]
+  },
+  "foam/whale": {
+   "rect": [
+    1,
+    562,
+    197,
+    75
+   ],
+   "anchor": [
+    97.6,
+    36.2
+   ]
+  },
+  "gull/back_down": {
+   "rect": [
+    1,
+    707,
+    110,
+    62
+   ],
+   "anchor": [
+    54.5,
+    27.0
+   ]
+  },
+  "gull/back_glide": {
+   "rect": [
+    463,
+    707,
+    133,
+    56
+   ],
+   "anchor": [
+    64.7,
+    24.3
+   ]
+  },
+  "gull/back_mid": {
+   "rect": [
+    598,
+    707,
+    135,
+    54
+   ],
+   "anchor": [
+    67.1,
+    25.0
+   ]
+  },
+  "gull/back_up": {
+   "rect": [
+    251,
+    300,
+    87,
+    87
+   ],
+   "anchor": [
+    44.3,
+    50.2
+   ]
+  },
+  "gull/call": {
+   "rect": [
+    392,
+    483,
+    82,
+    76
+   ],
+   "anchor": [
+    42.0,
+    73.0
+   ]
+  },
+  "gull/crouch": {
+   "rect": [
+    476,
+    483,
+    95,
+    75
+   ],
+   "anchor": [
+    39.5,
+    72.0
+   ]
+  },
+  "gull/front_down": {
+   "rect": [
+    547,
+    562,
+    109,
+    66
+   ],
+   "anchor": [
+    54.6,
+    20.3
+   ]
+  },
+  "gull/front_glide": {
+   "rect": [
+    91,
+    771,
+    129,
+    40
+   ],
+   "anchor": [
+    66.8,
+    19.7
+   ]
+  },
+  "gull/front_mid": {
+   "rect": [
+    222,
+    771,
+    126,
+    40
+   ],
+   "anchor": [
+    67.1,
+    19.8
+   ]
+  },
+  "gull/front_up": {
+   "rect": [
+    1,
+    483,
+    86,
+    77
+   ],
+   "anchor": [
+    45.7,
+    49.3
+   ]
+  },
+  "gull/land": {
+   "rect": [
+    427,
+    167,
+    95,
+    104
+   ],
+   "anchor": [
+    44.5,
+    101.0
+   ]
+  },
+  "gull/side_bank": {
+   "rect": [
+    170,
+    300,
+    79,
+    95
+   ],
+   "anchor": [
+    39.9,
+    41.5
+   ]
+  },
+  "gull/side_down": {
+   "rect": [
+    448,
+    562,
+    97,
+    66
+   ],
+   "anchor": [
+    43.9,
+    26.2
+   ]
+  },
+  "gull/side_glide": {
+   "rect": [
+    350,
+    771,
+    129,
+    39
+   ],
+   "anchor": [
+    65.4,
+    19.4
+   ]
+  },
+  "gull/side_up": {
+   "rect": [
+    1,
+    399,
+    94,
+    82
+   ],
+   "anchor": [
+    49.3,
+    52.1
+   ]
+  },
+  "gull/stand": {
+   "rect": [
+    200,
+    562,
+    84,
+    74
+   ],
+   "anchor": [
+    42.5,
+    71.0
+   ]
+  },
+  "gull/takeoff": {
+   "rect": [
+    1,
+    300,
+    89,
+    97
+   ],
+   "anchor": [
+    27.5,
+    94.0
+   ]
+  },
+  "lion/bark": {
+   "rect": [
+    414,
+    399,
+    78,
+    81
+   ],
+   "anchor": [
+    34.0,
+    78.0
+   ]
+  },
+  "lion/right": {
+   "rect": [
+    365,
+    562,
+    81,
+    71
+   ],
+   "anchor": [
+    34.0,
+    68.0
+   ]
+  },
+  "otter/dive": {
+   "rect": [
+    97,
+    399,
+    79,
+    82
+   ],
+   "anchor": [
+    34.0,
+    79.0
+   ]
+  },
+  "otter/groom": {
+   "rect": [
+    1,
+    639,
+    117,
+    66
+   ],
+   "anchor": [
+    61.0,
+    63.0
+   ]
+  },
+  "otter/shell": {
+   "rect": [
+    288,
+    639,
+    117,
+    65
+   ],
+   "anchor": [
+    60.0,
+    62.0
+   ]
+  },
+  "otter/sleep": {
+   "rect": [
+    214,
+    707,
+    118,
+    61
+   ],
+   "anchor": [
+    61.0,
+    58.0
+   ]
+  },
+  "otter/swim": {
+   "rect": [
+    334,
+    707,
+    127,
+    58
+   ],
+   "anchor": [
+    54.5,
+    55.0
+   ]
+  },
+  "pelican/dive_arrow": {
+   "rect": [
+    475,
+    1,
+    40,
+    140
+   ],
+   "anchor": [
+    19.4,
+    51.1
+   ]
+  },
+  "pelican/dive_plunge": {
+   "rect": [
+    284,
+    1,
+    55,
+    152
+   ],
+   "anchor": [
+    30.9,
+    50.7
+   ]
+  },
+  "pelican/dive_tip": {
+   "rect": [
+    517,
+    1,
+    96,
+    138
+   ],
+   "anchor": [
+    39.3,
+    46.5
+   ]
+  },
+  "pelican/side_down": {
+   "rect": [
+    240,
+    399,
+    172,
+    81
+   ],
+   "anchor": [
+    51.5,
+    41.5
+   ]
+  },
+  "pelican/side_glide": {
+   "rect": [
+    494,
+    399,
+    189,
+    78
+   ],
+   "anchor": [
+    93.0,
+    41.7
+   ]
+  },
+  "pelican/side_up": {
+   "rect": [
+    524,
+    167,
+    156,
+    104
+   ],
+   "anchor": [
+    62.9,
+    57.0
+   ]
+  },
+  "pelican/sit": {
+   "rect": [
+    89,
+    483,
+    107,
+    77
+   ],
+   "anchor": [
+    53.0,
+    74.0
+   ]
+  },
+  "pelican/swallow": {
+   "rect": [
+    330,
+    167,
+    95,
+    108
+   ],
+   "anchor": [
+    51.0,
+    105.0
+   ]
+  },
+  "pelican/takeoff": {
+   "rect": [
+    615,
+    1,
+    108,
+    136
+   ],
+   "anchor": [
+    44.9,
+    67.4
+   ]
+  },
+  "seal/front": {
+   "rect": [
+    120,
+    639,
+    79,
+    66
+   ],
+   "anchor": [
+    39.0,
+    63.0
+   ]
+  },
+  "seal/right": {
+   "rect": [
+    201,
+    639,
+    85,
+    66
+   ],
+   "anchor": [
+    37.0,
+    63.0
+   ]
+  },
+  "seal/up": {
+   "rect": [
+    286,
+    562,
+    77,
+    71
+   ],
+   "anchor": [
+    37.0,
+    68.0
+   ]
+  },
+  "splash/column": {
+   "rect": [
+    92,
+    300,
+    76,
+    97
+   ],
+   "anchor": [
+    38.0,
+    94.0
+   ]
+  },
+  "splash/crown": {
+   "rect": [
+    113,
+    707,
+    99,
+    62
+   ],
+   "anchor": [
+    48.5,
+    59.0
+   ]
+  },
+  "splash/dolphin": {
+   "rect": [
+    403,
+    300,
+    125,
+    84
+   ],
+   "anchor": [
+    62.5,
+    81.0
+   ]
+  },
+  "splash/drops": {
+   "rect": [
+    407,
+    639,
+    73,
+    65
+   ],
+   "anchor": [
+    36.0,
+    62.0
+   ]
+  },
+  "whale/back": {
+   "rect": [
+    482,
+    639,
+    187,
+    65
+   ],
+   "anchor": [
+    106.0,
+    62.0
+   ]
+  },
+  "whale/fluke": {
+   "rect": [
+    1,
+    167,
+    143,
+    131
+   ],
+   "anchor": [
+    67.5,
+    128.0
+   ]
+  },
+  "whale/hump": {
+   "rect": [
+    198,
+    483,
+    192,
+    77
+   ],
+   "anchor": [
+    112.5,
+    74.0
+   ]
+  },
+  "whale/spout": {
+   "rect": [
+    148,
+    1,
+    134,
+    161
+   ],
+   "anchor": [
+    66.5,
+    158.0
+   ]
+  }
+ }
+}

@@ -1,0 +1,65 @@
+{
+ "label": "fast_prod",
+ "url": "https://localhost:18444/index_fast.html",
+ "runs": 3,
+ "cpuPhone": 1,
+ "results": {
+  "macbook/4g": {
+   "fcp": 284,
+   "first": 284,
+   "painting": 3036,
+   "lqip": 284,
+   "preview": 688,
+   "title": 2847,
+   "ready": 15693,
+   "all": 15437,
+   "bytes": 14962639,
+   "requests": 114,
+   "longTasks": 36,
+   "longMs": 4549,
+   "maxLong": 352,
+   "tbt": 2649,
+   "canvasMB": 75.5,
+   "rssMB": 1936,
+   "heapMB": 13,
+   "errors": 0,
+   "alive_sea": 5635,
+   "alive_coaster": 8406,
+   "alive_carousel": 9528,
+   "alive_wheel": 9915,
+   "alive_teacups": 10794,
+   "alive_pirate": 10950,
+   "alive_thrill": 12471,
+   "alive_flume": 12986,
+   "alive_traffic": 14707,
+   "alive_crowd": 15437,
+   "main_decode": 415,
+   "main_script": 876,
+   "main_render": 64,
+   "main_gc": 45,
+   "main_commit": 5688,
+   "main_other": 819,
+   "main_offMainDecode": 577,
+   "main_longestDecode": 133,
+   "reached": true,
+   "load": 18.3,
+   "runs": [
+    {
+     "painting": 3116,
+     "title": 2892,
+     "all": 15437
+    },
+    {
+     "painting": 3008,
+     "title": 2817,
+     "all": 15271
+    },
+    {
+     "painting": 3036,
+     "title": 2847,
+     "all": 15631
+    }
+   ]
+  }
+ }
+}

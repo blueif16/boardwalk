@@ -1,0 +1,215 @@
+{
+ "about": "Street-light poles on Beach Street, park px. foot = where the pole meets the sidewalk; top = top of the shaft; head = the LED head at the end of the arm. side: north (cars pass in front: plate only) or south (cars pass behind: also a front cut-out). Made by tools/make_positions.py; adjusted to the painted poles by tools/measure.py.",
+ "height_units": 112,
+ "arm_units": 34,
+ "poles": [
+  {
+   "id": "n1",
+   "side": "north",
+   "foot": [
+    215,
+    586
+   ],
+   "top": [
+    215,
+    487.8
+   ],
+   "head": [
+    193,
+    495.8
+   ]
+  },
+  {
+   "id": "n2",
+   "side": "north",
+   "foot": [
+    585,
+    612.1
+   ],
+   "top": [
+    585,
+    513.9
+   ],
+   "head": [
+    563,
+    521.9
+   ]
+  },
+  {
+   "id": "n3",
+   "side": "north",
+   "foot": [
+    930,
+    662.4
+   ],
+   "top": [
+    930,
+    564.2
+   ],
+   "head": [
+    908,
+    572.2
+   ]
+  },
+  {
+   "id": "n4",
+   "side": "north",
+   "foot": [
+    1425,
+    729.8
+   ],
+   "top": [
+    1425,
+    631.5
+   ],
+   "head": [
+    1403,
+    639.5
+   ]
+  },
+  {
+   "id": "n5",
+   "side": "north",
+   "foot": [
+    1770,
+    770.0
+   ],
+   "top": [
+    1770,
+    671.7
+   ],
+   "head": [
+    1748,
+    679.7
+   ]
+  },
+  {
+   "id": "n6",
+   "side": "north",
+   "foot": [
+    2350,
+    804.6
+   ],
+   "top": [
+    2350,
+    706.4
+   ],
+   "head": [
+    2328,
+    714.4
+   ]
+  },
+  {
+   "id": "n7",
+   "side": "north",
+   "foot": [
+    2775,
+    787.4
+   ],
+   "top": [
+    2775,
+    689.2
+   ],
+   "head": [
+    2753,
+    697.2
+   ]
+  },
+  {
+   "id": "s1",
+   "side": "south",
+   "foot": [
+    405,
+    798.2
+   ],
+   "top": [
+    405,
+    700.0
+   ],
+   "head": [
+    435,
+    684.0
+   ]
+  },
+  {
+   "id": "s2",
+   "side": "south",
+   "foot": [
+    655,
+    826.7
+   ],
+   "top": [
+    655,
+    728.5
+   ],
+   "head": [
+    685,
+    712.5
+   ]
+  },
+  {
+   "id": "s3",
+   "side": "south",
+   "foot": [
+    1655,
+    968.8
+   ],
+   "top": [
+    1655,
+    870.6
+   ],
+   "head": [
+    1685,
+    854.6
+   ]
+  },
+  {
+   "id": "s4",
+   "side": "south",
+   "foot": [
+    2170,
+    1021.9
+   ],
+   "top": [
+    2170,
+    923.7
+   ],
+   "head": [
+    2200,
+    907.7
+   ]
+  },
+  {
+   "id": "s5",
+   "side": "south",
+   "foot": [
+    2490,
+    1022.8
+   ],
+   "top": [
+    2490,
+    924.6
+   ],
+   "head": [
+    2520,
+    908.6
+   ]
+  },
+  {
+   "id": "s6",
+   "side": "south",
+   "foot": [
+    3285,
+    900.4
+   ],
+   "top": [
+    3285,
+    802.1
+   ],
+   "head": [
+    3315,
+    786.1
+   ]
+  }
+ ]
+}

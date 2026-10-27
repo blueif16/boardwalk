@@ -1,0 +1,198 @@
+{
+ "1": [
+  {
+   "file": "tests/park-crowd/atlas.png",
+   "w": 2048,
+   "h": 2048,
+   "img_2d": 26.8,
+   "decode_2d": 28.1,
+   "bitmapWait": 26.3,
+   "bitmap_2d": 7.2,
+   "img_gl": 38.8,
+   "decode_gl": 33.2,
+   "bitmap_gl": 6.2
+  },
+  {
+   "file": "rides/traffic/sprites.webp",
+   "w": 2048,
+   "h": 2048,
+   "img_2d": 68.2,
+   "decode_2d": 69.2,
+   "bitmapWait": 68.8,
+   "bitmap_2d": 6.7,
+   "img_gl": 72.6,
+   "decode_gl": 72.6,
+   "bitmap_gl": 6.6
+  },
+  {
+   "file": "rides/traffic/occ.webp",
+   "w": 2048,
+   "h": 804,
+   "img_2d": 17.7,
+   "decode_2d": 16.7,
+   "bitmapWait": 16.6,
+   "bitmap_2d": 2.9,
+   "img_gl": 21.3,
+   "decode_gl": 20.3,
+   "bitmap_gl": 6.8
+  },
+  {
+   "file": "rides/sea/clean.webp",
+   "w": 1920,
+   "h": 686,
+   "img_2d": 22.1,
+   "decode_2d": 22.6,
+   "bitmapWait": 22.3,
+   "bitmap_2d": 2,
+   "img_gl": 23.5,
+   "decode_gl": 25.9,
+   "bitmap_gl": 1.9
+  },
+  {
+   "file": "rides/wheel/plate.webp",
+   "w": 605,
+   "h": 820,
+   "img_2d": 8.1,
+   "decode_2d": 8.5,
+   "bitmapWait": 9.9,
+   "bitmap_2d": 0.9,
+   "img_gl": 8.6,
+   "decode_gl": 9.1,
+   "bitmap_gl": 1.3
+  },
+  {
+   "file": "rides/flume/sprites.png",
+   "w": 1380,
+   "h": 176,
+   "img_2d": 2.9,
+   "decode_2d": 2.7,
+   "bitmapWait": 2.7,
+   "bitmap_2d": 0.5,
+   "img_gl": 5.6,
+   "decode_gl": 2.2,
+   "bitmap_gl": 0.1
+  },
+  {
+   "file": "rides/coaster/sprites.png",
+   "w": 1183,
+   "h": 128,
+   "img_2d": 1.9,
+   "decode_2d": 1.6,
+   "bitmapWait": 1.8,
+   "bitmap_2d": 0.3,
+   "img_gl": 1.6,
+   "decode_gl": 1.4,
+   "bitmap_gl": 0.1
+  },
+  {
+   "file": "site/park/world_2560.webp",
+   "w": 2560,
+   "h": 1706,
+   "img_2d": 83.3,
+   "decode_2d": 82.2,
+   "bitmapWait": 80.4,
+   "bitmap_2d": 6.8,
+   "img_gl": 96.4,
+   "decode_gl": 91.4,
+   "bitmap_gl": 6.2
+  }
+ ],
+ "4": [
+  {
+   "file": "tests/park-crowd/atlas.png",
+   "w": 2048,
+   "h": 2048,
+   "img_2d": 105.7,
+   "decode_2d": 108.5,
+   "bitmapWait": 49.8,
+   "bitmap_2d": 30.1,
+   "img_gl": 164.1,
+   "decode_gl": 138.3,
+   "bitmap_gl": 29.1
+  },
+  {
+   "file": "rides/traffic/sprites.webp",
+   "w": 2048,
+   "h": 2048,
+   "img_2d": 290.3,
+   "decode_2d": 281.7,
+   "bitmapWait": 94.5,
+   "bitmap_2d": 51.5,
+   "img_gl": 311.1,
+   "decode_gl": 319,
+   "bitmap_gl": 40.1
+  },
+  {
+   "file": "rides/traffic/occ.webp",
+   "w": 2048,
+   "h": 804,
+   "img_2d": 84.8,
+   "decode_2d": 79.6,
+   "bitmapWait": 31.9,
+   "bitmap_2d": 17,
+   "img_gl": 97.2,
+   "decode_gl": 94.9,
+   "bitmap_gl": 15.6
+  },
+  {
+   "file": "rides/sea/clean.webp",
+   "w": 1920,
+   "h": 686,
+   "img_2d": 96.9,
+   "decode_2d": 98.6,
+   "bitmapWait": 47,
+   "bitmap_2d": 9.9,
+   "img_gl": 118.4,
+   "decode_gl": 122.1,
+   "bitmap_gl": 9.6
+  },
+  {
+   "file": "rides/wheel/plate.webp",
+   "w": 605,
+   "h": 820,
+   "img_2d": 40.1,
+   "decode_2d": 39,
+   "bitmapWait": 17.3,
+   "bitmap_2d": 6.3,
+   "img_gl": 41.9,
+   "decode_gl": 44.7,
+   "bitmap_gl": 6.2
+  },
+  {
+   "file": "rides/flume/sprites.png",
+   "w": 1380,
+   "h": 176,
+   "img_2d": 17.9,
+   "decode_2d": 13.6,
+   "bitmapWait": 5.1,
+   "bitmap_2d": 2,
+   "img_gl": 19.2,
+   "decode_gl": 9.5,
+   "bitmap_gl": 1.4
+  },
+  {
+   "file": "rides/coaster/sprites.png",
+   "w": 1183,
+   "h": 128,
+   "img_2d": 9,
+   "decode_2d": 8,
+   "bitmapWait": 2.9,
+   "bitmap_2d": 1.5,
+   "img_gl": 9.2,
+   "decode_gl": 7.1,
+   "bitmap_gl": 0.1
+  },
+  {
+   "file": "site/park/world_2560.webp",
+   "w": 2560,
+   "h": 1706,
+   "img_2d": 421.4,
+   "decode_2d": 410.4,
+   "bitmapWait": 118.9,
+   "bitmap_2d": 50.8,
+   "img_gl": 479,
+   "decode_gl": 456.7,
+   "bitmap_gl": 30.6
+  }
+ ]
+}

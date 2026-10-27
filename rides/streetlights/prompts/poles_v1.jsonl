@@ -1,0 +1,3 @@
+{"out": "rides/streetlights/gen/poles_W", "prompt_file": "rides/streetlights/prompts/poles.txt", "ref": ["rides/streetlights/gen/in_W.png"]}
+{"out": "rides/streetlights/gen/poles_M", "prompt_file": "rides/streetlights/prompts/poles.txt", "ref": ["rides/streetlights/gen/in_M.png"]}
+{"out": "rides/streetlights/gen/poles_E", "prompt_file": "rides/streetlights/prompts/poles.txt", "ref": ["rides/streetlights/gen/in_E.png"]}

@@ -1,0 +1,60 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our style frame, a cute storybook map of a seaside boardwalk and its beach. Image 2 is a detail of the finished painting of that map, its open sea: watercolour blue water with soft darker patches, and cream-white foam shapes with a thin blue outline along their lower edge, gentle paper grain. Draw a sprite sheet of the small sea animals of Santa Cruz and their splashes, in exactly the painting's style of image 2, with the simple chunky, cute shapes of image 1 that read at a tiny size: thin warm outlines tinted darker than each animal's own colour (a warm dark brown on fur, a dark grey-blue on wet grey skin), thinner tinted lines inside, soft flat fills with one soft shade tone, tiny dot eyes.\n\nEverything is seen from the same high three-quarter angle as the map (looking down at about 30 degrees), lit softly from the upper left.\n\nLayout, strict: a grid of 5 columns and 4 rows on a plain flat pure magenta (#FF00FF) background with no shading or texture. One thing per cell, whole, centred, with a wide empty margin; nothing touches a neighbour or the edge of its cell. No shadows, no water surface, no sea, no grid lines, no text, no labels. The same animal is drawn at the same scale in every cell of its row.\nRow 1, a sea otter (warm brown fur, a pale cream face and chest, small round ears, a dark round nose, white whiskers, webbed hind feet, a flat tail), its body horizontal with its head on the LEFT: floating on its back, both front paws holding a little clam shell on its chest, hind feet and tail sticking up at the right end; floating on its back, both paws rubbing its face, grooming; floating on its back asleep, eyes closed, paws folded on its chest; rolled over onto its tummy, swimming, head raised; diving head first, its back arched, only the hind feet and tail up in the air.\nRow 2, heads popping up out of the sea, each cut off straight and level at the bottom where the water would be (only the part above the water is drawn): a harbor seal's round grey head with dark spots, big dark eyes and whiskers, looking at the viewer; the same seal head turned to look to the right; the same seal with its nose tipped up to the sky; a California sea lion's brown head and neck, longer snout, tiny ear flaps, looking right; the same sea lion barking, mouth open, head raised.\nRow 3, a small silver fish (blue-grey back, silver-white belly, a forked tail), side view facing RIGHT: leaping, body curved upward; mid-leap, body straight; diving back down, body curved, head down; a small splash seen from 30 degrees above: a little crown of cream-white water drops thrown up in a ring, with tiny droplets; a tall splash for a diving bird: a narrow column of cream-white spray with drops falling around it.\nRow 4, marks on the water, all cream-white like the painting's foam with a thin pale-blue outline: a small flat ring of ripples seen from 30 degrees above (a wide flat ellipse, three times wider than tall, made of short broken foam strokes); a bigger flat ring of ripples, two rings, one inside the other; a small burst of round droplets flying up; a little patch of foam bubbles, a flat oval; a small V-shaped wake of two short foam strokes, opening to the LEFT.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "rides/wildlife/gen/ref_water.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "sea_v1"
+ },
+ "format": "png",
+ "generation_s": 46.6,
+ "attempts": 1,
+ "idempotency_key": "411d7850-bd39-4394-afc3-792a1f59c745",
+ "request_id": "53fc6211-ee7e-4e13-b86b-c04aeae25419",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 5673,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4926,
+   "text_tokens": 747
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 5673,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4926,
+   "text_tokens": 747
+  },
+  "total_tokens": 18153
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/25d44ec9-cd61-49a0-8255-d86052979224",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/f5cdc6f0-25fa-4737-9253-475530408d90"
+ ],
+ "files": [
+  "rides/wildlife/gen/sea_v1_0.png",
+  "rides/wildlife/gen/sea_v1_1.png"
+ ]
+}

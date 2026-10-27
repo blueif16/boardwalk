@@ -1,0 +1,20 @@
+Image 1 is the Sea Swings, a swing ride in our painted storybook map of a seaside amusement park; image 2 is our style frame. Draw a sprite sheet of the SWING CHAIRS that hang from that ride's canopy on chains, in exactly the painting's style: chunky, rounded, toy-like proportions, thin warm dark-brown outlines (#2c201b) around every silhouette, thinner tinted lines inside, soft pastel fills with one soft shade tone, a gentle paper texture. Not cleaner, not brighter, not more saturated than image 1.
+
+Each chair is a classic wave-swinger seat: a moulded seat with a rounded backrest, painted in one colour with a thin gold trim, two slim metal side frames that rise from the seat's sides to a small ring at the top of each side (where a chain will hook on), a thin safety bar across the front, and a small footrest bar below the front edge. The chairs are EMPTY: no people, no animals. There are NO chains: just the chair.
+
+Layout, strict: a grid of 5 columns and 6 rows on a flat, pure magenta background (#FF00FF) with nothing else on it. Every chair is whole, centred in its cell with a wide empty margin; nothing touches or overlaps a neighbour. All chairs are drawn at the same scale. No shadows, no ground, no grid lines, no borders, no text.
+
+Each ROW is one chair, the same chair in all five cells, identical in colour and decoration:
+Row 1: a single seat, butter yellow.
+Row 2: a single seat, mint green.
+Row 3: a single seat, coral red.
+Row 4: a single seat, sky blue.
+Row 5: a double seat (one bench for two, twice as wide as a single), orange.
+Row 6: a double seat (one bench for two, twice as wide as a single), pink.
+
+Each COLUMN is one viewing direction, the same in every row, all seen from slightly above (about 25 degrees down, as the ride in image 1 is seen):
+Column 1: side view, the chair facing RIGHT, in profile (backrest on the left, the front of the seat on the right).
+Column 2: three-quarter view, the chair facing to the right and towards the viewer.
+Column 3: front view, the chair facing straight towards the viewer (we see the front of the seat and the backrest behind it).
+Column 4: three-quarter view, the chair facing to the right and away from the viewer (we see the back of the backrest and its right side).
+Column 5: back view, the chair facing straight away from the viewer (we see the back of the backrest).

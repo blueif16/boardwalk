@@ -1,0 +1,2 @@
+{"out": "tests/night-park/gen/park_night_v1", "prompt_file": "tests/night-park/prompts/park_night_v1.txt", "ref": ["tests/night-park/gen/in_park_day.png"]}
+{"out": "tests/night-park/gen/piece_night_v1", "prompt_file": "tests/night-park/prompts/piece_night_v1.txt", "ref": ["tests/night-park/gen/in_piece_day.png"]}

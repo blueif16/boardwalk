@@ -1,0 +1,11 @@
+{"out": "rides/beach/gen/beach_bunny", "prompt_file": "rides/beach/prompts/beach_bunny.txt", "ref": ["tests/characters/gen/sheet_bunny_0.png"]}
+{"out": "rides/beach/gen/beach_panda", "prompt_file": "rides/beach/prompts/beach_panda.txt", "ref": ["tests/characters/gen/sheet_panda_0.png"]}
+{"out": "rides/beach/gen/beach_fox", "prompt_file": "rides/beach/prompts/beach_fox.txt", "ref": ["tests/characters/gen/sheet_fox_0.png"]}
+{"out": "rides/beach/gen/beach_pig", "prompt_file": "rides/beach/prompts/beach_pig.txt", "ref": ["tests/characters/gen/sheet_pig_0.png"]}
+{"out": "rides/beach/gen/beach_crocodile", "prompt_file": "rides/beach/prompts/beach_crocodile.txt", "ref": ["tests/characters/gen/sheet_crocodile_0.png"]}
+{"out": "rides/beach/gen/beach_penguin", "prompt_file": "rides/beach/prompts/beach_penguin.txt", "ref": ["tests/characters/gen/sheet_penguin_0.png"]}
+{"out": "rides/beach/gen/beach_otter", "prompt_file": "rides/beach/prompts/beach_otter.txt", "ref": ["tests/characters/gen/sheet_otter_0.png"]}
+{"out": "rides/beach/gen/beach_koala", "prompt_file": "rides/beach/prompts/beach_koala.txt", "ref": ["tests/characters/gen/sheet_koala_0.png"]}
+{"out": "rides/beach/gen/beach_duck", "prompt_file": "rides/beach/prompts/beach_duck.txt", "ref": ["tests/characters/gen/sheet_duck_0.png"]}
+{"out": "rides/beach/gen/beach_bunny_kid", "prompt_file": "rides/beach/prompts/beach_bunny_kid.txt", "ref": ["tests/characters/gen/sheet_bunny_kid_0.png"]}
+{"out": "rides/beach/gen/beach_fox_kid", "prompt_file": "rides/beach/prompts/beach_fox_kid.txt", "ref": ["tests/characters/gen/sheet_fox_kid_0.png"]}

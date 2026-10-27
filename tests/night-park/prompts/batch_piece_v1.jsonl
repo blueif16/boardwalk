@@ -1,0 +1,4 @@
+{"out": "tests/night-park/gen/piece_dusk_v1", "prompt_file": "tests/night-park/prompts/piece_dusk_v1.txt", "ref": ["tests/night-park/gen/in_piece_day.png"]}
+{"out": "tests/night-park/gen/piece_golden_v1", "prompt_file": "tests/night-park/prompts/piece_golden_v1.txt", "ref": ["tests/night-park/gen/in_piece_day.png"]}
+{"out": "tests/night-park/gen/piece_dawn_v1", "prompt_file": "tests/night-park/prompts/piece_dawn_v1.txt", "ref": ["tests/night-park/gen/in_piece_day.png"]}
+{"out": "tests/night-park/gen/left_night_v1", "prompt_file": "tests/night-park/prompts/piece_night_v1.txt", "ref": ["tests/night-park/gen/in_left_day.png"]}

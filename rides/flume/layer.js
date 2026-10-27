@@ -46,6 +46,9 @@ const RIM = { side: 0.37, back: 0.48, front: 0.71 }; // the near rim of an empty
 const SEAT_X = [15.5, 0, -15.5];  // side view, along the log from its front
 const SEAT_UP = [0, 5.5, 11];     // end-on views: each seat further back sits this much higher on screen
 
+import { rideHours } from "../../base/park_hours.js";
+import { getSky } from "../../base/sky.js";
+
 const loadImage = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
 
 // A small deterministic hash -> [0, 1).
@@ -180,13 +183,21 @@ export async function mount(ctx) {
     const [x, y, w, h] = meta.rect;
     im.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
     ctx.slots.rides.append(im);
+    return im;
   };
   const back = layer();
   cutout("s_tube", oS);
   const front = layer();
-  cutout("porch", oPorch);
-  cutout("box", oBox);
+  const porchImg = cutout("porch", oPorch);
+  const boxImg = cutout("box", oBox);
   cutout("disc", oDisc);
+  // Depth for the crowd (rides/RIDERS.md "Depth"): the mill house porch and the box at the lift's foot stand on their
+  // own lowest pixels; the disc and the S tube are high up, above every animal's head. Nothing on the walking network
+  // reaches behind them today (the queue and exit are on the deck south of the base).
+  const occluders = [
+    { rect: oPorch.rect, mask: porchImg, sortY: 1339 },
+    { rect: oBox.rect, mask: boxImg, sortY: 1193 },
+  ];
   let density = 1;
   function resize(scale) {
     density = scale * Math.min(devicePixelRatio || 1, 2 / scale);
@@ -196,6 +207,16 @@ export async function mount(ctx) {
 
   const F = sheet.frames, SD = sheet.density;
   const logs = Array.from({ length: N_LOGS }, (_, k) => ({ index: k, offset: (k * CYCLE) / N_LOGS, kind: k % 3 }));
+  // Park hours (base/park_hours.js): closed, every log finishes its trip and is put away in the mill house (the hidden
+  // run, out of sight), so the flume stands empty. Open again, log 0 comes out first and each other log follows once
+  // its quarter-cycle spacing behind log 0 comes round again.
+  const modC = (v) => ((v % CYCLE) + CYCLE) % CYCLE;
+  const PH = DWELL + times[Math.max(0, dist.findIndex((v) => v >= (dHid0 + dHid1) / 2))]; // phase in the mill house
+  const sky = ctx.sky ?? getSky({ params: ctx.params });
+  let tau0 = 0;
+  const hours = logs.map((lg) => rideHours(sky, { period: CYCLE, rest: modC(PH - lg.offset), frozen: ctx.clock.frozen,
+    release: lg.index ? () => { const ph = modC(tau0 + lg.offset); return ph >= PH && ph < PH + 0.4; } : null }));
+  const logTimes = (t) => { tau0 = hours[0].run(t); return hours.map((h) => h.run(t)); };
   const smooth = (e0, e1, x) => { const k = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return k * k * (3 - 2 * k); };
 
   const CK = ((Number(ctx.params.get("px")) || 38) * (3840 / 3904)) / 30; // the crowd's scale (tests/park-crowd/crowd.js)
@@ -360,6 +381,7 @@ export async function mount(ctx) {
   } : null;
 
   function draw(clock) {
+    const taus = logTimes(clock);
     for (const g of [back, front]) {
       g.setTransform(density, 0, 0, density, -bx * density, -by * density);
       g.clearRect(bx, by, bw, bh);
@@ -368,7 +390,7 @@ export async function mount(ctx) {
     drawStreaks(front, clock);
     const items = [], splashes = [];
     for (const lg of logs) {
-      const c0 = clock + lg.offset;
+      const c0 = taus[lg.index] + lg.offset;
       const u = S0 + travel(c0);
       const i = idx(u), a = ALPHA[i];
       // The splash belongs to the cycle it started in, so it carries on across the cycle's wrap.
@@ -378,7 +400,7 @@ export async function mount(ctx) {
       const pf = at(u + WHEELBASE / 2), pr = at(u - WHEELBASE / 2);
       const vx = pf[0] - pr[0], vy = pf[1] - pr[1];
       const c = at(u);
-      const riders = ctx.riders ? ctx.riders(ctx.name, `log${lg.index}`, clock) : demoRiders ? demoRiders(lg, clock) : null;
+      const riders = ctx.riders ? ctx.riders(ctx.name, `log${lg.index}`, hours[lg.index].master(taus[lg.index])) : demoRiders ? demoRiders(lg, taus[lg.index]) : null;
       items.push({ log: lg, u, a, b: behind[i], vx, vy, tilt: TILT[i], x: c[0], y: c[1], spd: speedAt(c0), kind: KIND[i], riders: riders ?? null });
     }
     for (const sp of splashes) { splashUnder(front, sp.age); splashPlumes(front, sp.age); }
@@ -407,9 +429,11 @@ export async function mount(ctx) {
   // Load events (rides/RIDERS.md), closed form from the timetable. Log k reaches the station at n*CYCLE - offset_k;
   // its riders get off then, and the next ones board BOARD s later and stay until its next arrival. Logs already out
   // on the circuit at t = 0 get one load at 0, so the ride isn't empty for its first cycle.
-  function loads(t0, t1) {
+  // Each log's events in its own ride time, mapped to the master clock by its park-hours clock.
+  const loads = (t0, t1) => logs.flatMap((lg) => hours[lg.index].loads((a, b) => logLoads(lg, a, b))(t0, t1)).sort((a, b) => a.t - b.t);
+  function logLoads(only, t0, t1) {
     const out = [];
-    for (const lg of logs) {
+    for (const lg of [only]) {
       const key = `log${lg.index}`;
       const ph0 = ((lg.offset % CYCLE) + CYCLE) % CYCLE;
       if (ph0 >= BOARD && t0 <= 0 && 0 < t1) out.push({ t: 0, key, seats: SEATS, until: CYCLE - ph0 });
@@ -426,5 +450,6 @@ export async function mount(ctx) {
     update(clock) { draw(clock); },
     resize,
     riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads },
+    occluders,
   };
 }

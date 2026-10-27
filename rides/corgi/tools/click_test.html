@@ -1,0 +1,23 @@
+<!doctype html>
+<!-- Clicks the hidden corgi in a framed park page, then opens the badge's card, for headless checks:
+     node scripts/capture.mjs "http://localhost:15178/rides/corgi/tools/click_test.html?corgi=pin" --ready "html[data-ready]" --wait 1500 --select body
+     The query string is passed on to the park page (with layers=corgi&crowd=0 unless given). -->
+<meta charset="utf-8">
+<style>html, body { margin: 0; height: 100%; } iframe { display: block; width: 100%; height: 100%; border: 0; }</style>
+<iframe></iframe>
+<script>
+const q = new URLSearchParams(location.search);
+if (!q.has("layers")) q.set("layers", "corgi");
+if (!q.has("crowd")) q.set("crowd", "0");
+const frame = document.querySelector("iframe");
+frame.src = `/?${q}`;
+const poll = setInterval(() => {
+  const d = frame.contentDocument, hit = d?.querySelector(".corgi-hit");
+  if (!hit || !d.documentElement.dataset.ready) return;
+  clearInterval(poll);
+  setTimeout(() => {
+    hit.click();
+    setTimeout(() => { d.querySelector(".corgi-badge").click(); document.documentElement.dataset.ready = "1"; }, 1000);
+  }, 400);
+}, 100);
+</script>

@@ -153,22 +153,62 @@ for (let x = 250; x < 3520; x += 72) {
 }
 railSpots.forEach((p, i) => place({ id: `rail_${i}`, kind: "rail", slots: [p], approach: [p[0], p[1] - 4], lane: "s" }));
 
-// Beach spots: Poisson-sampled on the dry sand between the wall and the foam, on the part every screen shows.
+// Beach spots (this section belongs to rides/beach): fewer than before, on the sand the painting shows, clear of
+// the beach layer's camps, court, tower and games (rides/beach/scene.json, rides/beach/lines.json), and placed by
+// what the crowd does there: towels on the dry sand, standing spots near the water, sandcastles just above the
+// foam. tests/characters/sim.js gives beach places their modes by order (towel, towel, stand, castle, towel, stand),
+// so the spots are interleaved in that order; each place also names its mode. rides/beach lays a towel under every
+// towel spot and a little castle beside every castle spot.
+const beachDir = new URL("../../../rides/beach/", import.meta.url);
+const scene = JSON.parse(readFileSync(new URL("scene.json", beachDir)));
+const beachLines = JSON.parse(readFileSync(new URL("lines.json", beachDir)));
+const lineAt = (arr, x) => { const i = Math.max(0, Math.min(arr.length - 1.001, (x - beachLines.x0) / beachLines.dx)), i0 = Math.floor(i); return arr[i0] + (arr[i0 + 1] - arr[i0]) * (i - i0); };
+const seaAt = (x) => lineAt(beachLines.sea, x);
+// Keep-out boxes [x0, y0, x1, y1]: every camp's things with a margin, the court, the tower, the games.
+const keepOut = [...(scene.keepOut || [])];
+// (A group at a spot spreads about 30 px either side, and umbrellas and boards stand 40-70 px tall above their foot.)
+const box = (pts, m) => keepOut.push([Math.min(...pts.map((p) => p[0])) - m, Math.min(...pts.map((p) => p[1])) - m - 50, Math.max(...pts.map((p) => p[0])) + m, Math.max(...pts.map((p) => p[1])) + m]);
+for (const c of scene.camps) box([c.umbrella, ...(c.towels || []), ...(c.chairs || []), ...(c.things || [])].filter(Boolean).map((q) => [q[1], q[2]]), 54);
+const v = scene.volleyball;
+keepOut.push([v.center[0] - v.halfLength - 60, v.center[1] - 80, v.center[0] + v.halfLength + 60, v.center[1] + 70]);
+box([scene.tower.at], 80);
+box([scene.castle.at, scene.castle.small], 40);
+box(scene.waders.map((w) => w.at), 40);
+box([scene.dog.at, scene.dog.to], 50);
+box([scene.kite.at], 40);
+const blockedAt = (x, y) => keepOut.some(([a, b, c, d]) => x >= a && x <= c && y >= b && y <= d);
+// A straight approach from the wall-foot path must not cross a keep-out box either.
+const crosses = (p, q) => { for (let k = 1; k < 12; k++) { const t = k / 12; if (blockedAt(p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t)) return true; } return false; };
+const nearestPath = (p) => beachPath.reduce((b, q, k) => (Math.hypot(q[0] - p[0], q[1] - p[1]) < Math.hypot(beachPath[b][0] - p[0], beachPath[b][1] - p[1]) ? k : b), 0);
 let seed = 11;
 const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-const beach = [];
-for (let tries = 0; tries < 30000 && beach.length < 70; tries++) {
-  const x = 80 + rnd() * 3640;
-  const top = x > 3537 ? 1835 : along(wallFoot, x) + 34;
-  const bottom = Math.min(along(waterline, x) - 28, VISIBLE_BOTTOM);
-  if (bottom - top < 10) continue;
-  const y = top + rnd() * (bottom - top);
-  if (beach.some((b) => Math.hypot(b[0] - x, (b[1] - y) * 1.8) < 150)) continue;
-  beach.push([r1(x), r1(y)]);
+const spots = { towel: [], stand: [], castle: [] };
+const WANT = { towel: 15, stand: 10, castle: 5 };
+const all = [];
+for (let tries = 0; tries < 60000 && Object.keys(WANT).some((k) => spots[k].length < WANT[k]); tries++) {
+  const mode = ["towel", "stand", "castle"].find((k) => spots[k].length < WANT[k] && rnd() < 0.6) || "towel";
+  if (spots[mode].length >= WANT[mode]) continue;
+  const x = 90 + rnd() * 3700;
+  const top = (x > 3537 ? 1835 : along(wallFoot, x)) + 42, sea = seaAt(x), dry = along(waterline, x);
+  // towels on dry sand well above the foam; standing spots by the water; castles just above the foam
+  const [y0, y1] = mode === "towel" ? [top, Math.min(sea - 44, dry - 6)] : mode === "stand" ? [Math.max(top, Math.min(dry - 20, sea - 60)), sea - 16] : [Math.max(top, sea - 70), sea - 26];
+  const bottom = Math.min(y1, VISIBLE_BOTTOM);
+  if (bottom - y0 < 6) continue;
+  const y = y0 + rnd() * (bottom - y0);
+  if (blockedAt(x, y) || all.some((b) => Math.hypot(b[0] - x, (b[1] - y) * 1.8) < 120)) continue;
+  const link = nearestPath([x, y]);
+  if (crosses(beachPath[link], [x, y])) continue;
+  spots[mode].push([r1(x), r1(y)]);
+  all.push([x, y]);
 }
-beach.forEach((p, i) => {
-  const link = beachPath.reduce((b, q, k) => (Math.hypot(q[0] - p[0], q[1] - p[1]) < Math.hypot(beachPath[b][0] - p[0], beachPath[b][1] - p[1]) ? k : b), 0);
-  place({ id: `beach_${i}`, kind: "beach", slots: [p], h: SAND, link: [`w${link}`], approach: p });
+const MODES = ["towel", "towel", "stand", "castle", "towel", "stand"];
+const beach = [];
+for (let i = 0; i < 30; i++) {
+  const mode = MODES[i % 6], p = spots[mode].shift();
+  if (p) beach.push({ p, mode });
+}
+beach.forEach(({ p, mode }, i) => {
+  place({ id: `beach_${i}`, kind: "beach", mode, slots: [p], h: SAND, link: [`w${nearestPath(p)}`], approach: p });
 });
 
 const exits = ["s0", `s${S.length - 1}`, "n0", `n${N.length - 1}`, `e${east.length - 1}`, "w0", `w${beachPath.length - 1}`];

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boardwalk: time of day</title>
+<style>
+  :root { --page: #f6f1ea; --card: #fffdf9; --line: #e4dbd0; --ink: #362223; --text: #5d4a47; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--page); color: var(--text); font: 13px/1.4 system-ui, sans-serif; }
+  body { position: relative; }
+  .world { position: absolute; left: 0; top: 0; width: 3840px; height: 2560px; transform-origin: 0 0; }
+  .world > * { position: absolute; inset: 0; width: 3840px; height: 2560px; display: block; }
+  .panel { position: absolute; left: 12px; top: 12px; max-width: calc(100% - 24px); padding: 8px 12px; background: color-mix(in srgb, var(--card) 90%, transparent); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 2px 10px rgb(54 34 35 / 0.12); white-space: pre; }
+  .panel[hidden] { display: none; }
+  .slot { pointer-events: none; }
+  .slot canvas, .slot img { position: absolute; display: block; }
+  .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+
+  /* The title over the sea (park view only) */
+  @font-face { font-family: Gaegu; src: url(../../site/title/fonts/gaegu-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  .title { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+  .title:not([data-shown]) { visibility: hidden; }
+  .title canvas { position: absolute; display: block; pointer-events: auto; touch-action: none; }
+  .title .note { position: absolute; margin: 0; font: 700 20px/1 Gaegu, "Comic Sans MS", cursive; color: #fff8ec; white-space: nowrap; text-shadow: 0 0.08em 0 rgb(22 74 110 / 0.5); }
+  .title .explore { position: absolute; pointer-events: auto; color: transparent; overflow: hidden; border-radius: 3px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  /* The time control (a prototype; RESULTS.md, question 4): a small badge at the bottom right, a day strip on tap. */
+  .clock { position: fixed; right: 16px; bottom: 16px; z-index: 3; display: flex; align-items: center; gap: 10px; font: 700 18px/1 Gaegu, "Comic Sans MS", cursive; color: var(--ink); }
+  .clock[hidden] { display: none; }
+  .clock .badge { display: flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px 0 8px; border-radius: 20px; border: 1px solid var(--line); background: color-mix(in srgb, var(--card) 92%, transparent); box-shadow: 0 2px 10px rgb(54 34 35 / 0.16); cursor: pointer; font: inherit; color: inherit; }
+  .clock .badge svg { width: 26px; height: 26px; }
+  .clock .strip { display: none; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 20px; border: 1px solid var(--line); background: color-mix(in srgb, var(--card) 92%, transparent); box-shadow: 0 2px 10px rgb(54 34 35 / 0.16); }
+  .clock[data-open] .strip { display: flex; }
+  .clock input[type=range] { width: min(46vw, 420px); height: 18px; appearance: none; border-radius: 9px; background: var(--day-strip, linear-gradient(90deg, #1f3a72, #1f3a72)); outline: none; }
+  .clock input[type=range]::-webkit-slider-thumb { appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #fff8ec; border: 2px solid var(--ink); }
+  .clock input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff8ec; border: 2px solid var(--ink); }
+  .clock button.small { height: 28px; padding: 0 10px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: inherit; font-size: 15px; cursor: pointer; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+  "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js"
+} }
+</script>
+</head>
+<body>
+<div class="world" id="world">
+  <img id="painting" alt="The whole Santa Cruz Beach Boardwalk in our style, with the town above and the sea below">
+  <div class="slot" data-slot="plate"></div>
+  <div class="slot" data-slot="rides"></div>
+  <canvas id="animals"></canvas>
+  <div class="slot" data-slot="front"></div>
+  <div class="slot" data-slot="grade"></div>
+  <div class="slot" data-slot="pool"></div>
+  <div class="slot" data-slot="lights"></div>
+</div>
+<header class="title" id="title" hidden>
+  <h1 class="sr">Shiran</h1>
+  <canvas aria-hidden="true"></canvas>
+  <p class="note">@ santa cruz beach boardwalk</p>
+  <a class="explore" href="#explore">Explore</a>
+</header>
+<div class="clock" id="clock">
+  <div class="strip"><input type="range" min="0" max="24" step="0.05" aria-label="Time of day"><button class="small" data-act="play" title="Play a day in 24 seconds">play</button><button class="small" data-act="now" title="Follow the clock">now</button></div>
+  <button class="badge" aria-label="Time of day"><svg viewBox="0 0 26 26" aria-hidden="true"></svg><span class="time">13:00</span></button>
+</div>
+<div class="panel mono" id="panel" hidden></div>
+<script type="module">
+// Time of day on the park (tests/night-park/RESULTS.md). The page is index.html with the base's grade: the day
+// painting and every live layer stay as they are, and two overlay canvases relight them by the hour; the lights
+// (tests/night-lights) draw above the grade.
+// Params: &hour= fixed hour (also what the crowd reads), &clock=local|santacruz (follow a clock), &view=slice|park
+// (default slice: park px 1900,650 - 3000,1650), &lights=0, &grade=0 (the plain day painting), &hd=0 (no HD crop in
+// the slice view), &ui=0 (no control), &layers=a,b, &crowd=0, &title=0, &panel (or the h key) for the numbers.
+import { createCamera } from "../../base/camera.js";
+import { createClock } from "../../base/clock.js";
+import { createSky, fmt } from "./sky.js";
+import { mountGrade } from "./grade.js";
+
+const RIDES = ["sea", "traffic", "coaster", "wheel", "teacups", "flume", "pirate", "carousel", "thrill"];
+const SLICE = [1900, 650, 1100, 1000];
+const W = 3840, H = 2560;
+const world = document.getElementById("world");
+const params = new URLSearchParams(location.search);
+const view = params.get("view") === "park" ? "park" : "slice";
+const R = view === "park" ? [0, 0, W, H] : SLICE;
+
+const WIDTHS = [1920, 2560, 3456, 3840, 5120];
+const painting = document.getElementById("painting");
+let loaded = 0;
+function pick(s) {
+  const need = W * s * (devicePixelRatio || 1);
+  const w = WIDTHS.find((v) => v >= need * 0.95) ?? WIDTHS.at(-1);
+  if (w > loaded) { loaded = w; painting.src = `../../site/park/world_${w}.webp`; }
+}
+let scale = 1;
+function fit() {
+  // Park view covers the window (as index.html); the slice view shows the whole slice, with the painting around it.
+  scale = view === "park" ? Math.max(innerWidth / R[2], innerHeight / R[3]) : Math.min(innerWidth / R[2], innerHeight / R[3]);
+  pick(scale);
+  const tx = (innerWidth - R[2] * scale) / 2 - R[0] * scale, ty = (innerHeight - R[3] * scale) / 2 - R[1] * scale;
+  world.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+  // Clip the world to what the window shows: the grade's blend modes make the browser composite the whole world
+  // into one surface, and zoomed in that surface would pass the GPU's texture limit (8192 px in software GL).
+  const vx = -tx / scale, vy = -ty / scale, vw = innerWidth / scale, vh = innerHeight / scale;
+  world.style.clipPath = view === "park" ? "" : `inset(${Math.max(0, vy)}px ${Math.max(0, W - vx - vw)}px ${Math.max(0, H - vy - vh)}px ${Math.max(0, vx)}px)`;
+  crowd?.resize(scale);
+}
+let crowd = null;
+const rides = [];
+fit();
+addEventListener("resize", fit);
+
+const slots = Object.fromEntries([...world.querySelectorAll("[data-slot]")].map((el) => [el.dataset.slot, el]));
+// The slice view zooms in past the largest shipped painting (5120 px): lay the HD painting's own pixels over the slice.
+const detail = view === "slice" && params.get("hd") !== "0" ? Object.assign(new Image(), { src: "site/slice_day.webp", alt: "" }) : null;
+if (detail) { detail.style.cssText = `left:${SLICE[0]}px;top:${SLICE[1]}px;width:${SLICE[2]}px;height:${SLICE[3]}px`; slots.plate.prepend(detail); }
+
+if (view === "park" && params.get("title") !== "0") {
+  const t = document.getElementById("title"); t.hidden = false;
+  Promise.all([import("../../site/title/title.js").then((m) => m.mountTitle(t, { params })), painting.decode().catch(() => {})])
+    .then(([title]) => title.play()).catch((err) => console.error("title failed", err));
+}
+
+const park = await fetch("../park-crowd/park.json").then((r) => r.json());
+const clock = createClock();
+const sky = createSky({ params });
+const canvases = [];
+const ctx = {
+  park, W, H, camera: createCamera(park), clock, params, slots, sky,
+  scale: () => scale,
+  riders: (name, key, t) => crowd?.riders(name, key, t) ?? null,
+  addPatch(url, [x, y, w, h]) {
+    const img = new Image(); img.src = url; img.alt = "";
+    img.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+    slots.plate.append(img); return img;
+  },
+  canvas(slot = "rides", { maxDensity = 1.5 } = {}) {
+    const c = document.createElement("canvas");
+    c.style.cssText = `left:0;top:0;width:${W}px;height:${H}px`;
+    slots[slot].append(c);
+    const entry = { c, maxDensity, fit() { const d = scale * Math.min(devicePixelRatio || 1, maxDensity / scale); c.width = Math.round(W * d); c.height = Math.round(H * d); c.density = d; } };
+    entry.fit(); canvases.push(entry); return c;
+  },
+};
+addEventListener("resize", () => { for (const e of canvases) e.fit(); for (const l of rides) l.resize?.(scale); });
+
+// The base: the grade over everything drawn so far, by the hour.
+const grade = params.get("grade") === "0" ? null : await mountGrade(slots.grade, sky, { base: new URL("../../rides/sky/fields/", location.href) });
+
+const wanted = params.has("layers") ? params.get("layers").split(",").filter(Boolean) : RIDES;
+const riderBlocks = [];
+for (const name of wanted) {
+  try {
+    const mod = await import(`../../rides/${name}/layer.js`);
+    const layer = (await mod.mount({ ...ctx, name, dir: new URL(`../../rides/${name}/`, location.href) })) || {};
+    layer.resize?.(scale); rides.push(layer);
+    if (layer.riders) riderBlocks.push({ ...layer.riders, name });
+  } catch (err) { console.error(`ride layer ${name} failed`, err); }
+}
+if (params.get("crowd") !== "0") {
+  const { mountCrowd } = await import("../park-crowd/crowd.js");
+  crowd = await mountCrowd(document.getElementById("animals"), { params, clock, rides: riderBlocks });
+  crowd.resize(scale);
+}
+
+// The lights (tests/night-lights, the other agent's work): mounted over the grade when its modules load.
+let lights = null;
+if (params.get("lights") !== "0") {
+  try {
+    const L = await import("../night-lights/lights.js");
+    const dir = new URL("../night-lights/", location.href);
+    lights = await L.mountLights(ctx, { dir, parents: { pool: slots.pool, lights: slots.lights }, density: Math.min(2.5, Math.max(1, scale * (devicePixelRatio || 1))), skip: new Set(wanted.includes("coaster") ? ["coaster"] : []) });
+    try {
+      const A = await import("../night-lights/adapters.js");
+      const reg = async (p) => { const v = await p; for (const q of [].concat(v ?? [])) lights.register(q); };
+      if (wanted.includes("wheel") && A.wheelLights) await reg(A.wheelLights(ctx));
+      if (wanted.includes("coaster") && A.coasterLights) await reg(A.coasterLights(ctx, lights.lights));
+      if (wanted.includes("traffic") && A.trafficLights) await reg(A.trafficLights(ctx));
+    } catch (err) { console.warn("light adapters skipped", err); }
+  } catch (err) { console.warn("lights not mounted", err); lights = null; }
+}
+
+// --- The time control -------------------------------------------------------------------------------------------
+const ui = document.getElementById("clock");
+ui.hidden = params.get("ui") === "0";
+const badge = ui.querySelector(".badge"), range = ui.querySelector("input"), timeEl = ui.querySelector(".time"), svg = ui.querySelector("svg");
+const SUN = `<circle cx="13" cy="13" r="6" fill="#f2b275" stroke="#2c201b" stroke-width="1.6"/>` + [0, 45, 90, 135, 180, 225, 270, 315].map((a) => { const r = Math.PI * a / 180; return `<line x1="${13 + 8.5 * Math.cos(r)}" y1="${13 + 8.5 * Math.sin(r)}" x2="${13 + 11 * Math.cos(r)}" y2="${13 + 11 * Math.sin(r)}" stroke="#2c201b" stroke-width="1.6" stroke-linecap="round"/>`; }).join("");
+const MOON = `<path d="M17.5 4.5a9 9 0 1 0 4 12.5 7 7 0 0 1-4-12.5z" fill="#f9f4ea" stroke="#2c201b" stroke-width="1.6" stroke-linejoin="round"/>`;
+// The strip's colours come from the plates: rose dawn, blue day, honey golden hour, violet dusk, navy night.
+function stripGradient() {
+  const stops = [];
+  for (let h = 0; h <= 24; h += 0.5) {
+    const t = createSky({ params: new URLSearchParams(`hour=${h}`) });
+    const k = t.keys;
+    const c = [[k.day, [143, 196, 228]], [k.dawn, [240, 196, 196]], [k.golden, [246, 192, 142]], [k.dusk, [150, 120, 200]], [k.night, [31, 52, 104]]]
+      .reduce((a, [w, rgb]) => a.map((v, i) => v + w * rgb[i]), [0, 0, 0]).map(Math.round);
+    stops.push(`rgb(${c.join(",")}) ${(h / 24 * 100).toFixed(1)}%`);
+  }
+  return `linear-gradient(90deg, ${stops.join(",")})`;
+}
+range.style.setProperty("--day-strip", stripGradient());
+badge.addEventListener("click", () => { ui.toggleAttribute("data-open"); });
+range.addEventListener("input", () => { playing = false; sky.set(Number(range.value)); });
+let playing = false, playFrom = 0, playAt = 0;
+ui.querySelector("[data-act=play]").addEventListener("click", () => { playing = !playing; playFrom = sky.hour; playAt = performance.now(); });
+ui.querySelector("[data-act=now]").addEventListener("click", () => { playing = false; const m = params.get("clock") === "santacruz" ? "santacruz" : "local"; sky.follow(m); });
+sky.onChange((s) => {
+  timeEl.textContent = fmt(s.hour);
+  svg.innerHTML = s.dark > 0.5 ? MOON : SUN;
+  if (document.activeElement !== range) range.value = s.hour.toFixed(2);
+});
+
+// --- Frame loop -------------------------------------------------------------------------------------------------
+const panel = document.getElementById("panel");
+panel.hidden = !params.has("panel");
+addEventListener("keydown", (e) => { if (e.key === "h" || e.key === "H") panel.hidden = !panel.hidden; });
+let frames = 0, prev = clock.now(), draws = 0;
+function frame() {
+  const t = clock.now(), dt = Math.min(0.1, Math.max(0, t - prev));
+  prev = t;
+  if (playing) sky.set((playFrom + (performance.now() - playAt) / 1000) % 24);
+  sky.tick();
+  draws = grade?.update() ?? 0;
+  crowd?.update();
+  for (const l of rides) l.update?.(t, dt);
+  lights?.update(performance.now() / 1000, sky);
+  if (!panel.hidden && frames++ % 15 === 0) {
+    const k = Object.entries(sky.keys).filter(([, v]) => v > 0.005).map(([n, v]) => `${n} ${v.toFixed(2)}`).join(", ");
+    panel.textContent = `${fmt(sky.hour)} (${sky.mode})  sun ${sky.sun.alt.toFixed(1)}°  rise ${fmt(sky.sun.rise)} set ${fmt(sky.sun.set)} (${sky.sunMode} sun)\n${k}\ndark ${sky.dark.toFixed(2)}  lights wave ${sky.progress.toFixed(2)}  grade draws ${draws}\npainting ${loaded} px  window ${innerWidth}×${innerHeight} at ${devicePixelRatio}×`;
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+await Promise.all([painting.decode().catch(() => {}), detail?.decode().catch(() => {})]);
+requestAnimationFrame(() => requestAnimationFrame(() => { document.documentElement.dataset.ready = "1"; }));
+window.__sky = sky;
+</script>
+</body>
+</html>

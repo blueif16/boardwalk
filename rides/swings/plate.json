@@ -1,0 +1,14 @@
+{
+ "file": "plate.webp",
+ "rect": [
+  2704.2,
+  1357.6,
+  162.8,
+  188.0
+ ],
+ "px_per_park_px": 2.0,
+ "sources": {
+  "erase": "gen/erase_v1_0.png",
+  "base": "gen/ride_v1_1.png"
+ }
+}

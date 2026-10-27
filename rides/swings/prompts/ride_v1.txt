@@ -1,0 +1,15 @@
+Edit image 1. It is a piece of our hand-painted storybook map of a seaside amusement park, seen from above at an angle: soft watercolour washes, thin warm dark-brown ink outlines (#2c201b), lighter tinted lines inside, gentle paper grain, warm pastel colours. In the middle, flat-colour blocking shapes mark a new ride. Turn the blocking into the finished ride, painted in exactly the painting's style, at exactly the blocked size, shape and position: do not make any part bigger, smaller, taller or wider, and do not move it.
+
+The ride is the Sea Swings, a classic Italian wave swinger, here standing still with its canopy raised, its swing chairs taken off for the winter:
+- The canopy: a wide round umbrella. Its edge is a gold crown band with a gently scalloped top edge; on it, evenly spaced oval medallions in sky-blue frames, each with a tiny seaside picture (a wave, a shell, a little boat), and small red-and-gold teardrop jewels between them. The canopy's top, seen from above, is a shallow cone of gores alternating warm gold and sky blue, with thin cream scrollwork along the seams and a thin red rim where it meets the crown band.
+- On top of the canopy a gold collar and a small round dome with blue and white stripes, and a gold ball on its tip.
+- Under the canopy a tall slender column: gold, with tall sky-blue panels framed in cream, a few small round gold bosses, and a ring of red-pink scallop leaves where it rises out of the drum.
+- At the bottom, the drum: a short round drum, sky blue, with a ring of orange scallop shells round its side and a gold rim on top.
+- The round raised platform: a red skirt painted with little white waves and orange shells, a pale cream floor, a low white railing on its edge (thin posts, two rails) with two openings at the front.
+Every pattern repeats regularly and evenly all the way round: the gores, the medallions, the panels, the shells, the stripes.
+
+Nothing hangs from the canopy: no chains, no chairs, no ropes. No people and no animals anywhere. No text, letters, numbers, logos or watermarks.
+
+Keep every pixel outside the blocking exactly as it is: the deck, the Ferris wheel, the lamp post, the swing frame, the stalls, the rocks, the bin, the rail.
+
+Same finish as the rest of the painting: the same ink colour and line weight, the same watercolour softness, the same paper grain and the same soft light. Not cleaner, not brighter, not more saturated than the painting around it.

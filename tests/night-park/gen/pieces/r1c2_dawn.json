@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything. Objects cut by the edges of image 1 stay cut at exactly the same place.\n\nImage 1 is one piece of a larger painting of a seaside town: wooded hills and houses, a street with parking lots, an amusement park on its boardwalk, the beach and the sea. Relight it in the same light as the rest of the painting.\n\nThe new time: early morning, just after sunrise. A soft, fresh light: pale rose and apricot where the low sun from the right touches the tops and the right-facing sides of things, cool lilac-blue in the shade, a faint morning haze over the town. Keep it a storybook painting: the pastel colours stay clean and gentle, a little cooler and paler than midday. The sand is pale peach with a lilac tint, the boardwalk planks soft rose-brown, the white coaster lattice rosy on its sunlit side and lilac on the rest, the street and the parking lots cool grey-lilac.\n\nEvery artificial light is switched off.\n\nWhere the piece shows the sea, it is a soft pale blue with pink glints on its ripple dashes; hills are misty blue-green and any sky is pale rose-gold.\n\nShadows stay short and soft, right under each object: no long cast shadows.\n\nDo not add anything new: no people, animals, cars, boats, birds, moon, sun or stars. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night-park/gen/pieces/in_r1c2.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "r1c2_dawn"
+ },
+ "format": "png",
+ "generation_s": 35.4,
+ "attempts": 1,
+ "idempotency_key": "38fe4fa4-0be1-40e2-bbad-e7e59971ddf6",
+ "request_id": "4ae32408-e522-41d9-a896-d08fb8876201",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2861,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 372
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2861,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 372
+  },
+  "total_tokens": 9101
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/2ce3caaa-44b6-4bfd-afa8-65b5903d97c4"
+ ],
+ "files": [
+  "tests/night-park/gen/pieces/r1c2_dawn_0.png"
+ ]
+}

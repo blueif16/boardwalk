@@ -69,6 +69,14 @@ pieces = oc.find(band.park, cls, reach, Y0, extra, hidden_foot)
 for p_ in pieces:
     if p_.get("hidden"):
         print(f"hidden foot: piece at x {p_['x0']}..{p_['x0'] + p_['mask'].shape[1]}, foot -> {p_['sortY']:.0f}")
+# Beach Street's painted street lights (rides/streetlights, laid in as plate patches by that layer): a piece's pixels
+# must include them, or a piece drawn over a passing car covers the pole under it. They go in after the pieces are
+# found, so the poles don't become pieces themselves (cars pass in front of the north poles; the south poles have
+# their own front cut-outs in rides/streetlights).
+SL = os.path.join(os.path.dirname(RIDE), "streetlights")
+if os.path.exists(os.path.join(SL, "streetlights.json")):
+    plates = [{**pl, "file": os.path.join(SL, pl["file"])} for pl in json.load(open(os.path.join(SL, "streetlights.json")))["plates"]]
+    band = oc.load_band(Y0, Y1, patches + plates, RIDE, fit=True)
 meta, shape = oc.write(pieces, band, os.path.join(RIDE, "occ"))
 shutil.move(os.path.join(RIDE, "occ_check.png"), os.path.join(RIDE, "gen/occ_check.png"))
 kinds = {}

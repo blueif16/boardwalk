@@ -5,6 +5,24 @@ node_modules/
 .DS_Store
 gen/park/world_v2_hd.png
 
-# Ride build scratch that is too big for git: keep request records (json), prompts (txt) and the four car models
-rides/traffic/gen/**/*.png
-rides/traffic/gen/probe/
+# Raw generation outputs (4K images and other scratch) live outside git, backed up to D:\boardwalk-raw
+# (/mnt/d/boardwalk-raw, same paths; decided 2026-10-26). Git keeps request records (json/jsonl), prompts (txt)
+# and the 3D models (glb). Refresh the backup: rsync -a --relative <every gen dir> /mnt/d/boardwalk-raw/
+**/gen/**
+!**/gen/**/
+!**/gen/**/*.json
+!**/gen/**/*.jsonl
+!**/gen/**/*.txt
+!**/gen/**/*.glb
+# Agents' work/ folders are scratch too (same rule: images out, small records in), backed up with gen/.
+**/work/**
+!**/work/**/
+!**/work/**/*.json
+!**/work/**/*.jsonl
+!**/work/**/*.txt
+# The style frame every image request is given as a reference stays in git.
+!gen/style_frame/v1_0.png
+!gen/style_frame/v1_1.png
+
+# The deploy folder (tests/perf/tools/load_shiplist.mjs --copy dist): only what the page loads
+dist/

@@ -1,0 +1,33 @@
+{
+ "about": "Relight fields (tests/night-park/RESULTS.md): graded = day * A + B in sRGB, park frame 3840 x 2560 at 1 px per 4 park px; shown as multiply A/(1-B) then screen B",
+ "rect": [
+  0,
+  0,
+  3840,
+  2560
+ ],
+ "res": 4,
+ "size": [
+  960,
+  640
+ ],
+ "keys": {
+  "dawn": {
+   "A": "dawn_A.webp",
+   "B": "dawn_B.webp"
+  },
+  "golden": {
+   "A": "golden_A.webp",
+   "B": "golden_B.webp"
+  },
+  "dusk": {
+   "A": "dusk_A.webp",
+   "B": "dusk_B.webp"
+  },
+  "night": {
+   "A": "night_A.webp",
+   "B": "night_B.webp"
+  }
+ },
+ "build": "whole park: 4 whole-park keys + 9 pieces x 4 times (gpt-image-2.5 3840x2560 high), harmonised to the keys, 96 px feather, flat ground smoothed; night also takes the lights agent's lights-off slice"
+}

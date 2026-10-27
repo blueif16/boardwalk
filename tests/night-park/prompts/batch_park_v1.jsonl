@@ -1,0 +1,3 @@
+{"out": "tests/night-park/gen/park_dusk_v1", "prompt_file": "tests/night-park/prompts/park_dusk_v1.txt", "ref": ["tests/night-park/gen/in_park_day.png"]}
+{"out": "tests/night-park/gen/park_golden_v1", "prompt_file": "tests/night-park/prompts/park_golden_v1.txt", "ref": ["tests/night-park/gen/in_park_day.png"]}
+{"out": "tests/night-park/gen/park_dawn_v1", "prompt_file": "tests/night-park/prompts/park_dawn_v1.txt", "ref": ["tests/night-park/gen/in_park_day.png"]}

@@ -7,6 +7,11 @@
 // things that stand in front of the swinging ship: the front A-frame legs and the hub (the plate's own pixels) and three
 // lamps (the painting's). Art and geometry: tools/build_ship.py, ship.json, front.json.
 //
+// Depth for the crowd (rides/RIDERS.md "Depth"): `occluders(t)` gives the ship at its swing (ship_back.webp's
+// silhouette placed by the same matrix it is drawn with) on its plane halfway between the A-frame's front and back
+// feet, and front.webp's front A-frame with the hub on its feet, so animals queueing for the Double Shot behind the
+// platform pass behind the ship and the front legs.
+//
 // The ship swings in the A-frame's plane, which the painting draws face-on: the horizontal axis that projects to the
 // screen's horizontal is foreshortened by 1, the vertical by cos(pitch). So a swing by theta in that plane is, on screen,
 // S R(theta) S^-1 about the hub with S = diag(1, cos(pitch)): a rotation that flattens a little as it tilts.
@@ -31,6 +36,10 @@ const SHOW = 20;                 // park px of a rider above the near gunwale
 const SIZE = 38;                 // the crowd's character size (tests/park-crowd/crowd.js)
 const UNIT = 3840 / 3904;
 const RAD = Math.PI / 180;
+
+import { rideHours } from "../../base/park_hours.js";
+import { getSky } from "../../base/sky.js";
+const REST = 4.2;                 // s into the cycle where it waits while the park is closed: stopped, everyone out
 
 const loadImage = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
 const hash = (n) => { let x = Math.imul((n | 0) ^ 0x9e3779b9, 0x85ebca6b); x ^= x >>> 13; x = Math.imul(x, 0xc2b2ae35); x ^= x >>> 16; return (x >>> 0) / 4294967296; };
@@ -65,6 +74,8 @@ export async function mount(ctx) {
     loadImage(url("ship_back.webp")), loadImage(url("ship_front.webp")), loadImage(url("front.webp")),
     loadImage(new URL("atlas.png", crowd).href),
   ]);
+  // Park hours (base/park_hours.js): closed, the ship finishes its swing and hangs still at the platform.
+  const hours = rideHours(ctx.sky ?? getSky({ params: ctx.params }), { period: CYCLE, rest: REST, frozen: ctx.clock.frozen });
   const [PX, PY] = meta.pivot;
   const [IW, IH] = meta.image_park, [OX, OY] = meta.pivot_in_image;
   const ROWS = meta.seats.length;
@@ -81,7 +92,7 @@ export async function mount(ctx) {
     const tb = n * CYCLE + boardAt(r), tu = (n + 1) * CYCLE + alightAt(r);
     if (t >= tu) return null;
     const alpha = smooth((t - tb) / FADE) * smooth((tu - t) / FADE);
-    let who = ctx.riders ? ctx.riders(ctx.name, `row${r}`, t) : null;
+    let who = ctx.riders ? ctx.riders(ctx.name, `row${r}`, hours.master(t)) : null;
     if (who == null) {
       // No crowd: our own riders, decided once per boarding.
       const h = hash(n * 31 + r * 7 + 1);
@@ -173,16 +184,35 @@ export async function mount(ctx) {
     return out.sort((a, b) => a.t - b.t);
   }
 
+  // Depth (rides/RIDERS.md): what hides the crowd's animals standing behind it. The ship swings in the plane halfway
+  // between the A-frame's front feet (y 1264-1269, measured on front.webp's alpha) and back feet (1223-1226).
+  const SHIP_Y = 1245;
+  const fk = frontImg.naturalWidth / fw;
+  const part = (rect, base) => ({
+    rect, mask: frontImg, crop: [(rect[0] - fx) * fk, (rect[1] - fy) * fk, rect[2] * fk, rect[3] * fk],
+    ...(Array.isArray(base) ? { sortY: (base[1] + base[3]) / 2, sortLine: base } : { sortY: base }),
+  });
+  // front.webp's three lamps come with the painting's own cut-outs (tests/park-crowd/occ.*, tight masks); their part
+  // of front.webp carries strips of deck that would cut holes in animals.
+  const parts = [part([836, 1076, 194, 198], [850, 1264, 1020, 1269])]; // front legs and hub: the front A-frame's feet
+  function occluders(t) {
+    t = hours.run(t);
+    const tau = ((t % CYCLE) + CYCLE) % CYCLE, th = angleAt(tau) * RAD, c = Math.cos(th), s = Math.sin(th);
+    // S R(theta) S^-1 about the hub, as in draw(): park = (c x - s y / K, K s x + c y) + hub.
+    return [{ rect: [-OX, -OY, IW, IH], matrix: [c, K * s, -s / K, c, PX, PY], sortY: SHIP_Y, mask: back }, ...parts];
+  }
+
   let cost = 0, frames = 0;
-  window.__pirate = { cycle: CYCLE, angleAt, riders, loads, draw, cost: () => cost / Math.max(1, frames) };
+  window.__pirate = { cycle: CYCLE, angleAt, riders, loads, draw, occluders, cost: () => cost / Math.max(1, frames) };
   return {
     update(t) {
       const t0 = performance.now();
-      draw(t);
+      draw(hours.run(t));
       cost += performance.now() - t0;
       frames++;
     },
     resize,
-    riders: { gate, queue, exit: [850, 1290], loads },
+    riders: { gate, queue, exit: [850, 1290], loads: hours.loads(loads) },
+    occluders,
   };
 }

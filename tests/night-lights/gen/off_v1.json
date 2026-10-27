@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Switch off every light, and change nothing else. Every object keeps exactly its place, size, shape, outline and colour: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it.\n\nIt stays the same deep blue night with the same moonlit lavender sand, the same dark slate street and the same cool storybook colours. Only the artificial light goes out:\n- The lamp globes become pale unlit glass of a soft cool yellow, with no halo and no pool of light on the planks.\n- The insides, counters and awnings of the stalls fall into the same cool blue shade as everything else.\n- Every window in the town is dark blue glass; the shop fronts are unlit.\n- The flags take the same cool moonlight as the rest.\n- No warm glow anywhere.\n\nDo not add or remove any object. Do not add any people, animals, moon, stars or sky. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night-lights/gen/lit_v1_0.jpg"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "off_v1"
+ },
+ "format": "png",
+ "generation_s": 29.6,
+ "attempts": 1,
+ "idempotency_key": "d17c860e-2b06-4354-94bf-12c77beffe1b",
+ "request_id": "d66d302b-23b0-43a8-b617-f3344ae0008a",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2708,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 219
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2708,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 219
+  },
+  "total_tokens": 8948
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/1daf1cb7-d15b-484a-9d42-3d554eff2d8e"
+ ],
+ "files": [
+  "tests/night-lights/gen/off_v1_0.png"
+ ]
+}

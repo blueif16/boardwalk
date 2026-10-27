@@ -1,0 +1,60 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our style frame, a cute storybook map of a seaside boardwalk and its beach. Image 2 is a detail of the finished painting of that map, its open sea: watercolour blue water with soft darker patches, and cream-white foam shapes with a thin blue outline along their lower edge, gentle paper grain. Draw a sprite sheet of the dolphins and the whale that pass Santa Cruz, in exactly the painting's style of image 2, with the simple chunky, cute shapes of image 1 that read at a tiny size: thin outlines tinted darker than each animal's own colour (a dark grey-blue, never black), thinner tinted lines inside, soft flat fills with one soft shade tone, tiny dot eyes, a friendly smile.\n\nEverything is seen from the same high three-quarter angle as the map (looking down at about 30 degrees), lit softly from the upper left.\n\nLayout, strict: a grid of 4 columns and 3 rows on a plain flat pure magenta (#FF00FF) background with no shading or texture. One thing per cell, whole, centred, with a wide empty margin; nothing touches a neighbour or the edge of its cell. No water surface, no sea, no shadows, no grid lines, no text, no labels. The same animal is drawn at the same scale in every cell of its row.\nRow 1, a bottlenose dolphin (soft blue-grey back, a pale grey belly, a curved dorsal fin, a short beak, a forked tail), the whole dolphin drawn, side view facing RIGHT, seen a little from above so the top of its back shows: leaping up out of the sea, body tilted up at 30 degrees, nose high; at the top of a leap, body level and gently arched; diving back in, body tilted down at 35 degrees, nose low, tail high; swimming level, body straight, flippers out.\nRow 2, a humpback whale (dark slate blue-grey on top with a paler grey underside, a small dorsal fin on a little hump, a few knobs on its head): its long back arching out of the water, side view facing RIGHT, drawn with the bottom cut off straight and level where the water would be (only the part above the water): the head and blowholes first, a long gentle curve, the small dorsal fin near the right end; the same back arching higher just before a dive, more of a hump, the dorsal fin at the top; its tail fluke raised straight up out of the water as it dives, seen from behind, wide and curved, the underside pale with grey patches, water dripping from its trailing edge, cut off straight and level at the bottom; its spout on its own: a tall soft bushy cloud of cream-white spray, wider at the top, in the painting's foam style.\nRow 3, splashes and wakes in the painting's foam style (cream-white with a thin pale-blue outline), seen from 30 degrees above: a dolphin's entry splash, a small curved crown of spray; a long low foam wake, a flat streak trailing to the LEFT; a wide flat ring of ripples (an ellipse three times wider than tall) made of broken foam strokes; a big flat patch of white water where a whale has dived, a wide flat oval of foam with a smooth calm middle.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "rides/wildlife/gen/ref_water.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "whales_v1"
+ },
+ "format": "png",
+ "generation_s": 51.3,
+ "attempts": 1,
+ "idempotency_key": "4fb388d5-3e9c-4b5f-9454-6fc699442091",
+ "request_id": "af1192c5-d067-48a7-be8d-d7d0eaa8aa1e",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 5623,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4926,
+   "text_tokens": 697
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 5623,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 4926,
+   "text_tokens": 697
+  },
+  "total_tokens": 18103
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/b3204644-f61b-4287-a1dd-b86312fbe61e",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/5239729a-2a66-4e8b-bc84-319612560d04"
+ ],
+ "files": [
+  "rides/wildlife/gen/whales_v1_0.png",
+  "rides/wildlife/gen/whales_v1_1.png"
+ ]
+}

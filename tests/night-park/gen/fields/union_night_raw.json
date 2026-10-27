@@ -1,0 +1,19 @@
+{
+ "rect": [
+  530,
+  638,
+  2688,
+  1024
+ ],
+ "res": 4,
+ "size": [
+  672,
+  256
+ ],
+ "merged": [
+  "gen/fields/union_id",
+  "gen/fields/left_night",
+  "gen/fields/piece_night"
+ ],
+ "base": null
+}

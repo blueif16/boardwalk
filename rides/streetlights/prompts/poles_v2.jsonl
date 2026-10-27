@@ -1,0 +1,2 @@
+{"out": "rides/streetlights/gen/poles_W2", "prompt_file": "rides/streetlights/prompts/poles_v2.txt", "ref": ["rides/streetlights/gen/in_W2.png"]}
+{"out": "rides/streetlights/gen/poles_N2", "prompt_file": "rides/streetlights/prompts/poles_v2.txt", "ref": ["rides/streetlights/gen/in_N2.png"]}

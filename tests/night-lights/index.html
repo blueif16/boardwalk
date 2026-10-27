@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Night lights</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #10131f; color: #e8e2d6; font: 12px/1.4 ui-monospace, Menlo, Consolas, monospace; }
+  .world { position: absolute; left: 0; top: 0; width: 3840px; height: 2560px; transform-origin: 0 0; }
+  .world > * { position: absolute; inset: 0; width: 3840px; height: 2560px; display: block; }
+  .slot { pointer-events: none; }
+  .slot canvas, .slot img { position: absolute; display: block; }
+  .panel { position: absolute; left: 10px; bottom: 10px; padding: 6px 10px; background: rgb(16 19 31 / 0.75); border-radius: 8px; }
+  .panel[hidden] { display: none; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+  "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js"
+} }
+</script>
+</head>
+<body>
+<div class="world" id="world">
+  <img id="painting" alt="">
+  <div class="slot" data-slot="plate"></div>
+  <div class="slot" data-slot="rides"></div>
+  <canvas id="animals"></canvas>
+  <div class="slot" data-slot="front"></div>
+  <div class="slot" data-slot="grade"></div>
+  <div class="slot" data-slot="pool"></div>
+  <div class="slot" data-slot="lights"></div>
+</div>
+<div class="panel" id="panel" hidden></div>
+<script type="module">
+// Night lights on the prototype slice, park px (1900, 650)-(3000, 1650). Stack as agreed with the base
+// (tests/night-park RESULTS.md, INTERFACE): painting, plate, rides, crowd, front | grade (base) | pool | lights.
+// Params: &hour= (default 22), &demo=18.6-21.2 (loop those hours in &secs= 40 s), &view=slice|park|x,y,w,h,
+// &base=field|grade|model, &layers=wheel,coaster,traffic (live layers; empty for none), &crowd=0, &lights=0 (none),
+// &panel (stats), &t= (frozen ride clock).
+import { createCamera } from "../../base/camera.js";
+import { createClock } from "../../base/clock.js";
+import { look } from "../../base/time.js";
+import { mountLights } from "../../rides/lights/lights.js";
+import { skyFromLook } from "../../rides/lights/behaviour.js";
+import { mountBase } from "./base.js";
+import { wheelLights, coasterLights, trafficLights, carouselLights, swingsLights } from "../../rides/lights/adapters.js";
+
+const W = 3840, H = 2560;
+const params = new URLSearchParams(location.search);
+const world = document.getElementById("world");
+const painting = document.getElementById("painting");
+const slots = Object.fromEntries([...world.querySelectorAll("[data-slot]")].map((el) => [el.dataset.slot, el]));
+const view = params.get("view") || "slice";
+const VIEW = view === "slice" ? [1900, 650, 1100, 1000] : view === "park" ? [0, 0, W, H] : view.split(",").map(Number);
+
+let scale = 1;
+function fit() {
+  const [vx, vy, vw, vh] = VIEW;
+  scale = view === "park" ? Math.max(innerWidth / vw, innerHeight / vh) : Math.min(innerWidth / vw, innerHeight / vh);
+  const need = W * scale * (devicePixelRatio || 1);
+  const w = [1920, 2560, 3456, 3840, 5120].find((v) => v >= need * 0.95) ?? 5120;
+  if (!painting.src.includes(`_${w}.`)) painting.src = `../../site/park/world_${w}.webp`;
+  world.style.transform = `translate(${(innerWidth - vw * scale) / 2 - vx * scale}px, ${(innerHeight - vh * scale) / 2 - vy * scale}px) scale(${scale})`;
+}
+fit();
+addEventListener("resize", fit);
+
+const park = await fetch("../park-crowd/park.json").then((r) => r.json());
+const clock = createClock();
+const camera = createCamera(park);
+const canvases = [];
+const ctx = {
+  park, W, H, camera, clock, params, slots, scale: () => scale,
+  riders: (name, key, t) => crowd?.riders(name, key, t) ?? null,
+  addPatch(url, [x, y, w, h]) { const img = new Image(); img.src = url; img.alt = ""; img.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px`; slots.plate.append(img); return img; },
+  canvas(slot = "rides", { maxDensity = 1.5 } = {}) {
+    const c = document.createElement("canvas");
+    c.style.cssText = `left:0;top:0;width:${W}px;height:${H}px`;
+    slots[slot].append(c);
+    const e = { c, fit() { const d = scale * Math.min(devicePixelRatio || 1, maxDensity / scale); c.width = Math.round(W * d); c.height = Math.round(H * d); } };
+    e.fit(); canvases.push(e);
+    return c;
+  },
+};
+
+// The base's night grade (a stand-in until tests/night-park ships its own).
+const mode = params.get("base") || "field";
+const base = await mountBase({ slot: slots.grade, under: slots.plate, look, mode, dir: new URL("./", location.href) });
+
+// Live layers, mounted exactly as index.html does.
+const wanted = params.has("layers") ? params.get("layers").split(",").filter(Boolean) : ["wheel", "coaster", "traffic", "swings", "carousel"];
+const rides = [], riderBlocks = [];
+for (const name of wanted) {
+  try {
+    const mod = await import(`../../rides/${name}/layer.js`);
+    const layer = (await mod.mount({ ...ctx, name, dir: new URL(`../../rides/${name}/`, location.href) })) || {};
+    layer.resize?.(scale);
+    rides.push(layer);
+    if (layer.riders) riderBlocks.push({ ...layer.riders, name });
+  } catch (err) { console.error(`ride layer ${name} failed`, err); }
+}
+let crowd = null;
+if (params.get("crowd") !== "0") {
+  const { mountCrowd } = await import("../park-crowd/crowd.js");
+  crowd = await mountCrowd(document.getElementById("animals"), { params, clock, rides: riderBlocks });
+  crowd.resize(scale);
+}
+addEventListener("resize", () => { for (const e of canvases) e.fit(); for (const l of rides) l.resize?.(scale); crowd?.resize(scale); });
+if (base.liveFilter) for (const el of [...slots.rides.children, document.getElementById("animals")]) el.style.filter = base.liveFilter;
+
+// The lights.
+const lightsOn = params.get("lights") !== "0";
+const inventories = ["../../rides/lights/lights.json", "../../rides/streetlights/lights.json", "lights_streetlights.json"].map((f) => new URL(f, location.href).href);
+const lights = lightsOn ? await mountLights(ctx, { inventories, parents: { pool: slots.pool, lights: slots.lights }, density: Math.min(2.5, Math.max(1, scale * (devicePixelRatio || 1))), skip: new Set(wanted.includes("coaster") ? ["coaster"] : []) }) : null;
+if (lights) {
+  const reg = async (p) => { const v = await p; for (const q of [].concat(v ?? [])) lights.register(q); };
+  if (wanted.includes("wheel")) await reg(wheelLights(ctx));
+  if (wanted.includes("coaster")) await reg(coasterLights(ctx, lights.inventory));
+  if (wanted.includes("traffic")) await reg(trafficLights(ctx));
+  if (wanted.includes("carousel")) await reg(carouselLights(ctx));
+  if (wanted.includes("swings")) await reg(swingsLights(ctx));
+}
+window.__lights = lights;
+if (params.get("debug") === "pool") for (const c of slots.pool.children) c.style.mixBlendMode = "normal";
+
+// The hour: fixed (&hour=), or a demo loop (&demo=a-b over &secs= s).
+const demo = params.get("demo")?.split("-").map(Number);
+const secs = Number(params.get("secs")) || 40;
+const fixedHour = Number(params.get("hour") ?? 22);
+const hourAt = (s) => (demo ? demo[0] + ((s % secs) / secs) * (demo[1] - demo[0]) : fixedHour);
+let baseHour = null, baseAt = 0;
+
+const panel = document.getElementById("panel");
+panel.hidden = !params.has("panel");
+let frames = 0, prev = clock.now();
+function frame() {
+  const t = clock.now(), dt = Math.min(0.1, Math.max(0, t - prev)); prev = t;
+  const hour = hourAt(performance.now() / 1000);
+  if (baseHour == null || (Math.abs(hour - baseHour) > 0.004 && performance.now() - baseAt > 250)) { base.set(hour); baseHour = hour; baseAt = performance.now(); }
+  crowd?.update();
+  for (const l of rides) l.update?.(t, dt);
+  const sky = skyFromLook(look(hour));
+  lights?.update(t, sky); // the page clock: patterns and flicker freeze with &t= like the rides
+  if (!panel.hidden && frames++ % 15 === 0) panel.textContent = `${String(Math.floor(hour)).padStart(2, "0")}:${String(Math.floor((hour % 1) * 60)).padStart(2, "0")}  dark ${sky.dark.toFixed(2)}  dusk ${sky.dusk.toFixed(2)}  ${JSON.stringify(lights?.stats() ?? {})}`;
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+await painting.decode().catch(() => {});
+requestAnimationFrame(() => requestAnimationFrame(() => { document.documentElement.dataset.ready = "1"; }));
+</script>
+</body>
+</html>

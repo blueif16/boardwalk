@@ -1,30 +1,35 @@
-// The two promenade carousels (west by the entrance, east by the Dream Wheel), turning.
+// The promenade carousel (west, by the entrance and the Haunted Castle), turning. The painting's second, near-identical
+// carousel east of the Dream Wheel is now the Sea Swings (rides/swings), which paints over it.
 //
-// - Plates (plate_<name>.webp) erase the painted horses; the centre columns are cut from them (column_<name>.webp).
+// - The plate (plate_west.webp) erases the painted horses; the centre column is cut from it (column_west.webp).
 // - The roof, the valance and the platform's side band are the painting's own surfaces: unwrapped once
 //   (tools/surfaces.py) into seamless tiles, and re-wrapped here on meshes over the same painted surfaces, shifted by
 //   the turn angle. Their light (a 1-D curve over the angle) stays where the painting has it.
 // - Horses are sprites (horses.webp, 5 views of 4 horses, tools/build_sprites.py) on a ring in the floor ellipse,
 //   bobbing on brass poles; riders are the crowd's own sprites (tests/park-crowd/atlas.png), or the crowd's riders
 //   through ctx.riders when the crowd runs (rides/RIDERS.md).
-// - One WebGL2 canvas over both carousels; one sprite draw and three surface draws per carousel each frame.
+// - One WebGL2 canvas over the carousel; one sprite draw and four surface draws each frame.
 // - Motion is closed form from the master clock: a 64 s cycle of loading (12 s), start-up (4 s), ride (40 s) and
-//   slow-down (8 s); the east carousel runs half a cycle later. &t= freezes a frame exactly.
+//   slow-down (8 s). &t= freezes a frame exactly.
+// - Depth: returns `occluders` (rides/RIDERS.md): the carousel's silhouette, so animals behind it are hidden.
 
+import { rideHours } from "../../base/park_hours.js";
+import { getSky } from "../../base/sky.js";
 const T = 64, LOAD = 12, UP = 4, RIDE = 40, DOWN = 8;
+const REST = 4.5;   // s into the cycle where it waits while the park is closed (base/park_hours.js): stopped, emptied
 const OMEGA = (2 * Math.PI) / 14;          // full speed: a turn in 14 s
 const TURN_PER_CYCLE = OMEGA * (UP / 2 + RIDE + DOWN / 2);
 const UNLOAD_AT = 2, BOARD_AT = 7, FADE = 0.6;
-const BOX = [1550, 1090, 1340, 470];       // canvas box in park px: both carousels
+const BOX = [1555, 1095, 235, 220];        // canvas box in park px: the west carousel
 const UNIT = 3840 / 3904;
 const K = (38 * UNIT) / 30;                // the crowd's sprite scale at size 38
 const RIDER = 0.55;                        // riders' size on a horse, against the crowd's
 
 // Per carousel: horse count, ring radius (share of the floor ellipse), scale, horse lift, bob, cycle offset, and the
-// queue (gate, slots from the gate backwards along the rail, exit) on the promenade.
+// queue (gate, slots from the gate backwards along the rail, exit) on the promenade. One carousel now (west); the
+// table keeps its shape so a second one is a row.
 const CAROUSELS = {
   west: { horses: 12, ring: 0.74, scale: 1, lift: 19, bob: 3.5, offset: 0 },
-  east: { horses: 10, ring: 0.74, scale: 0.86, lift: 19, bob: 3.5, offset: T / 2 },
 };
 const RAIL = [[1487, 1290], [1553, 1301], [1607, 1313], [1707, 1335], [1800, 1355], [2613, 1533], [2733, 1560], [2883, 1590]];
 const railY = (x) => {
@@ -38,7 +43,6 @@ const r1 = (v) => Math.round(v * 10) / 10;
 // The queue runs west from the gate along the rail, in the open deck between the carousel and the rail.
 const line = (x0, dy) => Array.from({ length: 10 }, (_, k) => [r1(x0 - 9 * k), r1(railY(x0 - 9 * k) - dy)]);
 const QUEUES = {
-  east: { queue: line(2738, 13), exit: [2832, 1537] },
   west: { queue: line(1594, 11), exit: [1756, 1290] },
 };
 for (const q of Object.values(QUEUES)) q.gate = q.queue[0];
@@ -106,7 +110,41 @@ function ellipse(e, phi) {
   return [e.c[0] + u * Math.cos(r) - v * Math.sin(r), e.c[1] + u * Math.sin(r) + v * Math.cos(r)];
 }
 
+// A carousel's silhouette as an occluder: { rect, sortY, mask } with the mask at 2 px per park px.
+function silhouette(g) {
+  const pts = [[g.apex[0] - 8, g.apex[1] - 13], [g.apex[0] + 8, g.apex[1] - 13]];
+  const grow = (e, d) => ({ ...e, a: e.a + d, b: e.b + d });
+  for (const [e, d] of [[g.rim, 3], [g.val, 3], [g.top, 1.5], [g.bot, 2]]) {
+    for (let i = 0; i < 72; i++) pts.push(ellipse(grow(e, d), (i / 72) * 2 * Math.PI));
+  }
+  pts.sort((p, q) => p[0] - q[0] || p[1] - q[1]);
+  const cross = (o, p, q) => (p[0] - o[0]) * (q[1] - o[1]) - (p[1] - o[1]) * (q[0] - o[0]);
+  const half = (list) => {
+    const h = [];
+    for (const p of list) {
+      while (h.length >= 2 && cross(h.at(-2), h.at(-1), p) <= 0) h.pop();
+      h.push(p);
+    }
+    return h.slice(0, -1);
+  };
+  const hull = [...half(pts), ...half([...pts].reverse())];
+  const xs = hull.map((p) => p[0]), ys = hull.map((p) => p[1]);
+  const x0 = Math.floor(Math.min(...xs)), y0 = Math.floor(Math.min(...ys));
+  const w = Math.ceil(Math.max(...xs)) - x0, h = Math.ceil(Math.max(...ys)) - y0, S = 2;
+  const mask = document.createElement("canvas");
+  mask.width = w * S; mask.height = h * S;
+  const m = mask.getContext("2d");
+  m.fillStyle = "#000";
+  m.beginPath();
+  hull.forEach(([x, y], i) => (i ? m.lineTo : m.moveTo).call(m, (x - x0) * S, (y - y0) * S));
+  m.closePath();
+  m.fill();
+  return { rect: [x0, y0, w, h], sortY: g.bot.c[1], mask };
+}
+
 export async function mount(ctx) {
+  // Park hours: closed, the carousel finishes its ride and stands still at the loading stop, emptied.
+  const hours = rideHours(ctx.sky ?? getSky({ params: ctx.params }), { period: T, rest: REST, frozen: ctx.clock.frozen });
   const dir = ctx.dir;
   const url = (f) => new URL(f, dir).href;
   const [geom, surf, horses, plates, cmeta, catlas, surfImg, horseImg] = await Promise.all([
@@ -278,7 +316,7 @@ export async function mount(ctx) {
 
   // Who rides horse i of a carousel at time t: the crowd's riders when it runs, otherwise our own, seeded per cycle.
   function ridersAt(r, i, t) {
-    const fromCrowd = ctx.riders ? ctx.riders(ctx.name, keyOf(r.name, i), t) : null;
+    const fromCrowd = ctx.riders ? ctx.riders(ctx.name, keyOf(r.name, i), hours.master(t)) : null;
     if (fromCrowd) return fromCrowd;
     const u = t - r.cfg.offset, n = Math.floor(u / T), c = u - n * T;
     const cyc = c >= BOARD_AT ? n : c >= UNLOAD_AT ? null : n - 1;   // riders boarded at the last BOARD_AT
@@ -397,9 +435,8 @@ export async function mount(ctx) {
   }
 
   const riders = {
-    ...QUEUES.east,
-    keys: keysOf("east"),
-    more: [{ ...QUEUES.west, keys: keysOf("west") }],
+    ...QUEUES.west,
+    keys: keysOf("west"),
     loads(t0, t1) {
       const out = [];
       for (const [name, cfg] of Object.entries(CAROUSELS)) {
@@ -415,11 +452,19 @@ export async function mount(ctx) {
     },
   };
 
-  window.__carousel = { motion: (t, name) => motion(t, CAROUSELS[name].offset), stats, rides, riders };
+  // Depth (rides/RIDERS.md, occluders): the carousel's silhouette, the convex hull of its finial, roof rim, valance and
+  // platform ellipses, as an opaque mask. sortY is the platform's centre on the deck: animals whose feet are behind it
+  // are hidden where they overlap the carousel; animals in front of it draw over it. The silhouette doesn't change as
+  // the carousel turns, so one static mask serves every frame.
+  const occluders = rides.map((r) => silhouette(r.g));
 
+  window.__carousel = { motion: (t, name) => motion(t, CAROUSELS[name].offset), stats, rides, riders, occluders };
+
+  riders.loads = hours.loads(riders.loads);
   return {
-    update(t) { draw(t); },
+    update(t) { draw(hours.run(t)); },
     resize,
     riders,
+    occluders,
   };
 }

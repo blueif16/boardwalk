@@ -41,12 +41,12 @@ const ACTS = {
 const ADULTS = ["bear", "bunny", "cat_orange", "dog_shiba", "cat_grey", "bunny_brown", "dog_cream"];
 
 export const periodOf = (hour) => PERIODS.find((p) => hour < p.until).name;
-export function density(hour) {
-  for (let i = 0; i < DENSITY.length - 1; i++) {
-    const [h0, d0] = DENSITY[i], [h1, d1] = DENSITY[i + 1];
+export function density(hour, table = DENSITY) {
+  for (let i = 0; i < table.length - 1; i++) {
+    const [h0, d0] = table[i], [h1, d1] = table[i + 1];
     if (hour <= h1) return d0 + ((hour - h0) / (h1 - h0)) * (d1 - d0);
   }
-  return DENSITY.at(-1)[1];
+  return table.at(-1)[1];
 }
 
 // spacing scales how far apart the members of a group stand and walk (1 suits 30 px characters; scale it with their
@@ -56,8 +56,11 @@ export function density(hour) {
 // the id of a queue place in walk (with maxSeats), keys the vehicle keys it boards (null: every key no other entry
 // claims), exit the park px where its riders step out. offset: ride time = sim time - offset. Queue places with a ride
 // board on the ride's load events; queue places without one keep their fixed cycle (the characters test). rideBoost
-// multiplies how often a group picks a ride queue.
-export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13, looks = ADULTS, kids = ["bear_cub"], spacing = 1, pets = ["pet"], kidOf = null, rides = [], offset = 0, rideBoost = 1 }) {
+// multiplies how often a group picks a ride queue. densityTable: [[hour, share of max], ...] in place of DENSITY.
+// open(hour): the park's hours (base/park_hours.js); while it is false nobody queues for a ride, buys at a stall,
+// watches or takes photos, groups already in a ride's queue walk off, and no ride boards. Without it, ride queues
+// close before 11:00 and after 22:30 as before.
+export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13, looks = ADULTS, kids = ["bear_cub"], spacing = 1, pets = ["pet"], kidOf = null, rides = [], offset = 0, rideBoost = 1, densityTable = DENSITY, open = null }) {
   const R = rng(seed);
   const SP = spacing;
   const sy = Math.sin(camera.yaw), cy = Math.cos(camera.yaw);
@@ -169,7 +172,8 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     if (g.leaving || g.kind === "jogger") return { kind: "leave" };
     const table = { ...ACTS[period] };
     if (g.kind === "dogwalker") { delete table.queue; delete table.stall; delete table.bench; }
-    if (hour() >= 22.5 || hour() < 11) delete table.queue;
+    if (open ? !open(hour()) : hour() >= 22.5 || hour() < 11) delete table.queue;
+    if (open && !open(hour())) for (const k of ["stall", "watch", "photo", "hangout"]) delete table[k];
     if (table.queue && rides.length) table.queue *= rideBoost;
     for (let tries = 0; tries < 8; tries++) {
       const kind = R.weighted(table);
@@ -377,7 +381,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     }
   }
   function board(name, entry, batch) {
-    const p = entry?.placeRef;
+    const p = open && !open(hour()) ? null : entry?.placeRef;
     const got = batch.map(() => []);
     if (p) {
       const seats = batch.map((ev) => Math.max(0, ev.seats | 0));
@@ -549,7 +553,11 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
 
   function step() {
     now += STEP;
-    target = Math.round(max * density(hour()));
+    target = Math.round(max * density(hour(), densityTable));
+    // Closed: whoever waits for a ride (or walks to its queue) gives up and goes on with the evening.
+    if (open && (now * 30) % 15 < 1 && !open(hour())) {
+      for (const g of groups) if (g.place?.kind === "queue" && g.place.ride && g.state !== "ride") finish(g);
+    }
     stepQueues();
     if (rides.length) {
       const t1 = now - offset;
@@ -595,7 +603,7 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
   }
 
   function init() {
-    target = Math.round(max * density(hour()));
+    target = Math.round(max * density(hour(), densityTable));
     let guard = 0;
     while (count()[0] < target - quota("jogger") - quota("dogwalker") * 2 && guard++ < 5000) spawn(true);
     for (const k of ["jogger", "dogwalker"]) for (let i = 0; i < quota(k); i++) spawn(true, k);

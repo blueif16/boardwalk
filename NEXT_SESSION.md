@@ -1,6 +1,6 @@
 # Next session: handoff
 
-Updated 2026-10-26. Start Claude Code in `~/boardwalk` (its memory lives there).
+Updated 2026-10-26 (evening). Start Claude Code in `~/boardwalk` (its memory lives there).
 
 ## Where things are
 
@@ -8,7 +8,9 @@ Updated 2026-10-26. Start Claude Code in `~/boardwalk` (its memory lives there).
   links. Server: `nohup setsid python3 -I tools/serve.py > .server.log 2>&1 < /dev/null &` on 127.0.0.1:15178 (no-cache
   headers); Tailscale (Windows CLI) maps it to `ran:5178`; the mapping persists across restarts.
 - **Repo:** github.com/blueif16/boardwalk (private), branch main. Repo is 1.5 GB because every ride commits its raw
-  4K source images (`rides/*/gen/`); see open issue 1.
+  4K source images (`rides/*/gen/`); see open issue 1. **This evening's work is not committed yet**, and its new raw
+  folders add about 1.3 GB more (`tests/night-park/gen` 733 MB, `rides/beach/gen` 201, `tests/night-lights/gen` 172,
+  `rides/swings/gen` 94, `rides/wildlife/gen` 38): don't `git add` any `gen/` folder before issue 1 is decided.
 - **The painting:** `gen/park/world_v2_hd.png` (9600 x 6400, kept out of git; lossless `.webp` beside it), shipped as
   `site/park/world_{1920..5120}.webp`. Park frame = 3840 x 2560 park px; camera in `tests/park-crowd/park.json`.
 - **Not ours, uncommitted on purpose:** another session's landing title ("Shiran" + Explore): `site/title/`, and its
@@ -23,7 +25,11 @@ Updated 2026-10-26. Start Claude Code in `~/boardwalk` (its memory lives there).
 - Animals: size 38; fewer (120) and calmer; many species. Rides matter most to the user: roller coaster, small cars,
   spinning things. Animals should ride the rides.
 - Parallel subagents are approved; each works in its own `rides/<name>/` folder and writes a `RESULTS.md` recipe.
-  Review every ride at full resolution beside the painting before adding it to `RIDES` in `index.html`.
+  Review every ride at full resolution beside the painting before adding it to `RIDES` in `index.html`. Give them a
+  time box: the user found 1.5 h runs too long (2026-10-26) and asked them to wrap up.
+- One carousel only: the west one (the Looff Carousel's place). The east one became the Sea Swings, where the
+  official map puts it.
+- The hidden corgi: no reward for finding it; an animation every find, the paw count and the woof hint.
 
 ## What moves (all on the default page)
 
@@ -36,9 +42,13 @@ Updated 2026-10-26. Start Claude Code in `~/boardwalk` (its memory lives there).
 | `rides/teacups` | Cups spin on a turning drum | Plate erase; small three.js scene matched to the drum |
 | `rides/flume` | Log boats, lift, drop, splash | The coaster's path method on the painted water |
 | `rides/pirate` | Pirate Ship swings | Plate erase; generated ship; rotation with the camera's squash |
-| `rides/carousel` | Both carousels turn, horses bob | Roof and bands turn using the painting's own pixels (unwrap, delight, tile, shader); generated horses |
+| `rides/carousel` | The west carousel turns, horses bob | Roof and bands turn using the painting's own pixels (unwrap, delight, tile, shader); generated horses |
+| `rides/swings` | Sea Swings (replaced the east carousel): canopy lifts and spins, chairs swing out | Plate painted in by one edit; canopy turned by the carousel method; 12 chair sprites as damped pendulums |
+| `rides/beach` | 34 beach-goers: 2v2 volleyball, sunbathers, camps, lifeguard, swimmers, body-boarder, waders, dog, kite | Pose sheets for 12 species; props with a finishing pass; motion on the clock, swimmers timed to the sea |
+| `rides/wildlife` | Gulls, a gull on a stair post, pelicans diving, otter, fish, seal, dolphins, a whale | Generated sheets with the painting's whites, grain and softened outlines; birds on small travelling canvases |
+| `rides/corgi` | Find-the-corgi game: 7 hiding scenes, "?" badge top right, paw count, woof hint | The crowd's corgi sheet at 4 px per park px; `localStorage` for spots found |
 | `rides/thrill` | Double Shot drop, Typhoon loops | Painted towers kept; moving parts generated; Shockwave skipped (not in the painting) |
-| `tests/park-crowd` | 120 animals: 35 species, kids, pets | Characters-test sim on a network measured on the painting; atlas from `build_atlas.py --park` |
+| `tests/park-crowd` | 120 animals: 35 species, kids, pets; they pass behind rides, lamps, stalls and the rail | Characters-test sim on a network measured on the painting; atlas from `build_atlas.py --park`; depth in `DEPTH.md` |
 
 Shared pieces: `tools/park_patch.py` (crop / paste with `--match`, `--changed`, hard polygon / cut),
 `tools/park_world.py` (master -> 4K tiles -> stitch), `rides/RIDERS.md` (how the crowd boards rides), the
@@ -46,7 +56,7 @@ Shared pieces: `tools/park_patch.py` (crop / paste with `--match`, `--changed`, 
 
 ## Riders
 
-Working on all seven passenger rides (coaster, wheel, teacups, flume, pirate, carousel, thrill): animals walk to a
+Working on all eight passenger rides (coaster, wheel, teacups, flume, pirate, carousel, swings, thrill): animals walk to a
 gate, queue, board at the ride's load events, appear in the vehicle and step out at the exit. Gates, keys and the
 implementation are in `rides/RIDERS.md`. About a quarter of the 120 animals ride at once (`&rideBoost=`, default 3).
 Each ride still runs alone with its own riders (`?crowd=0`). The crowd canvas now renders at 1.5 px per park px over
@@ -55,22 +65,27 @@ only the band animals can reach (about 4x sharper); coaster, wheel and teacups g
 ## Open issues, in priority order
 
 1. **Repo size.** Move raw `rides/*/gen/**/*.png` and other 4K scratch out of git (an LFS store or a separate backup;
-   ask the user) and keep only request records, prompts and shipped assets.
-2. **One depth order.** The crowd canvas sits above every ride, so animals behind a ride draw over it (Pirate Ship,
-   wheel). The cheap fix is specified in `rides/RIDERS.md` (rides return `occluders: [{rect, sortY}]`, the crowd clips
-   animals behind them); longer term one shared sorted pass. Lift `rides/traffic/tools/occluders.py` into `tools/` so
-   the crowd also passes behind painted trees and lamps.
-3. **Shared finishing pass.** Live layers are still a little cleaner and brighter than the painting (cups, cars,
+   ask the user) and keep only request records, prompts and shipped assets. Then commit this evening's work.
+2. **Page weight** (research done, nothing applied): `tests/perf/ASSETS.md` (WebP re-encodes at the same URLs:
+   14.8 -> 7.2 MB at 2560, no code change; AVIF about 5.9 MB but needs code in every layer) and
+   `tests/perf/LOADING.md` (painting first, rides after, loop started first, placeholders: sharp painting at 3.0 s
+   instead of 7.1 s on 4G; `tests/perf/index_loading.diff`, re-made by `tests/perf/tools/load_apply.py`; host:
+   Cloudflare). Each has a decisions list for the user.
+3. **Time of day** (designed and prototyped on one slice, not on the park): `tests/night-park/` (the look: relight
+   fields fitted to relit plates, about 1 MB for all times) and `tests/night-lights/` (every light from an inventory of
+   painted fixtures; whole park about 10-12 h, no generations). Both RESULTS.md end with the user's decisions.
+4. **Depth leftovers.** The depth order is done (`tests/park-crowd/DEPTH.md`); still open: the flume exit path runs
+   through a kiosk, ride-against-ride order, crowd animals joining beach activities (needs a sand-level queue).
+5. **Shared finishing pass.** Live layers are still a little cleaner and brighter than the painting (cups, cars,
    ship): paper grain, tinted lighter outlines.
-4. **Sharpness on the remaining rides:** flume, pirate and thrill canvases are still at screen density (soft at
+6. **Sharpness on the remaining rides:** flume, pirate and thrill canvases are still at screen density (soft at
    2560); give them the carousel's 1.5-2.5 px per park px rule.
-5. **One three.js renderer** for the 3D rides (teacups is its own WebGL context today); a `ready` promise from
+7. **One three.js renderer** for the 3D rides (teacups is its own WebGL context today); a `ready` promise from
    `mount` so the page's ready flag waits for ride assets; `ctx.canvas(slot, {rect})`.
-6. **Sitting and waving poses** for riders (all riders are standing sprites clipped by the seat).
-7. **Time of day.** Painted plates per slice were decided in the bakeoff; not yet made for the whole park.
-8. **Painting flaws:** the Undertow's yellow track is a tangle, a broken staircase near the wheel, the east-end
+8. **Sitting and waving poses** for riders (all riders are standing sprites clipped by the seat).
+9. **Painting flaws:** the Undertow's yellow track is a tangle, a broken staircase near the wheel, the east-end
    kiddie rides are hard to tell apart. Fix with `park_patch.py`.
-9. **Rides not yet moving:** Fireball (the coaster lays its hub over the train; move both together), Sea Swings,
+10. **Rides not yet moving:** Fireball (the coaster lays its hub over the train; move both together),
    Undertow, Sky Glider chairs, the east-end kiddie and flat rides, bumper cars, Shockwave (needs painting in),
    the trestle train. Each ride's RESULTS.md ends with what transfers.
-10. **Phones in portrait** need their own layout; the 3:2 painting can't fill a tall screen.
+11. **Phones in portrait** need their own layout; the 3:2 painting can't fill a tall screen.

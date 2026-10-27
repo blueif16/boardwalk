@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything. Objects cut by the edges of image 1 stay cut at exactly the same place.\n\nImage 1 is the whole map: the town and wooded hills at the top under a thin strip of sky, the street and the parking lots, the amusement park on its boardwalk, the beach and the sea at the bottom. Relight all of it in one consistent light. The sea becomes the colour the sky would give it at this time and keeps its white foam lines and short ripple dashes; the hills and the sky strip take the same light.\n\nThe new time: a clear moonlit night, about an hour after sunset. A soft deep-blue night light covers everything evenly. Keep it a storybook painting: the pastel colours stay readable and gentle, only cooler and darker, never grey, muddy or black, and the thin warm outlines stay visible. The sand is a soft pale lavender-blue, lighter than the boardwalk; the boardwalk planks are dusky mauve-brown; the white coaster lattice is pale periwinkle; the red track a deep cranberry; palms and planting deep blue-green; the street and the parking lots dark slate blue; the town's walls muted blue-lilac under dark roofs.\n\nEvery artificial light is switched off: the lamp globes are pale unlit glass with no halo and no pool of light, every window is dark, the stalls, signs and rides are unlit. No warm glow anywhere.\nAt night the sea is a deep moonlit blue-teal, never black, its foam lines and ripple dashes pale silver-blue; the hills are deep blue-green, the sky strip deep navy.\n\nShadows stay short and soft, right under each object: no long cast shadows.\n\nDo not add anything new: no people, animals, cars, boats, birds, moon, sun or stars. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night-park/gen/in_park_day.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "park_night_v1"
+ },
+ "format": "png",
+ "generation_s": 33.4,
+ "attempts": 1,
+ "idempotency_key": "b46957d5-019e-4798-9716-9443f5d59354",
+ "request_id": "bd9639b2-9fa7-4ed8-85b7-413f925d9954",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2946,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 457
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2946,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 457
+  },
+  "total_tokens": 9186
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/2b1de90c-f1f1-4eb1-bb85-23d525f4dd3f"
+ ],
+ "files": [
+  "tests/night-park/gen/park_night_v1_0.png"
+ ]
+}

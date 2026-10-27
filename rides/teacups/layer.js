@@ -12,6 +12,8 @@
 // Motion: one 77 s cycle (load 10, start-up 5, ride 55, slow-down 7), integrated once at mount; any clock time gives
 // the same frame (a frozen &t= works). Riders sink out of sight and new ones rise during each loading pause.
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js";
+import { rideHours } from "../../base/park_hours.js";
+import { getSky } from "../../base/sky.js";
 
 const HUB = [3210, 1560];             // park px: the centre of the painted drum's top surface
 const PITCH = Math.asin(0.56);        // the drum's drawn ellipse ratio
@@ -355,7 +357,11 @@ export async function mount(ctx) {
   }
 
   const timing = { ms: 0, frames: 0 };
-  function render(clock) {
+  // Park hours (base/park_hours.js): closed, the cups finish their ride and stand still in the loading pause, empty
+  // (4.5 s into it: last riders sunk, nobody in).
+  const hours = rideHours(ctx.sky ?? getSky({ params: ctx.params }), { period: CYCLE, rest: 4.5, frozen: ctx.clock.frozen });
+  function render(t) {
+    const clock = hours.run(t);
     const t0 = performance.now();
     const n = Math.floor(clock / CYCLE), ph = clock - n * CYCLE;
     const theta = n * plat[steps] + sample(plat, ph);
@@ -368,7 +374,7 @@ export async function mount(ctx) {
       if (ph < 5) { who = crew(n - 1); sink = smooth((ph - 2) / 2); } else sink = 1 - smooth((ph - 6) / 2);
     }
     // The crowd's riders, when it runs: the trip at this time (the last one still sinking in the pause's first seconds).
-    const fromCrowd = ctx.riders ? cups.map((_, i) => ctx.riders(ctx.name, `cup${i}`, clock)) : null;
+    const fromCrowd = ctx.riders ? cups.map((_, i) => ctx.riders(ctx.name, `cup${i}`, hours.master(clock))) : null;
     if (fromCrowd && fromCrowd.every((w) => w)) who = fromCrowd.map((w) => w.slice(0, SEATS));
     cups.forEach((c, i) => c.seats.forEach((seat, s) => {
       const alpha = (s / Math.max(1, who[i].length)) * Math.PI * 2 + 0.6 + i;
@@ -400,9 +406,28 @@ export async function mount(ctx) {
   }
   window.__teacups.loads = loads;
 
+  // Depth for the crowd (rides/RIDERS.md "Depth"): the turntable drum is a raised disc DRUM_H px tall on the plate
+  // (its top an ellipse of radius 101 x 56.6 round HUB); animals behind it are hidden by its silhouette, sorted on the
+  // middle of its footprint (round: right at its sides, behind or in front of it elsewhere). Its queue and exit stand
+  // beside and in front of it. The cups are not occluders yet: nothing walks behind them.
+  const DRUM_H = 16, RX = 101, RY = 56.6;
+  const drum = document.createElement("canvas");
+  drum.width = Math.ceil(2 * RX + 4); drum.height = Math.ceil(2 * RY + DRUM_H + 4);
+  {
+    const d = drum.getContext("2d");
+    d.fillStyle = "#fff";
+    d.beginPath();
+    d.ellipse(RX + 2, RY + 2, RX, RY, 0, 0, Math.PI * 2);
+    d.ellipse(RX + 2, RY + 2 + DRUM_H, RX, RY, 0, 0, Math.PI * 2);
+    d.rect(2, RY + 2, 2 * RX, DRUM_H);
+    d.fill();
+  }
+  const occluders = [{ rect: [HUB[0] - RX - 2, HUB[1] - RY - 2, drum.width, drum.height], mask: drum, sortY: HUB[1] + DRUM_H }];
+
   return {
+    occluders,
     update(t) { render(t); },
     resize(scale) { resize(scale); render(ctx.clock.now()); },
-    riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads },
+    riders: { gate: GATE, queue: QUEUE, exit: EXIT, loads: hours.loads(loads) },
   };
 }

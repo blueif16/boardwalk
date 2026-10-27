@@ -1,0 +1,61 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our style frame, a cute storybook map of a seaside boardwalk and its beach. Image 2 is a detail of the finished painting of that map: soft watercolour fills, warm outlines tinted darker than each object's own colour, gentle paper grain, a warm pastel palette. Image 3 shows the seagulls of the same painting. Draw a sprite sheet of exactly that seagull in flight and landing, in exactly the painting's style of image 2, with the simple chunky shapes of images 1 and 3 that read at a tiny size: a round white head and body, soft pale-grey back and wings with small darker grey wing tips, a short yellow beak, tiny dot eyes, a faint rosy cheek, small pink-orange feet, a thin warm dark-brown outline (#2c201b) around the whole silhouette, thinner tinted lines inside, flat fills with one soft shade tone.\n\nEvery bird is seen from the same high three-quarter angle as the map (looking down at about 30 degrees), lit softly from the upper left. It is the same gull in every cell, drawn at exactly the same scale: the spread wings span the same width in every flying pose.\n\nLayout, strict: a grid of 5 columns and 4 rows on a plain flat pure magenta (#FF00FF) background with no shading or texture. One gull per cell, whole, centred, with a wide empty margin; nothing touches a neighbour or the edge of its cell. No shadows, no water, no sand, no ground, no grid lines, no text, no labels.\nRow 1, flying, side view, the gull's body in profile facing RIGHT, seen a little from above so the tops of both wings show: gliding with both wings spread wide and flat, slightly bent at the wrist; both wings raised high above the back in a V (upstroke); wings level and stretched out (mid-stroke); both wings pushed down below the body, tips curling down (downstroke); banking into a turn, the body tilted, the near wing dipped low and the far wing raised.\nRow 2, flying towards the viewer and to the RIGHT (a three-quarter front view from above: we see its face, chest and the tops of both wings): gliding with wings spread flat; wings raised high (upstroke); wings level (mid-stroke); wings pushed down (downstroke); banking, the right wing dipped.\nRow 3, flying away from the viewer and to the RIGHT (a three-quarter back view from above: we see its back, its tail and the whole top side of both wings, the head turned away): gliding with wings spread flat; wings raised high (upstroke); wings level (mid-stroke); wings pushed down (downstroke); banking, the right wing dipped.\nRow 4, side view facing RIGHT: landing, wings raised and spread wide, tail fanned, both legs reaching down; standing on its feet, wings folded; standing, head up, beak open, calling; crouching to take off, wings half lifted; taking off, wings raised high, legs dangling below.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "rides/wildlife/gen/ref_beach.png",
+  "rides/wildlife/gen/ref_gulls_beach.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "gulls_v1"
+ },
+ "format": "png",
+ "generation_s": 47.1,
+ "attempts": 1,
+ "idempotency_key": "4270cbe1-769e-4d27-a546-de4813223628",
+ "request_id": "253832d1-642a-486f-8791-746a77e94c62",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 6598,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 5951,
+   "text_tokens": 647
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 6598,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 5951,
+   "text_tokens": 647
+  },
+  "total_tokens": 19078
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/08d4c438-6893-4e1e-9ce9-72fd2a16030f",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/a87f8dca-ac52-426c-b456-70c40f6c9733"
+ ],
+ "files": [
+  "rides/wildlife/gen/gulls_v1_0.png",
+  "rides/wildlife/gen/gulls_v1_1.png"
+ ]
+}

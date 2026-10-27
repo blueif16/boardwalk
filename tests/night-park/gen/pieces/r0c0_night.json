@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything. Objects cut by the edges of image 1 stay cut at exactly the same place.\n\nImage 1 is one piece of a larger painting of a seaside town: wooded hills and houses, a street with parking lots, an amusement park on its boardwalk, the beach and the sea. Relight it in the same light as the rest of the painting.\n\nThe new time: a clear moonlit night, about an hour after sunset. A soft deep-blue night light covers everything evenly. Keep it a storybook painting: the pastel colours stay readable and gentle, only cooler and darker, never grey, muddy or black, and the thin warm outlines stay visible. The sand is a soft pale lavender-blue, lighter than the boardwalk; the boardwalk planks are dusky mauve-brown; the white coaster lattice is pale periwinkle; the red track a deep cranberry; palms and planting deep blue-green; the street and the parking lots dark slate blue; the town's walls muted blue-lilac under dark roofs.\n\nEvery artificial light is switched off: the lamp globes are pale unlit glass with no halo and no pool of light, every window is dark, the stalls, signs and rides are unlit. No warm glow anywhere.\n\nWhere the piece shows the sea, it is a deep moonlit blue-teal, never black, with pale silver-blue foam lines and ripple dashes; hills are deep blue-green and any sky is deep navy.\n\nShadows stay short and soft, right under each object: no long cast shadows.\n\nDo not add anything new: no people, animals, cars, boats, birds, moon, sun or stars. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night-park/gen/pieces/in_r0c0.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "r0c0_night"
+ },
+ "format": "png",
+ "generation_s": 33.5,
+ "attempts": 1,
+ "idempotency_key": "9ffd7cd0-cf66-4f53-bd1d-d56e8c68abaf",
+ "request_id": "488cbad2-8e9e-4e77-897c-f0e9d82b796b",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2910,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 421
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2910,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 421
+  },
+  "total_tokens": 9150
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/caf638dc-194b-41bf-9d7d-73cfe0c2ed0f"
+ ],
+ "files": [
+  "tests/night-park/gen/pieces/r0c0_night_0.png"
+ ]
+}

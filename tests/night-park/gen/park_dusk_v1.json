@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Relight it only: change the time of day, nothing else. Every object keeps exactly its place, size, shape and outline: the same framing, camera and line style, so the result lines up with image 1 pixel for pixel when laid on top of it. Do not move, resize, redraw or remove anything. Objects cut by the edges of image 1 stay cut at exactly the same place.\n\nImage 1 is the whole map: the town and wooded hills at the top under a thin strip of sky, the street and the parking lots, the amusement park on its boardwalk, the beach and the sea at the bottom. Relight all of it in one consistent light. The sea becomes the colour the sky would give it at this time and keeps its white foam lines and short ripple dashes; the hills and the sky strip take the same light.\n\nThe new time: twilight, about twenty minutes after sunset, the blue hour. The sun has gone down beyond the left edge; its afterglow from the lower left touches the tops and the left-facing sides of things with soft rose and peach, and everything else sits in periwinkle and violet shade. Keep it a storybook painting: darker and cooler than daytime but much lighter than night, the pastel colours still clean and rich, never grey or muddy. The sand is mauve-pink fading to periwinkle, the boardwalk planks dusty rose, the white coaster lattice lilac with a pink rim of light, the street and the parking lots slate violet, the town's walls lilac and rose.\n\nEvery artificial light is still switched off: lamps, windows, stalls, signs and rides are all unlit.\nAt this time the sea is violet-blue with rose and peach glints on its ripple dashes; the hills are plum-green, the sky strip a rose-to-lavender glow.\n\nShadows stay short and soft, right under each object: no long cast shadows.\n\nDo not add anything new: no people, animals, cars, boats, birds, moon, sun or stars. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "tests/night-park/gen/in_park_day.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "park_dusk_v1"
+ },
+ "format": "png",
+ "generation_s": 33.4,
+ "attempts": 1,
+ "idempotency_key": "0c6aa12e-08c0-4707-9faa-89cdadc2dbc7",
+ "request_id": "1e23b16e-0ace-4cd1-b6b1-0dd2dbdf4738",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2929,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 440
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2929,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 440
+  },
+  "total_tokens": 9169
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/538b7a81-d329-46aa-9aed-ddcbf2c10792"
+ ],
+ "files": [
+  "tests/night-park/gen/park_dusk_v1_0.png"
+ ]
+}
