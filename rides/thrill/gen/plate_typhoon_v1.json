@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. It is a close-up of our painting, a cute storybook map of a seaside amusement park. Just right of the middle stands a tall, thin ride tower on a round blue base, with a long red arm crossing it diagonally and pink, yellow and golden pods and cars hanging on that arm and on short beams sticking out of the tower.\nRemove the diagonal arm, all the pods and cars, and the short beams. Keep the tower itself: its tall straight column stands whole from its top to its blue base, in the same colours and pattern as the parts of it you can already see. Where the removed parts were, paint what is behind them: the wooden deck, the grass, the neighbouring towers.\nKeep everything else exactly as it is: the same framing, camera, colours, line style, and the position, size and shape of every other object. Do not add anything new. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "rides/thrill/gen/plate_typhoon_in.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "plate_typhoon_v1"
+ },
+ "format": "png",
+ "generation_s": 40.7,
+ "attempts": 1,
+ "idempotency_key": "97813964-aa53-4711-9a85-00d289e624ac",
+ "request_id": "f928a986-2da1-4e36-8725-b9d5285ef430",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12610,
+  "completion_tokens_details": {
+   "image_tokens": 12610,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 686,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 477,
+   "text_tokens": 209
+  },
+  "output_tokens": 12610,
+  "output_tokens_details": {
+   "image_tokens": 12610,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 686,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 477,
+   "text_tokens": 209
+  },
+  "total_tokens": 13296
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/2e5ab804-ca48-460b-85db-c7c859effc6a",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/23c583b4-9fcf-40df-82c8-66ae1e6b76c0"
+ ],
+ "files": [
+  "rides/thrill/gen/plate_typhoon_v1_0.png",
+  "rides/thrill/gen/plate_typhoon_v1_1.png"
+ ]
+}

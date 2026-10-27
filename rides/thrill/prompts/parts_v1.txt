@@ -1,0 +1,11 @@
+Image 1 is a close-up of our painting, a cute storybook map of a seaside amusement park: two tall thrill-ride towers. Draw a sprite sheet of moving ride parts in exactly the painting's style, to be animated on those towers.
+
+Layout, strict: a perfectly flat, solid, pure magenta (#FF00FF) background with no shading, texture or shadow, and on it three separate objects, one above the other, each with a wide empty magenta margin around it. Nothing touches or overlaps. No people or animals anywhere: every seat is empty. No text, letters, numbers, logos, borders, grid lines or labels.
+
+Top: the passenger carriage of a drop-tower ride, seen from the front at a slight top-down angle: a ring of eight outward-facing seats that wraps around a tall tower. The tower itself is NOT drawn: the middle of the ring is an empty hole, filled with the magenta background, where the tower passes through. Each seat is a padded seat with a high back and a curved over-the-shoulder harness, with small footrests below. The ring is wide and short, about four times as wide as it is tall. Seats alternate cornflower blue and butter yellow on a salmon-red ring.
+
+Middle: the long arm of a looping thrill ride: one straight beam, about ten times as long as it is thick, perfectly horizontal and symmetric, drawn flat and face-on, with a round hub disc at its exact centre (a salmon disc with a small yellow star) and a small round bearing cap at each end. The beam is cornflower blue with butter-yellow trim.
+
+Bottom: two identical open ride cars for the ends of that arm, side by side, seen from the front: each a rounded tub with two empty seats side by side and a padded lap bar, mint green with a butter-yellow rim; each car about as wide as one fifth of the arm.
+
+Style, exactly as in image 1: thin warm dark-brown outlines (#2c201b), thinner tinted lines inside, soft pastel fills with one soft shade tone, a gentle paper texture, chunky toy-like proportions. None of the parts is pink or magenta.

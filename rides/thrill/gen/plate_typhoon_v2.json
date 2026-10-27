@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. It is a close-up of our painting, a cute storybook map of a seaside amusement park, with several tall thrill-ride towers. Look at the tower just right of the middle: a tall, thin column on a round blue base at the bottom, with a long red arm crossing it diagonally and pink, yellow and golden pods and cars hanging on that arm and on short beams sticking out of the column.\nOn that one tower only: remove the diagonal arm, all the pods and cars, and the short beams. Keep the tower itself standing exactly where it is: its tall straight column from its top ornament down to its round blue base, and the base itself, in the same place, size, colours and pattern as the parts you can already see. Where the removed parts were, paint what is behind them: the wooden deck, the grass, the neighbouring towers.\nKeep everything else exactly as it is, including every other tower: the same framing, camera, colours, line style, and the position, size and shape of every other object. Do not add anything new. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "rides/thrill/gen/plate_typhoon2_in.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "plate_typhoon_v2"
+ },
+ "format": "png",
+ "generation_s": 42.3,
+ "attempts": 1,
+ "idempotency_key": "1f70fdcf-b438-4cb9-871f-1c1df47388cf",
+ "request_id": "d50e589b-aa00-446e-baec-63ca51cef6cf",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12610,
+  "completion_tokens_details": {
+   "image_tokens": 12610,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 1932,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1685,
+   "text_tokens": 247
+  },
+  "output_tokens": 12610,
+  "output_tokens_details": {
+   "image_tokens": 12610,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 1932,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1685,
+   "text_tokens": 247
+  },
+  "total_tokens": 14542
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/f5512afa-aa72-4a1d-900d-7c78e80cce8c",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/88a03484-eaea-42bd-b675-5af3339fcc21"
+ ],
+ "files": [
+  "rides/thrill/gen/plate_typhoon_v2_0.png",
+  "rides/thrill/gen/plate_typhoon_v2_1.png"
+ ]
+}

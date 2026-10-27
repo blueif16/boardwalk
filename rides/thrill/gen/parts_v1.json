@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is a close-up of our painting, a cute storybook map of a seaside amusement park: two tall thrill-ride towers. Draw a sprite sheet of moving ride parts in exactly the painting's style, to be animated on those towers.\n\nLayout, strict: a perfectly flat, solid, pure magenta (#FF00FF) background with no shading, texture or shadow, and on it three separate objects, one above the other, each with a wide empty magenta margin around it. Nothing touches or overlaps. No people or animals anywhere: every seat is empty. No text, letters, numbers, logos, borders, grid lines or labels.\n\nTop: the passenger carriage of a drop-tower ride, seen from the front at a slight top-down angle: a ring of eight outward-facing seats that wraps around a tall tower. The tower itself is NOT drawn: the middle of the ring is an empty hole, filled with the magenta background, where the tower passes through. Each seat is a padded seat with a high back and a curved over-the-shoulder harness, with small footrests below. The ring is wide and short, about four times as wide as it is tall. Seats alternate cornflower blue and butter yellow on a salmon-red ring.\n\nMiddle: the long arm of a looping thrill ride: one straight beam, about ten times as long as it is thick, perfectly horizontal and symmetric, drawn flat and face-on, with a round hub disc at its exact centre (a salmon disc with a small yellow star) and a small round bearing cap at each end. The beam is cornflower blue with butter-yellow trim.\n\nBottom: two identical open ride cars for the ends of that arm, side by side, seen from the front: each a rounded tub with two empty seats side by side and a padded lap bar, mint green with a butter-yellow rim; each car about as wide as one fifth of the arm.\n\nStyle, exactly as in image 1: thin warm dark-brown outlines (#2c201b), thinner tinted lines inside, soft pastel fills with one soft shade tone, a gentle paper texture, chunky toy-like proportions. None of the parts is pink or magenta.",
+ "refs": [
+  "rides/thrill/gen/ref_towers.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "parts_v1"
+ },
+ "format": "png",
+ "generation_s": 32.9,
+ "attempts": 1,
+ "idempotency_key": "ffe5287e-aefc-49f6-ad1d-fec6ed002545",
+ "request_id": "04083690-a463-4470-a1d5-bcc4e6740280",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 1732,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1284,
+   "text_tokens": 448
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 1732,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1284,
+   "text_tokens": 448
+  },
+  "total_tokens": 14212
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/b90aa8d7-0663-48c1-a925-e57a79fbe022",
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/3fda7c13-f293-42de-a73b-88674aa52137"
+ ],
+ "files": [
+  "rides/thrill/gen/parts_v1_0.png",
+  "rides/thrill/gen/parts_v1_1.png"
+ ]
+}
