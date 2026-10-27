@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same framing, camera, colours, line style and the position of every object. Change only this:\n- In the middle there is a round blue teacup ride: a flat round blue platform carrying a pink cup, a tall blue cup, a group of yellow and orange cups on a white base and a green cup, with a tall column in the centre. Remove all of its cups, the white base and the centre column completely. Leave its round blue platform completely empty: one plain, flat, round, light-blue floor with its darker rim, seen from the same angle, with no objects on it.\n- Where the removed cups covered the wooden boardwalk deck and the rides standing behind the platform, continue the deck planks and those rides naturally.\nDo not add anything new. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "rides/teacups/gen/erase_in.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "erase_v1"
+ },
+ "format": "png",
+ "generation_s": 36.9,
+ "attempts": 1,
+ "idempotency_key": "468028e3-6381-4f0e-9de0-7eb6f9d9a54d",
+ "request_id": "68877e06-22b7-426d-b7a7-c2456a49af46",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 1371,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1177,
+   "text_tokens": 194
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 1371,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1177,
+   "text_tokens": 194
+  },
+  "total_tokens": 13851
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/460680a0-f2d8-4652-8d37-949e97a12a9b",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/6b98153f-a855-4eb1-b490-77877db3b7bf"
+ ],
+ "files": [
+  "rides/teacups/gen/erase_v1_0.png",
+  "rides/teacups/gen/erase_v1_1.png"
+ ]
+}

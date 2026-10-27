@@ -1,0 +1,57 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our style frame: a cute storybook map of a seaside boardwalk, with thin tinted outlines, flat warm pastel fills, one soft shade tone and a gentle watercolour paper texture. Draw a TEXTURE SHEET in exactly that style, for wrapping around small toy teacups in a 3D model.\n\nLayout, strict: seven flat horizontal bands stacked from top to bottom, each filling the full width of the image, all the same height, separated by thin plain white gaps. Each band is a flat, front-on, evenly lit pattern swatch (not a drawing of a cup, no perspective, no shadows, no objects), the same pattern repeated evenly from the left edge to the right edge. Along the top of every band runs a narrow cream rim stripe edged with a thin warm gold line.\n1. salmon pink with large round white polka dots;\n2. butter yellow with small white daisies with orange centres;\n3. cornflower blue with white five-pointed stars;\n4. mint green with wide cream vertical stripes;\n5. lavender with small pink hearts;\n6. peach with a row of white scallops and small blue dots;\n7. warm cream with a ring of small cornflower-blue flowers and green leaves (for a teapot).\nThe patterns are bold and simple so they read at a tiny size: big shapes, two or three colours per band, the paper texture visible. No text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "gen/style_frame/v1_1.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "textures_v1"
+ },
+ "format": "png",
+ "generation_s": 32.9,
+ "attempts": 1,
+ "idempotency_key": "7ad2e676-25ea-4dad-acbe-4f15dccd6f36",
+ "request_id": "47cfba5a-f3c0-47fc-9d8c-3e9086120bf7",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2789,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 300
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2789,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 300
+  },
+  "total_tokens": 9029
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v1.shyfai.cn/v1/images/assets/3bc0e582-f122-4883-bb47-ad8c1018f42e"
+ ],
+ "files": [
+  "rides/teacups/gen/textures_v1_0.png"
+ ]
+}
