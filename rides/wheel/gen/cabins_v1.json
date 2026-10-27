@@ -1,0 +1,60 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is a close-up of our painting, a cute storybook map of a seaside boardwalk: in the middle stands a Ferris wheel with round hanging cabins. Image 2 shows the tiny animal characters of the same painting. Draw a sprite sheet of Ferris wheel cabins in exactly the style of the cabins in image 1.\n\nEvery cabin: a small round gondola hanging straight down, seen from the front at the same slight top-down angle as in image 1: a rounded bucket-shaped body with one big open window across the front, a little domed roof with a short rim, and a short straight hanger bar standing up from the middle of the roof, ending in a small round ring at the top. All twelve cabins are exactly the same size and shape; only the colours and the passengers change.\n\nLayout, strict: a grid of 4 columns and 3 rows on a perfectly flat, solid, pure magenta (#FF00FF) background with no shading, texture or shadow. One cabin per cell, whole from the hanger ring to the bottom, centred in its cell with a wide empty margin of magenta around it. Nothing touches or overlaps a neighbour. No grid lines, no borders, no text, no labels.\nRow 1: four EMPTY cabins (nobody inside, the window shows only the cabin's inside wall and a bench): a butter-yellow cabin, a cornflower-blue cabin, a mint-green cabin, a salmon-orange cabin.\nRow 2: the same four cabins in the same order and colours, each now with two tiny cute animal passengers looking out of the window (heads and shoulders, like the characters in image 2: a bear and a bunny, a cat and a dog, a panda and a fox, a pig and a duck).\nRow 3: an EMPTY lavender cabin, an EMPTY peach cabin, then the same lavender cabin with two passengers (a koala and a frog), then the same peach cabin with two passengers (a tiger and a sheep).\n\nStyle, exactly as in image 1: thin warm dark-brown outlines (#2c201b), thinner tinted lines inside, soft pastel fills with one soft shade tone, a gentle paper texture, chunky toy-like proportions. The cabins' colours are soft pastels; none of them is pink or magenta.",
+ "refs": [
+  "rides/wheel/gen/ref_wheel.png",
+  "tests/characters/gen/ref_chars.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "cabins_v1"
+ },
+ "format": "png",
+ "generation_s": 42.8,
+ "attempts": 1,
+ "idempotency_key": "dc1d28e4-aaa3-44ef-94b9-edc22ad4a982",
+ "request_id": "262e620f-9f38-4783-967f-e8264dc94a5a",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2398,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1926,
+   "text_tokens": 472
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2398,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1926,
+   "text_tokens": 472
+  },
+  "total_tokens": 14878
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/38edd93c-82ce-4ab8-8d49-3eea6934f43e",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/b4351304-20fd-4229-b6dc-a0f5228e8278"
+ ],
+ "files": [
+  "rides/wheel/gen/cabins_v1_0.png",
+  "rides/wheel/gen/cabins_v1_1.png"
+ ]
+}

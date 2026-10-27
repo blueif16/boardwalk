@@ -1,0 +1,2 @@
+{"out": "rides/wheel/gen/wheel_v1", "prompt_file": "rides/wheel/prompts/wheel_v1.txt", "ref": ["rides/wheel/gen/ref_wheel.png"], "n": 2}
+{"out": "rides/wheel/gen/cabins_v1", "prompt_file": "rides/wheel/prompts/cabins_v1.txt", "ref": ["rides/wheel/gen/ref_wheel.png", "tests/characters/gen/ref_chars.png"], "n": 2}

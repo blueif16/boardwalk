@@ -1,0 +1,15 @@
+Image 1 is a close-up of our painting, a cute storybook map of a seaside boardwalk: in the middle stands a Ferris wheel. Draw ONLY the turning part of that Ferris wheel, in exactly the painting's style, as a single clean game sprite.
+
+The view: seen exactly face-on, straight from the front, so the wheel is a perfect circle (not tilted, not in perspective, not an ellipse). Centred in the picture, the wheel's diameter about 90% of the picture's height.
+
+The turning part:
+- a round outer rim made of two thin concentric rings close together, joined by short cross-bars like a ladder, painted white with a cornflower-blue outer band;
+- twelve straight white spokes, evenly spaced, from the hub to the rim, each with a thin dark-brown outline;
+- a thin inner ring halfway between the hub and the rim, joining the spokes;
+- a round cornflower-blue hub disc in the centre with a yellow star on it;
+- twelve small round yellow knobs evenly spaced on the outer rim, one at the end of each spoke, where the cabins will hang.
+
+Style, exactly as in image 1: thin warm dark-brown outlines (#2c201b), soft pastel fills with one soft shade tone, a gentle paper texture, chunky toy-like proportions, crisp clean detail.
+
+Background: a perfectly flat, solid, pure green (#00FF00) everywhere around the wheel and in every gap between the spokes, with no shading, no texture, no gradient and no shadow.
+Nothing else: no cabins or gondolas, no support legs or frame, no axle stand, no ground, no people or animals, no text, letters, numbers, logos or watermarks.

@@ -1,4 +1,217 @@
-// Placeholder: the wheel ride layer. See index.html for the mount(ctx) contract.
-export async function mount() {
-  return {};
+// The Dream Wheel turning.
+//
+// The painted wheel is erased by a plate (plate.webp, tools/park_patch.py: the painting with the rim, spokes and
+// cabins removed and the A-frame kept). Over it, bottom to top: one canvas with the wheel (wheel.webp, rotated about
+// the hub and squashed to the painted wheel's upright ellipse) and the twelve cabins hanging straight down from its
+// knobs; the front A-frame's legs (legs.webp, the plate's own pixels); a small canvas with the hub (hub.webp) over the
+// legs' apex, as in the painting. Art and geometry: tools/build_wheel.py, wheel.json.
+//
+// The motion is a fixed cycle (closed form, so any clock time and a frozen &t= give the same frame): from rest, one
+// slow turn plus one cabin (390 deg); then the loading stops: dwell, step one cabin (30 deg), dwell, step, dwell. At
+// each stop the cabin at the bottom is serviced: its riders get out, new ones (or nobody) get in, and it rocks.
+// Cabins sway as pendulums driven by their hanger's acceleration; that is simulated once at mount for the four cycles
+// after which every cabin is back where it started, and looked up per frame.
+const BOX = [2452, 1176, 2708, 1484]; // park px: the canvas covers the wheel and its cabins
+const OMEGA = 12;                     // deg/s, cruising
+const RAMP = 3;                       // s to start or stop the turn
+const STEP_T = 4;                     // s to move one cabin at a loading stop
+const DWELL = 4.5;                    // s stopped at each loading stop
+const RUN = 390 / OMEGA + RAMP;      // s for the 390 deg turn: each cosine ramp covers half its time at full speed
+const CYCLE = RUN + 3 * DWELL + 2 * STEP_T;
+const PER_CYCLE = 450;                // deg per cycle: after 4 cycles (1800 deg) every cabin is back in place
+const FULL = 0.7;                     // chance that a serviced cabin leaves full
+// Pendulum: hanger to centre of mass, gravity (park px, s), damping; the forcing is softened (heavy, damped cabins).
+const SWAY_L = 22, SWAY_G = 180, SWAY_C = 0.7, SWAY_K = 0.45, SWAY_HZ = 30;
+const KICK_AT = 2.6;                  // s into a stop when the new riders step in
+const RAD = Math.PI / 180;
+
+const loadImage = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
+const hash = (n) => { let x = Math.imul((n | 0) ^ 0x9e3779b9, 0x85ebca6b); x ^= x >>> 13; x = Math.imul(x, 0xc2b2ae35); x ^= x >>> 16; return (x >>> 0) / 4294967296; };
+const smooth = (e0, e1, x) => { const k = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return k * k * (3 - 2 * k); };
+
+// Degrees turned since the cycle began, at time tau into it (0 <= tau < CYCLE); stop/into while stopped at a loading
+// stop; last = the last loading stop that has begun (-1 during the turn).
+function inCycle(tau) {
+  if (tau < RUN) {
+    const ramp = (t) => (OMEGA / 2) * (t - (RAMP / Math.PI) * Math.sin((Math.PI * t) / RAMP)); // cosine velocity ramp
+    let deg;
+    if (tau < RAMP) deg = ramp(tau);
+    else if (tau < RUN - RAMP) deg = ramp(RAMP) + OMEGA * (tau - RAMP);
+    else deg = 390 - ramp(RUN - tau);
+    return { deg, last: -1 };
+  }
+  let t = tau - RUN, deg = 390;
+  for (let j = 0; j < 3; j++) {
+    if (t < DWELL || j === 2) return { deg, stop: j, into: t, last: j };
+    t -= DWELL;
+    if (t < STEP_T) return { deg: deg + 30 * (t / STEP_T - Math.sin((2 * Math.PI * t) / STEP_T) / (2 * Math.PI)), last: j };
+    t -= STEP_T;
+    deg += 30;
+  }
+}
+
+export async function mount(ctx) {
+  const url = (f) => new URL(f, ctx.dir).href;
+  const [meta, plate, wheelImg, hubImg, cabinsImg] = await Promise.all([
+    fetch(url("wheel.json")).then((r) => r.json()),
+    fetch(url("plate.json")).then((r) => r.json()),
+    loadImage(url("wheel.webp")), loadImage(url("hub.webp")), loadImage(url("cabins.webp")),
+  ]);
+  const [HX, HY] = meta.hub, [RA, RB] = meta.ring;
+  const W = meta.wheel, SX = RA / W.knob_radius, SY = RB / W.knob_radius;
+  const CF = meta.cabins.frames, CD = meta.cabins.density, COLOURS = meta.cabins.colours;
+  // The sprite's knobs are 30 deg apart; cabin k hangs from the knob at 30k deg (0 = east, 90 = bottom, screen y down).
+  const N = 12;
+  const knob = (k) => k * 30;
+  const where = (t) => { const n = Math.floor(t / CYCLE); return { n, ...inCycle(t - n * CYCLE) }; };
+
+  // Wheel angle (deg, clockwise on screen) at clock time t: cabin 0 at the bottom when t = 0.
+  const angle = (t) => { const w = where(t); return 90 + PER_CYCLE * w.n + w.deg; };
+  // At loading stop j of cycle n, the cabin at the bottom: 30k + 450n + 390 + 30j = 0 (mod 360).
+  const bottomCabin = (n, j) => (((-(3 * n + 1 + j)) % N) + N) % N;
+  const leavesFull = (n, j) => (hash(n * 3 + j + 7919) < FULL ? 1 : 0);
+  const initialFull = (k) => (hash(k + 104729) < FULL ? 1 : 0);
+  // Services of cabin k, newest first, at or before (n, j); each cabin is serviced once every 4 cycles.
+  function lastService(k, n, j) {
+    for (let m = n; m >= n - 5; m--) for (let jj = m === n ? j : 2; jj >= 0; jj--) if (bottomCabin(m, jj) === k) return [m, jj];
+    return null;
+  }
+  // Cabin k's riders at time t: 0 empty .. 1 full, swapped during its service stop.
+  function riders(k, t) {
+    const w = where(t);
+    const s = w.last >= 0 ? lastService(k, w.n, w.last) : lastService(k, w.n - 1, 2);
+    if (!s) return initialFull(k);
+    const after = leavesFull(s[0], s[1]);
+    if (s[0] === w.n && s[1] === w.stop) {
+      const p = s[1] > 0 ? lastService(k, s[0], s[1] - 1) : lastService(k, s[0] - 1, 2);
+      const before = p ? leavesFull(p[0], p[1]) : initialFull(k);
+      return before * (1 - smooth(0.9, 1.4, w.into)) + after * smooth(2.4, 2.9, w.into);
+    }
+    return after;
+  }
+
+  // Sway: every cabin's pendulum over the 4-cycle period, sampled at SWAY_HZ. 30 s of warm-up first: the damping
+  // forgets the start within a few seconds, so the table joins up with itself at the wrap.
+  const PERIOD = 4 * CYCLE, S = Math.ceil(PERIOD * SWAY_HZ);
+  const sway = Array.from({ length: N }, () => new Float32Array(S));
+  const tSim = performance.now();
+  {
+    const sub = 4, dt = 1 / (SWAY_HZ * sub), WARM = 30 * SWAY_HZ, M = (S + WARM) * sub + 2;
+    // The wheel angle on the substep grid (one extra step at each end for the second differences).
+    const ang = new Float64Array(M), stopOf = new Int8Array(M), into = new Float32Array(M), nOf = new Int32Array(M);
+    for (let m = 0; m < M; m++) {
+      const t = (m - 1) * dt - WARM / SWAY_HZ, w = where(t);
+      ang[m] = (90 + PER_CYCLE * w.n + w.deg) * RAD;
+      stopOf[m] = w.stop ?? -1; into[m] = w.into ?? 0; nOf[m] = w.n;
+    }
+    const ps = new Float64Array(N), vs = new Float64Array(N);
+    for (let m = 1; m < M - 1; m++) {
+      const i = (m - 1) / sub - WARM;
+      if (i >= 0 && Number.isInteger(i)) for (let k = 0; k < N; k++) sway[k][i] = ps[k];
+      // Boarding rocks the cabin at the bottom: once, on the substep that crosses KICK_AT.
+      const kick = stopOf[m] >= 0 && stopOf[m - 1] === stopOf[m] && into[m - 1] < KICK_AT && into[m] >= KICK_AT ? bottomCabin(nOf[m], stopOf[m]) : -1;
+      for (let k = 0; k < N; k++) {
+        const o = knob(k) * RAD, q0 = ang[m - 1] + o, q1 = ang[m] + o, q2 = ang[m + 1] + o;
+        const ax = (SWAY_K * RA * (Math.cos(q2) - 2 * Math.cos(q1) + Math.cos(q0))) / (dt * dt);
+        const ay = (SWAY_K * RB * (Math.sin(q2) - 2 * Math.sin(q1) + Math.sin(q0))) / (dt * dt);
+        vs[k] += (-((SWAY_G - ay) * Math.sin(ps[k]) + ax * Math.cos(ps[k])) / SWAY_L - SWAY_C * vs[k]) * dt;
+        if (k === kick) vs[k] += 0.16;
+        ps[k] += vs[k] * dt;
+      }
+    }
+  }
+  const simMs = performance.now() - tSim;
+  const swayAt = (k, t) => {
+    const x = ((((t % PERIOD) + PERIOD) % PERIOD) * SWAY_HZ), i = Math.floor(x), f = x - i;
+    return sway[k][i % S] * (1 - f) + sway[k][(i + 1) % S] * f;
+  };
+  // A cabin dips a little as riders step in, then settles.
+  function bounce(k, t) {
+    const w = where(t);
+    if (w.stop == null || bottomCabin(w.n, w.stop) !== k || w.into < KICK_AT) return 0;
+    const s = w.into - KICK_AT;
+    return 1.4 * Math.sin((2 * Math.PI * s) / 0.55) * Math.exp(-s / 0.45);
+  }
+
+  // The plate under everything; then the wheel canvas, the front legs, the hub canvas.
+  ctx.addPatch(url("plate.webp"), plate.rect);
+  const [bx, by, bx1, by1] = BOX, bw = bx1 - bx, bh = by1 - by;
+  const canvasOver = (x, y, w, h) => {
+    const c = document.createElement("canvas");
+    c.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+    ctx.slots.rides.append(c);
+    return c.getContext("2d");
+  };
+  const g = canvasOver(bx, by, bw, bh);
+  const legs = new Image();
+  legs.src = url("legs.webp");
+  legs.alt = "";
+  const [lx, ly, lw, lh] = meta.legs.rect;
+  legs.style.cssText = `left:${lx}px;top:${ly}px;width:${lw}px;height:${lh}px`;
+  ctx.slots.rides.append(legs);
+  const HR = 30, hb = [HX - HR, HY - HR, 2 * HR, 2 * HR];
+  const gh = canvasOver(...hb);
+
+  let density = 1;
+  function resize(scale) {
+    density = scale * Math.min(devicePixelRatio || 1, 2 / scale);
+    g.canvas.width = Math.round(bw * density); g.canvas.height = Math.round(bh * density);
+    gh.canvas.width = Math.round(hb[2] * density); gh.canvas.height = Math.round(hb[3] * density);
+  }
+  resize(ctx.scale());
+
+  function spin(c2, img, size, a) {
+    c2.save();
+    c2.translate(HX, HY);
+    c2.scale(SX, SY);
+    c2.rotate(a * RAD);
+    c2.drawImage(img, -size / 2, -size / 2, size, size);
+    c2.restore();
+  }
+  function cabin(name, x, y, rot, alpha) {
+    if (alpha <= 0.004) return;
+    const f = CF[name], [sx, sy, sw, sh] = f.rect, [ax, ay] = f.anchor;
+    g.save();
+    g.globalAlpha = alpha;
+    g.translate(x, y);
+    g.rotate(rot);
+    g.drawImage(cabinsImg, sx, sy, sw, sh, -ax / CD, -ay / CD, sw / CD, sh / CD);
+    g.restore();
+  }
+
+  function draw(t) {
+    const a = angle(t);
+    g.setTransform(density, 0, 0, density, -bx * density, -by * density);
+    g.clearRect(bx, by, bw, bh);
+    g.imageSmoothingQuality = "high";
+    spin(g, wheelImg, W.size, a);
+    const hang = [];
+    for (let k = 0; k < N; k++) {
+      const p = (knob(k) + a) * RAD;
+      hang.push({ k, x: HX + RA * Math.cos(p), y: HY + RB * Math.sin(p) });
+    }
+    hang.sort((p, q) => p.y - q.y);
+    for (const { k, x, y } of hang) {
+      const col = COLOURS[k % COLOURS.length], rot = swayAt(k, t), dy = bounce(k, t);
+      // Full over empty, so the cabin itself never fades.
+      cabin(`${col}_empty`, x, y + dy, rot, 1);
+      cabin(`${col}_full`, x, y + dy, rot, riders(k, t));
+    }
+    gh.setTransform(density, 0, 0, density, -hb[0] * density, -hb[1] * density);
+    gh.clearRect(hb[0], hb[1], hb[2], hb[3]);
+    gh.imageSmoothingQuality = "high";
+    spin(gh, hubImg, W.hub_size, a);
+  }
+
+  let cost = 0, frames = 0;
+  window.__wheel = { cycle: CYCLE, run: RUN, angle, riders, swayAt, bottomCabin, where, draw, simMs, cost: () => cost / Math.max(1, frames) };
+  return {
+    update(t) {
+      const t0 = performance.now();
+      draw(t);
+      cost += performance.now() - t0;
+      frames++;
+    },
+    resize,
+  };
 }

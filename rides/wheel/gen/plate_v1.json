@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same framing, camera, colours and line style, and the position, size and shape of every object: the white wooden roller coaster lattice, the stalls, the lamps, the carousel, the boardwalk deck planks.\nChange only the Ferris wheel in the middle: remove its turning part completely, that is the round rim, all the white spokes, the round blue hub with the yellow star, and all twelve hanging gondola cabins. Keep its blue support frame standing exactly where it is: the four blue legs and the crossbar between them, with the legs meeting at the top in a short round axle where the hub was.\nWhere the wheel and its cabins were, paint what is behind them, continuing the picture around it: the white wooden coaster lattice with its red track pieces above, the strip of green grass and the low wall behind the deck, and the wooden boardwalk deck planks below.\nDo not add anything new. Do not draw any people or animals. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "rides/wheel/gen/plate_in.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "plate_v1"
+ },
+ "format": "png",
+ "generation_s": 41.6,
+ "attempts": 1,
+ "idempotency_key": "8fc0fcf4-a417-46ea-b6e6-5cb1e07f5033",
+ "request_id": "5e3a97ce-5020-455f-942d-ab56bc53d4ad",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 1974,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1750,
+   "text_tokens": 224
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 1974,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 1750,
+   "text_tokens": 224
+  },
+  "total_tokens": 14454
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/972b8e25-7fdd-4b27-bf78-c6f4faceffe9",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/1dbdb9cf-9d9b-4b9a-ab0e-af4e2946fadd"
+ ],
+ "files": [
+  "rides/wheel/gen/plate_v1_0.png",
+  "rides/wheel/gen/plate_v1_1.png"
+ ]
+}

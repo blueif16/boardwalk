@@ -4,7 +4,7 @@ over the painting (ctx.addPatch in a ride layer), so several people can patch di
 
   P="uv run -q --no-project --with pillow --with numpy --with scipy python -I tools/park_patch.py"
   $P crop X0 Y0 X1 Y1 OUT.png
-  $P paste EDIT.png X0 Y0 X1 Y1 OUT_PREFIX (--mask MASK.png | --poly POLY.json) [--feather 6] [--grow 4]
+  $P paste EDIT.png X0 Y0 X1 Y1 OUT_PREFIX (--mask MASK.png | --poly POLY.json) [--feather 6] [--grow 4] [--match]
 
 Coordinates are park px (the 3840 x 2560 frame, tests/park-crowd/park.json). The region must be 3:2; `crop` widens
 it to 3:2 around its centre if needed and prints the region it used.
@@ -19,7 +19,12 @@ paste: takes the edit back to HD density, measures and removes any shift against
   ([[[x, y], ...], ...]). Writes OUT_PREFIX.webp (RGBA, lossless, cropped to the mask, at HD density),
   OUT_PREFIX.json ({"rect": [x, y, w, h] in park px, "source": ...}) and OUT_PREFIX_check.png (before | after, the
   mask outlined), to look at before using it. The colour offset is the median over a ring outside the feather; the
-  feather straddles the mask's edge (50% on the outline).
+  feather straddles the mask's edge (50% on the outline). --match also softens the edit to the painting's sharpness and
+  matches each channel's spread, measured in that ring: edits of a small region come back crisper and bolder than
+  the painting, which shows as a window where the patch meets redrawn texture (lattice, planks). Dream Wheel plate,
+  2026-10-26: blur sigma 1.1 HD px, gains about 0.9.
+  --changed T keeps only what the edit really changed (blurred difference above T levels) inside the polygon, then
+  --grow widens it (never past the polygon): the patch then follows the erased object's own outline, so no half-blended edge of it is left.
 
   $P cut POLY.json OUT_PREFIX [--feather 1] [--classmask MASK.png --region X0,Y0,X1,Y1]
 
@@ -74,6 +79,35 @@ def shift_of(ref, img):
     return int(dy - ref.shape[0] if dy > ref.shape[0] // 2 else dy), int(dx - ref.shape[1] if dx > ref.shape[1] // 2 else dx)
 
 
+def hipass_energy(img, where):
+    g = img @ np.array([0.299, 0.587, 0.114], np.float32)
+    return float(np.var((g - ndimage.gaussian_filter(g, 1.5))[where]))
+
+
+def match_look(orig, edit, ring):
+    """Make the edit look like the painting around it: soften it to the painting's sharpness (the edit comes back at
+    up to 3x the painting's density and reads crisper) and match each channel's spread, both measured in the ring
+    outside the mask where the edit redrew the same things the painting shows."""
+    target = hipass_energy(orig, ring)
+    best = (abs(np.log(hipass_energy(edit, ring) / target)), 0.0, edit)
+    for sigma in (0.5, 0.8, 1.1, 1.5, 2.0, 2.6, 3.4):
+        e = ndimage.gaussian_filter(edit, (sigma, sigma, 0))
+        err = abs(np.log(hipass_energy(e, ring) / target))
+        if err < best[0]:
+            best = (err, sigma, e)
+    edit = best[2]
+    out = edit.copy()
+    gains = []
+    for c in range(3):
+        lo_o, md_o, hi_o = np.percentile(orig[..., c][ring], (10, 50, 90))
+        lo_e, md_e, hi_e = np.percentile(edit[..., c][ring], (10, 50, 90))
+        k = float(np.clip((hi_o - lo_o) / max(hi_e - lo_e, 1), 0.7, 1.3))
+        out[..., c] = md_o + (edit[..., c] - md_e) * k
+        gains.append(round(k, 3))
+    print(f"look matched: blur sigma {best[1]} HD px, contrast gains {gains}")
+    return out
+
+
 def paste(a):
     r = region(a.x0, a.y0, a.x1, a.y1)
     orig_im = hd_crop(r)
@@ -97,7 +131,17 @@ def paste(a):
         for poly in polys:
             d.polygon([((x - r[0]) * F, (y - r[1]) * F) for x, y in poly], fill=255)
         m = np.asarray(mi) > 127
-    if a.grow:
+    if a.changed:
+        # Keep only what the edit really changed inside the polygon/mask: blurred difference over a threshold, specks
+        # dropped, holes filled. Follows an erased object's outline (cabins, arms) instead of a hand-drawn shape.
+        diff = np.abs(ndimage.gaussian_filter(orig, (2 * F, 2 * F, 0)) - ndimage.gaussian_filter(edit, (2 * F, 2 * F, 0))).max(-1)
+        ch = ndimage.binary_opening(diff > a.changed, iterations=round(2 * F))
+        ch = ndimage.binary_fill_holes(ndimage.binary_closing(ch, iterations=round(6 * F)))
+        if a.grow:  # grown before the cut, so the allowed area stays a hard limit
+            ch = ndimage.binary_dilation(ch, iterations=round(a.grow * F))
+        print(f"changed area: {ch[m].mean():.0%} of the allowed area")
+        m = m & ch
+    elif a.grow:
         m = ndimage.binary_dilation(m, iterations=round(a.grow * F))
     if not m.any():
         raise SystemExit("the mask is empty")
@@ -107,6 +151,8 @@ def paste(a):
     feather = max(1.0, a.feather * F)
     near = ndimage.binary_dilation(m, iterations=round(feather))
     ring = ndimage.binary_dilation(m, iterations=round(feather + 10 * F)) & ~near
+    if a.match and ring.any():
+        edit = match_look(orig, edit, ring)
     if ring.any():
         off = np.median(orig[ring] - edit[ring], axis=0)
         edit = edit + off
@@ -198,6 +244,8 @@ def main():
     g.add_argument("--mask"); g.add_argument("--poly")
     p.add_argument("--feather", type=float, default=6, help="park px")
     p.add_argument("--grow", type=float, default=0, help="grow the mask by this many park px")
+    p.add_argument("--match", action="store_true", help="soften and match contrast to the painting around the mask")
+    p.add_argument("--changed", type=float, default=0, help="keep only where the edit differs from the painting by more than this (levels, after a 2 px blur), inside the mask; use with --grow")
     a = ap.parse_args()
     {"crop": crop, "paste": paste, "cut": cut}[a.cmd](a)
 

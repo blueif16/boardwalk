@@ -1,0 +1,197 @@
+{
+ "about": "Dream Wheel geometry and sprites (rides/wheel/tools/build_wheel.py). Park px. The wheel sprite is drawn centred on hub, rotated, then scaled to an upright ellipse: knob ring half-axes ring = [a, b]; sprite knob radius and angles (radians, sprite y down, increasing clockwise) give where each cabin hangs. Sprites are at density px per park px.",
+ "hub": [
+  2579.0,
+  1305.0
+ ],
+ "ring": [
+  90.0,
+  110.0
+ ],
+ "density": 2.5,
+ "wheel": {
+  "size": 640,
+  "knob_radius": 285.53037723473903,
+  "knob_angles": [
+   -2.6139,
+   -2.0924,
+   -1.5711,
+   -1.049,
+   -0.5283,
+   0.0014,
+   0.5263,
+   1.049,
+   1.5718,
+   2.0951,
+   2.617,
+   3.1401
+  ],
+  "hub_radius": 56.001185297204046,
+  "hub_size": 114
+ },
+ "cabins": {
+  "density": 2.5,
+  "frames": {
+   "yellow_empty": {
+    "rect": [
+     4,
+     4,
+     95,
+     128
+    ],
+    "anchor": [
+     47.36,
+     4.48
+    ]
+   },
+   "yellow_full": {
+    "rect": [
+     103,
+     4,
+     95,
+     130
+    ],
+    "anchor": [
+     47.55,
+     4.54
+    ]
+   },
+   "blue_empty": {
+    "rect": [
+     202,
+     4,
+     95,
+     128
+    ],
+    "anchor": [
+     47.17,
+     4.49
+    ]
+   },
+   "blue_full": {
+    "rect": [
+     301,
+     4,
+     95,
+     130
+    ],
+    "anchor": [
+     47.36,
+     4.55
+    ]
+   },
+   "mint_empty": {
+    "rect": [
+     400,
+     4,
+     95,
+     128
+    ],
+    "anchor": [
+     47.45,
+     4.49
+    ]
+   },
+   "mint_full": {
+    "rect": [
+     499,
+     4,
+     95,
+     130
+    ],
+    "anchor": [
+     47.74,
+     4.54
+    ]
+   },
+   "salmon_empty": {
+    "rect": [
+     598,
+     4,
+     95,
+     129
+    ],
+    "anchor": [
+     47.64,
+     4.5
+    ]
+   },
+   "salmon_full": {
+    "rect": [
+     697,
+     4,
+     95,
+     130
+    ],
+    "anchor": [
+     47.64,
+     4.55
+    ]
+   },
+   "lavender_empty": {
+    "rect": [
+     796,
+     4,
+     95,
+     130
+    ],
+    "anchor": [
+     47.55,
+     4.54
+    ]
+   },
+   "lavender_full": {
+    "rect": [
+     895,
+     4,
+     95,
+     130
+    ],
+    "anchor": [
+     47.64,
+     4.55
+    ]
+   },
+   "peach_empty": {
+    "rect": [
+     994,
+     4,
+     95,
+     130
+    ],
+    "anchor": [
+     47.45,
+     4.55
+    ]
+   },
+   "peach_full": {
+    "rect": [
+     1093,
+     4,
+     95,
+     130
+    ],
+    "anchor": [
+     47.64,
+     4.55
+    ]
+   }
+  },
+  "colours": [
+   "yellow",
+   "blue",
+   "mint",
+   "salmon",
+   "lavender",
+   "peach"
+  ]
+ },
+ "legs": {
+  "rect": [
+   2501.0,
+   1317.8,
+   135.2,
+   173.6
+  ]
+ }
+}
