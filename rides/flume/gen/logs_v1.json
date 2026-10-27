@@ -1,0 +1,61 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is a close-up of our storybook painting of Logger's Revenge, a log flume ride: a wooden mill house, wooden water channels and a long water chute. Images 2 and 3 are our style frame and its tiny animal characters. Draw a sprite sheet of the flume's log boats in exactly this painting's style: thin warm dark-brown outlines (#2c201b) around every shape, thinner tinted lines inside, flat warm pastel fills with one soft shade tone, chunky rounded toy-like proportions, a gentle paper texture.\n\nThe logs must stand out clearly against light-blue water and teal water chutes, so they are warm honey-brown wood, not blue: three hollowed-out log boats, each a fat rounded log carved open on top like a little canoe, with visible bark texture and a lighter cream-wood rim around the opening, and a rounded front end with the log's cut rings showing. Riders sit in a row inside each log, as in the views below: a panda, a bunny and a fox in the first log; a duck, a tiger and a koala in the second log; a pig, a raccoon and a frog in the third log, in the style of image 3. The riders are big for the log, like toys: their whole heads and shoulders show above the rim, the front rider holds both arms up, cheerful open-mouthed faces, plain colourful t-shirts.\n\nLayout, strict: on a plain flat pure white background, a grid of 3 columns and 3 rows. Each cell holds exactly one log with its riders, whole, centred, all logs the same size, with a wide empty margin; nothing touches a neighbour or the edge.\nRow 1, exact side view in profile, every log facing RIGHT (its front end at the right) and level: the first, second and third log.\nRow 2, the same three logs seen from directly behind and a little above, as when the log floats away from the viewer.\nRow 3, the same three logs seen from directly in front and a little above, as when the log floats towards the viewer.\nNo water, no splashes, no ground, no shadows, no text, no labels, no numbers, no grid lines, no borders.",
+ "refs": [
+  "rides/flume/gen/ref_flume.png",
+  "gen/style_frame/v1_1.png",
+  "tests/characters/gen/ref_chars.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "logs_v1"
+ },
+ "format": "png",
+ "generation_s": 109.6,
+ "attempts": 1,
+ "idempotency_key": "31be2e8b-bb29-4bb9-b900-aa8175e94b88",
+ "request_id": "4305d456-b311-47bd-95a1-0008be619a85",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 4445,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3977,
+   "text_tokens": 468
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 4445,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3977,
+   "text_tokens": 468
+  },
+  "total_tokens": 16925
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/fd8a3712-5589-4e02-996b-74ba248b2c97",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/730bd5dd-5744-46f5-bfaa-85dbf286ffca"
+ ],
+ "files": [
+  "rides/flume/gen/logs_v1_0.png",
+  "rides/flume/gen/logs_v1_1.png"
+ ]
+}

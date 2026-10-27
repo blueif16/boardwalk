@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same framing, camera, colours, line style and the position of every object: the wooden mill house, the wooden flume channel walls, the U-shaped turn of the channel, the long water chute, the coaster lattice, the plants. Change only this:\n- In the U-shaped wooden water channel in front of the mill house there is a log boat with animals riding in it. Remove the log boat and every rider completely. Fill the channel there with the same light-blue flowing water, white ripple streaks and channel walls that run around it, so the channel is empty water.\nDo not add anything new. Do not draw any people, animals or boats. Do not draw any text, letters, numbers, logos or watermarks.",
+ "refs": [
+  "rides/flume/gen/pool_in.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "pool_erase_v1"
+ },
+ "format": "png",
+ "generation_s": 41.5,
+ "attempts": 1,
+ "idempotency_key": "9829c8d7-3751-4b7d-952d-9c9b08ecabbf",
+ "request_id": "bdad81ad-f24a-4fb6-bb3b-6a8d9c3e8044",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 562,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 401,
+   "text_tokens": 161
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 562,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 401,
+   "text_tokens": 161
+  },
+  "total_tokens": 13042
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/2b9cb676-ed0d-4480-b441-7c4fc315509f",
+  "https://v4-gateway-v3-2.fycsai.com/v1/images/assets/4a2ad1be-3112-4347-8cbe-43a5f791a471"
+ ],
+ "files": [
+  "rides/flume/gen/pool_erase_v1_0.png",
+  "rides/flume/gen/pool_erase_v1_1.png"
+ ]
+}

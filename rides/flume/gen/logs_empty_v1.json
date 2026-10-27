@@ -1,0 +1,59 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Edit image 1. Keep everything exactly as it is: the same nine log boats in the same grid, at the same size, in the same position and the same views, with the same outlines, colours, bark texture and cut wood rings, on the same plain pure white background. Change only this:\n- Remove every animal rider from every log. Each log is now empty: where the riders sat, show the hollow carved-out inside of the log, a darker warm-brown wooden interior, framed by the log's lighter cream-wood rim, as a real empty log boat seen from that angle. In the side views, the top of the log is the cream rim line with just a sliver of the dark interior above it.\nDo not add anything new. No animals, no people, no water, no shadows, no text, no labels, no grid lines.",
+ "refs": [
+  "rides/flume/gen/logs_v1_1.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 2,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "logs_empty_v1"
+ },
+ "format": "png",
+ "generation_s": 45.2,
+ "attempts": 1,
+ "idempotency_key": "0fc7e1f5-890c-456b-8e90-d452b33ee656",
+ "request_id": "1d30d884-d711-442e-862b-bcf5381a8dcf",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 12480,
+  "completion_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 2666,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 177
+  },
+  "output_tokens": 12480,
+  "output_tokens_details": {
+   "image_tokens": 12480,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 2666,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 2489,
+   "text_tokens": 177
+  },
+  "total_tokens": 15146
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/134672be-61f8-4ab0-a620-8b19c760064b",
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/344b50a5-a96a-47b5-96d3-6da38842aef8"
+ ],
+ "files": [
+  "rides/flume/gen/logs_empty_v1_0.png",
+  "rides/flume/gen/logs_empty_v1_1.png"
+ ]
+}
