@@ -50,8 +50,9 @@ export function density(hour) {
 }
 
 // spacing scales how far apart the members of a group stand and walk (1 suits 30 px characters; scale it with their
-// size, and more for a roomier crowd).
-export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13, looks = ADULTS, kids = ["bear_cub"], spacing = 1 }) {
+// size, and more for a roomier crowd). pets: the looks walked on a lead. kidOf: adult look -> kid looks of the same
+// species; when given, most families are one species (parents and kids), the rest mixed.
+export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13, looks = ADULTS, kids = ["bear_cub"], spacing = 1, pets = ["pet"], kidOf = null }) {
   const R = rng(seed);
   const SP = spacing;
   const sy = Math.sin(camera.yaw), cy = Math.cos(camera.yaw);
@@ -139,14 +140,16 @@ export function createCrowd({ walk, camera, max = 150, seed = 1, hour = () => 13
     else if (kind === "friends") { g.pace = R.range(15, 20); makeAgent(g, look(), { oz: -7 * SP }); makeAgent(g, look(), { oz: 7 * SP }); makeAgent(g, look(), { ox: -8 * SP, oz: 0 }); }
     else if (kind === "family") {
       g.pace = R.range(13, 17);
-      makeAgent(g, look(), { oz: -5 * SP });
-      if (R() < 0.6) makeAgent(g, look(), { oz: 5 * SP });
-      makeAgent(g, R.pick(kids), { kid: true, ox: 10 * SP, oz: R.range(-3, 3) * SP });
-      if (R() < 0.35) makeAgent(g, R.pick(kids), { kid: true, ox: 6 * SP, oz: R.range(6, 9) * SP });
+      const fam = kidOf && R() < 0.8 ? R.pick(Object.keys(kidOf)) : null;
+      const child = () => (fam ? R.pick(kidOf[fam]) : R.pick(kids));
+      makeAgent(g, fam || look(), { oz: -5 * SP });
+      if (R() < 0.6) makeAgent(g, fam && R() < 0.75 ? fam : look(), { oz: 5 * SP });
+      makeAgent(g, child(), { kid: true, ox: 10 * SP, oz: R.range(-3, 3) * SP });
+      if (R() < 0.35) makeAgent(g, child(), { kid: true, ox: 6 * SP, oz: R.range(6, 9) * SP });
     } else if (kind === "dogwalker") {
       g.pace = R.range(15, 20);
       const owner = makeAgent(g, look(), { oz: -3 * SP });
-      makeAgent(g, "pet", { pet: true, owner, ox: 13 * SP, oz: 4 * SP });
+      makeAgent(g, R.pick(pets), { pet: true, owner, ox: 13 * SP, oz: 4 * SP });
     }
     for (const a of g.members) { Object.assign(a, { x: at.x + a.ox, h: at.h, z: at.z + a.oz }); a.tx = a.x; a.th = a.h; a.tz = a.z; }
     groups.push(g);

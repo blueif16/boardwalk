@@ -10,7 +10,10 @@ import { createRenderer } from "../characters/render.js";
 const WARM = 25;
 const WALK = ["walk0", "stand", "walk1", "stand"];
 const UNIT = 3840 / 3904; // park px per Dipper-stage unit, the unit the size number is given in
-const KIDS = ["bear_cub"];
+// Kid looks and the adult species they belong to, so most families are one species. Pets are every look named pet*.
+const KID_OF = { bear: "bear_cub", bunny: "bunny_kid", panda: "panda_kid", fox: "fox_kid", pig: "piglet", cat_orange: "kitten", lion: "lion_cub" };
+const KIDS = Object.values(KID_OF);
+const species = (look) => look.split("~")[0];
 const load = (url) => new Promise((done, fail) => { const im = new Image(); im.onload = () => done(im); im.onerror = fail; im.src = url; });
 
 export async function mountCrowd(canvas, { params = new URLSearchParams(location.search), size = 38, count = 120, hour = 13, room = 1.5 } = {}) {
@@ -26,12 +29,19 @@ export async function mountCrowd(canvas, { params = new URLSearchParams(location
   const clock = createClock();
   const r = createRenderer(canvas, atlas, meta, { W: camera.W, H: camera.H });
   // Every adult in the atlas walks; kids and pets come from their own lists.
-  const looks = [...new Set(Object.keys(r.frames).filter((k) => k.endsWith("/front_stand")).map((k) => k.split("/")[0]))]
-    .filter((l) => !KIDS.includes(l) && l !== "pet");
+  const all = [...new Set(Object.keys(r.frames).filter((k) => k.endsWith("/front_stand")).map((k) => k.split("/")[0]))];
+  const pets = all.filter((l) => l.startsWith("pet"));
+  const kids = all.filter((l) => KIDS.includes(species(l)));
+  const looks = all.filter((l) => !pets.includes(l) && !kids.includes(l));
+  const kidOf = {};
+  for (const l of looks) {
+    const k = kids.filter((x) => species(x) === KID_OF[species(l)]);
+    if (k.length) kidOf[l] = k;
+  }
   const K = ((Number(params.get("px")) || size) * UNIT) / 30;
   const crowd = createCrowd({
     walk, camera, max: Number(params.get("n")) || count, seed: Number(params.get("seed")) || 1,
-    hour: () => Number(params.get("hour") ?? hour), looks, kids: KIDS.filter((l) => r.frames[`${l}/front_stand`]),
+    hour: () => Number(params.get("hour") ?? hour), looks, kids, pets, kidOf,
     spacing: K * (Number(params.get("room")) || room),
   });
   crowd.advance(clock.now() + WARM);

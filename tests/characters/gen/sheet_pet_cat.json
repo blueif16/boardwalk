@@ -1,0 +1,58 @@
+{
+ "model": "gpt-image-2.5",
+ "endpoint": "/images/edits",
+ "prompt": "Image 1 is our style frame: a cute storybook map of a seaside boardwalk crowded with tiny animal characters. Image 2 is a close-up of those characters. Draw a sprite sheet of a small PET CAT on four legs, the kind the characters walk on a lead, in exactly their style: chunky toy-like proportions, a big round head, short stubby legs, thin warm dark-brown outlines (#2c201b) around the whole silhouette, thinner tinted lines inside, flat pastel fills with one soft shade tone, tiny dot eyes.\n\nThe cat: a small grey tabby cat with a long striped tail, a red harness.\n\nLayout, strict: a grid of 4 columns and 3 rows on a plain flat pure white background. The same cat twelve times, identical in size and colours in every cell, each whole, standing on the row's baseline, centred in its cell with a wide empty margin. Nothing touches or overlaps a neighbour. No lead, no grid lines, no borders, no shadows, no ground, no text, no labels.\nRow 1, front view, walking towards the viewer: standing; trotting, front left paw lifted; trotting, front right paw lifted; sitting.\nRow 2, side view in profile, facing RIGHT: standing on four legs; trotting with the near legs forward; trotting with the far legs forward (these two cells must show different legs in front); stretching, front paws forward and bottom up.\nRow 3, back view, walking away from the viewer, tail up: standing; trotting, left paw lifted; trotting, right paw lifted; sitting.",
+ "refs": [
+  "gen/style_frame/v1_1.png",
+  "tests/characters/gen/ref_chars.png"
+ ],
+ "mask": null,
+ "params": {
+  "n": 1,
+  "size": "3840x2560",
+  "quality": "high",
+  "response_format": "url",
+  "output_format": "png",
+  "client_reference": "sheet_pet_cat"
+ },
+ "format": "png",
+ "generation_s": 48.4,
+ "attempts": 1,
+ "idempotency_key": "cd25223e-e2db-40f0-bdfa-8d0810a7f16e",
+ "request_id": "0121f412-f512-4d63-9377-70ebd2e03f3f",
+ "status": "completed",
+ "usage": {
+  "completion_tokens": 6240,
+  "completion_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "input_tokens": 3777,
+  "input_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3442,
+   "text_tokens": 335
+  },
+  "output_tokens": 6240,
+  "output_tokens_details": {
+   "image_tokens": 6240,
+   "reasoning_tokens": 0,
+   "text_tokens": 0
+  },
+  "prompt_tokens": 3777,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "image_tokens": 3442,
+   "text_tokens": 335
+  },
+  "total_tokens": 10017
+ },
+ "error": null,
+ "image_urls": [
+  "https://v4-gateway-v3.fycsai.com/v1/images/assets/e4a80f8a-80cd-4803-9a17-33c293fb1d2f"
+ ],
+ "files": [
+  "tests/characters/gen/sheet_pet_cat_0.png"
+ ]
+}

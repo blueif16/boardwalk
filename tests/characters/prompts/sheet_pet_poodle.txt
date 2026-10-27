@@ -1,0 +1,8 @@
+Image 1 is our style frame: a cute storybook map of a seaside boardwalk crowded with tiny animal characters. Image 2 is a close-up of those characters. Draw a sprite sheet of a small PET DOG on four legs, the kind the characters walk on a lead, in exactly their style: chunky toy-like proportions, a big round head, short stubby legs, thin warm dark-brown outlines (#2c201b) around the whole silhouette, thinner tinted lines inside, flat pastel fills with one soft shade tone, tiny dot eyes.
+
+The dog: a small fluffy cream poodle with a pompom tail, a pink collar.
+
+Layout, strict: a grid of 4 columns and 3 rows on a plain flat pure white background. The same dog twelve times, identical in size and colours in every cell, each whole, standing on the row's baseline, centred in its cell with a wide empty margin. Nothing touches or overlaps a neighbour. No lead, no grid lines, no borders, no shadows, no ground, no text, no labels.
+Row 1, front view, walking towards the viewer: standing; trotting, front left paw lifted; trotting, front right paw lifted; sitting.
+Row 2, side view in profile, facing RIGHT: standing on four legs; trotting with the near legs forward; trotting with the far legs forward (these two cells must show different legs in front); sniffing the ground with the nose down.
+Row 3, back view, walking away from the viewer, tail up: standing; trotting, left paw lifted; trotting, right paw lifted; sitting.

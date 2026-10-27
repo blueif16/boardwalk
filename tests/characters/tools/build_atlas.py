@@ -3,13 +3,16 @@
   uv run --with pillow --with numpy --with scipy python -I tests/characters/tools/build_atlas.py [--park]   (from the repo root)
 
 --park: only the animal sheets (no 3D test sets, no Dipper-stage cut-outs), written to tests/park-crowd/ for the
-whole-park crowd. Sheets that have not been generated are skipped.
+whole-park crowd, at 2 atlas px per stage px (still twice what a screen shows at size 38), plus outfit variants:
+each adult's clothing colour (sampled on the front view's torso) is recoloured into --variants N palette colours
+(default 1), keeping its shading; species whose clothing hue also shows in the head (fur, beak, hat) get none.
+Variant looks are named <species>~<colour>. Sheets that have not been generated are skipped.
 
 Frames are drawn at 4 atlas px per stage px (SCALE), sharp up to 47 px characters on the 2.5x stage. Each frame's anchor is the feet point. Rows of a sheet are
 front / side (facing right) / back; columns stand / walk0 / walk1 / act (sit, eat, photo; the pet: sit, sniff, sit).
 Extra frame sets (rendered 3D sprites) are merged from gen/sprites_*.json + .png when present.
 """
-import json, os, sys
+import json, os, sys, zlib
 import numpy as np
 from PIL import Image, ImageFilter
 from scipy import ndimage
@@ -24,6 +27,17 @@ SHEETS = {
     "bear_cub": 22, "bunny_brown": 30, "dog_cream": 29, "pet": 13,
     "panda": 30, "fox": 30, "pig": 29, "raccoon": 29, "koala": 29, "frog": 27, "penguin": 28, "tiger": 30,
     "sheep": 29, "duck": 27, "elephant": 31, "hamster": 27,
+    "lion": 31, "giraffe": 33, "deer": 31, "otter": 29, "owl": 28, "hedgehog": 27, "squirrel": 29, "mouse": 28,
+    "monkey": 29, "zebra": 31, "hippo": 30, "seal": 28, "alpaca": 32, "crocodile": 30, "flamingo": 31, "red_panda": 29,
+    "bunny_kid": 23, "panda_kid": 22, "fox_kid": 22, "piglet": 21, "kitten": 21, "lion_cub": 22,
+    "pet_corgi": 13, "pet_poodle": 14, "pet_cat": 12,
+}
+# The characters test (on the Dipper stage) keeps its original cast; --park takes every sheet.
+ORIGINAL = {"bear", "bunny", "cat_orange", "dog_shiba", "cat_grey", "bear_cub", "bunny_brown", "dog_cream", "pet"}
+KIDS = {"bear_cub", "bunny_kid", "panda_kid", "fox_kid", "piglet", "kitten", "lion_cub"}
+PALETTE = {
+    "salmon": (236, 129, 103), "butter": (242, 178, 117), "cornflower": (133, 173, 205), "mint": (140, 200, 165),
+    "lavender": (178, 158, 212), "peach": (247, 186, 150), "red": (214, 86, 74), "teal": (88, 168, 170),
 }
 VIEWS = ["front", "side", "back"]
 POSES = ["stand", "walk0", "walk1", "act"]
@@ -95,20 +109,112 @@ def sharpen(arr):
     return np.dstack([np.asarray(rgb).astype(np.float32) / 255.0, arr[..., 3]])
 
 
-def sheet_frames(name, height):
+def rgb_to_hsv(a):
+    a = a.astype(np.float32) / 255
+    mx, mn = a.max(-1), a.min(-1)
+    d = mx - mn
+    h = np.zeros_like(mx)
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    m = d > 1e-6
+    rm, gm = m & (mx == r), m & (mx == g) & (mx != r)
+    bm = m & ~rm & ~gm
+    h[rm] = ((g - b)[rm] / d[rm]) % 6
+    h[gm] = (b - r)[gm] / d[gm] + 2
+    h[bm] = (r - g)[bm] / d[bm] + 4
+    return np.dstack([h * 60, np.where(mx > 0, d / np.maximum(mx, 1e-6), 0), mx])
+
+
+def hsv_to_rgb(hsv):
+    h, s, v = hsv[..., 0] / 60 % 6, hsv[..., 1], hsv[..., 2]
+    i = np.floor(h).astype(int) % 6
+    f = h - np.floor(h)
+    p, q, t = v * (1 - s), v * (1 - s * f), v * (1 - s * (1 - f))
+    out = np.choose(i[..., None] * np.ones(3, int), [np.dstack(c) for c in [(v, t, p), (q, v, p), (p, v, t), (p, q, v), (t, p, v), (v, p, q)]])
+    return (np.clip(out, 0, 1) * 255 + 0.5).astype(np.uint8)
+
+
+def hue_gap(a, b):
+    d = np.abs(np.asarray(a) - b) % 360
+    return np.minimum(d, 360 - d)
+
+
+def clothing_variants(name, rgb, fg, boxes, n):
+    """Recolourers for the clothing: [(colour name, fn(rgb) -> rgb)], or [] when the clothing can't be told apart."""
+    if n <= 0 or (0, 0) not in boxes:
+        return []
+    hsv = rgb_to_hsv(rgb)
+    y0, y1, x0, x1 = boxes[(0, 0)]
+    h, w = y1 - y0, x1 - x0
+    ty0, ty1, tx0, tx1 = y0 + int(h * 0.58), y0 + int(h * 0.72), x0 + int(w * 0.40), x0 + int(w * 0.60)
+    t = hsv[ty0:ty1, tx0:tx1][fg[ty0:ty1, tx0:tx1]]
+    t = t[(t[:, 1] > 0.18) & (t[:, 2] > 0.35)]
+    if len(t) < 30:
+        return []
+    h0 = float(np.angle(np.exp(1j * np.radians(t[:, 0])).mean(), deg=True) % 360)
+    s0, v0 = float(np.median(t[:, 1])), float(np.median(t[:, 2]))
+    if s0 < 0.12:
+        return []
+    mask = fg & (hue_gap(hsv[..., 0], h0) < 16) & (hsv[..., 1] > 0.5 * s0) & (hsv[..., 2] > 0.25)
+    # Keep the clothing's big connected areas only: drops rosy cheeks, inner ears and specks of the same hue.
+    lab, n_lab = ndimage.label(mask)
+    if n_lab:
+        cell_area = np.median([(a1 - a0) * (b1 - b0) for a0, a1, b0, b1 in boxes.values()])
+        sizes = ndimage.sum(mask, lab, range(1, n_lab + 1))
+        mask = np.isin(lab, 1 + np.where(sizes > 0.012 * cell_area)[0])
+    head = np.zeros_like(mask)
+    furs = []
+    for (r, c), (a0, a1, b0, b1) in boxes.items():
+        head[a0:a0 + int((a1 - a0) * 0.42), b0:b1] = True
+        hp = hsv[a0:a0 + int((a1 - a0) * 0.42), b0:b1][fg[a0:a0 + int((a1 - a0) * 0.42), b0:b1]]
+        furs.append(hp[hp[:, 1] > 0.25, 0])
+    if mask.sum() == 0 or (mask & head).sum() / mask.sum() > 0.08:
+        return []
+    # Never recolour the head (the top 38% of a cell on these chunky bodies): noses and markings share hues.
+    for a0, a1, b0, b1 in boxes.values():
+        mask[a0:a0 + int((a1 - a0) * 0.38), b0:b1] = False
+    fur = np.concatenate(furs)
+    fur_h = float(np.median(fur)) if len(fur) > 200 else None
+    names = sorted(PALETTE, key=lambda k: zlib.crc32((name + k).encode()))
+    picks = []
+    for k in names:
+        th, ts, tv = rgb_to_hsv(np.array([[PALETTE[k]]], np.uint8))[0, 0]
+        if hue_gap(th, h0) < 50 or (fur_h is not None and hue_gap(th, fur_h) < 30):
+            continue
+        picks.append((k, th, ts, tv))
+        if len(picks) == n:
+            break
+
+    def make(th, ts, tv):
+        def fn(img):
+            hv = rgb_to_hsv(img)
+            hv[..., 0] = np.where(mask, th, hv[..., 0])
+            hv[..., 1] = np.where(mask, np.clip(ts * hv[..., 1] / s0, 0, 1), hv[..., 1])
+            hv[..., 2] = np.where(mask, np.clip(tv * hv[..., 2] / v0, 0, 1), hv[..., 2])
+            out = img.copy()
+            out[mask] = hsv_to_rgb(hv)[mask]
+            return out
+        return fn
+    return [(k, make(th, ts, tv)) for k, th, ts, tv in picks]
+
+
+def load_sheet(name):
     rgb = np.asarray(Image.open(os.path.join(GEN, f"sheet_{name}_0.png")).convert("RGB"))
-    H, W = rgb.shape[:2]
     fg = key_background(rgb)
-    boxes = cells(fg, H, W)
+    return rgb, fg, cells(fg, *rgb.shape[:2])
+
+
+def sheet_frames(name, height, sheet=None, look=None):
+    rgb, fg, boxes = sheet or load_sheet(name)
+    look = look or name
     missing = [(r, c) for r in range(3) for c in range(4) if (r, c) not in boxes]
-    if missing:
+    if missing and look == name:
         print(f"{name}: missing cells {missing}", file=sys.stderr)
     rgba = np.dstack([rgb, (fg * 255).astype(np.uint8)])
     crops = {}
     for (r, c), (y0, y1, x0, x1) in boxes.items():
         crops[(r, c)] = Image.fromarray(rgba[y0:y1, x0:x1])
     stand_h = np.median([crops[(r, 0)].size[1] for r in range(3) if (r, 0) in crops])
-    if name == "pet":
+    if name.startswith("pet"):
         stand_h = crops[(0, 0)].size[1]
     s = height * SCALE / stand_h
     ref = head_sig(crops[(1, 0)])
@@ -131,8 +237,8 @@ def sheet_frames(name, height):
         cols = np.where(top.any(0))[0]
         ax = (cols.min() + cols.max() + 1) / 2 * s + pad
         ay = (rows.max() + 1) * s + pad
-        frames[f"{name}/{VIEWS[r]}_{POSES[c]}"] = (arr, ax, ay)
-    if flips:
+        frames[f"{look}/{VIEWS[r]}_{POSES[c]}"] = (arr, ax, ay)
+    if flips and look == name:
         print(f"{name}: mirrored side cells {flips}")
     return frames
 
@@ -195,12 +301,24 @@ def extra_sets():
 
 
 def main():
+    global SCALE
     park = "--park" in sys.argv
+    n_var = int(sys.argv[sys.argv.index("--variants") + 1]) if "--variants" in sys.argv else 1
+    if park:
+        SCALE = 2
     out_dir = os.path.join(TEST, "..", "park-crowd") if park else TEST
     frames = {}
     for name, h in SHEETS.items():
-        if os.path.exists(os.path.join(GEN, f"sheet_{name}_0.png")):
-            frames.update(sheet_frames(name, h))
+        if not os.path.exists(os.path.join(GEN, f"sheet_{name}_0.png")) or (not park and name not in ORIGINAL):
+            continue
+        sheet = load_sheet(name)
+        frames.update(sheet_frames(name, h, sheet))
+        if park and name not in KIDS and not name.startswith("pet"):
+            rgb, fg, boxes = sheet
+            variants = clothing_variants(name, rgb, fg, boxes, n_var)
+            for colour, fn in variants:
+                frames.update(sheet_frames(name, h, (fn(rgb), fg, boxes), f"{name}~{colour}"))
+            print(f"{name}: variants {[v[0] for v in variants] or 'none'}")
     frames.update(shadow())
     frames.update(solid())
     if not park:
